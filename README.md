@@ -1,3 +1,3 @@
 # FinTracker
 
-App developed to track finance info from spending, income, investments and savings. 
+App developed to track finance info from banking, investments, and savings
