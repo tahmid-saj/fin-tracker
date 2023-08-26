@@ -6,9 +6,10 @@
 .pnp.js
 
 # firebase
-/utils
-/utils/firebase
-/utils/firebase/firebase.utils.jsx
+/src/utils
+/src/utils
+/src/utils/firebase
+/src/utils/firebase/firebase.utils.jsx
 
 # testing
 /coverage
