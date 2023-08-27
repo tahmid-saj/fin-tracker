@@ -1,8 +1,9 @@
+import Investments from "../../components/investments/investments.component";
 import "./investments.styles.scss";
 
 const InvestmentsRoute = () => {
   return (
-    <h1>Investments page</h1>
+    <Investments></Investments>
   );
 };
 

@@ -12,7 +12,7 @@ const defaultFormFields = {
 
 const TransferMoney = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { amount } = formFields;
+  const { transferTo, amount } = formFields;
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -35,6 +35,9 @@ const TransferMoney = () => {
       <h3>Transfer Money</h3>
 
       <form onSubmit={ handleSubmit }>
+      <FormInput label="Transfer to" type="text" required onChange={ handleChange }
+                          name="transferTo" value={ transferTo }></FormInput>
+
         <FormInput label="Amount" type="text" required onChange={ handleChange }
                           name="amount" value={ amount }></FormInput>
         
