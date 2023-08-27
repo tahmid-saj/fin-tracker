@@ -1,8 +1,9 @@
+import Savings from "../../components/savings/savings.component";
 import "./savings.styles.scss";
 
 const SavingsRoute = () => {
   return (
-    <h1>Savings page</h1>
+    <Savings></Savings>
   );
 };
 
