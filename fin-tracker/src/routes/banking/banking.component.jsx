@@ -4,7 +4,7 @@ import Banking from "../../components/banking/banking.component";
 
 const BankingRoute = () => {
   return (
-    <Banking ></Banking>
+    <Banking></Banking>
   );
 };
 

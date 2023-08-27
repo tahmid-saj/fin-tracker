@@ -8,6 +8,10 @@ import ActionList from "./action-list/action-list.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
+const financeTrackerItemNames = [
+  "TD Account"
+];
+
 class Banking extends Component {
   // constructor(props) {
   //   super(props);
@@ -16,7 +20,7 @@ class Banking extends Component {
   render() {
     return (
       <div className="banking-container">
-        <FinanceTrackerItems label={ FINANCE_ITEM_TYPE }></FinanceTrackerItems>
+        <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems>
 
         <Summary></Summary>
 
@@ -28,6 +32,6 @@ class Banking extends Component {
       </div>
     );
   };
-}
+};
 
 export default Banking;

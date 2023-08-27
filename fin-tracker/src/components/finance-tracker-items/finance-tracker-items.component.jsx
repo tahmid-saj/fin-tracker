@@ -7,14 +7,18 @@ import FormInput from "../form-input/form-input.component";
 import "./finance-tracker-items.styles.scss";
 import CreateAccount from "../banking/create-account/create-account.component";
 
-const FinanceTrackerItems = ({ children, label }) => {
+const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
 
 
   return (
     <div className="finance-tracker-item-container">
       <h2>{ label }</h2>
-      <FinanceTrackerItem name={ "TD Account" }></FinanceTrackerItem>
-      <CreateAccount></CreateAccount>
+      <FinanceTrackerItem name={`${financeTrackerItemNames}`}></FinanceTrackerItem>
+
+      {
+        label === "Bank Accounts" ?
+        <CreateAccount></CreateAccount> : null
+      }
     </div>
   );
 };
