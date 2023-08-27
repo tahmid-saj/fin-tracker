@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 
-const Home = () => {
+const HomeRoute = () => {
   return (
     <h1>Home page</h1>
   );
 };
 
-export default Home;
+export default HomeRoute;
 
