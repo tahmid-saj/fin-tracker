@@ -13,7 +13,7 @@ const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
   return (
     <div className="finance-tracker-item-container">
       <h2>{ label }</h2>
-      <FinanceTrackerItem name={`${financeTrackerItemNames}`}></FinanceTrackerItem>
+      <FinanceTrackerItem name={`${financeTrackerItemNames[0]}`}></FinanceTrackerItem>
 
       {
         label === "Bank Accounts" ?

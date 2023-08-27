@@ -20,12 +20,12 @@ class Investments extends Component {
 
         <div className="investments-form-summary-container">
           <UpdateInvestmentForm></UpdateInvestmentForm>
+
           <div className="investment-info-summary">
             <InvestmentInfo></InvestmentInfo>
             <Summary></Summary>
           </div>
         </div>
-
       </div>
     );
   };
