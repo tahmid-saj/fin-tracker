@@ -1,9 +1,9 @@
 import "./savings.styles.scss";
 
-const Savings = () => {
+const SavingsRoute = () => {
   return (
     <h1>Savings page</h1>
   );
 };
 
-export default Savings;
+export default SavingsRoute;

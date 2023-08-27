@@ -22,8 +22,8 @@ const Navigation = () => {
             Banking
           </Link>
 
-          <Link className="nav-link" to="/investment">
-            Investment
+          <Link className="nav-link" to="/investments">
+            Investments
           </Link>
 
           <Link className="nav-link" to="/savings">

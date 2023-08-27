@@ -1,9 +1,11 @@
 import "./banking.styles.scss";
 
-const Banking = () => {
+import Banking from "../../components/banking/banking.component";
+
+const BankingRoute = () => {
   return (
-    <h1>Banking page</h1>
+    <Banking ></Banking>
   );
 };
 
-export default Banking;
+export default BankingRoute;
