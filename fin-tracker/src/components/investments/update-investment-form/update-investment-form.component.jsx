@@ -61,8 +61,13 @@ const UpdateInvestmentForm = () => {
         <div class="compoundedDropdown">
           <button class="dropButton" type="button">Compounded</button>
           <div class="dropdown-content">
-            <label value="1">1</label>
-            <label value="2">2</label>
+            <label value="Annually">Annually</label>
+            <label value="Semiannually">Semiannually</label>
+            <label value="Quarterly">Quarterly</label>
+            <label value="Monthly">Monthly</label>
+            <label value="Biweekly">Biweekly</label>
+            <label value="Weekly">Weekly</label>
+            <label value="Daily">Daily</label>
           </div>
         </div>
 
