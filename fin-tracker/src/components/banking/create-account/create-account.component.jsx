@@ -29,7 +29,7 @@ const CreateAccount = () => {
 
   return (
     <form onSubmit={ handleSubmit }>
-      <FormInput label="Account Name" type="text" required onChange={ handleChange }
+      <FormInput label="Account name" type="text" required onChange={ handleChange }
                   name="bankAccountName" value={ bankAccountName }></FormInput>
 
       <div className="buttons-container">
