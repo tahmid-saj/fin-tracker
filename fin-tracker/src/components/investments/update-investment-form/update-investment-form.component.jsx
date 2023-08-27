@@ -9,6 +9,7 @@ const defaultFormFields = {
   investmentName: "",
   investmentType: "",
   startingAmount: "",
+  startDate: "",
   afterYears: "",
   returnRate: "",
   compounded: "",
@@ -19,7 +20,7 @@ const defaultFormFields = {
 
 const UpdateInvestmentForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { investmentName, investmentType, startingAmount, afterYears, returnRate, 
+  const { investmentName, investmentType, startingAmount, startDate, afterYears, returnRate, 
     compounded, additionalContribution, contributionAt, contributionInterval } = formFields;
 
   const resetFormFields = () => {
@@ -51,6 +52,9 @@ const UpdateInvestmentForm = () => {
         
         <FormInput label="Starting amount" type="text" required onChange={ handleChange }
                           name="startingAmount" value={ startingAmount }></FormInput>
+
+        <h5>Start date</h5>
+        <FormInput type="date" required name="startDate" value={ startDate }></FormInput>
         
         <FormInput label="After how many years?" type="text" required onChange={ handleChange }
                           name="afterYears" value={ afterYears }></FormInput>
