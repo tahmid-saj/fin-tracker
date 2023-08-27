@@ -4,6 +4,7 @@ import Summary from "./summary/summary.component";
 import Transactions from "./transactions/transactions.component";
 
 import "./banking.styles.scss";
+import ActionList from "./action-list/action-list.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
@@ -21,6 +22,8 @@ class Banking extends Component {
 
         <div className="transactions-action-container">
           <Transactions></Transactions>
+
+          <ActionList></ActionList>
         </div>
       </div>
     );
