@@ -58,9 +58,19 @@ const UpdateInvestmentForm = () => {
         <FormInput label="Return rate" type="text" required onChange={ handleChange }
                           name="returnRate" value={ returnRate }></FormInput>
         
-        <FormInput label="Compounded" type="text" required onChange={ handleChange }
-                          name="compounded" value={ compounded }></FormInput>
-        
+        <div class="compoundedDropdown">
+          <button class="dropButton" type="button">Compounded</button>
+          <div class="dropdown-content">
+            <label value="Annually">Annually</label>
+            <label value="Semiannually">Semiannually</label>
+            <label value="Quarterly">Quarterly</label>
+            <label value="Monthly">Monthly</label>
+            <label value="Biweekly">Biweekly</label>
+            <label value="Weekly">Weekly</label>
+            <label value="Daily">Daily</label>
+          </div>
+        </div>
+
         <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
                           name="additionalContribution" value={ additionalContribution }></FormInput>
 
