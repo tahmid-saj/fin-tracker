@@ -3,6 +3,8 @@ import FinanceTrackerItems from "../finance-tracker-items/finance-tracker-items.
 
 import "./investments.styles.scss";
 import UpdateInvestmentForm from "./update-investment-form/update-investment-form.component";
+import InvestmentInfo from "./investment-info/investment-info.component";
+import Summary from "./summary/summary.component";
 
 const FINANCE_ITEM_TYPE = "Investments";
 
@@ -18,7 +20,12 @@ class Investments extends Component {
 
         <div className="investments-form-summary-container">
           <UpdateInvestmentForm></UpdateInvestmentForm>
+          <div className="investment-info-summary">
+            <InvestmentInfo></InvestmentInfo>
+            <Summary></Summary>
+          </div>
         </div>
+
       </div>
     );
   };
