@@ -8,6 +8,7 @@ import Button from "../../button/button.component";
 const defaultFormFields = {
   savingsAccountName: "",
   initialDeposit: "",
+  startDate: "",
   monthlyContribution: "",
   monthlyContributionPeriod: "",
   monthlyContributionInterval: "",
@@ -16,7 +17,7 @@ const defaultFormFields = {
 
 const UpdateAccountForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { savingsAccountName, initialDeposit, monthlyContribution, 
+  const { savingsAccountName, initialDeposit, startDate, monthlyContribution, 
     monthlyContributionPeriod, monthlyContributionInterval, apy} = formFields;
 
   const resetFormFields = () => {
@@ -45,6 +46,9 @@ const UpdateAccountForm = () => {
         
         <FormInput label="Initial deposit" type="text" required onChange={ handleChange }
                           name="initialDeposit" value={ initialDeposit }></FormInput>
+
+        <h5>Start date</h5>
+        <FormInput type="date" required name="startDate" value={ startDate }></FormInput>
         
         <FormInput label="Monthly contribution" type="text" required onChange={ handleChange }
                           name="monthlyContribution" value={ monthlyContribution }></FormInput>
