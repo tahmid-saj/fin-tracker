@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+
 import FinanceTrackerItems from "../finance-tracker-items/finance-tracker-items.component";
 import Summary from "./summary/summary.component";
 import Transactions from "./transactions/transactions.component";
+import ActionList from "./action-list/action-list.component";
 
 import "./banking.styles.scss";
-import ActionList from "./action-list/action-list.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
