@@ -43,7 +43,7 @@ const Navigation = () => {
 
           {
             currentUser ? (
-              <div>
+              <Fragment>
 
                 <Link className="nav-link" to="/dashboard"
                   onClick={ () => changeColor("#001732") }
@@ -51,13 +51,14 @@ const Navigation = () => {
                   Dashboard
                 </Link>
 
-                <span className="nav-link" onClick={ signOutUser }>Sign Out</span>
                 <Link className="nav-link" to="/exports"
                   onClick={ () => changeColor("#001732") }
                 >
                   Exports
                 </Link>
-              </div>
+                
+                <span className="nav-link" onClick={ signOutUser }>Sign Out</span>
+              </Fragment>
             ) : (
               <Link className="nav-link" to="/auth"
                 onClick={ () => changeColor("white") }
