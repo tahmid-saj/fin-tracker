@@ -8,6 +8,7 @@ import ActionList from "./action-list/action-list.component";
 import BankAccounts from "./bank-accounts/bank-accounts.component";
 
 import "./banking.styles.scss";
+import BankAccountForm from "./bank-account-form/bank-account-form.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
@@ -27,13 +28,7 @@ class Banking extends Component {
 
         <BankAccounts label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></BankAccounts>
 
-        <Summary></Summary>
-
-        <div className="transactions-action-container">
-          <Transactions></Transactions>
-
-          <ActionList></ActionList>
-        </div>
+        {/* <BankAccountForm></BankAccountForm> */}
       </div>
     );
   };

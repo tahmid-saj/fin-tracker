@@ -14,7 +14,7 @@ const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
       
       {
         financeTrackerItemNames.map((name, index) => {
-          return <FinanceTrackerItem key={ index } name={ name }></FinanceTrackerItem>
+          return <FinanceTrackerItem key={ index } label={ label } name={ name }></FinanceTrackerItem>
         })  
       }
       
