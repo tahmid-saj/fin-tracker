@@ -1,5 +1,5 @@
 import React from "react";
-import ExportBox from "../../components/exports/export-box/export-box.component";
+import ExportBox from "../../components/signed-in/exports/export-box/export-box.component";
 
 const ExportsRoute = () => {
   return (

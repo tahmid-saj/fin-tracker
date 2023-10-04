@@ -1,4 +1,4 @@
-import Investments from "../../components/investments/investments.component";
+import Investments from "../../components/signed-out/investments/investments.component";
 import "./investments.styles.scss";
 
 const InvestmentsRoute = () => {

@@ -1,6 +1,6 @@
 import "./banking.styles.scss";
 
-import Banking from "../../components/banking/banking.component";
+import Banking from "../../components/signed-out/banking/banking.component";
 
 const BankingRoute = () => {
   return (
