@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-animated-slider": "^2.0.0",
+    "react-slideshow-image": "^4.2.1",
+    "react-smart-slider": "^0.1.2"
+  }
+}
