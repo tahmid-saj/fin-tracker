@@ -4,7 +4,7 @@
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
-  padding: 0 35px 0 35px;
+  padding: 0 35px 10px 35px;
   font-size: 15px;
   background-color: black;
   color: white;
@@ -25,6 +25,7 @@
   &.finance-tracker-item-button {
     background-color: #0074d3;
     color: white;
+    margin-bottom: 10px;
 
     &:hover {
       background-color: #005daa;

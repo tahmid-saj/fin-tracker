@@ -11,12 +11,18 @@ const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
   return (
     <div className="finance-tracker-item-container">
       <h2>{ label }</h2>
-      <FinanceTrackerItem name={`${financeTrackerItemNames[0]}`}></FinanceTrackerItem>
-
+      
       {
+        financeTrackerItemNames.map((name, index) => {
+          return <FinanceTrackerItem key={ index } name={ name }></FinanceTrackerItem>
+        })  
+      }
+      
+
+      {/* {
         label === "Bank Accounts" ?
         <CreateAccount></CreateAccount> : null
-      }
+      } */}
     </div>
   );
 };
