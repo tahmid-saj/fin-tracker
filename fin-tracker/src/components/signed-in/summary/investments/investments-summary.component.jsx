@@ -6,7 +6,7 @@ import FinanceTrackerItemSummary from "../../../shared/finance-tracker-item-summ
 const InvestmentsSummary = () => {
   return (
     <div className="investments-summary-container">
-      <h2><strong>Investments Summary</strong></h2>
+      <h2 style={{color: "white"}}><strong>Investments Summary</strong></h2>
       <FinanceTrackerItemSummary financeTrackerItemName={ "GIC" }></FinanceTrackerItemSummary>
     </div>
   );
