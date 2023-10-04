@@ -1,0 +1,21 @@
+.investments-form-summary-container {
+  display: flex;
+  // flex-direction: column;
+  width: 100%;
+
+  h2 {
+    margin: 10px 0;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8%;
+  }
+
+  .investment-info-summary {
+    height: 30%;
+    margin-top: 3%;
+    margin-right: 10%;
+  }
+}
