@@ -5,7 +5,9 @@ import Home from "../../components/home/home.component"
 
 const HomeRoute = () => {
   return (
-    <Home></Home>
+    <div className="home-route-container">
+      <Home></Home>
+    </div>
   );
 };
 
