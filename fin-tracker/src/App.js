@@ -6,12 +6,14 @@ import BankingRoute from "./routes/banking/banking.component";
 import InvestmentsRoute from "./routes/investments/investments.components";
 import SavingsRoute from "./routes/savings/savings.components";
 import AuthenticationRoute from "./routes/authentication/authentication.component";
+import DashboardRoute from "./routes/dashboard/dashboard.component";
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={ <Navigation/> }>
         <Route index element={ <HomeRoute/> }/>
+        <Route path="dashboard" element={ <DashboardRoute/> }/>
         <Route path="banking" element={ <BankingRoute/> }/>
         <Route path="investments" element={ <InvestmentsRoute/> }/>
         <Route path="savings" element={ <SavingsRoute/> }/>
