@@ -5,7 +5,7 @@ import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/financ
 
 const InvestmentsSummary = () => {
   return (
-    <div>
+    <div className="investments-summary-container">
       <h2><strong>Investments Summary</strong></h2>
       <FinanceTrackerItemSummary financeTrackerItemName={ "GIC" }></FinanceTrackerItemSummary>
     </div>
