@@ -21,8 +21,8 @@ class Investments extends Component {
           <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></UpdateInvestmentForm>
 
           <div className="investment-info-summary">
-            <InvestmentInfo></InvestmentInfo>
-            <Summary></Summary>
+            {/* <InvestmentInfo></InvestmentInfo>
+            <Summary></Summary> */}
           </div>
         </div>
       </div>
