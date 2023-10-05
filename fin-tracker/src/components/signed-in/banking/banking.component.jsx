@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 
 import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
+import CreateAccount from "./create-account/create-account.component";
 import Summary from "./summary/summary.component";
 import Transactions from "./transactions/transactions.component";
 import ActionList from "./action-list/action-list.component";
+import BankAccounts from "./bank-accounts/bank-accounts.component";
 
 import "./banking.styles.scss";
+import BankAccountForm from "./bank-account-form/bank-account-form.component";
+
+import { activeFormView } from "../../shared/finance-tracker-item/finance-tracker-item.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
 const financeTrackerItemNames = [
-  "TD Account"
 ];
 
 class Banking extends Component {
@@ -21,15 +25,14 @@ class Banking extends Component {
   render() {
     return (
       <div className="banking-container">
-        <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems>
+        {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+        {/* <CreateAccount></CreateAccount> */}
 
-        <Summary></Summary>
+        <BankAccounts label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></BankAccounts>
 
-        <div className="transactions-action-container">
-          <Transactions></Transactions>
-
-          <ActionList></ActionList>
-        </div>
+        {/* <BankAccountForm></BankAccountForm> */}
+        {/* <FormView childrenComponents={  } financeItemLabel={ activeFormView.label } 
+                  financeItemName={ activeFormView.name }></FormView> */}
       </div>
     );
   };

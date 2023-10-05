@@ -2,40 +2,53 @@ import React, { useState } from "react";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
+import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+
+import "./create-account.styles.scss";
 
 const defaultFormFields = {
   bankAccountName: ""
 };
 
-const CreateAccount = () => {
+const CreateAccount = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { bankAccountName } = formFields;
+  const [bankAccounts, setBankAccounts] = useState(financeTrackerItemNames);
 
+  const { bankAccountName } = formFields;
+  
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
-
+  
+  // handling addition of bank accounts
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(event.target.value);
+    setBankAccounts([...bankAccounts, formFields.bankAccountName]);
+
+    console.log(formFields.bankAccountName);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormFields({ [name]: value })
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <FormInput label="Account name" type="text" required onChange={ handleChange }
-                  name="bankAccountName" value={ bankAccountName }></FormInput>
+    <div>
+      <FinanceTrackerItems label={ label } financeTrackerItemNames={ bankAccounts }></FinanceTrackerItems>
 
-      <div className="buttons-container">
-        <Button type="submit">Create Account</Button>
-      </div>
-    </form>
+      <form onSubmit={ e => handleSubmit(e) } className="create-account-container">
+        <FormInput label="Account name" type="text" required 
+                    onChange={ e => handleChange(e) }
+                    name="bankAccountName" value={ bankAccountName }></FormInput>
+
+        <div className="buttons-container">
+          <Button type="submit">Create Account</Button>
+        </div>
+      </form>
+
+    </div>
   );
 };
 
