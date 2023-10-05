@@ -1,8 +1,12 @@
 .savings-accounts-form-summary-container {
   display: flex;
   // flex-direction: column;
-  width: 900px;
-  padding-left: 15%;
+  justify-content: space-around;
+  // width: 1000px;
+  // padding-left: 10%;
+  // margin-top: 5%;
+  // margin-left: 5%;
+  // margin-bottom: 5%;
 
   h2 {
     margin: 10px 0;
@@ -17,6 +21,8 @@
   .savings-account-info-summary {
     height: 30%;
     margin-top: 3%;
-    margin-right: 10%;
+    margin-right: 3%;
+    display: flex;
+    display: block;
   }
 }
