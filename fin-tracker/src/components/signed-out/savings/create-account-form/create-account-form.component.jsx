@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./update-account-form.styles.scss";
+import "./create-account-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -15,7 +15,7 @@ const defaultFormFields = {
   apy: ""
 }
 
-const UpdateAccountForm = () => {
+const CreateAccountForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { savingsAccountName, initialDeposit, startDate, monthlyContribution, 
     monthlyContributionPeriod, monthlyContributionInterval, apy} = formFields;
@@ -38,7 +38,7 @@ const UpdateAccountForm = () => {
 
   return (
     <div className="update-savings-account-container">
-      <h3>Update Savings Account</h3>
+      <h3>Create Savings Account</h3>
 
       <form onSubmit={ handleSubmit }>
         <FormInput label="Savings account name" type="text" required onChange={ handleChange }
@@ -72,13 +72,13 @@ const UpdateAccountForm = () => {
                           name="apy" value={ apy }></FormInput>
         
         <div className="buttons-container">
-          <button className="saving-button-update">Update</button>
-          {/* <button className="saving-button-create">Create</button> */}
-          <button className="saving-button-close">Close</button>
+          {/* <button className="saving-button-update">Update</button> */}
+          <button className="saving-button-create">Create</button>
+          {/* <button className="saving-button-close">Close</button> */}
         </div>
       </form>
     </div>
   );
 };
 
-export default UpdateAccountForm;
+export default CreateAccountForm;

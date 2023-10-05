@@ -3,6 +3,7 @@ import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-trac
 
 import "./savings.styles.scss";
 import UpdateAccountForm from "./update-account-form/update-account-form.component";
+import CreateAccountForm from "./create-account-form/create-account-form.component";
 import AccountInfo from "./account-info/account-info.component";
 import Summary from "./summary/summary.component";
 
@@ -15,14 +16,14 @@ const financeTrackerItemNames = [
 const Savings = () => {
   return (
     <div className="savings-acounts-container">
-      <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems>
+      {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
       <div className="savings-accounts-form-summary-container">
-        <UpdateAccountForm></UpdateAccountForm>
+        <CreateAccountForm></CreateAccountForm>
 
         <div className="savings-account-info-summary">
-          <AccountInfo></AccountInfo>
-          <Summary></Summary>
+          {/* <AccountInfo></AccountInfo>
+          <Summary></Summary> */}
         </div>
       </div>
     </div>
