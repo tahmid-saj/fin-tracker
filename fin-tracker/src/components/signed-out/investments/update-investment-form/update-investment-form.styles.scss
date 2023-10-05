@@ -1,17 +1,41 @@
+.investment-form-container {
+  padding-left: 0%;
+  padding-right: 0%;
+  width: 1000px;
+}
+
 .update-investment-container {
   padding: 35px 5% 35px 5%;
   box-shadow: 4px 4px lightgreen;
   border-radius: 1.5rem;
   margin-top: 5%;
-  margin-left: 15%;
+  margin-left: 5%;
   margin-bottom: 5%;
+}
+
+.investment-button-update,
+.investment-button-create,
+.investment-button-close {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(73, 73, 73);
+  }
 }
 
 .radio-contribution-at,
 .radio-contribution-interval {
   display: block;
   cursor: pointer; 
-  user-select:none;
+  user-select: none;
   text-align: left;
   &+.radio {
     margin-top: 12px;

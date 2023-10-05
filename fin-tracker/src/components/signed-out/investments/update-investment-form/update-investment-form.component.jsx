@@ -4,6 +4,7 @@ import "./update-investment-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
+import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
 
 const defaultFormFields = {
   investmentName: "",
@@ -18,20 +19,30 @@ const defaultFormFields = {
   contributionInterval: ""
 }
 
-const UpdateInvestmentForm = () => {
+const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { investmentName, investmentType, startingAmount, startDate, afterYears, returnRate, 
     compounded, additionalContribution, contributionAt, contributionInterval } = formFields;
+    
+  const [investments, setInvestments] = useState(financeTrackerItemNames);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     console.log(event.target.value);
   };
+
+  const handleCreateSubmit = (event) => {
+    // event.preventDefault();
+
+    setInvestments([...investments, formFields.investmentName]);
+
+    console.log(formFields.investmentName);
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,78 +51,84 @@ const UpdateInvestmentForm = () => {
   };
 
   return (
-    <div className="update-investment-container">
-      <h3>Update Investment</h3>
+    <div className="investment-form-container">
+      <FinanceTrackerItems label={ label } financeTrackerItemNames={ investments }></FinanceTrackerItems>
+      
+      <div className="update-investment-container">
 
-      <form onSubmit={ handleSubmit }>
-        <FormInput label="Investment name" type="text" required onChange={ handleChange }
-                          name="investmentName" value={ investmentName }></FormInput>
-        
-        <FormInput label="Investment type" type="text" required onChange={ handleChange }
-                          name="investmentType" value={ investmentType }></FormInput>
-        
-        <FormInput label="Starting amount" type="text" required onChange={ handleChange }
-                          name="startingAmount" value={ startingAmount }></FormInput>
+        <h3>Update Investment</h3>
 
-        <h5>Start date</h5>
-        <FormInput type="date" required name="startDate" value={ startDate }></FormInput>
-        
-        <FormInput label="After how many years?" type="text" required onChange={ handleChange }
-                          name="afterYears" value={ afterYears }></FormInput>
-        
-        <FormInput label="Return rate" type="text" required onChange={ handleChange }
-                          name="returnRate" value={ returnRate }></FormInput>
-        
-        <div class="compoundedDropdown">
-          <button class="dropButton" type="button">Compounded</button>
-          <div class="dropdown-content">
-            <label value="Annually">Annually</label>
-            <label value="Semiannually">Semiannually</label>
-            <label value="Quarterly">Quarterly</label>
-            <label value="Monthly">Monthly</label>
-            <label value="Biweekly">Biweekly</label>
-            <label value="Weekly">Weekly</label>
-            <label value="Daily">Daily</label>
+        {/* <form> */}
+          <FormInput label="Investment name" type="text" required onChange={ handleChange }
+                            name="investmentName" value={ investmentName }></FormInput>
+          
+          <FormInput label="Investment type" type="text" required onChange={ handleChange }
+                            name="investmentType" value={ investmentType }></FormInput>
+          
+          <FormInput label="Starting amount" type="text" required onChange={ handleChange }
+                            name="startingAmount" value={ startingAmount }></FormInput>
+
+          <h5>Start date</h5>
+          <FormInput type="date" required name="startDate" value={ startDate }></FormInput>
+          
+          <FormInput label="After how many years?" type="text" required onChange={ handleChange }
+                            name="afterYears" value={ afterYears }></FormInput>
+          
+          <FormInput label="Return rate" type="text" required onChange={ handleChange }
+                            name="returnRate" value={ returnRate }></FormInput>
+          
+          <div class="compoundedDropdown">
+            <button class="dropButton" type="button">Compounded</button>
+            <div class="dropdown-content">
+              <label value="Annually">Annually</label>
+              <label value="Semiannually">Semiannually</label>
+              <label value="Quarterly">Quarterly</label>
+              <label value="Monthly">Monthly</label>
+              <label value="Biweekly">Biweekly</label>
+              <label value="Weekly">Weekly</label>
+              <label value="Daily">Daily</label>
+            </div>
           </div>
-        </div>
 
-        <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
-                          name="additionalContribution" value={ additionalContribution }></FormInput>
+          <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
+                            name="additionalContribution" value={ additionalContribution }></FormInput>
 
-        <div className="update-investment-contribution-at">
-          <h5>Contribution at the</h5>
+          <div className="update-investment-contribution-at">
+            <h5>Contribution at the</h5>
 
-          <label class="radio-contribution-at">
-            <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Beginning"/>
-            <span>Beginning</span>
-          </label>
+            <label class="radio-contribution-at">
+              <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Beginning"/>
+              <span>Beginning</span>
+            </label>
 
-          <label class="radio-contribution-at">
-            <input name="radio-contribution-at" type="radio" id="contributionAt2" value="End"/>
-            <span>End</span>
-          </label>
-        </div>
+            <label class="radio-contribution-at">
+              <input name="radio-contribution-at" type="radio" id="contributionAt2" value="End"/>
+              <span>End</span>
+            </label>
+          </div>
 
-        <div className="update-investment-contribution-interval">
-          <h5>of each</h5>
+          <div className="update-investment-contribution-interval">
+            <h5>of each</h5>
 
-          <label class="radio-contribution-interval">
-            <input name="radio-contribution-interval" type="radio" checked id="contributionInterval1" value="Month"/>
-            <span>Month</span>
-          </label>
+            <label class="radio-contribution-interval">
+              <input name="radio-contribution-interval" type="radio" checked id="contributionInterval1" value="Month"/>
+              <span>Month</span>
+            </label>
 
-          <label class="radio-contribution-interval">
-            <input name="radio-contribution-interval" type="radio" id="contributionInterval2" value="Year"/>
-            <span>Year</span>
-          </label>
-        </div>
-        
-        <div className="buttons-container">
-          <Button type="submit">Update</Button>
-          <Button type="submit">Create</Button>
-          <Button type="submit">Close</Button>
-        </div>
-      </form>
+            <label class="radio-contribution-interval">
+              <input name="radio-contribution-interval" type="radio" id="contributionInterval2" value="Year"/>
+              <span>Year</span>
+            </label>
+          </div>
+          
+          <div className="buttons-container">
+            <button className="investment-button-update">Update</button>
+            <button className="investment-button-create" onClick={ handleCreateSubmit }>Create</button>
+            <button className="investment-button-close" type="button">Close</button>
+          </div>
+        {/* </form> */}
+      </div>
+
     </div>
   );
 };

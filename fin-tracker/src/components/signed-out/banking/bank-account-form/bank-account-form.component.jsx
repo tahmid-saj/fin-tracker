@@ -6,7 +6,7 @@ import ActionList from "../action-list/action-list.component";
 
 import "./bank-account-form.styles.scss";
 
-const BankAccountForm = () => {
+const BankAccountForm = ({ financeItemName }) => {
   return (
     <div>
       <Summary></Summary>

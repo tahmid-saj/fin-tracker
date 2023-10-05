@@ -1,10 +1,14 @@
+.investments-container {
+  margin-left: 0;
+}
+
 .investments-form-summary-container {
-  display: flex;
-  // flex-direction: column;
-  width: 100%;
+  // display: flex;
+  // justify-content: space-evenly;
+  // width: 900px;
 
   h2 {
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   .buttons-container {
@@ -16,6 +20,10 @@
   .investment-info-summary {
     height: 30%;
     margin-top: 3%;
-    margin-right: 10%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: space-around;
+    display: block;;
+    // width: 900px;
   }
 }
