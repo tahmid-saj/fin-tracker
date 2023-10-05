@@ -62,7 +62,7 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
 
         <h3>Create Investment</h3>
 
-        {/* <form> */}
+        <form onSubmit={ handleSubmit }>
           <FormInput label="Investment name" type="text" required onChange={ handleChange }
                             name="investmentName" value={ investmentName }></FormInput>
           
@@ -130,7 +130,7 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
             <button className="investment-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
             {/* <button className="investment-button-close" type="button">Close</button> */}
           </div>
-        {/* </form> */}
+        </form>
       </div>
 
     </div>
