@@ -10,7 +10,10 @@ const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
 
   return (
     <div className="finance-tracker-item-container">
-      <h2>{ label }</h2>
+    
+      {
+        label === "Investments" || label === "Savings" ? null : <h2>{ label }</h2>
+      }
       
       {
         financeTrackerItemNames.map((name, index) => {
