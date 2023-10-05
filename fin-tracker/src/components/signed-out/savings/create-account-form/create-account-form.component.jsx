@@ -58,7 +58,7 @@ const CreateAccountForm = ({ label, financeTrackerItemNames }) => {
 
       <h3>Create Savings Account</h3>
 
-      <form onSubmit={ handleSubmit }>
+      <form className="create-savings-account-container" onSubmit={ handleSubmit }>
         <FormInput label="Savings account name" type="text" required onChange={ handleChange }
                           name="savingsAccountName" value={ savingsAccountName }></FormInput>
         

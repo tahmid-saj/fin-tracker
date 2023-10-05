@@ -1,10 +1,21 @@
 .update-savings-account-container {
-  padding: 35px 5% 35px 5%;
+  padding: 20px 5% 35px 5%;
+  // box-shadow: 4px 4px lightgreen;
+  border-radius: 1.5rem;
+  // margin-top: 5%;
+  // margin-left: 5%;
+  // margin-bottom: 5%;
+  width: 1100px;
+}
+
+.update-savings-account-form-container {
+  // box-shadow: 4px 4px lightgreen;
   box-shadow: 4px 4px lightgreen;
   border-radius: 1.5rem;
-  margin-top: 5%;
-  margin-left: 15%;
-  margin-bottom: 5%;
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-bottom: 10%;
+  padding: 30px 30px;
 }
 
 // .saving-button-update,

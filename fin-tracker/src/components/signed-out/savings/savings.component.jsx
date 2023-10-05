@@ -16,9 +16,9 @@ const Savings = () => {
   return (
     <div className="savings-acounts-container">
       {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+        <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
 
       <div className="savings-accounts-form-summary-container">
-        <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
 
         <div className="savings-account-info-summary">
           {/* <AccountInfo></AccountInfo>

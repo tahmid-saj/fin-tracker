@@ -5,6 +5,8 @@ import "./update-account-form.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
+import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+
 const defaultFormFields = {
   savingsAccountName: "",
   initialDeposit: "",
@@ -15,10 +17,12 @@ const defaultFormFields = {
   apy: ""
 }
 
-const UpdateAccountForm = () => {
+const UpdateAccountForm = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { savingsAccountName, initialDeposit, startDate, monthlyContribution, 
     monthlyContributionPeriod, monthlyContributionInterval, apy} = formFields;
+    
+  const [savingsAccounts, setSavingsAccounts] = useState(financeTrackerItemNames);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -40,7 +44,9 @@ const UpdateAccountForm = () => {
     <div className="update-savings-account-container">
       <h3>Update Savings Account</h3>
 
-      <form onSubmit={ handleSubmit }>
+      <FinanceTrackerItems label={ label } financeTrackerItemNames={ savingsAccounts }></FinanceTrackerItems>
+
+      <form className="update-savings-account-form-container" onSubmit={ handleSubmit }>
         <FormInput label="Savings account name" type="text" required onChange={ handleChange }
                           name="savingsAccountName" value={ savingsAccountName }></FormInput>
         
