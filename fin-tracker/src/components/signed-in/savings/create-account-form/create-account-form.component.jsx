@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./update-account-form.styles.scss";
+import "./create-account-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -17,11 +17,11 @@ const defaultFormFields = {
   apy: ""
 }
 
-const UpdateAccountForm = ({ label, financeTrackerItemNames }) => {
+const CreateAccountForm = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { savingsAccountName, initialDeposit, startDate, monthlyContribution, 
     monthlyContributionPeriod, monthlyContributionInterval, apy} = formFields;
-    
+
   const [savingsAccounts, setSavingsAccounts] = useState(financeTrackerItemNames);
 
   const resetFormFields = () => {
@@ -34,6 +34,18 @@ const UpdateAccountForm = ({ label, financeTrackerItemNames }) => {
     console.log(event.target.value);
   };
 
+  const handleCreateSubmit = (event) => {
+    if (savingsAccountName === "" || !savingsAccountName) {
+      return;
+    }
+
+    event.preventDefault();
+
+    setSavingsAccounts([...savingsAccounts, formFields.savingsAccountName]);
+
+    console.log(formFields.savingsAccountName);
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -42,11 +54,11 @@ const UpdateAccountForm = ({ label, financeTrackerItemNames }) => {
 
   return (
     <div className="update-savings-account-container">
-      <h3>Update Savings Account</h3>
-
       <FinanceTrackerItems label={ label } financeTrackerItemNames={ savingsAccounts }></FinanceTrackerItems>
 
-      <form className="update-savings-account-form-container" onSubmit={ handleSubmit }>
+      <h3>Create Savings Account</h3>
+
+      <form className="create-savings-account-container" onSubmit={ handleSubmit }>
         <FormInput label="Savings account name" type="text" required onChange={ handleChange }
                           name="savingsAccountName" value={ savingsAccountName }></FormInput>
         
@@ -78,13 +90,13 @@ const UpdateAccountForm = ({ label, financeTrackerItemNames }) => {
                           name="apy" value={ apy }></FormInput>
         
         <div className="buttons-container">
-          <button className="saving-button-update">Update</button>
-          {/* <button className="saving-button-create">Create</button> */}
-          <button className="saving-button-close">Close</button>
+          {/* <button className="saving-button-update">Update</button> */}
+          <button className="saving-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
+          {/* <button className="saving-button-close">Close</button> */}
         </div>
       </form>
     </div>
   );
 };
 
-export default UpdateAccountForm;
+export default CreateAccountForm;
