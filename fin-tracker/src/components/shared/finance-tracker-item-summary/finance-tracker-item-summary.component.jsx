@@ -3,6 +3,7 @@ import React from "react";
 import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
 
 import "./finance-tracker-item-summary.styles.scss";
+import Button from "../button/button.component";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
@@ -13,8 +14,10 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const FinanceTrackerItemSummary = ({ financeTrackerItemName }) => {
   return (
     <div>
-      <div className="summary-container">
-        <FinanceTrackerItem name={`${financeTrackerItemName}`}></FinanceTrackerItem>
+      <div className="accounts-summary-container">
+        {/* <FinanceTrackerItem name={`${financeTrackerItemName}`}></FinanceTrackerItem> */}
+
+        <Button type="button">{`${financeTrackerItemName}`}</Button>
 
         <h4>{`Current balance   `}<h3><strong>{`$${3840}`}</strong></h3></h4>
         <h5>{`As of ${currentDate}`}</h5>
