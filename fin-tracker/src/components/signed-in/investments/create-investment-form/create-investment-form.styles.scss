@@ -1,20 +1,21 @@
 .investment-form-container {
+  padding-left: 0%;
   padding-right: 0%;
-  margin-left: 10%;
+  width: 1000px;
 }
 
 .update-investment-container {
   padding: 35px 5% 35px 5%;
-  // box-shadow: 4px 4px lightgreen;
+  box-shadow: 4px 4px lightgreen;
   border-radius: 1.5rem;
   margin-top: 5%;
   margin-left: 5%;
   margin-bottom: 5%;
 }
 
-.investment-button-update,
-// .investment-button-create,
-.investment-button-close {
+// .investment-button-update,
+.investment-button-create {
+// .investment-button-close {
   background-color: black; /* Green */
   border: none;
   color: white;

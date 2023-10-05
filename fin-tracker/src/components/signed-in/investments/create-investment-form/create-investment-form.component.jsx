@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./update-investment-form.styles.scss";
+import "./create-investment-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -19,7 +19,7 @@ const defaultFormFields = {
   contributionInterval: ""
 }
 
-const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
+const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { investmentName, investmentType, startingAmount, startDate, afterYears, returnRate, 
     compounded, additionalContribution, contributionAt, contributionInterval } = formFields;
@@ -36,17 +36,17 @@ const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
     console.log(event.target.value);
   };
 
-  // const handleCreateSubmit = (event) => {
-  //   if (investmentName === "" || !investmentName) {
-  //     return;
-  //   }
+  const handleCreateSubmit = (event) => {
+    if (investmentName === "" || !investmentName) {
+      return;
+    }
 
-  //   event.preventDefault();
+    event.preventDefault();
 
-  //   setInvestments([...investments, formFields.investmentName]);
+    setInvestments([...investments, formFields.investmentName]);
 
-  //   console.log(formFields.investmentName);
-  // }
+    console.log(formFields.investmentName);
+  }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,9 +60,9 @@ const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
       
       <div className="update-investment-container">
 
-        <h3>Update Investment</h3>
+        <h3>Create Investment</h3>
 
-        {/* <form> */}
+        <form onSubmit={ handleSubmit }>
           <FormInput label="Investment name" type="text" required onChange={ handleChange }
                             name="investmentName" value={ investmentName }></FormInput>
           
@@ -126,15 +126,15 @@ const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           </div>
           
           <div className="buttons-container">
-            <button className="investment-button-update">Update</button>
-            {/* <button className="investment-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button> */}
-            <button className="investment-button-close" type="button">Close</button>
+            {/* <button className="investment-button-update">Update</button> */}
+            <button className="investment-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
+            {/* <button className="investment-button-close" type="button">Close</button> */}
           </div>
-        {/* </form> */}
+        </form>
       </div>
 
     </div>
   );
 };
 
-export default UpdateInvestmentForm;
+export default CreateInvestmentForm;
