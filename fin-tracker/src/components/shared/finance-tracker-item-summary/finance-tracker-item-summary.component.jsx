@@ -1,6 +1,6 @@
 import React from "react";
 
-import FinanceTrackerItem from "../finance-tracker-item/finance-tracker-item.component";
+import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
 
 import "./finance-tracker-item-summary.styles.scss";
 

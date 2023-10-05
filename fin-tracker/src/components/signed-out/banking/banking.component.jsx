@@ -7,8 +7,12 @@ import Transactions from "./transactions/transactions.component";
 import ActionList from "./action-list/action-list.component";
 import BankAccounts from "./bank-accounts/bank-accounts.component";
 
+import FormView from "../form-view/form-view.component";
+
 import "./banking.styles.scss";
 import BankAccountForm from "./bank-account-form/bank-account-form.component";
+
+import { activeFormView } from "../../shared/finance-tracker-item/finance-tracker-item.component";
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
@@ -29,6 +33,8 @@ class Banking extends Component {
         <BankAccounts label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></BankAccounts>
 
         {/* <BankAccountForm></BankAccountForm> */}
+        {/* <FormView childrenComponents={  } financeItemLabel={ activeFormView.label } 
+                  financeItemName={ activeFormView.name }></FormView> */}
       </div>
     );
   };
