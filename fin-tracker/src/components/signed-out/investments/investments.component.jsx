@@ -5,6 +5,7 @@ import "./investments.styles.scss";
 import UpdateInvestmentForm from "./update-investment-form/update-investment-form.component";
 import InvestmentInfo from "./investment-info/investment-info.component";
 import Summary from "./summary/summary.component";
+import CreateInvestmentForm from "./create-investment-form/create-investment-form.component";
 
 const FINANCE_ITEM_TYPE = "Investments";
 
@@ -18,7 +19,7 @@ class Investments extends Component {
         {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
         <div className="investments-form-summary-container">
-          <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></UpdateInvestmentForm>
+          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateInvestmentForm>
 
           <div className="investment-info-summary">
             {/* <InvestmentInfo></InvestmentInfo>
