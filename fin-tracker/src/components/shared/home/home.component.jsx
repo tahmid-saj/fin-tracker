@@ -21,7 +21,7 @@ const Caption = ({ caption }) => (
  
 const slidesArray = [
       {
-        url: "https://img.freepik.com/free-vector/gradient-blue-background_23-2149354574.jpg",
+        url: "https://cdn.wallpapersafari.com/44/22/o06dUO.jpg",
         childrenElem: <Caption caption="Banking" />
       },
       {
