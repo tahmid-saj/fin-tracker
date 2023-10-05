@@ -9,17 +9,16 @@ import Summary from "./summary/summary.component";
 const FINANCE_ITEM_TYPE = "Investments";
 
 const financeTrackerItemNames = [
-  "GIC"
 ]
 
 class Investments extends Component {
   render() {
     return (
       <div className="investments-container">
-        <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems>
+        {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
         <div className="investments-form-summary-container">
-          <UpdateInvestmentForm></UpdateInvestmentForm>
+          <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></UpdateInvestmentForm>
 
           <div className="investment-info-summary">
             <InvestmentInfo></InvestmentInfo>
