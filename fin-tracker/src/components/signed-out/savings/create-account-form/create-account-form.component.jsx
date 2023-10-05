@@ -5,6 +5,8 @@ import "./create-account-form.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
+import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+
 const defaultFormFields = {
   savingsAccountName: "",
   initialDeposit: "",
@@ -15,10 +17,12 @@ const defaultFormFields = {
   apy: ""
 }
 
-const CreateAccountForm = () => {
+const CreateAccountForm = ({ label, financeTrackerItemNames }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { savingsAccountName, initialDeposit, startDate, monthlyContribution, 
     monthlyContributionPeriod, monthlyContributionInterval, apy} = formFields;
+
+  const [savingsAccounts, setSavingsAccounts] = useState(financeTrackerItemNames);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -30,6 +34,18 @@ const CreateAccountForm = () => {
     console.log(event.target.value);
   };
 
+  const handleCreateSubmit = (event) => {
+    if (savingsAccountName === "" || !savingsAccountName) {
+      return;
+    }
+
+    event.preventDefault();
+
+    setSavingsAccounts([...savingsAccounts, formFields.savingsAccountName]);
+
+    console.log(formFields.savingsAccountName);
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -38,6 +54,8 @@ const CreateAccountForm = () => {
 
   return (
     <div className="update-savings-account-container">
+      <FinanceTrackerItems label={ label } financeTrackerItemNames={ savingsAccounts }></FinanceTrackerItems>
+
       <h3>Create Savings Account</h3>
 
       <form onSubmit={ handleSubmit }>
@@ -73,7 +91,7 @@ const CreateAccountForm = () => {
         
         <div className="buttons-container">
           {/* <button className="saving-button-update">Update</button> */}
-          <button className="saving-button-create">Create</button>
+          <button className="saving-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
           {/* <button className="saving-button-close">Close</button> */}
         </div>
       </form>

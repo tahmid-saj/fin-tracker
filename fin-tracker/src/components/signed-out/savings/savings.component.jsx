@@ -10,7 +10,6 @@ import Summary from "./summary/summary.component";
 const FINANCE_ITEM_TYPE = "Savings Accounts";
 
 const financeTrackerItemNames = [
-  "EQ Bank"
 ]
 
 const Savings = () => {
@@ -19,7 +18,7 @@ const Savings = () => {
       {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
       <div className="savings-accounts-form-summary-container">
-        <CreateAccountForm></CreateAccountForm>
+        <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
 
         <div className="savings-account-info-summary">
           {/* <AccountInfo></AccountInfo>
