@@ -37,7 +37,11 @@ const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
   };
 
   const handleCreateSubmit = (event) => {
-    // event.preventDefault();
+    if (investmentName === "" || !investmentName) {
+      return;
+    }
+
+    event.preventDefault();
 
     setInvestments([...investments, formFields.investmentName]);
 
@@ -123,7 +127,7 @@ const UpdateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           
           <div className="buttons-container">
             <button className="investment-button-update">Update</button>
-            <button className="investment-button-create" onClick={ handleCreateSubmit }>Create</button>
+            <button className="investment-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
             <button className="investment-button-close" type="button">Close</button>
           </div>
         {/* </form> */}
