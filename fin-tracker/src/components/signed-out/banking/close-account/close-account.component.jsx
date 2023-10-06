@@ -9,7 +9,7 @@ const defaultFormFields = {
   confirmDelete: ""
 };
 
-const CloseAccount = () => {
+const CloseAccount = ({ closeAccountHandler }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { confirmDelete } = formFields;
 
@@ -22,7 +22,7 @@ const CloseAccount = () => {
     console.log(formFields.confirmDelete);
 
     if (formFields.confirmDelete === "permanently delete") {
-      
+      closeAccountHandler();
     }
 
     // console.log(event.target.value);
