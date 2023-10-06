@@ -17,8 +17,7 @@ const Navigation = () => {
     <Fragment>
       <div className="navigation">
         <Link className="logo" to="/"
-          onClick={ () => changeColor("#001732") }
-        >
+          onClick={ () => changeColor("#001732") }>
           <h1>fin-tracker</h1>
         </Link>
 
