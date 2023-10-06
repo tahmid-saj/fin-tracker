@@ -9,7 +9,7 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const Summary = () => {
   return (
     <div className="bank-account-summary">
-      <h4>{`Current balance   `}<h3><strong>{`$${3840}`}</strong></h3></h4>
+      <h4>{`Current balance   `}<strong>{`$${3840}`}</strong></h4>
       <h5>{`As of ${currentDate}`}</h5>
 
       <h4>{`IN $${5020}  -  OUT $${1180}`}</h4>

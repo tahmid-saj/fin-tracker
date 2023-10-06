@@ -19,8 +19,13 @@ const CloseAccount = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(formFields.confirmDelete);
 
-    console.log(event.target.value);
+    if (formFields.confirmDelete === "permanently delete") {
+      
+    }
+
+    // console.log(event.target.value);
   };
 
   const handleChange = (event) => {

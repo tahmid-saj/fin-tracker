@@ -35,7 +35,7 @@ export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
       {
         label !== "Savings Accounts" && (
           <div className="form-view-separator-container">
-            <hr class="rounded"/>
+            <hr className="rounded"/>
           </div>
         )
       }
