@@ -20,12 +20,14 @@ const CloseAccount = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log(formFields.confirmDelete);
     console.log(event.target.value);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    console.log(name, value);
     setFormFields({ [name]: value })
   };
 
@@ -35,7 +37,7 @@ const CloseAccount = () => {
       <h6>Enter 'permanently delete'</h6>
 
       <form onSubmit={ handleSubmit }>
-        <FormInput type="text" required onChange={ handleChange }
+        <FormInput type="text" required onChange={ (e) => handleChange(e) }
                           name="confirmDelete" value={ confirmDelete }></FormInput>
         
         <div className="buttons-container">
