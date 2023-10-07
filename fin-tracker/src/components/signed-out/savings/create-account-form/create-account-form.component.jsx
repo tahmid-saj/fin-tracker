@@ -6,7 +6,7 @@ import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
-import InvestmentTrackerItems from "../../../shared/investment-tracker-items/investment-tracker-items.component";
+import InvestmentTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
 
 const defaultFormFields = {
   savingsAccountName: "",

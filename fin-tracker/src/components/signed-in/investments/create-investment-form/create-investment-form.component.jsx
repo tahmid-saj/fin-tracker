@@ -5,7 +5,7 @@ import "./create-investment-form.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
-import InvestmentTrackerItems from "../../../shared/investment-tracker-items/investment-tracker-items.component";
+import InvestmentSavingsTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
 
 const defaultFormFields = {
   investmentName: "",
@@ -266,8 +266,8 @@ class CreateInvestmentForm extends Component {
   render() {
     return (
       <div className="investment-form-container">
-        <InvestmentTrackerItems label={ this.state.label } financeTrackerItemNames={ this.state.investments }
-                      financeTrackerItemsInfo={ this.state.investmentsInfo }></InvestmentTrackerItems>
+        <InvestmentSavingsTrackerItems label={ this.state.label } financeTrackerItemNames={ this.state.investments }
+                      financeTrackerItemsInfo={ this.state.investmentsInfo }></InvestmentSavingsTrackerItems>
 
           <div className="update-investment-container">
             <h3>Create Investment</h3>

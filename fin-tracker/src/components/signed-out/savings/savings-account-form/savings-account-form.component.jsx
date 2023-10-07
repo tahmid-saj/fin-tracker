@@ -6,6 +6,8 @@ import UpdateAccountForm from "../update-account-form/update-account-form.compon
 import AccountInfo from "../account-info/account-info.component";
 import Summary from "../summary/summary.component";
 
+import FinanceTrackerItemInfo from "../../../shared/finance-tracker-item-info/finance-tracker-item-info.component";
+
 const FINANCE_ITEM_TYPE = "Savings Accounts";
 
 const financeTrackerItemNames = [
