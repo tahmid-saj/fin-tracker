@@ -45,7 +45,7 @@ export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
                     closeAccountHandler={ closeAccountHandler }></FormView>
 
           {
-            label !== "Savings Accounts" && (
+            label !== "Savings Accounts" && label !== "Investments" && (
               <div className="form-view-separator-container">
                 <hr className="rounded"/>
               </div>
