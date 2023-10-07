@@ -227,7 +227,7 @@ class UpdateInvestmentForm extends Component {
             </select>
 
             <FormInput label="Additional contribution" type="text" required onChange={ this.handleChange }
-                              name="additionalContribution" value={ this.additionalContribution }></FormInput>
+                              name="additionalContribution" value={ this.state.formFields.additionalContribution }></FormInput>
 
             <label className="contributionAtDropdown" htmlFor="contributionAt">Contribution at the</label>
             <select className="dropButton" name="contributionAt" id="contributionAt" 
