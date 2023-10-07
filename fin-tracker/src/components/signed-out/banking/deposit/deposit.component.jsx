@@ -20,7 +20,7 @@ const Deposit = ({ newTransactionHandler }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    newTransactionHandler();
+    newTransactionHandler(formFields.amount, "DEPOSIT");
 
     console.log(event.target.value);
   };

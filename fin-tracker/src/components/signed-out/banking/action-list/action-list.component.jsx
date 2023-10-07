@@ -9,7 +9,7 @@ const ActionList = ({ closeAccountHandler, newTransactionHandler }) => {
   return (
     <div className="action-list-container">
       <Deposit newTransactionHandler={ newTransactionHandler }></Deposit>
-      <Withdraw></Withdraw>
+      <Withdraw newTransactionHandler={ newTransactionHandler }></Withdraw>
       <TransferMoney></TransferMoney>
       <CloseAccount closeAccountHandler={ closeAccountHandler }></CloseAccount>
     </div>

@@ -8,18 +8,28 @@ import "./bank-account-form.styles.scss";
 
 const BankAccountForm = ({ financeItemName, closeAccountHandler }) => {
   const [newTransaction, setNewTransaction] = useState(false);
+  const [newDepositAmount, setNewTransactionAmount] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const [transactionType, setTransactionType] = useState("DEPOSIT");
 
-  const newTransactionHandler = () => {
+  const newTransactionHandler = (amount, type) => {
     setNewTransaction(true);
+    setNewTransactionAmount(amount);
+    setTransactions([...transactions, {
+      amount: amount,
+      type: type,
+    }]);
+    setTransactionType(type);
 
-    console.log("new transaction");
+    console.log("new transaction: " + amount);
   }
 
   return (
     <Fragment>
       <Summary></Summary>
       <div className="transactions-action-container">
-        <Transactions newTransaction={ newTransaction }></Transactions>
+        <Transactions newTransaction={ newTransaction } newDepositAmount={ newDepositAmount } 
+                      transactions={ transactions } transactionType={ transactionType }></Transactions>
 
         <ActionList closeAccountHandler={ closeAccountHandler }
                     newTransactionHandler={ newTransactionHandler }></ActionList>
