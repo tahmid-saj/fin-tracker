@@ -7,6 +7,8 @@ import Transactions from "./transactions/transactions.component";
 import ActionList from "./action-list/action-list.component";
 import BankAccounts from "./bank-accounts/bank-accounts.component";
 
+import FormView from "../form-view/form-view.component";
+
 import "./banking.styles.scss";
 import BankAccountForm from "./bank-account-form/bank-account-form.component";
 

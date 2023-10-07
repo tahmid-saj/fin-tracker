@@ -1,10 +1,28 @@
 .transaction-container {
-  background-color: rgb(157, 198, 236, 20%);
-  padding: 10%;
+  // padding: 10%;
   border-radius: 1.5rem;
-  width: 500px;
+  width: 300px;
   border: 3px;
-
-  box-shadow: 4px 4px lightblue;
+  height: 14%;
+  // box-shadow: 4px 4px lightblue;
   border-radius: 1.5rem;
+  padding-right: 30%;
+  margin-right: 30%;
+  
+  &.deposit-transaction {
+    background-color: rgba(199, 235, 199, 0.719);
+    padding: 25px 5% 25px 25px;
+    box-shadow: 4px 4px lightgreen;
+    border-radius: 1.5rem;
+    margin-bottom: 1.5%;
+  }
+
+  &.withdraw-transaction,
+  &.transfer-transaction {
+    background-color: rgb(255, 248, 192);
+    padding: 25px 5% 25px 25px;
+    box-shadow: 4px 4px rgb(255, 197, 88);
+    border-radius: 1.5rem;
+    margin-bottom: 1.5%;
+  }
 }
