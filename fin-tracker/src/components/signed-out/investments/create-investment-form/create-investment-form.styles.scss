@@ -90,11 +90,15 @@
   padding: 16px;
   font-size: 16px;
   border: none;
+  margin-left: 3%;
 }
 
-.compoundedDropdown {
+.compoundedDropdown,
+.contributionAtDropdown,
+.contributionIntervalDropdown {
   position: relative;
   display: inline-block;
+  padding-left: 1%;
 }
 
 .dropdown-content {
