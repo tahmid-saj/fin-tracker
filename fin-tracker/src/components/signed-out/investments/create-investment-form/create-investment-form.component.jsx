@@ -52,7 +52,18 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
     }
 
     setInvestments([...investments, formFields.investmentName]);
-    setInvestmentsInfo([...investmentsInfo, { ...formFields }]);
+    setInvestmentsInfo([...investmentsInfo, {
+      investmentName: formFields.investmentName,
+      investmentType: formFields.investmentType,
+      startingAmount: formFields.startingAmount,
+      startDate: formFields.startDate,
+      afterYears: formFields.afterYears,
+      returnRate: formFields.returnRate,
+      compounded: formFields.compounded,
+      additionalContribution: formFields.additionalContribution,
+      contributionAt: formFields.contributionAt,
+      contributionInterval: formFields.contributionInterval
+    }]);
 
     console.log(investmentsInfo);
   }
@@ -68,7 +79,8 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
 
   return (
     <div className="investment-form-container">
-      <FinanceTrackerItems label={ label } financeTrackerItemNames={ investments }></FinanceTrackerItems>
+      <FinanceTrackerItems label={ label } financeTrackerItemNames={ investments }
+                            financeTrackerItemsInfo={ investmentsInfo }></FinanceTrackerItems>
       
       <div className="update-investment-container">
 
