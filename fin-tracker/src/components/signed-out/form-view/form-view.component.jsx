@@ -8,14 +8,15 @@ import SavingsAccountForm from "../savings/savings-account-form/savings-account-
 
 import "./form-view.styles.scss";
 
-const FormView = ({ financeItemLabel, financeItemInfo, closeAccountHandler }) => {
+const FormView = ({ financeItemLabel, financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) => {
   return (
     <div className="form-view-container">
       { financeItemLabel === "Bank Accounts" && 
         <BankAccountForm closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
       { financeItemLabel === "Investments" && 
         financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo } 
-        closeAccountHandler={ closeAccountHandler }></InvestmentForm> }
+        closeAccountHandler={ closeAccountHandler }
+        handleTrackerItemNameChange={ handleTrackerItemNameChange }></InvestmentForm> }
       { financeItemLabel === "Savings Accounts" && 
         <SavingsAccountForm></SavingsAccountForm> }
     </div>
