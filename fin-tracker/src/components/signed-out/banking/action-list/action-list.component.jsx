@@ -5,10 +5,10 @@ import CloseAccount from "../close-account/close-account.component";
 
 import "./action-list.styles.scss";
 
-const ActionList = ({ closeAccountHandler }) => {
+const ActionList = ({ closeAccountHandler, newTransactionHandler }) => {
   return (
     <div className="action-list-container">
-      <Deposit></Deposit>
+      <Deposit newTransactionHandler={ newTransactionHandler }></Deposit>
       <Withdraw></Withdraw>
       <TransferMoney></TransferMoney>
       <CloseAccount closeAccountHandler={ closeAccountHandler }></CloseAccount>

@@ -9,7 +9,7 @@ const defaultFormFields = {
   amount: ""
 };
 
-const Deposit = () => {
+const Deposit = ({ newTransactionHandler }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { amount } = formFields;
 
@@ -19,6 +19,8 @@ const Deposit = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    newTransactionHandler();
 
     console.log(event.target.value);
   };

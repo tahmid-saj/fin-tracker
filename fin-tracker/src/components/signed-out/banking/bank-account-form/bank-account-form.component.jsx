@@ -7,13 +7,22 @@ import ActionList from "../action-list/action-list.component";
 import "./bank-account-form.styles.scss";
 
 const BankAccountForm = ({ financeItemName, closeAccountHandler }) => {
+  const [newTransaction, setNewTransaction] = useState(false);
+
+  const newTransactionHandler = () => {
+    setNewTransaction(true);
+
+    console.log("new transaction");
+  }
+
   return (
     <Fragment>
       <Summary></Summary>
       <div className="transactions-action-container">
-        <Transactions></Transactions>
+        <Transactions newTransaction={ newTransaction }></Transactions>
 
-        <ActionList closeAccountHandler={ closeAccountHandler }></ActionList>
+        <ActionList closeAccountHandler={ closeAccountHandler }
+                    newTransactionHandler={ newTransactionHandler }></ActionList>
       </div>
     </Fragment>
   );
