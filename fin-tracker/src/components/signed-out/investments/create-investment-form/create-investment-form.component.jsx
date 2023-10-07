@@ -234,6 +234,17 @@ class CreateInvestmentForm extends Component {
   handleCreateSubmit = (event) => {
     event.preventDefault();
 
+    if (this.state.formFields.investmentName === "" || !this.state.formFields.investmentName || this.state.formFields.investmentType === "" || !this.state.formFields.investmentType ||
+      this.state.formFields.startingAmount === "" || !this.state.formFields.startingAmount ||
+      this.state.formFields.startDate === "" || !this.state.formFields.startDate || this.state.formFields.afterYears === "" || !this.state.formFields.afterYears ||
+      this.state.formFields.returnRate === "" || !this.state.formFields.returnRate || this.state.formFields.compounded === "" || !this.state.formFields.compounded ||
+      this.state.formFields.additionalContribution === "" || !this.state.formFields.additionalContribution || this.state.formFields.contributionAt === "" || !this.state.formFields.contributionAt ||
+      this.state.formFields.contributionInterval === "" || !this.state.formFields.contributionInterval) {
+  
+      console.log("pleaee fill out all info");
+      return;
+    }
+
     this.state.investments = [...this.state.investments, this.state.formFields.investmentName];
     this.state.investmentsInfo = [...this.state.investmentsInfo, this.state.formFields];
     
