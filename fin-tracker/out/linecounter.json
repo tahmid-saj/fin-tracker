@@ -1121,6 +1121,1161 @@
                     "filename": "src\\utils\\firebase\\firebase.utils.js"
                 }
             ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2023-10-07 06:17:32",
+            "filesum": 182,
+            "codesum": 22691,
+            "commentsum": 518,
+            "blanksum": 1072,
+            "statistics": {
+                "": {
+                    "code": 23,
+                    "comment": 1,
+                    "blank": 6
+                },
+                ".js": {
+                    "code": 168,
+                    "comment": 62,
+                    "blank": 57
+                },
+                ".md": {
+                    "code": 21,
+                    "comment": 4,
+                    "blank": 15
+                },
+                ".scss": {
+                    "code": 1553,
+                    "comment": 105,
+                    "blank": 169
+                },
+                ".jsx": {
+                    "code": 2373,
+                    "comment": 322,
+                    "blank": 820
+                },
+                ".svg": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".json": {
+                    "code": 18527,
+                    "comment": 0,
+                    "blank": 5
+                },
+                ".html": {
+                    "code": 22,
+                    "comment": 23,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 6,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 2,
+                    "code": 18463,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 23,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 15,
+                    "code": 21,
+                    "comment": 4,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 31,
+                    "comment": 0,
+                    "filename": "src\\App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src\\App.test.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\button\\button.component.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\button\\button.styles.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\finance-tracker-item-summary\\finance-tracker-item-summary.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\finance-tracker-item-summary\\finance-tracker-item-summary.styles.scss"
+                },
+                {
+                    "blank": 15,
+                    "code": 46,
+                    "comment": 4,
+                    "filename": "src\\components\\shared\\finance-tracker-item\\finance-tracker-item.component.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\finance-tracker-item\\finance-tracker-item.styles.scss"
+                },
+                {
+                    "blank": 11,
+                    "code": 22,
+                    "comment": 3,
+                    "filename": "src\\components\\shared\\finance-tracker-items\\finance-tracker-items.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 2,
+                    "filename": "src\\components\\shared\\finance-tracker-items\\finance-tracker-items.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\form-input\\form-input.component.jsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\form-input\\form-input.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\home\\about-links\\about-links.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\home\\about-links\\about-links.styles.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "src\\components\\shared\\home\\home.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\home\\home.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 43,
+                    "comment": 3,
+                    "filename": "src\\components\\shared\\investment-tracker-item\\investment-tracker-item.component.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\investment-tracker-item\\investment-tracker-item.styles.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\components\\shared\\investment-tracker-items\\investment-tracker-items.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 2,
+                    "filename": "src\\components\\shared\\investment-tracker-items\\investment-tracker-items.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\action-list\\action-list.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\banking\\action-list\\action-list.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\bank-account-form\\bank-account-form.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\bank-account-form\\bank-account-form.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\bank-accounts\\bank-accounts.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\bank-accounts\\bank-accounts.styles.scss"
+                },
+                {
+                    "blank": 12,
+                    "code": 28,
+                    "comment": 4,
+                    "filename": "src\\components\\signed-in\\banking\\banking.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\banking.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 39,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\banking\\close-account\\close-account.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\close-account\\close-account.styless.scss"
+                },
+                {
+                    "blank": 29,
+                    "code": 49,
+                    "comment": 33,
+                    "filename": "src\\components\\signed-in\\banking\\create-account\\create-account.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\create-account\\create-account.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\deposit\\deposit.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\deposit\\deposit.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\banking\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\transaction\\transaction.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\banking\\transaction\\transaction.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\transactions\\transactions.component.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 6,
+                    "filename": "src\\components\\signed-in\\banking\\transactions\\transactions.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\transfer-money\\transfer-money.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\transfer-money\\transfer-money.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\withdraw\\withdraw.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\banking\\withdraw\\withdraw.styles.scss"
+                },
+                {
+                    "blank": 5,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\email-export\\email-export.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\email-export\\email-export.styles.scss"
+                },
+                {
+                    "filename": "src\\components\\signed-in\\exports\\email-export\\email-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\export-box\\export-box.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\export-box\\export-box.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\pdf-export\\pdf-export.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\pdf-export\\pdf-export.styles.scss"
+                },
+                {
+                    "filename": "src\\components\\signed-in\\exports\\pdf-export\\pdf-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\txt-export\\txt-export.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\exports\\txt-export\\txt-export.styles.scss"
+                },
+                {
+                    "filename": "src\\components\\signed-in\\exports\\txt-export\\txt-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\form-view\\form-view.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\form-view\\form-view.styles.scss"
+                },
+                {
+                    "blank": 34,
+                    "code": 105,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\investments\\create-investment-form\\create-investment-form.component.jsx"
+                },
+                {
+                    "blank": 13,
+                    "code": 111,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\investments\\create-investment-form\\create-investment-form.styles.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\investments\\investment-form\\investment-form.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "src\\components\\signed-in\\investments\\investment-form\\investment-form.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\investments\\investment-info\\investment-info.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\investments\\investment-info\\investment-info.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\investments\\investments.component.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 4,
+                    "filename": "src\\components\\signed-in\\investments\\investments.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\investments\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\investments\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 34,
+                    "code": 97,
+                    "comment": 9,
+                    "filename": "src\\components\\signed-in\\investments\\update-investment-form\\update-investment-form.component.jsx"
+                },
+                {
+                    "blank": 13,
+                    "code": 110,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\investments\\update-investment-form\\update-investment-form.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\savings\\account-info\\account-info.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\savings\\account-info\\account-info.styles.scss"
+                },
+                {
+                    "blank": 27,
+                    "code": 75,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\savings\\create-account-form\\create-account-form.component.jsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 5,
+                    "filename": "src\\components\\signed-in\\savings\\create-account-form\\create-account-form.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\savings\\savings-account-form\\savings-account-form.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 6,
+                    "filename": "src\\components\\signed-in\\savings\\savings-account-form\\savings-account-form.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 24,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\savings\\savings.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\savings\\savings.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\savings\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-in\\savings\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 23,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\savings\\update-account-form\\update-account-form.component.jsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 76,
+                    "comment": 7,
+                    "filename": "src\\components\\signed-in\\savings\\update-account-form\\update-account-form.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\banking\\banking-summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\banking\\banking-summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\investments\\investments-summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\investments\\investments-summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\savings\\savings-summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\savings\\savings-summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-in\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-in\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\action-list\\action-list.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\banking\\action-list\\action-list.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\bank-account-form\\bank-account-form.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\bank-account-form\\bank-account-form.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\bank-accounts\\bank-accounts.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\bank-accounts\\bank-accounts.styles.scss"
+                },
+                {
+                    "blank": 12,
+                    "code": 28,
+                    "comment": 4,
+                    "filename": "src\\components\\signed-out\\banking\\banking.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\banking.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 39,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-out\\banking\\close-account\\close-account.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\close-account\\close-account.styless.scss"
+                },
+                {
+                    "blank": 29,
+                    "code": 49,
+                    "comment": 33,
+                    "filename": "src\\components\\signed-out\\banking\\create-account\\create-account.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\create-account\\create-account.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\deposit\\deposit.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\deposit\\deposit.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-out\\banking\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\transaction\\transaction.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\banking\\transaction\\transaction.styles.scss"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\transactions\\transactions.component.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 6,
+                    "filename": "src\\components\\signed-out\\banking\\transactions\\transactions.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\transfer-money\\transfer-money.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\transfer-money\\transfer-money.styles.scss"
+                },
+                {
+                    "blank": 14,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\withdraw\\withdraw.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\banking\\withdraw\\withdraw.styles.scss"
+                },
+                {
+                    "blank": 6,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\form-view\\form-view.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\form-view\\form-view.styles.scss"
+                },
+                {
+                    "blank": 69,
+                    "code": 129,
+                    "comment": 140,
+                    "filename": "src\\components\\signed-out\\investments\\create-investment-form\\create-investment-form.component.jsx"
+                },
+                {
+                    "blank": 13,
+                    "code": 115,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\investments\\create-investment-form\\create-investment-form.styles.scss"
+                },
+                {
+                    "blank": 7,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\investments\\investment-form\\investment-form.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 20,
+                    "comment": 3,
+                    "filename": "src\\components\\signed-out\\investments\\investment-form\\investment-form.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\investments\\investment-info\\investment-info.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\investments\\investment-info\\investment-info.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 26,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-out\\investments\\investments.component.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 4,
+                    "filename": "src\\components\\signed-out\\investments\\investments.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\investments\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\investments\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 56,
+                    "code": 104,
+                    "comment": 79,
+                    "filename": "src\\components\\signed-out\\investments\\update-investment-form\\update-investment-form.component.jsx"
+                },
+                {
+                    "blank": 13,
+                    "code": 110,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\investments\\update-investment-form\\update-investment-form.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\savings\\account-info\\account-info.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\savings\\account-info\\account-info.styles.scss"
+                },
+                {
+                    "blank": 27,
+                    "code": 75,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\savings\\create-account-form\\create-account-form.component.jsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 5,
+                    "filename": "src\\components\\signed-out\\savings\\create-account-form\\create-account-form.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\savings\\savings-account-form\\savings-account-form.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 6,
+                    "filename": "src\\components\\signed-out\\savings\\savings-account-form\\savings-account-form.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 24,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-out\\savings\\savings.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "src\\components\\signed-out\\savings\\savings.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\savings\\summary\\summary.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "src\\components\\signed-out\\savings\\summary\\summary.styles.scss"
+                },
+                {
+                    "blank": 23,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\savings\\update-account-form\\update-account-form.component.jsx"
+                },
+                {
+                    "blank": 6,
+                    "code": 76,
+                    "comment": 7,
+                    "filename": "src\\components\\signed-out\\savings\\update-account-form\\update-account-form.styles.scss"
+                },
+                {
+                    "blank": 17,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\sign-in-form\\sign-in-form.component.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\sign-in-form\\sign-in-form.styles.scss"
+                },
+                {
+                    "blank": 19,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\sign-up-form\\sign-up-form.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\components\\signed-out\\sign-up-form\\sign-up-form.styles.scss"
+                },
+                {
+                    "blank": 8,
+                    "code": 26,
+                    "comment": 2,
+                    "filename": "src\\context\\user.context.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 3,
+                    "filename": "src\\index.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "src\\index.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src\\logo.svg"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\routes\\shared\\home\\home.component.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src\\routes\\shared\\home\\home.styles.scss"
+                },
+                {
+                    "blank": 21,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "src\\routes\\shared\\navigation\\navigation.component.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "src\\routes\\shared\\navigation\\navigation.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\banking\\banking.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\banking\\banking.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\dashboard\\dashboard.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\dashboard\\dashboard.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\exports\\exports.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\exports\\exports.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\investments\\investments.components.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\investments\\investments.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\savings\\savings.components.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-in\\savings\\savings.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\authentication\\authentication.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\authentication\\authentication.styles.scss"
+                },
+                {
+                    "blank": 3,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\banking\\banking.component.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\banking\\banking.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\investments\\investments.components.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\investments\\investments.styles.scss"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\savings\\savings.components.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src\\routes\\signed-out\\savings\\savings.styles.scss"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.js"
+                },
+                {
+                    "blank": 46,
+                    "code": 99,
+                    "comment": 55,
+                    "filename": "src\\utils\\firebase\\firebase.utils.js"
+                }
+            ]
         }
     ]
 }
