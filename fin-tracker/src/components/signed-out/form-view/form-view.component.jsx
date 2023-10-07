@@ -11,9 +11,13 @@ import "./form-view.styles.scss";
 const FormView = ({ financeItemLabel, financeItemInfo, closeAccountHandler }) => {
   return (
     <div className="form-view-container">
-      { financeItemLabel === "Bank Accounts" && <BankAccountForm closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
-      { financeItemLabel === "Investments" && financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo } ></InvestmentForm> }
-      { financeItemLabel === "Savings Accounts" && <SavingsAccountForm></SavingsAccountForm> }
+      { financeItemLabel === "Bank Accounts" && 
+        <BankAccountForm closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
+      { financeItemLabel === "Investments" && 
+        financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo } 
+        closeAccountHandler={ closeAccountHandler }></InvestmentForm> }
+      { financeItemLabel === "Savings Accounts" && 
+        <SavingsAccountForm></SavingsAccountForm> }
     </div>
   );
 }
