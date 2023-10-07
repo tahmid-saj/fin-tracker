@@ -199,3 +199,210 @@ src\routes\signed-out\savings\savings.styles.scss, code is 0, comment is 0, blan
 src\setupTests.js, code is 1, comment is 4, blank is 0.
 src\utils\firebase\firebase.utils.js, code is 99, comment is 55, blank is 46.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2023-10-07 06:17:32
+count workspace : d:\2019-old-laptop\fin-tracker\fin-tracker
+total files : 182
+total code lines : 22691
+total comment lines : 518
+total blank lines : 1072
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |             23|              1|              6|   0.10|
+   |            .js|            168|             62|             57|   0.74|
+   |            .md|             21|              4|             15|  0.093|
+   |          .scss|           1553|            105|            169|    6.8|
+   |           .jsx|           2373|            322|            820|     10|
+   |           .svg|              1|              0|              0| 0.0044|
+   |           .txt|              3|              1|              0|  0.013|
+   |          .json|          18527|              0|              5|     82|
+   |          .html|             22|             23|              0|  0.097|
+   -------------------------------------------------------------------------
+.gitignore, code is 23, comment is 1, blank is 6.
+package-lock.json, code is 18463, comment is 0, blank is 2.
+package.json, code is 39, comment is 0, blank is 3.
+public\favicon.ico, it is a binary file.
+public\index.html, code is 22, comment is 23, blank is 0.
+public\logo192.png, it is a binary file.
+public\logo512.png, it is a binary file.
+public\manifest.json, code is 25, comment is 0, blank is 0.
+public\robots.txt, code is 3, comment is 1, blank is 0.
+README.md, code is 21, comment is 4, blank is 15.
+src\App.js, code is 31, comment is 0, blank is 5.
+src\App.test.js, code is 7, comment is 0, blank is 1.
+src\components\shared\button\button.component.jsx, code is 13, comment is 0, blank is 3.
+src\components\shared\button\button.styles.scss, code is 41, comment is 0, blank is 5.
+src\components\shared\finance-tracker-item-summary\finance-tracker-item-summary.component.jsx, code is 23, comment is 0, blank is 7.
+src\components\shared\finance-tracker-item-summary\finance-tracker-item-summary.styles.scss, code is 10, comment is 0, blank is 0.
+src\components\shared\finance-tracker-item\finance-tracker-item.component.jsx, code is 46, comment is 4, blank is 15.
+src\components\shared\finance-tracker-item\finance-tracker-item.styles.scss, code is 41, comment is 0, blank is 5.
+src\components\shared\finance-tracker-items\finance-tracker-items.component.jsx, code is 22, comment is 3, blank is 11.
+src\components\shared\finance-tracker-items\finance-tracker-items.styles.scss, code is 7, comment is 2, blank is 1.
+src\components\shared\form-input\form-input.component.jsx, code is 16, comment is 0, blank is 3.
+src\components\shared\form-input\form-input.styles.scss, code is 46, comment is 0, blank is 8.
+src\components\shared\home\about-links\about-links.component.jsx, code is 13, comment is 0, blank is 3.
+src\components\shared\home\about-links\about-links.styles.scss, code is 11, comment is 0, blank is 1.
+src\components\shared\home\home.component.jsx, code is 41, comment is 1, blank is 7.
+src\components\shared\home\home.styles.scss, code is 0, comment is 0, blank is 1.
+src\components\shared\investment-tracker-item\investment-tracker-item.component.jsx, code is 43, comment is 3, blank is 14.
+src\components\shared\investment-tracker-item\investment-tracker-item.styles.scss, code is 41, comment is 0, blank is 5.
+src\components\shared\investment-tracker-items\investment-tracker-items.component.jsx, code is 20, comment is 0, blank is 6.
+src\components\shared\investment-tracker-items\investment-tracker-items.styles.scss, code is 7, comment is 2, blank is 1.
+src\components\signed-in\banking\action-list\action-list.component.jsx, code is 16, comment is 0, blank is 3.
+src\components\signed-in\banking\action-list\action-list.styles.scss, code is 5, comment is 2, blank is 0.
+src\components\signed-in\banking\bank-account-form\bank-account-form.component.jsx, code is 33, comment is 0, blank is 8.
+src\components\signed-in\banking\bank-account-form\bank-account-form.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\banking\bank-accounts\bank-accounts.component.jsx, code is 11, comment is 0, blank is 4.
+src\components\signed-in\banking\bank-accounts\bank-accounts.styles.scss, code is 0, comment is 0, blank is 0.
+src\components\signed-in\banking\banking.component.jsx, code is 28, comment is 4, blank is 12.
+src\components\signed-in\banking\banking.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\banking\close-account\close-account.component.jsx, code is 39, comment is 1, blank is 14.
+src\components\signed-in\banking\close-account\close-account.styless.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\banking\create-account\create-account.component.jsx, code is 49, comment is 33, blank is 29.
+src\components\signed-in\banking\create-account\create-account.styles.scss, code is 11, comment is 0, blank is 2.
+src\components\signed-in\banking\deposit\deposit.component.jsx, code is 36, comment is 0, blank is 14.
+src\components\signed-in\banking\deposit\deposit.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\banking\summary\summary.component.jsx, code is 16, comment is 0, blank is 4.
+src\components\signed-in\banking\summary\summary.styles.scss, code is 9, comment is 1, blank is 0.
+src\components\signed-in\banking\transaction\transaction.component.jsx, code is 15, comment is 0, blank is 3.
+src\components\signed-in\banking\transaction\transaction.styles.scss, code is 24, comment is 2, blank is 2.
+src\components\signed-in\banking\transactions\transactions.component.jsx, code is 22, comment is 0, blank is 4.
+src\components\signed-in\banking\transactions\transactions.styles.scss, code is 27, comment is 6, blank is 4.
+src\components\signed-in\banking\transfer-money\transfer-money.component.jsx, code is 38, comment is 0, blank is 14.
+src\components\signed-in\banking\transfer-money\transfer-money.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\banking\withdraw\withdraw.component.jsx, code is 36, comment is 0, blank is 14.
+src\components\signed-in\banking\withdraw\withdraw.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-in\exports\email-export\email-export.component.jsx, code is 17, comment is 0, blank is 5.
+src\components\signed-in\exports\email-export\email-export.styles.scss, code is 8, comment is 0, blank is 1.
+src\components\signed-in\exports\email-export\email-icon.png, it is a binary file.
+src\components\signed-in\exports\export-box\export-box.component.jsx, code is 15, comment is 0, blank is 4.
+src\components\signed-in\exports\export-box\export-box.styles.scss, code is 6, comment is 0, blank is 0.
+src\components\signed-in\exports\pdf-export\pdf-export.component.jsx, code is 17, comment is 0, blank is 4.
+src\components\signed-in\exports\pdf-export\pdf-export.styles.scss, code is 8, comment is 0, blank is 1.
+src\components\signed-in\exports\pdf-export\pdf-icon.png, it is a binary file.
+src\components\signed-in\exports\txt-export\txt-export.component.jsx, code is 17, comment is 0, blank is 4.
+src\components\signed-in\exports\txt-export\txt-export.styles.scss, code is 8, comment is 0, blank is 1.
+src\components\signed-in\exports\txt-export\txt-icon.png, it is a binary file.
+src\components\signed-in\form-view\form-view.component.jsx, code is 16, comment is 0, blank is 6.
+src\components\signed-in\form-view\form-view.styles.scss, code is 11, comment is 0, blank is 2.
+src\components\signed-in\investments\create-investment-form\create-investment-form.component.jsx, code is 105, comment is 1, blank is 34.
+src\components\signed-in\investments\create-investment-form\create-investment-form.styles.scss, code is 111, comment is 2, blank is 13.
+src\components\signed-in\investments\investment-form\investment-form.component.jsx, code is 20, comment is 0, blank is 7.
+src\components\signed-in\investments\investment-form\investment-form.styles.scss, code is 20, comment is 3, blank is 3.
+src\components\signed-in\investments\investment-info\investment-info.component.jsx, code is 15, comment is 0, blank is 2.
+src\components\signed-in\investments\investment-info\investment-info.styles.scss, code is 9, comment is 2, blank is 0.
+src\components\signed-in\investments\investments.component.jsx, code is 26, comment is 1, blank is 8.
+src\components\signed-in\investments\investments.styles.scss, code is 21, comment is 4, blank is 4.
+src\components\signed-in\investments\summary\summary.component.jsx, code is 12, comment is 0, blank is 2.
+src\components\signed-in\investments\summary\summary.styles.scss, code is 11, comment is 2, blank is 1.
+src\components\signed-in\investments\update-investment-form\update-investment-form.component.jsx, code is 97, comment is 9, blank is 34.
+src\components\signed-in\investments\update-investment-form\update-investment-form.styles.scss, code is 110, comment is 2, blank is 13.
+src\components\signed-in\savings\account-info\account-info.component.jsx, code is 13, comment is 0, blank is 2.
+src\components\signed-in\savings\account-info\account-info.styles.scss, code is 8, comment is 2, blank is 0.
+src\components\signed-in\savings\create-account-form\create-account-form.component.jsx, code is 75, comment is 0, blank is 27.
+src\components\signed-in\savings\create-account-form\create-account-form.styles.scss, code is 72, comment is 5, blank is 6.
+src\components\signed-in\savings\savings-account-form\savings-account-form.component.jsx, code is 20, comment is 0, blank is 8.
+src\components\signed-in\savings\savings-account-form\savings-account-form.styles.scss, code is 19, comment is 6, blank is 3.
+src\components\signed-in\savings\savings.component.jsx, code is 24, comment is 1, blank is 8.
+src\components\signed-in\savings\savings.styles.scss, code is 18, comment is 1, blank is 3.
+src\components\signed-in\savings\summary\summary.component.jsx, code is 12, comment is 0, blank is 2.
+src\components\signed-in\savings\summary\summary.styles.scss, code is 12, comment is 2, blank is 1.
+src\components\signed-in\savings\update-account-form\update-account-form.component.jsx, code is 67, comment is 0, blank is 23.
+src\components\signed-in\savings\update-account-form\update-account-form.styles.scss, code is 76, comment is 7, blank is 6.
+src\components\signed-in\summary\banking\banking-summary.component.jsx, code is 12, comment is 0, blank is 3.
+src\components\signed-in\summary\banking\banking-summary.styles.scss, code is 11, comment is 0, blank is 1.
+src\components\signed-in\summary\investments\investments-summary.component.jsx, code is 12, comment is 0, blank is 3.
+src\components\signed-in\summary\investments\investments-summary.styles.scss, code is 9, comment is 0, blank is 1.
+src\components\signed-in\summary\savings\savings-summary.component.jsx, code is 12, comment is 0, blank is 3.
+src\components\signed-in\summary\savings\savings-summary.styles.scss, code is 9, comment is 0, blank is 1.
+src\components\signed-in\summary\summary.component.jsx, code is 15, comment is 0, blank is 3.
+src\components\signed-in\summary\summary.styles.scss, code is 6, comment is 1, blank is 0.
+src\components\signed-out\banking\action-list\action-list.component.jsx, code is 16, comment is 0, blank is 3.
+src\components\signed-out\banking\action-list\action-list.styles.scss, code is 5, comment is 2, blank is 0.
+src\components\signed-out\banking\bank-account-form\bank-account-form.component.jsx, code is 33, comment is 0, blank is 8.
+src\components\signed-out\banking\bank-account-form\bank-account-form.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\banking\bank-accounts\bank-accounts.component.jsx, code is 11, comment is 0, blank is 4.
+src\components\signed-out\banking\bank-accounts\bank-accounts.styles.scss, code is 0, comment is 0, blank is 0.
+src\components\signed-out\banking\banking.component.jsx, code is 28, comment is 4, blank is 12.
+src\components\signed-out\banking\banking.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\banking\close-account\close-account.component.jsx, code is 39, comment is 1, blank is 14.
+src\components\signed-out\banking\close-account\close-account.styless.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\banking\create-account\create-account.component.jsx, code is 49, comment is 33, blank is 29.
+src\components\signed-out\banking\create-account\create-account.styles.scss, code is 11, comment is 0, blank is 2.
+src\components\signed-out\banking\deposit\deposit.component.jsx, code is 36, comment is 0, blank is 14.
+src\components\signed-out\banking\deposit\deposit.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\banking\summary\summary.component.jsx, code is 16, comment is 0, blank is 4.
+src\components\signed-out\banking\summary\summary.styles.scss, code is 9, comment is 1, blank is 0.
+src\components\signed-out\banking\transaction\transaction.component.jsx, code is 15, comment is 0, blank is 3.
+src\components\signed-out\banking\transaction\transaction.styles.scss, code is 24, comment is 2, blank is 2.
+src\components\signed-out\banking\transactions\transactions.component.jsx, code is 22, comment is 0, blank is 4.
+src\components\signed-out\banking\transactions\transactions.styles.scss, code is 27, comment is 6, blank is 4.
+src\components\signed-out\banking\transfer-money\transfer-money.component.jsx, code is 38, comment is 0, blank is 14.
+src\components\signed-out\banking\transfer-money\transfer-money.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\banking\withdraw\withdraw.component.jsx, code is 36, comment is 0, blank is 14.
+src\components\signed-out\banking\withdraw\withdraw.styles.scss, code is 5, comment is 0, blank is 0.
+src\components\signed-out\form-view\form-view.component.jsx, code is 19, comment is 0, blank is 6.
+src\components\signed-out\form-view\form-view.styles.scss, code is 11, comment is 0, blank is 2.
+src\components\signed-out\investments\create-investment-form\create-investment-form.component.jsx, code is 129, comment is 140, blank is 69.
+src\components\signed-out\investments\create-investment-form\create-investment-form.styles.scss, code is 115, comment is 2, blank is 13.
+src\components\signed-out\investments\investment-form\investment-form.component.jsx, code is 21, comment is 0, blank is 7.
+src\components\signed-out\investments\investment-form\investment-form.styles.scss, code is 20, comment is 3, blank is 3.
+src\components\signed-out\investments\investment-info\investment-info.component.jsx, code is 21, comment is 0, blank is 3.
+src\components\signed-out\investments\investment-info\investment-info.styles.scss, code is 10, comment is 2, blank is 0.
+src\components\signed-out\investments\investments.component.jsx, code is 26, comment is 1, blank is 8.
+src\components\signed-out\investments\investments.styles.scss, code is 21, comment is 4, blank is 4.
+src\components\signed-out\investments\summary\summary.component.jsx, code is 12, comment is 0, blank is 2.
+src\components\signed-out\investments\summary\summary.styles.scss, code is 11, comment is 2, blank is 1.
+src\components\signed-out\investments\update-investment-form\update-investment-form.component.jsx, code is 104, comment is 79, blank is 56.
+src\components\signed-out\investments\update-investment-form\update-investment-form.styles.scss, code is 110, comment is 2, blank is 13.
+src\components\signed-out\savings\account-info\account-info.component.jsx, code is 13, comment is 0, blank is 2.
+src\components\signed-out\savings\account-info\account-info.styles.scss, code is 8, comment is 2, blank is 0.
+src\components\signed-out\savings\create-account-form\create-account-form.component.jsx, code is 75, comment is 0, blank is 27.
+src\components\signed-out\savings\create-account-form\create-account-form.styles.scss, code is 72, comment is 5, blank is 6.
+src\components\signed-out\savings\savings-account-form\savings-account-form.component.jsx, code is 20, comment is 0, blank is 8.
+src\components\signed-out\savings\savings-account-form\savings-account-form.styles.scss, code is 19, comment is 6, blank is 3.
+src\components\signed-out\savings\savings.component.jsx, code is 24, comment is 1, blank is 8.
+src\components\signed-out\savings\savings.styles.scss, code is 18, comment is 1, blank is 3.
+src\components\signed-out\savings\summary\summary.component.jsx, code is 12, comment is 0, blank is 2.
+src\components\signed-out\savings\summary\summary.styles.scss, code is 12, comment is 2, blank is 1.
+src\components\signed-out\savings\update-account-form\update-account-form.component.jsx, code is 67, comment is 0, blank is 23.
+src\components\signed-out\savings\update-account-form\update-account-form.styles.scss, code is 76, comment is 7, blank is 6.
+src\components\signed-out\sign-in-form\sign-in-form.component.jsx, code is 50, comment is 0, blank is 17.
+src\components\signed-out\sign-in-form\sign-in-form.styles.scss, code is 12, comment is 0, blank is 2.
+src\components\signed-out\sign-up-form\sign-up-form.component.jsx, code is 58, comment is 0, blank is 19.
+src\components\signed-out\sign-up-form\sign-up-form.styles.scss, code is 8, comment is 0, blank is 1.
+src\context\user.context.jsx, code is 26, comment is 2, blank is 8.
+src\index.js, code is 18, comment is 3, blank is 4.
+src\index.scss, code is 17, comment is 1, blank is 3.
+src\logo.svg, code is 1, comment is 0, blank is 0.
+src\reportWebVitals.js, code is 12, comment is 0, blank is 1.
+src\routes\shared\home\home.component.jsx, code is 11, comment is 0, blank is 4.
+src\routes\shared\home\home.styles.scss, code is 2, comment is 0, blank is 1.
+src\routes\shared\navigation\navigation.component.jsx, code is 70, comment is 0, blank is 21.
+src\routes\shared\navigation\navigation.styles.scss, code is 23, comment is 1, blank is 3.
+src\routes\signed-in\banking\banking.component.jsx, code is 8, comment is 0, blank is 3.
+src\routes\signed-in\banking\banking.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-in\dashboard\dashboard.component.jsx, code is 10, comment is 0, blank is 3.
+src\routes\signed-in\dashboard\dashboard.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-in\exports\exports.component.jsx, code is 11, comment is 0, blank is 3.
+src\routes\signed-in\exports\exports.styles.scss, code is 3, comment is 0, blank is 0.
+src\routes\signed-in\investments\investments.components.jsx, code is 8, comment is 0, blank is 2.
+src\routes\signed-in\investments\investments.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-in\savings\savings.components.jsx, code is 8, comment is 0, blank is 2.
+src\routes\signed-in\savings\savings.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-out\authentication\authentication.component.jsx, code is 12, comment is 0, blank is 3.
+src\routes\signed-out\authentication\authentication.styles.scss, code is 6, comment is 0, blank is 0.
+src\routes\signed-out\banking\banking.component.jsx, code is 8, comment is 0, blank is 3.
+src\routes\signed-out\banking\banking.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-out\investments\investments.components.jsx, code is 8, comment is 0, blank is 2.
+src\routes\signed-out\investments\investments.styles.scss, code is 0, comment is 0, blank is 0.
+src\routes\signed-out\savings\savings.components.jsx, code is 8, comment is 0, blank is 2.
+src\routes\signed-out\savings\savings.styles.scss, code is 0, comment is 0, blank is 0.
+src\setupTests.js, code is 1, comment is 4, blank is 0.
+src\utils\firebase\firebase.utils.js, code is 99, comment is 55, blank is 46.
+===============================================================================

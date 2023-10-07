@@ -5,6 +5,7 @@ import "./update-investment-form.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+import InvestmentTrackerItems from "../../../shared/investment-tracker-items/investment-tracker-items.component";
 
 const defaultFormFields = {
   investmentName: "",
@@ -124,7 +125,7 @@ const defaultFormFields = {
 // };
 
 class UpdateInvestmentForm extends Component {
-  constructor({ label, financeTrackerItemNames, closeAccountHandler }) {
+  constructor({ label, financeTrackerItemNames, closeAccountHandler, updateInvestmentInfoHandler }) {
     super();
 
     this.state = {
@@ -132,7 +133,8 @@ class UpdateInvestmentForm extends Component {
       investments: financeTrackerItemNames,
       label: label,
       investmentsInfo: [],
-      closeAccountHandler: closeAccountHandler
+      closeAccountHandler: closeAccountHandler,
+      updateInvestmentInfoHandler: updateInvestmentInfoHandler
     }
   };
 
@@ -153,7 +155,25 @@ class UpdateInvestmentForm extends Component {
   };
 
   handleUpdate = (event) => {
+    event.preventDefault();
 
+    if (this.state.formFields.investmentName === "" || !this.state.formFields.investmentName || this.state.formFields.investmentType === "" || !this.state.formFields.investmentType ||
+      this.state.formFields.startingAmount === "" || !this.state.formFields.startingAmount ||
+      this.state.formFields.startDate === "" || !this.state.formFields.startDate || this.state.formFields.afterYears === "" || !this.state.formFields.afterYears ||
+      this.state.formFields.returnRate === "" || !this.state.formFields.returnRate || this.state.formFields.compounded === "" || !this.state.formFields.compounded ||
+      this.state.formFields.additionalContribution === "" || !this.state.formFields.additionalContribution || this.state.formFields.contributionAt === "" || !this.state.formFields.contributionAt ||
+      this.state.formFields.contributionInterval === "" || !this.state.formFields.contributionInterval) {
+  
+      console.log("pleaee fill out all info");
+      return;
+    }
+
+    // this.state.investments = [...this.state.investments, this.state.formFields.investmentName];
+    this.state.investmentsInfo = [...this.state.investmentsInfo, this.state.formFields];
+    
+    this.state.updateInvestmentInfoHandler(this.state.formFields);
+
+    this.setState({ formFields: defaultFormFields });
   };
 
   handleClose = (event) => {
@@ -165,14 +185,14 @@ class UpdateInvestmentForm extends Component {
   render() {
     return (
       <div className="investment-form-container">
-        <FinanceTrackerItems label={ this.state.label } 
-                            financeTrackerItemNames={ this.state.investments }></FinanceTrackerItems>
+        {/* <InvestmentTrackerItems label={ this.state.label } financeTrackerItemNames={ this.state.investments }
+                              financeTrackerItemsInfo={ this.state.investmentsInfo }></InvestmentTrackerItems> */}
         
         <div className="update-investment-container">
 
           <h3>Update Investment</h3>
 
-          {/* <form> */}
+          <form onSubmit={ this.handleSubmit }>
             <FormInput label="Investment name" type="text" required onChange={ this.handleChange }
                               name="investmentName" value={ this.state.formFields.investmentName }></FormInput>
             
@@ -184,7 +204,7 @@ class UpdateInvestmentForm extends Component {
 
             <h5>Start date</h5>
             <FormInput type="date" required name="startDate" value={ this.state.formFields.startDate }
-                      onChane={ this.handleChange }></FormInput>
+                      onChange={ this.handleChange }></FormInput>
             
             <FormInput label="After how many years?" type="text" required onChange={ this.handleChange }
                               name="afterYears" value={ this.state.formFields.afterYears }></FormInput>
@@ -228,7 +248,7 @@ class UpdateInvestmentForm extends Component {
               <button className="investment-button-close" type="button"
                       onClick={ this.handleClose }>Close</button>
             </div>
-          {/* </form> */}
+          </form>
         </div>
 
       </div>
