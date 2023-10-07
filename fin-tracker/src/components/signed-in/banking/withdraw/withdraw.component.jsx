@@ -9,7 +9,7 @@ const defaultFormFields = {
   amount: ""
 };
 
-const Withdraw = () => {
+const Withdraw = ({ newTransactionHandler }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { amount } = formFields;
 
@@ -19,6 +19,8 @@ const Withdraw = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    newTransactionHandler(formFields.amount, "WITHDRAWAL");
 
     console.log(event.target.value);
   };

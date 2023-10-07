@@ -1,7 +1,37 @@
 .transactions-container {
   // background-color: rgb(157, 198, 236, 20%);
-  padding: 25px 5% 25px 25px;
+  padding: 20% 0% 25px 0%;
   // box-shadow: 4px 4px lightblue;
   // border-radius: 1.5rem;
-  width: 700px;
+  width: 600px;
+  margin-top: 3%;
+  // margin-left: 30%;
+  // margin-right: 10%;
+}
+
+.transactions-scroll-container {
+  margin-right: 20%;
+  width: 400px;
+  padding-right: 30%;
+}
+
+.transactions-container {
+  width: 500px;
+  height: 1200px;
+  //  background: red;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.transactions-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.transactions-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+
+.transactions-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
