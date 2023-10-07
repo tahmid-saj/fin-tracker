@@ -6,28 +6,35 @@ import ActionList from "../action-list/action-list.component";
 
 import "./bank-account-form.styles.scss";
 
-const BankAccountForm = ({ financeItemName }) => {
-  const [closeAccount, setCloseAccount] = useState(false);
+const BankAccountForm = ({ financeItemName, closeAccountHandler }) => {
+  const [newTransaction, setNewTransaction] = useState(false);
+  const [newDepositAmount, setNewTransactionAmount] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const [transactionType, setTransactionType] = useState("DEPOSIT");
 
-  const closeAccountHandler = () => {
-    setCloseAccount(true);
+  const newTransactionHandler = (amount, type) => {
+    setNewTransaction(true);
+    setNewTransactionAmount(amount);
+    setTransactions([...transactions, {
+      amount: amount,
+      type: type,
+    }]);
+    setTransactionType(type);
+
+    console.log("new transaction: " + amount);
   }
 
   return (
-    <div>
-      {
-        !closeAccount && (
-          <Fragment>
-            <Summary></Summary>
-            <div className="transactions-action-container">
-              <Transactions></Transactions>
+    <Fragment>
+      <Summary></Summary>
+      <div className="transactions-action-container">
+        <Transactions newTransaction={ newTransaction } newDepositAmount={ newDepositAmount } 
+                      transactions={ transactions } transactionType={ transactionType }></Transactions>
 
-              <ActionList closeAccountHandler={ closeAccountHandler }></ActionList>
-            </div>
-          </Fragment>
-        )  
-      }
-    </div>
+        <ActionList closeAccountHandler={ closeAccountHandler }
+                    newTransactionHandler={ newTransactionHandler }></ActionList>
+      </div>
+    </Fragment>
   );
 };
 

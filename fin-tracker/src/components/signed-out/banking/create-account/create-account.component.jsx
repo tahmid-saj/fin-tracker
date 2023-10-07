@@ -69,18 +69,23 @@ class CreateAccount extends Component {
   // handle addition of bank accounts
   handleSubmit = (event) => {
     event.preventDefault();
-    
-    this.setState({ bankAccounts: [...this.state.bankAccounts, this.state.formFields.bankAccountName] })
 
-    console.log(this.state.formFields.bankAccountName);
+    const tmpBankAccounts = [...this.state.bankAccounts, this.state.formFields.bankAccountName]
+    
+    this.setState({ bankAccounts: tmpBankAccounts })
+
+    // console.log(this.state.formFields.bankAccountName);
+    console.log(this.state.bankAccounts);
   };
 
   handleChange = (event) => {
     event.preventDefault();
 
-    const { name, value } = event.target;
+    const { bankAccountName, value } = event.target;
 
-    this.setState({ formFields: { name: value } });
+    console.log(this.state.formFields);
+
+    this.setState({ formFields: { bankAccountName: value } });
   };
 
   render() {

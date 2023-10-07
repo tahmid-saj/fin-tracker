@@ -1,10 +1,21 @@
 import Transaction from "../transaction/transaction.component";
 import "./transactions.styles.scss";
 
-const Transactions = () => {
+const date = new Date();
+let currentDay= String(date.getDate()).padStart(2, '0');
+let currentMonth = String(date.getMonth()+1).padStart(2,"0");
+let currentYear = date.getFullYear();
+let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+const Transactions = ({ newTransaction, newTransactionAmount, transactions, transactionType }) => {
   return (
     <div className="transactions-container">
-      <Transaction date={ "2023-08-26" } amount={ 100 } type={ "WITHDRAWAL" }></Transaction>
+      {
+        transactions.map(({ amount, type }, index) => {
+          return newTransaction && 
+          <Transaction date={ currentDate } amount={ amount } type={ type }></Transaction>
+        })
+      }
     </div>
   );
 };
