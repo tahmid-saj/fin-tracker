@@ -1,11 +1,13 @@
 .transaction-container {
   // padding: 10%;
   border-radius: 1.5rem;
-  width: 500px;
+  width: 300px;
   border: 3px;
   height: 14%;
   // box-shadow: 4px 4px lightblue;
   border-radius: 1.5rem;
+  padding-right: 30%;
+  margin-right: 30%;
   
   &.deposit-transaction {
     background-color: rgba(199, 235, 199, 0.719);
