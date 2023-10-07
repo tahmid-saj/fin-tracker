@@ -4,8 +4,9 @@ import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item
 
 import "./finance-tracker-items.styles.scss";
 import CreateAccount from "../../signed-out/banking/create-account/create-account.component";
+import { InvestmentTrackerItem } from "../investment-tracker-item/investment-tracker-item.component";
 
-const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
+const FinanceTrackerItems = ({ label, financeTrackerItemNames, financeTrackerItemsInfo }) => {
 
 
   return (
@@ -16,6 +17,7 @@ const FinanceTrackerItems = ({ label, financeTrackerItemNames }) => {
       }
       
       {
+        label === "Bank Accounts" && financeTrackerItemNames !== undefined && 
         financeTrackerItemNames.map((name, index) => {
           return <FinanceTrackerItem key={ index } label={ label } name={ name }></FinanceTrackerItem>
         })  

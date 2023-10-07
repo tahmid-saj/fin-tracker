@@ -11,14 +11,14 @@ const FINANCE_ITEM_TYPE = "Investments";
 const financeTrackerItemNames = [
 ]
 
-const InvestmentForm = () => {
+const InvestmentForm = ({ financeItemInfo }) => {
   return (
     <div className="investments-form-summary-container">
       <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></UpdateInvestmentForm>
 
       <div className="investment-info-summary">
-        <InvestmentInfo></InvestmentInfo>
-        <Summary></Summary>
+        <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
+        <Summary financeItemInfo={ financeItemInfo }></Summary>
       </div>
     </div>
   )

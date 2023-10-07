@@ -41,7 +41,7 @@ export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
             { `${name}` }
           </button>
 
-          <FormView financeItemLabel={ label } financeItemName={ name } 
+          <FormView financeItemLabel={ label } financeItemInfo={ name } 
                     closeAccountHandler={ closeAccountHandler }></FormView>
 
           {

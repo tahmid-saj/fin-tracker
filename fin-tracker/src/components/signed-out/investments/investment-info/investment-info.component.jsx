@@ -1,15 +1,22 @@
 import "./investment-info.styles.scss";
 
-const InvestmentInfo = () => {
+const InvestmentInfo = ({ financeItemInfo }) => {
+  const startDate = new Date(financeItemInfo.startDate);
+  const year = startDate.getFullYear();
+  const month = startDate.getMonth() + 1;
+  const day = startDate.getDate();
+  const endDate = `${Number(year) + Number(financeItemInfo.afterYears)}-${month}-${day}`;
+
   return (
     <div className="investment-info-container">
-      <h5>{`Investment name ${"Bob"}`}</h5>
-      <h5>{`Investment type ${"GIC"}`}</h5>
-      <h5>{`Return rate ${5.1}%`}</h5>
-      <h5>{`Compounded ${"Monthly"}`}</h5>
-      <h5>{`Additional contribution of ${100} at the ${"beginning"} of each ${"month"}`}</h5>
-      <h6>{`Start date - ${"2023-08-26"}`}</h6>
-      <h6>{`End date - ${"2023-09-26"}`}</h6>
+      <h5>{`Investment name ${financeItemInfo.investmentName}`}</h5>
+      <h5>{`Investment type ${financeItemInfo.investmentType}`}</h5>
+      <h5>{`Return rate ${financeItemInfo.returnRate}%`}</h5>
+      <h5>{`Compounded ${financeItemInfo.compounded}`}</h5>
+      <h5>{`Additional contribution of $${financeItemInfo.additionalContribution}`}</h5>
+      <h5>{`at the ${financeItemInfo.contributionAt} of each ${financeItemInfo.contributionInterval}`}</h5>
+      <h6>{`Start date - ${financeItemInfo.startDate}`}</h6>
+      <h6>{`End date - ${endDate}`}</h6>
     </div>
   );
 };
