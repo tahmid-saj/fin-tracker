@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, Component } from "react";
 
 import "./investment-tracker-item.styles.scss";
 
@@ -9,51 +9,123 @@ export let activeFormView = {
   investmentInfo: {}
 }
 
-export const InvestmentTrackerItem = ({ label, investmentInfo, ...otherProps }) => {
-  const [closeAccount, setCloseAccount] = useState(false);
+// export const InvestmentTrackerItem = ({ label, investmentInfo, ...otherProps }) => {
+//   const [closeAccount, setCloseAccount] = useState(false);
 
-  const closeAccountHandler = () => {
-    setCloseAccount(true);
+//   const closeAccountHandler = () => {
+//     setCloseAccount(true);
+
+//     console.log("closing account");
+//   }
+
+//   const handleDisplayInvestmentTrackerItemForm = (event) => {
+//     console.log(label, investmentInfo);
+
+//     activeFormView = {
+//       label: label,
+//       investmentInfo: investmentInfo
+//     };
+
+//     console.log(activeFormView);
+//   }
+
+//   return (
+//     <div>
+//       {
+//         !closeAccount && investmentInfo !== null && (
+//           <Fragment>
+//             <button className={`button-container investment-tracker-item-button`} 
+//                     { ...otherProps } style={{borderRadius: 1.5 + 'rem'}}
+//                     onClick={ e => handleDisplayInvestmentTrackerItemForm(e) }>
+//               { `${investmentInfo.investmentName}` }
+//             </button>
+
+//             <FormView financeItemLabel={ label } financeItemInfo={ investmentInfo }
+//                       closeAccountHandler={ closeAccountHandler }></FormView>
+                      
+//             <div className="form-view-separator-container">
+//               <hr className="rounded"/>
+//             </div>
+
+//             {/* {
+//               label !== "Savings Accounts" && (
+//               )
+//             } */}
+//           </Fragment>
+//         )
+//       }
+//     </div>
+//   );
+// };
+
+export class InvestmentTrackerItem extends Component {
+  constructor({ label, investmentInfo, ...otherProps }) {
+    super();
+
+    this.state = {
+      label: label,
+      investmentInfo: investmentInfo,
+      otherProps: otherProps,
+      closeAccount: false,
+      activeFormView: activeFormView
+    }
+  };
+
+  closeAccountHandler = () => {
+    this.setState({ closeAccount: true });
 
     console.log("closing account");
+  };
+
+  handleDisplayInvestmentTrackerItemForm = (event) => {
+    console.log(this.state.label, this.state.investmentInfo);
+
+    this.setState({activeFormView: {
+      label: this.state.label,
+      investmentInfo: this.state.investmentInfo
+    }});
+
+    console.log(this.state.activeFormView);
+  };
+
+  handleTrackerItemNameChange = (updatedName) => {
+    this.setState({investmentInfo: {
+      ...this.state.investmentInfo,
+      investmentName: updatedName
+    }});
+
+    console.log(this.state.investmentInfo);
+    console.log('updated tracker item name');
   }
 
-  const handleDisplayInvestmentTrackerItemForm = (event) => {
-    console.log(label, investmentInfo);
+  render() {
+    return (
+      <div>
+        {
+          !this.state.closeAccount && this.state.investmentInfo !== null && (
+            <Fragment>
+              <button className={`button-container investment-tracker-item-button`} 
+                      { ...this.state.otherProps } style={{borderRadius: 1.5 + 'rem'}}
+                      onClick={ e => this.handleDisplayInvestmentTrackerItemForm(e) }>
+                { `${this.state.investmentInfo.investmentName}` }
+              </button>
 
-    activeFormView = {
-      label: label,
-      investmentInfo: investmentInfo
-    };
+              <FormView financeItemLabel={ this.state.label } financeItemInfo={ this.state.investmentInfo }
+                        closeAccountHandler={ this.closeAccountHandler }
+                        handleTrackerItemNameChange={ this.handleTrackerItemNameChange }></FormView>
+                        
+              <div className="form-view-separator-container">
+                <hr className="rounded"/>
+              </div>
 
-    console.log(activeFormView);
-  }
-
-  return (
-    <div>
-      {
-        !closeAccount && investmentInfo !== null && (
-          <Fragment>
-            <button className={`button-container investment-tracker-item-button`} 
-                    { ...otherProps } style={{borderRadius: 1.5 + 'rem'}}
-                    onClick={ e => handleDisplayInvestmentTrackerItemForm(e) }>
-              { `${investmentInfo.investmentName}` }
-            </button>
-
-            <FormView financeItemLabel={ label } financeItemInfo={ investmentInfo }
-                      closeAccountHandler={ closeAccountHandler }></FormView>
-                      
-            <div className="form-view-separator-container">
-              <hr className="rounded"/>
-            </div>
-
-            {/* {
-              label !== "Savings Accounts" && (
-              )
-            } */}
-          </Fragment>
-        )
-      }
-    </div>
-  );
-};
+              {/* {
+                label !== "Savings Accounts" && (
+                )
+              } */}
+            </Fragment>
+          )
+        }
+      </div>
+    )
+  };
+}

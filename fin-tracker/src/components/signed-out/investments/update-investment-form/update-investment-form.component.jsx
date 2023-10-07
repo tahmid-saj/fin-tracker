@@ -125,7 +125,7 @@ const defaultFormFields = {
 // };
 
 class UpdateInvestmentForm extends Component {
-  constructor({ label, financeTrackerItemNames, closeAccountHandler, updateInvestmentInfoHandler }) {
+  constructor({ label, financeTrackerItemNames, closeAccountHandler, updateInvestmentInfoHandler, handleTrackerItemNameChange }) {
     super();
 
     this.state = {
@@ -134,7 +134,8 @@ class UpdateInvestmentForm extends Component {
       label: label,
       investmentsInfo: [],
       closeAccountHandler: closeAccountHandler,
-      updateInvestmentInfoHandler: updateInvestmentInfoHandler
+      updateInvestmentInfoHandler: updateInvestmentInfoHandler,
+      handleTrackerItemNameChange: handleTrackerItemNameChange
     }
   };
 
@@ -172,6 +173,7 @@ class UpdateInvestmentForm extends Component {
     this.state.investmentsInfo = [...this.state.investmentsInfo, this.state.formFields];
     
     this.state.updateInvestmentInfoHandler(this.state.formFields);
+    this.state.handleTrackerItemNameChange(this.state.formFields.investmentName);
 
     this.setState({ formFields: defaultFormFields });
   };

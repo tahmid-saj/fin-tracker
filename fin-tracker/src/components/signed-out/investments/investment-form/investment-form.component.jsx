@@ -56,14 +56,15 @@ const financeTrackerItemNames = [
 // };
 
 class InvestmentForm extends Component {
-  constructor({ financeItemInfo, closeAccountHandler }) {
+  constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
     super();
 
     this.state = {
       financeItemInfo: financeItemInfo,
       closeAccountHandler: closeAccountHandler,
       financeItemUpdatedInfo: financeItemInfo,
-      financeUpdatedInfo: false
+      financeUpdatedInfo: false,
+      handleTrackerItemNameChange: handleTrackerItemNameChange
     }
   };
 
@@ -79,7 +80,8 @@ class InvestmentForm extends Component {
   
         <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }
                               closeAccountHandler={ this.state.closeAccountHandler } 
-                              updateInvestmentInfoHandler={ this.updateInvestmentInfoHandler }></UpdateInvestmentForm>
+                              updateInvestmentInfoHandler={ this.updateInvestmentInfoHandler }
+                              handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }></UpdateInvestmentForm>
                               
         {
           !this.state.financeUpdatedInfo && 
