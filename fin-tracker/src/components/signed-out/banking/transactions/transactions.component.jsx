@@ -10,12 +10,15 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const Transactions = ({ newTransaction, newTransactionAmount, transactions, transactionType }) => {
   return (
     <div className="transactions-container">
-      {
-        transactions.map(({ amount, type }, index) => {
-          return newTransaction && 
-          <Transaction date={ currentDate } amount={ amount } type={ type }></Transaction>
-        })
-      }
+
+      <div className="transactions-scroll-container">
+        {
+          transactions.map(({ amount, type }, index) => {
+            return newTransaction && 
+            <Transaction date={ currentDate } amount={ amount } type={ type }></Transaction>
+          })
+        }
+      </div>
     </div>
   );
 };
