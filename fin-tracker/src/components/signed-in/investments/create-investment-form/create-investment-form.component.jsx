@@ -81,9 +81,9 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           <FormInput label="Return rate" type="text" required onChange={ handleChange }
                             name="returnRate" value={ returnRate }></FormInput>
           
-          <div class="compoundedDropdown">
-            <button class="dropButton" type="button">Compounded</button>
-            <div class="dropdown-content">
+          <div className="compoundedDropdown">
+            <button className="dropButton" type="button">Compounded</button>
+            <div className="dropdown-content">
               <label value="Annually">Annually</label>
               <label value="Semiannually">Semiannually</label>
               <label value="Quarterly">Quarterly</label>
@@ -100,12 +100,12 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           <div className="update-investment-contribution-at">
             <h5>Contribution at the</h5>
 
-            <label class="radio-contribution-at">
+            <label className="radio-contribution-at">
               <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Beginning"/>
               <span>Beginning</span>
             </label>
 
-            <label class="radio-contribution-at">
+            <label className="radio-contribution-at">
               <input name="radio-contribution-at" type="radio" id="contributionAt2" value="End"/>
               <span>End</span>
             </label>
@@ -114,12 +114,12 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           <div className="update-investment-contribution-interval">
             <h5>of each</h5>
 
-            <label class="radio-contribution-interval">
+            <label className="radio-contribution-interval">
               <input name="radio-contribution-interval" type="radio" checked id="contributionInterval1" value="Month"/>
               <span>Month</span>
             </label>
 
-            <label class="radio-contribution-interval">
+            <label className="radio-contribution-interval">
               <input name="radio-contribution-interval" type="radio" id="contributionInterval2" value="Year"/>
               <span>Year</span>
             </label>

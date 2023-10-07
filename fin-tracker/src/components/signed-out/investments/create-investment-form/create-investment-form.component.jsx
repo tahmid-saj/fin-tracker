@@ -25,6 +25,7 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
     compounded, additionalContribution, contributionAt, contributionInterval } = formFields;
     
   const [investments, setInvestments] = useState(financeTrackerItemNames);
+  const [investmentsInfo, setInvestmentsInfo] = useState([]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -37,21 +38,32 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
   };
 
   const handleCreateSubmit = (event) => {
-    if (investmentName === "" || !investmentName) {
+    event.preventDefault();
+
+    if (formFields.investmentName === "" || !formFields.investmentName || formFields.investmentType === "" || !formFields.investmentType ||
+    formFields.startingAmount === "" || !formFields.startingAmount ||
+    formFields.startDate === "" || !formFields.startDate || formFields.afterYears === "" || !formFields.afterYears ||
+    formFields.returnRate === "" || !formFields.returnRate || formFields.compounded === "" || !formFields.compounded ||
+    formFields.additionalContribution === "" || !formFields.additionalContribution || formFields.contributionAt === "" || !formFields.contributionAt ||
+    formFields.contributionInterval === "" || !formFields.contributionInterval) {
+
+        console.log("pleaee fill out all info");
       return;
     }
 
-    event.preventDefault();
-
     setInvestments([...investments, formFields.investmentName]);
+    setInvestmentsInfo([...investmentsInfo, { ...formFields }]);
 
-    console.log(formFields.investmentName);
+    console.log(investmentsInfo);
   }
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value })
+    setFormFields({ ...formFields, [name]: value });
+
+    console.log(name, value);
+    console.log(formFields);
   };
 
   return (
@@ -62,7 +74,7 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
 
         <h3>Create Investment</h3>
 
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ (e) => handleCreateSubmit(e) }>
           <FormInput label="Investment name" type="text" required onChange={ handleChange }
                             name="investmentName" value={ investmentName }></FormInput>
           
@@ -73,7 +85,7 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
                             name="startingAmount" value={ startingAmount }></FormInput>
 
           <h5>Start date</h5>
-          <FormInput type="date" required name="startDate" value={ startDate }></FormInput>
+          <FormInput type="date" required name="startDate" value={ startDate } onChange={ handleChange }></FormInput>
           
           <FormInput label="After how many years?" type="text" required onChange={ handleChange }
                             name="afterYears" value={ afterYears }></FormInput>
@@ -81,8 +93,8 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
           <FormInput label="Return rate" type="text" required onChange={ handleChange }
                             name="returnRate" value={ returnRate }></FormInput>
           
-          <div class="compoundedDropdown">
-            <button class="dropButton" type="button">Compounded</button>
+          {/* <div class="compoundedDropdown">
+            <button class="dropButton" type="button" onChange={ handleChange } value={ compounded }>Compounded</button>
             <div class="dropdown-content">
               <label value="Annually">Annually</label>
               <label value="Semiannually">Semiannually</label>
@@ -92,42 +104,73 @@ const CreateInvestmentForm = ({ label, financeTrackerItemNames }) => {
               <label value="Weekly">Weekly</label>
               <label value="Daily">Daily</label>
             </div>
-          </div>
+          </div> */}
+
+          <label className="compoundedDropdown" htmlFor="compounded">Compounded</label>
+          <select className="dropButton" name="compounded" id="compounded" onChange={ handleChange } value={ compounded }>
+            <option value="Annually">Annually</option>
+            <option value="Semiannually">Semiannually</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Biweekly">Biweekly</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Daily">Daily</option>
+          </select>
 
           <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
                             name="additionalContribution" value={ additionalContribution }></FormInput>
 
-          <div className="update-investment-contribution-at">
+          {/* <div className="update-investment-contribution-at" onChange={ handleChange }>
             <h5>Contribution at the</h5>
 
-            <label class="radio-contribution-at">
-              <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Beginning"/>
+            <label className="radio-contribution-at">
+              <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Beginning"
+                onClick={ handleChange }
+              />
               <span>Beginning</span>
             </label>
 
-            <label class="radio-contribution-at">
-              <input name="radio-contribution-at" type="radio" id="contributionAt2" value="End"/>
+            <label className="radio-contribution-at">
+              <input name="radio-contribution-at" type="radio" id="contributionAt2" value="End"
+                onClick={ handleChange }
+              />
               <span>End</span>
             </label>
-          </div>
+          </div> */}
 
-          <div className="update-investment-contribution-interval">
+          <label className="contributionAtDropdown" htmlFor="contributionAt">Contribution at the</label>
+          <select className="dropButton" name="contributionAt" id="contributionAt" onChange={ handleChange } value={ contributionAt }>
+            <option value="Beginning">Beginning</option>
+            <option value="End">End</option>
+          </select>
+
+          {/* <div className="update-investment-contribution-interval">
             <h5>of each</h5>
 
-            <label class="radio-contribution-interval">
-              <input name="radio-contribution-interval" type="radio" checked id="contributionInterval1" value="Month"/>
+            <label className="radio-contribution-interval">
+              <input name="radio-contribution-interval" type="radio" checked id="contributionInterval1" value="Month"
+                onClick={ handleChange }
+              />
               <span>Month</span>
             </label>
 
-            <label class="radio-contribution-interval">
-              <input name="radio-contribution-interval" type="radio" id="contributionInterval2" value="Year"/>
+            <label className="radio-contribution-interval">
+              <input name="radio-contribution-interval" type="radio" id="contributionInterval2" value="Year"
+                onClick={ handleChange }
+              />
               <span>Year</span>
             </label>
-          </div>
+          </div> */}
+
+          <label className="contributionIntervalDropdown" htmlFor="contributionInterval">of each</label>
+          <select className="dropButton" name="contributionInterval" id="contributionInterval" onChange={ handleChange } value={ contributionInterval }>
+            <option value="Month">Month</option>
+            <option value="Year">Year</option>
+          </select>
           
           <div className="buttons-container">
             {/* <button className="investment-button-update">Update</button> */}
-            <button className="investment-button-create" onClick={ (e) => handleCreateSubmit(e) }>Create</button>
+            <button className="investment-button-create" type="submit">Create</button>
             {/* <button className="investment-button-close" type="button">Close</button> */}
           </div>
         </form>

@@ -75,12 +75,12 @@ const CreateAccountForm = ({ label, financeTrackerItemNames }) => {
                           name="monthlyContributionPeriod" value={ monthlyContributionPeriod }></FormInput>
         
         <div className="update-savings-account-contribution-at">
-          <label class="radio-contribution-at">
+          <label className="radio-contribution-at">
             <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Months"/>
             <span>Months</span>
           </label>
 
-          <label class="radio-contribution-at">
+          <label className="radio-contribution-at">
             <input name="radio-contribution-at" type="radio" id="contributionAt2" value="Years"/>
             <span>Years</span>
           </label>
