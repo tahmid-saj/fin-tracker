@@ -124,11 +124,11 @@ class UpdateAccountForm extends Component {
 
     if (this.state.formFields.savingsAccountName === "" || !this.state.formFields.savingsAccountName ||
       this.state.formFields.initialDeposit === "" || !this.state.formFields.initialDeposit ||
-      this.state.startDate === "" || !this.state.startDate ||
+      this.state.formFields.startDate === "" || !this.state.formFields.startDate ||
       this.state.formFields.monthlyContribution === "" || !this.state.formFields.monthlyContribution || 
-      this.state.contributionPeriod === "" || !this.state.contributionPeriod ||
-      this.state.contributionInterval === "" || !this.state.contributionInterval ||
-      this.state.apy === "" || !this.state.apy) {
+      this.state.formFields.contributionPeriod === "" || !this.state.formFields.contributionPeriod ||
+      this.state.formFields.contributionInterval === "" || !this.state.formFields.contributionInterval ||
+      this.state.formFields.apy === "" || !this.state.formFields.apy) {
 
       console.log('please enter all fields');
 
