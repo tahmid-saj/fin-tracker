@@ -6,7 +6,7 @@ import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
-import InvestmentTrackerItems from "../../../shared/investment-tracker-items/investment-tracker-items.component";
+import InvestmentTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -127,17 +127,18 @@ class CreateAccountForm extends Component {
 
     if (this.state.formFields.savingsAccountName === "" || !this.state.formFields.savingsAccountName ||
       this.state.formFields.initialDeposit === "" || !this.state.formFields.initialDeposit ||
-      this.state.startDate === "" || !this.state.startDate ||
+      this.state.formFields.startDate === "" || !this.state.formFields.startDate ||
       this.state.formFields.monthlyContribution === "" || !this.state.formFields.monthlyContribution || 
-      this.state.contributionPeriod === "" || !this.state.contributionPeriod ||
-      this.state.contributionInterval === "" || !this.state.contributionInterval ||
-      this.state.apy === "" || !this.state.apy) {
+      this.state.formFields.contributionPeriod === "" || !this.state.formFields.contributionPeriod ||
+      this.state.formFields.contributionInterval === "" || !this.state.formFields.contributionInterval ||
+      this.state.formFields.apy === "" || !this.state.formFields.apy) {
 
       console.log('please enter all fields');
 
       return;
     }
-
+    
+    console.log(this.state.formFields);
     this.state.savingsAccounts = [...this.state.savingsAccounts, this.state.formFields.savingsAccountName];
     this.state.savingsAccountsInfo = [...this.state.savingsAccountsInfo, this.state.formFields];
 
@@ -145,6 +146,7 @@ class CreateAccountForm extends Component {
 
     // this.setState({ savingsAccounts: [...this.state.savingsAccounts, this.state.formFields.savingsAccountName] });
     // console.log(this.state.formFields.savingsAccountName);
+
 
     console.log(this.state.savingsAccounts);
     console.log(this.state.savingsAccountsInfo);
