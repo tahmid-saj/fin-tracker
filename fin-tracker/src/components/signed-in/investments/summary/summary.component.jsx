@@ -1,6 +1,6 @@
 import "./summary.styles.scss";
 
-const Summary = ({ financeItemInfo }) => {
+export const Summary = ({ financeItemInfo }) => {
   return (
     <div className="summary-container">
       <h5>{`End balance $${1000}`}</h5>
@@ -11,4 +11,4 @@ const Summary = ({ financeItemInfo }) => {
   );
 };
 
-export default Summary;
+// export default Summary;

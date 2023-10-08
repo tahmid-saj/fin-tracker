@@ -125,7 +125,8 @@ const defaultFormFields = {
 // };
 
 class UpdateInvestmentForm extends Component {
-  constructor({ label, financeTrackerItemNames, closeAccountHandler, updateInvestmentInfoHandler, handleTrackerItemNameChange }) {
+  constructor({ label, financeTrackerItemNames, closeAccountHandler, 
+                updateInvestmentInfoHandler, handleTrackerItemNameChange }) {
     super();
 
     this.state = {

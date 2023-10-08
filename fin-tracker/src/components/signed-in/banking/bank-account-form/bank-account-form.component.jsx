@@ -6,7 +6,7 @@ import ActionList from "../action-list/action-list.component";
 
 import "./bank-account-form.styles.scss";
 
-const BankAccountForm = ({ financeItemName, closeAccountHandler }) => {
+const BankAccountForm = ({ closeAccountHandler }) => {
   const [newTransaction, setNewTransaction] = useState(false);
   const [newDepositAmount, setNewTransactionAmount] = useState(0);
   const [transactions, setTransactions] = useState([]);
