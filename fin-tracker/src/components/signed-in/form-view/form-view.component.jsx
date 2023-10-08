@@ -13,12 +13,16 @@ const FormView = ({ financeItemLabel, financeItemInfo, closeAccountHandler, hand
     <div className="form-view-container">
       { financeItemLabel === "Bank Accounts" && 
         <BankAccountForm closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
+
       { financeItemLabel === "Investments" && 
         financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo } 
         closeAccountHandler={ closeAccountHandler }
         handleTrackerItemNameChange={ handleTrackerItemNameChange }></InvestmentForm> }
+
       { financeItemLabel === "Savings Accounts" && 
-        <SavingsAccountForm></SavingsAccountForm> }
+        financeItemInfo !== undefined && <SavingsAccountForm financeItemInfo={ financeItemInfo }
+        closeAccountHandler={ closeAccountHandler }
+        handleTrackerItemNameChange={ handleTrackerItemNameChange }></SavingsAccountForm> }
     </div>
   );
 }
