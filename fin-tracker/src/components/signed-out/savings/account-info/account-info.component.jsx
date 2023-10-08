@@ -1,6 +1,12 @@
 import "./account-info.styles.scss";
 
-const AccountInfo = () => {
+const AccountInfo = ({ financeItemInfo }) => {
+  const startDate = new Date(financeItemInfo.startDate);
+  const year = startDate.getFullYear();
+  const month = startDate.getMonth() + 1;
+  const day = startDate.getDate();
+  const endDate = `${Number(year) + Number(financeItemInfo.afterYears)}-${month}-${day}`;
+
   return (
     <div className="account-info-container">
       <h5>{`Savings account name ${"Bob"}`}</h5>
