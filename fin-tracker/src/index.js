@@ -6,14 +6,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './context/user.context';
+import { UserProvider } from './contexts/shared/user/user.context';
+import { BankingProvider } from './contexts/signed-out/banking/banking.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <BankingProvider>
+          <App />
+        </BankingProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
