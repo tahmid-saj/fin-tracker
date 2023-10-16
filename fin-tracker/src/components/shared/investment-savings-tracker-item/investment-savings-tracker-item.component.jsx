@@ -77,7 +77,7 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
     
   const { investments } = useContext(InvestmentsContext);
 
-  let financeItemExists = false;
+  let financeItemExists = undefined;
 
   if (label === "Investments") {
     financeItemExists = investments.find(investment => investment.investmentName === financeItemInfo.investmentName)

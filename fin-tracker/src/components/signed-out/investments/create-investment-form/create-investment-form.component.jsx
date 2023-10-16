@@ -317,7 +317,7 @@ const CreateInvestmentForm = ({ label }) => {
                               name="returnRate" value={ formFields.returnRate }></FormInput>
 
             <label className="compoundedDropdown" htmlFor="compounded">Compounded</label>
-            
+
             <select className="dropButton" name="compounded" id="compounded" 
                     onChange={ handleChange } value={ formFields.compounded }>
 
@@ -336,6 +336,7 @@ const CreateInvestmentForm = ({ label }) => {
             <label className="contributionAtDropdown" htmlFor="contributionAt">Contribution at the</label>
             <select className="dropButton" name="contributionAt" id="contributionAt" 
                     onChange={ handleChange } value={ formFields.contributionAt }>
+
               <option value="Beginning">Beginning</option>
               <option value="End">End</option>
             </select>
@@ -343,6 +344,7 @@ const CreateInvestmentForm = ({ label }) => {
             <label className="contributionIntervalDropdown" htmlFor="contributionInterval">of each</label>
             <select className="dropButton" name="contributionInterval" id="contributionInterval" 
                     onChange={ handleChange } value={ formFields.contributionInterval }>
+                    
               <option value="Month">Month</option>
               <option value="Year">Year</option>
             </select>
