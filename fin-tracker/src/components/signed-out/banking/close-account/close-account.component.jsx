@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import "./close-account.styless.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
+import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+
 const defaultFormFields = {
   confirmDelete: ""
 };
 
-const CloseAccount = ({ closeAccountHandler }) => {
+const CloseAccount = ({ financeItemInfo
+  // closeAccountHandler 
+}) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { confirmDelete } = formFields;
+  // const { confirmDelete } = formFields;
+
+  const { closeBankingAccount } = useContext(BankingContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -22,10 +28,14 @@ const CloseAccount = ({ closeAccountHandler }) => {
     console.log(formFields.confirmDelete);
 
     if (formFields.confirmDelete === "permanently delete") {
-      closeAccountHandler();
+      // closeAccountHandler();
+      closeBankingAccount(financeItemInfo);
+    } else {
+      return;
     }
 
     // console.log(event.target.value);
+    resetFormFields();
   };
 
   const handleChange = (event) => {
@@ -41,7 +51,7 @@ const CloseAccount = ({ closeAccountHandler }) => {
 
       <form onSubmit={ handleSubmit }>
         <FormInput type="text" required onChange={ handleChange }
-                          name="confirmDelete" value={ confirmDelete }></FormInput>
+                          name="confirmDelete" value={ formFields.confirmDelete }></FormInput>
         
         <div className="buttons-container">
           <Button type="submit">Close</Button>

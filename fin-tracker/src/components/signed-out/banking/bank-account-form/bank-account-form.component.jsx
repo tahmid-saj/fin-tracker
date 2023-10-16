@@ -6,7 +6,9 @@ import ActionList from "../action-list/action-list.component";
 
 import "./bank-account-form.styles.scss";
 
-const BankAccountForm = ({ closeAccountHandler, financeItemInfo }) => {
+const BankAccountForm = ({ 
+  // closeAccountHandler, 
+  financeItemInfo }) => {
   // const [newTransaction, setNewTransaction] = useState(false);
   // const [newDepositAmount, setNewTransactionAmount] = useState(0);
   // const [transactions, setTransactions] = useState([]);
@@ -36,7 +38,8 @@ const BankAccountForm = ({ closeAccountHandler, financeItemInfo }) => {
                       financeItemInfo={ financeItemInfo }
                       ></Transactions>
 
-        <ActionList closeAccountHandler={ closeAccountHandler }
+        <ActionList 
+                    // closeAccountHandler={ closeAccountHandler }
                     financeItemInfo={ financeItemInfo }
                     // newTransactionHandler={ newTransactionHandler }
                     ></ActionList>
