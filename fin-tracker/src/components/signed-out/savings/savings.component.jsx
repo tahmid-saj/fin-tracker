@@ -16,6 +16,25 @@ const Savings = () => {
   return (
     <div className="savings-acounts-container">
       {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+        <CreateAccountForm label={ FINANCE_ITEM_TYPE } 
+                          // financeTrackerItemNames={ financeTrackerItemNames }
+                          ></CreateAccountForm>
+
+      <div className="savings-accounts-form-summary-container">
+
+        <div className="savings-account-info-summary">
+          {/* <AccountInfo></AccountInfo>
+          <Summary></Summary> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Savings2 = () => {
+  return (
+    <div className="savings-acounts-container">
+      {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
         <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
 
       <div className="savings-accounts-form-summary-container">

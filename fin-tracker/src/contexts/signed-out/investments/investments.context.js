@@ -15,7 +15,7 @@ const createInvestmentHelper = (investments, investment) => {
       investmentName: investment.investmentName,
       investmentType:investment.investmentType,
       startingAmount:investment.startingAmount,
-      startDate: investment.startingDate,
+      startDate: investment.startDate,
       afterYears: investment.afterYears,
       returnRate: investment.returnRate,
       compounded: investment.compounded,
