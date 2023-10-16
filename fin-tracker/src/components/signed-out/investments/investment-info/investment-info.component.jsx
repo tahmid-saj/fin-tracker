@@ -5,15 +5,14 @@ import "./investment-info.styles.scss";
 import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 
 const InvestmentInfo = ({ financeItemInfo }) => {
-  const startDate = new Date(financeItemInfo.startDate);
+  const { getInvestmentInfo } = useContext(InvestmentsContext);
+  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+
+  const startDate = new Date(investmentInfo.startDate);
   const year = startDate.getFullYear();
   const month = startDate.getMonth() + 1;
   const day = startDate.getDate();
-  const endDate = `${Number(year) + Number(financeItemInfo.afterYears)}-${month}-${day}`;
-
-  const { getInvestmentInfo } = useContext(InvestmentsContext);
-
-  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+  const endDate = `${Number(year) + Number(investmentInfo.afterYears)}-${month}-${day}`;
 
   return (
     <div className="investment-info-container">

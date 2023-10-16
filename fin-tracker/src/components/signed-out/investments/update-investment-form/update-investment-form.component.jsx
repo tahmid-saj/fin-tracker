@@ -152,7 +152,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
   };
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
 
     console.log(event.target.value);
   };
