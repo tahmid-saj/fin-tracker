@@ -2,16 +2,17 @@ import { createContext, useState, useEffect } from "react";
 
 // helper functions
 const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => {
-  const bankingAccountExists = bankingAccounts.find((account) => {
-    console.log("Banking account already exists")
-    return account.name === bankingAccountName;
-  });
+  const bankingAccountExists = bankingAccounts.find((account) => account.name === bankingAccountName);
+
+  if (bankingAccountExists) console.log("banking account already exists")
 
   return bankingAccountExists;
 };
 
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
+
+  console.log(`Creating ${bankingAccountName}`);
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -170,7 +171,9 @@ export const BankingProvider = ({ children }) => {
   }, [bankingAccounts]);
 
   const createBankingAccount = (bankingAccountName) => {
-    setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName));
+    const helperRes = createBankingAccountHelper(bankingAccounts, bankingAccountName);
+    console.log(helperRes);
+    setBankingAccounts(helperRes);
   };
 
   const depositToBankingAccount = (bankingAccountName, depositAmount) => {
@@ -189,10 +192,12 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(closeBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
+  const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
+    withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount };
+
   return (
     <BankingContext.Provider
-      value={ { createBankingAccount, depositToBankingAccount, withdrawFromBankingAccount, 
-                transferToBankingAccount, closeBankingAccount } }>
+      value={ value }>
       { children }
     </BankingContext.Provider>
   );

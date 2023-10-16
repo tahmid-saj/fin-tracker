@@ -16,8 +16,8 @@ import { activeFormView } from "../../shared/finance-tracker-item/finance-tracke
 
 const FINANCE_ITEM_TYPE = "Bank Accounts";
 
-const financeTrackerItemNames = [
-];
+// const financeTrackerItemNames = [
+// ];
 
 class Banking extends Component {
   // constructor(props) {
@@ -30,7 +30,9 @@ class Banking extends Component {
         {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
         {/* <CreateAccount></CreateAccount> */}
 
-        <BankAccounts label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></BankAccounts>
+        <BankAccounts label={ FINANCE_ITEM_TYPE } 
+                      // financeTrackerItemNames={ financeTrackerItemNames }
+                      ></BankAccounts>
 
         {/* <BankAccountForm></BankAccountForm> */}
         {/* <FormView childrenComponents={  } financeItemLabel={ activeFormView.label } 

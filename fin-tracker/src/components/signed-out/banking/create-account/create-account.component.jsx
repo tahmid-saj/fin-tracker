@@ -1,8 +1,10 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useContext } from "react";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+
+import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 
 import "./create-account.styles.scss";
 
@@ -52,13 +54,73 @@ const defaultFormFields = {
 //   );
 // };
 
-class CreateAccount extends Component {
-  constructor({ label, financeTrackerItemNames }) {
+const CreateAccount = ({ label }) => {
+  const [formFields, setFormFields] = useState(defaultFormFields);
+
+  // const [bankAccounts, setBankAccounts] = useState(financeTrackerItemNames);
+  const { bankingAccounts, createBankingAccount } = useContext(BankingContext);
+
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // if (handleCreateBankAccount(formFields.bankAccountName) === false) {
+    //   console.log("Bank account already exists");
+    // }
+
+    // const tmpBankAccounts = [...bankAccounts, formFields.bankAccountName];
+    
+    // this.setState({ bankAccounts: tmpBankAccounts });
+    // setBankAccounts(tmpBankAccounts);
+
+    // this.setState({ formFields: defaultFormFields });
+
+    createBankingAccount(formFields.bankAccountName);
+    resetFormFields();
+
+    // console.log(this.state.formFields.bankAccountName);
+    console.log(bankingAccounts);
+  };
+    
+  const handleChange = (event) => {
+    event.preventDefault();
+
+    const { name, value } = event.target;
+
+    setFormFields({ [name]: value });
+  };
+
+  return (
+    <div>
+      <FinanceTrackerItems label={ label } 
+                          // financeTrackerItemNames={ bankingAccounts }
+                          ></FinanceTrackerItems>
+
+      <form onSubmit={ (e) => handleSubmit(e) } className="create-account-container">
+        <FormInput label="Account name" type="text" required
+                  onChange={ (e) => handleChange(e) }
+                  name="bankAccountName" value={ formFields.bankAccountName }></FormInput>
+
+        <div className="buttons-container">
+          <Button type="submit">Create Account</Button>
+        </div>
+
+      </form>
+    </div>
+  );
+};
+
+class CreateAccountClass extends Component {
+  constructor({ label, financeTrackerItemNames, handleCreateBankAccount }) {
     super();
     this.state = {
       label: label,
       bankAccounts: financeTrackerItemNames,
       formFields: defaultFormFields,
+      handleCreateBankAccount: handleCreateBankAccount,
     }
   };
 
@@ -70,9 +132,15 @@ class CreateAccount extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const tmpBankAccounts = [...this.state.bankAccounts, this.state.formFields.bankAccountName]
+    if (this.state.handleCreateBankAccount(this.state.formFields.bankAccountName) === false) {
+      console.log("Bank account already exists");
+    }
+
+    const tmpBankAccounts = [...this.state.bankAccounts, this.state.formFields.bankAccountName];
+
     
-    this.setState({ bankAccounts: tmpBankAccounts })
+    this.setState({ bankAccounts: tmpBankAccounts });
+    this.setState({ formFields: defaultFormFields });
 
     // console.log(this.state.formFields.bankAccountName);
     console.log(this.state.bankAccounts);
@@ -81,7 +149,7 @@ class CreateAccount extends Component {
   handleChange = (event) => {
     event.preventDefault();
 
-    const { bankAccountName, value } = event.target;
+    const { name, value } = event.target;
 
     console.log(this.state.formFields);
 
@@ -91,7 +159,8 @@ class CreateAccount extends Component {
   render() {
     return (
       <div>
-        <FinanceTrackerItems label={ this.state.label } financeTrackerItemNames={ this.state.bankAccounts }></FinanceTrackerItems>
+        <FinanceTrackerItems label={ this.state.label } 
+                            financeTrackerItemNames={ this.state.bankAccounts }></FinanceTrackerItems>
 
         <form onSubmit={ (e) => this.handleSubmit(e) } className="create-account-container">
           <FormInput label="Account name" type="text" required
