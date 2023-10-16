@@ -20,7 +20,7 @@ const ActionList = ({
         // newTransactionHandler={ newTransactionHandler }
         financeItemInfo={ financeItemInfo }
       ></Withdraw>
-      <TransferMoney></TransferMoney>
+      <TransferMoney financeItemInfo={ financeItemInfo }></TransferMoney>
       <CloseAccount financeItemInfo={ financeItemInfo } 
         // closeAccountHandler={ closeAccountHandler }
       ></CloseAccount>
