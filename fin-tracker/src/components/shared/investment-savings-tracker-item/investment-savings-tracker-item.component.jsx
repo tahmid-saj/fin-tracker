@@ -5,6 +5,7 @@ import "./investment-savings-tracker-item.styles.scss";
 import FormView from "../../signed-out/form-view/form-view.component";
 
 import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 
 export let activeFormView = {
   label: "",
@@ -73,16 +74,17 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
   //   }
   // };
 
-  const [activeFormView, setActiveFormView] = useState(activeFormView);
+  // const [activeFormView, setActiveFormView] = useState(activeFormView);
     
   const { investments } = useContext(InvestmentsContext);
+  const { savingsAccounts } = useContext(SavingsContext);
 
   let financeItemExists = undefined;
 
   if (label === "Investments") {
     financeItemExists = investments.find(investment => investment.investmentName === financeItemInfo.investmentName)
   } else if (label === "Savings Accounts") {
-    // 
+    financeItemExists = savingsAccounts.find(account => account.savingsAccountName === financeItemInfo.savingsAccountName)
   }
 
   // closeAccountHandler = () => {
@@ -94,10 +96,15 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
   const handleDisplayFinanceTrackerItemForm = (event) => {
     // console.log(this.state.label, this.state.financeItemInfo);
 
-    setActiveFormView({
+    // setActiveFormView({
+    //   label: label,
+    //   financeItemInfo: financeItemInfo
+    // });
+
+    activeFormView = {
       label: label,
-      financeItemInfo: financeItemInfo
-    });
+      financeItemInfo: financeItemInfo,
+    }
     console.log(activeFormView);
 
     // this.setState({activeFormView: {

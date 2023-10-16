@@ -12,8 +12,8 @@ const FINANCE_ITEM_TYPE = "Investments";
 const financeTrackerItemNames = [
 ]
 
-class Investments extends Component {
-  render() {
+const Investments = () => {
+  // render() {
     return (
       <div className="investments-container">
         {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
@@ -30,7 +30,7 @@ class Investments extends Component {
         </div>
       </div>
     );
-  };
+  // };
 }
 
 class Investments2 extends Component {

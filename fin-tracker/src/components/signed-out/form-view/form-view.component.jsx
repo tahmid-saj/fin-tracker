@@ -27,8 +27,9 @@ const FormView = ({ financeItemLabel, financeItemInfo,
 
       { financeItemLabel === "Savings Accounts" && 
         financeItemInfo !== undefined && <SavingsAccountForm financeItemInfo={ financeItemInfo }
-        closeAccountHandler={ closeAccountHandler }
-        handleTrackerItemNameChange={ handleTrackerItemNameChange }></SavingsAccountForm> }
+        // closeAccountHandler={ closeAccountHandler }
+        // handleTrackerItemNameChange={ handleTrackerItemNameChange }
+        ></SavingsAccountForm> }
     </div>
   );
 }

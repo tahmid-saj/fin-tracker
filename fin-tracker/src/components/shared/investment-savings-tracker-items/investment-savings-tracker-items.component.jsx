@@ -5,13 +5,15 @@ import "./investment-savings-tracker-items.styles.scss";
 import { InvestmentSavingsTrackerItem } from "../investment-savings-tracker-item/investment-savings-tracker-item.component";
 
 import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 
 const InvestmentSavingsTrackerItems = ({ label, 
   // financeTrackerItemNames, 
-  financeTrackerItemsInfo 
+  // financeTrackerItemsInfo 
 }) => {
 
   const { investments } = useContext(InvestmentsContext);
+  const { savingsAccounts } = useContext(SavingsContext);
 
   return (
     <div className="investment-savings-tracker-item-container">
@@ -29,7 +31,7 @@ const InvestmentSavingsTrackerItems = ({ label,
 
       {
         label === "Savings Accounts" && 
-        financeTrackerItemsInfo.map((savingsAccountInfo, index) => {
+        savingsAccounts.map((savingsAccountInfo, index) => {
           return <InvestmentSavingsTrackerItem key={ index } label={ label } 
                   financeItemInfo={ savingsAccountInfo }></InvestmentSavingsTrackerItem>
         })

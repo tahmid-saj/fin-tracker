@@ -245,7 +245,7 @@ const CreateInvestmentForm = ({ label }) => {
       return;
     }
 
-    createInvestment(formFields.investmentName);
+    createInvestment(formFields);
     resetFormFields();
 
     console.log(event.target.value);
@@ -344,7 +344,7 @@ const CreateInvestmentForm = ({ label }) => {
             <label className="contributionIntervalDropdown" htmlFor="contributionInterval">of each</label>
             <select className="dropButton" name="contributionInterval" id="contributionInterval" 
                     onChange={ handleChange } value={ formFields.contributionInterval }>
-                    
+
               <option value="Month">Month</option>
               <option value="Year">Year</option>
             </select>
