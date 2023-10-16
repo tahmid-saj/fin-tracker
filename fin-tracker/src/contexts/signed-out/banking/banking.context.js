@@ -2,11 +2,31 @@ import { createContext, useState, useEffect } from "react";
 
 // helper functions
 const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => {
+  // validating if bankingAccountName exists in bankingAccounts
   const bankingAccountExists = bankingAccounts.find((account) => account.name === bankingAccountName);
 
-  if (bankingAccountExists) console.log("banking account already exists")
+  if (bankingAccountExists) {
+    console.log("banking account already exists")
+    return bankingAccountExists;
+  };
 
-  return bankingAccountExists;
+  // validating if bankingAccountName is valid
+};
+
+const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
+  // validating bankingAccountTransferToName exists in bankingAccounts
+  if (
+    !bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))
+  ) {
+    console.log("Banking account does not exist");
+    console.log(bankingAccounts);
+    console.log(bankingAccountTransferToName);
+    return true;
+  };
+
+  // validating bankingAccountTransferToName is not equal to bankingAccountTransferFromName
+
+  // validating transferAmount is greater than 0 and less than less than currentBalance of bankingAccountTransferFromName
 };
 
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
@@ -69,10 +89,13 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
 
 const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
+  if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
+
+  // console.log(bankingAccountTransferToName, transferAmount);
 
   // update bankingAccountTransferFromName and bankingAccountTransferToName in bankingAccounts
   const updatedBankingAccounts = bankingAccounts.map((account) => {
-    if (account.name === bankingAccountTransferFromName) {
+    if (account.name === String(bankingAccountTransferFromName)) {
       return {
         ...account,
         currentBalance: account.currentBalance - Number(transferAmount),
@@ -85,7 +108,9 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
           }
         ]
       }
-    } else if (account.name === bankingAccountTransferToName) {
+    }
+    
+    if (account.name === String(bankingAccountTransferToName)) {
       return {
         ...account,
         currentBalance: account.currentBalance + Number(transferAmount),
