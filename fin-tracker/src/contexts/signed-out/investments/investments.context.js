@@ -7,6 +7,7 @@ import { createContext, useState, useEffect } from "react";
 // helpers
 const createInvestmentHelper = (investments, investment) => {
   console.log(`Creating ${investment.investmentName}`);
+  // TODO: need a helper function to update endBalance, totalContribution and totalInterest
 
   // add investment to investments
   return [ ...investments,
@@ -22,15 +23,16 @@ const createInvestmentHelper = (investments, investment) => {
       contributionAt: investment.contributionAt,
       contributionInterval: investment.contributionInterval,
 
-      endBalance: investment.endBalance,
-      totalContribution: investment.totalContribution,
-      totalInterest: investment.totalInterest,
+      endBalance: 0,
+      totalContribution: 0,
+      totalInterest: 0,
     }];
 };
 
 const updateInvestmentHelper = (investments, originalInvestmentName, updatedInvestment) => {
+  // TODO: need a helper function to update endBalance, totalContribution and totalInterest
+  
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
-  // TODO: need a helper function to update endBalance, totalContribution and totalInterest for updatedInvestment
   const updatedInvestments = investments.map((investment) => {
     if (investment.investmentName === originalInvestmentName) {
       return {
@@ -75,7 +77,7 @@ export const InvestmentsContext = createContext({
   //     contributionAt: "Beginning",
   //     contributionInterval: "Year",
 
-  //     // displayed in summary component
+  //     displayed in summary component
   //     endBalance: 1000,
   //     totalContribution: 600,
   //     totalInterest: 200
@@ -106,19 +108,21 @@ export const InvestmentsProvider = ({ children }) => {
       return allInvestmentsBalance + endBalance;
     }, 0);
 
-    const newAllTotalContribution = investments.reduce((newAllTotalContribution, { totalAllContribution }) => {
-      return newAllTotalContribution + totalAllContribution;
+    const newTotalAllContribution = investments.reduce((newTotalAllContribution, { totalContribution }) => {
+      return newTotalAllContribution + totalContribution;
     }, 0);
 
-    const newAllInterest = investments.reduce((allInterest, { totalAllInterest }) => {
-      return allInterest + totalAllInterest;
+    const newAllInterest = investments.reduce((allInterest, { totalInterest }) => {
+      return allInterest + totalInterest;
     }, 0);
 
     console.log(investments);
 
-    setInvestmentsSummary({ newAllInvestmentsBalance: newAllInvestmentsBalance, 
-                            newAllTotalContribution: newAllTotalContribution, 
-                            newAllInterest: newAllInterest });
+    setInvestmentsSummary({ 
+      currentAllInvestmentsBalance: newAllInvestmentsBalance, 
+      totalAllContribution: newTotalAllContribution, 
+      totalAllInterest: newAllInterest,
+    });
   }, [investments]);
 
   const createInvestment = (investment) => {

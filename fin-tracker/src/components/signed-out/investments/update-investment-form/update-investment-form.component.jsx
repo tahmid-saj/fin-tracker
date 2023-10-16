@@ -186,7 +186,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
 
     // this.setState({ formFields: defaultFormFields });
 
-    updateInvestment(financeItemInfo.investmentName, formFields.investmentName)
+    updateInvestment(financeItemInfo.investmentName, formFields)
     resetFormFields();
   };
 
