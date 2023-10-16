@@ -26,7 +26,9 @@ const Transactions = ({ financeItemInfo
         {
           transactions.map(({ amount, type }, index) => {
               return bankingAccounts.length !== 0 && transactions.length !== 0 &&
-              <Transaction key={ index } date={ currentDate } amount={ amount } type={ type }></Transaction>
+              <Transaction key={ index } date={ currentDate } 
+                            amount={ amount } type={ type }
+                            ></Transaction>
           })
         }
       </div>
