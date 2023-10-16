@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './contexts/shared/user/user.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
+import { InvestmentsProvider } from './contexts/signed-out/investments/investments.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <BankingProvider>
-          <App />
+          <InvestmentsProvider>
+            <App />
+          </InvestmentsProvider>
         </BankingProvider>
       </UserProvider>
     </BrowserRouter>
