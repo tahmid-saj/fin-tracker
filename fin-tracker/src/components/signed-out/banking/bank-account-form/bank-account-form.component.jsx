@@ -28,7 +28,7 @@ const BankAccountForm = ({
 
   return (
     <Fragment>
-      <Summary></Summary>
+      <Summary financeItemInfo={ financeItemInfo }></Summary>
 
       <div className="transactions-action-container">
         <Transactions 

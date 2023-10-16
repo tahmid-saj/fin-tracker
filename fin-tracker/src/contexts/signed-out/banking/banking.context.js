@@ -262,7 +262,7 @@ export const BankingProvider = ({ children }) => {
   };
 
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
-    withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount };
+    withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary };
 
   return (
     <BankingContext.Provider
