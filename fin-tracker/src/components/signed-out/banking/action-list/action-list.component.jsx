@@ -5,7 +5,9 @@ import CloseAccount from "../close-account/close-account.component";
 
 import "./action-list.styles.scss";
 
-const ActionList = ({ closeAccountHandler, financeItemInfo
+const ActionList = ({ 
+  // closeAccountHandler, 
+  financeItemInfo
   // newTransactionHandler 
 }) => {
   return (
@@ -19,7 +21,9 @@ const ActionList = ({ closeAccountHandler, financeItemInfo
         financeItemInfo={ financeItemInfo }
       ></Withdraw>
       <TransferMoney></TransferMoney>
-      <CloseAccount closeAccountHandler={ closeAccountHandler }></CloseAccount>
+      <CloseAccount financeItemInfo={ financeItemInfo } 
+        // closeAccountHandler={ closeAccountHandler }
+      ></CloseAccount>
     </div>
   );
 };
