@@ -12,7 +12,8 @@ const FormView = ({ financeItemLabel, financeItemInfo, closeAccountHandler, hand
   return (
     <div className="form-view-container">
       { financeItemLabel === "Bank Accounts" && 
-        <BankAccountForm closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
+        <BankAccountForm financeItemInfo={ financeItemInfo } 
+                        closeAccountHandler={ closeAccountHandler }></BankAccountForm> }
 
       { financeItemLabel === "Investments" && 
         financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo } 
