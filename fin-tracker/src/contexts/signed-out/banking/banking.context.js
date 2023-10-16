@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 // helper functions
+
 // validation functions
 const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => {
   // validating if bankingAccountName exists in bankingAccounts
@@ -236,13 +237,13 @@ export const BankingProvider = ({ children }) => {
 
     console.log(bankingAccounts);
 
-    setBankingSummary({ newAllBankingBalance, newAllBankingIn, newAllBankingOut});
+    setBankingSummary({ newAllBankingBalance: newAllBankingBalance, 
+                        newAllBankingIn: newAllBankingIn, 
+                        newAllBankingOut: newAllBankingOut });
   }, [bankingAccounts]);
 
   const createBankingAccount = (bankingAccountName) => {
-    const helperRes = createBankingAccountHelper(bankingAccounts, bankingAccountName);
-    console.log(helperRes);
-    setBankingAccounts(helperRes);
+    setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
   const depositToBankingAccount = (bankingAccountName, depositAmount) => {
