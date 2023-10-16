@@ -3,7 +3,8 @@ import "./transaction.styles.scss";
 const TRANSACTION_TYPE_CLASSES = {
   DEPOSIT: "deposit-transaction",
   WITHDRAWAL: "withdraw-transaction",
-  TRANSFER: "transfer-transaction"
+  WITHDRAWAL_TRANSFER: "withdraw-transfer-transaction",
+  DEPOSIT_TRANSFER: "deposit-transfer-transaction",
 };
 
 const Transaction = ({ date, amount, type }) => {

@@ -9,7 +9,8 @@
   padding-right: 30%;
   margin-right: 30%;
   
-  &.deposit-transaction {
+  &.deposit-transaction,
+  &.deposit-transfer-transaction {
     background-color: rgba(199, 235, 199, 0.719);
     padding: 25px 5% 25px 25px;
     box-shadow: 4px 4px lightgreen;
@@ -18,7 +19,7 @@
   }
 
   &.withdraw-transaction,
-  &.transfer-transaction {
+  &.withdraw-transfer-transaction {
     background-color: rgb(255, 248, 192);
     padding: 25px 5% 25px 25px;
     box-shadow: 4px 4px rgb(255, 197, 88);

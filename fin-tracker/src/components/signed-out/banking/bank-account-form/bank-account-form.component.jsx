@@ -10,7 +10,7 @@ const BankAccountForm = ({ closeAccountHandler }) => {
   const [newTransaction, setNewTransaction] = useState(false);
   const [newDepositAmount, setNewTransactionAmount] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const [transactionType, setTransactionType] = useState("DEPOSIT");
+  const [transactionType, setTransactionType] = useState("");
 
   const newTransactionHandler = (amount, type) => {
     setNewTransaction(true);
