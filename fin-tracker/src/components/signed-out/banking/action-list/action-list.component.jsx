@@ -16,6 +16,7 @@ const ActionList = ({ closeAccountHandler, financeItemInfo
         ></Deposit>
       <Withdraw 
         // newTransactionHandler={ newTransactionHandler }
+        financeItemInfo={ financeItemInfo }
       ></Withdraw>
       <TransferMoney></TransferMoney>
       <CloseAccount closeAccountHandler={ closeAccountHandler }></CloseAccount>

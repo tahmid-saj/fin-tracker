@@ -31,12 +31,12 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
     return account.name === bankingAccountName ? 
       { 
         ...account, 
-        currentBalance: account.currentBalance + depositAmount, 
-        totalIn: account.totalIn + depositAmount,
+        currentBalance: account.currentBalance + Number(depositAmount), 
+        totalIn: account.totalIn + Number(depositAmount),
         transactions: [ 
           ...account.transactions, 
           {
-            amount: depositAmount,
+            amount: Number(depositAmount),
             type: "DEPOSIT", 
           }
         ] 
@@ -52,13 +52,13 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
     return account.name === bankingAccountName ?
       {
         ...account,
-        currentBalance: account.currentBalance - withdrawAmount,
-        totalOut: account.totalOut + withdrawAmount,
+        currentBalance: account.currentBalance - Number(withdrawAmount),
+        totalOut: account.totalOut + Number(withdrawAmount),
         transactions: [ 
           ...account.transactions,
           {
-            amount: withdrawAmount, 
-            type: "WITHDRAWAL=",
+            amount: Number(withdrawAmount), 
+            type: "WITHDRAWAL",
           } 
         ]
       } : account;
@@ -75,12 +75,12 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
     if (account.name === bankingAccountTransferFromName) {
       return {
         ...account,
-        currentBalance: account.currentBalance - transferAmount,
-        totalOut: account.totalOut + transferAmount,
+        currentBalance: account.currentBalance - Number(transferAmount),
+        totalOut: account.totalOut + Number(transferAmount),
         transactions: [
           ...account.transactions,
           {
-            amount: transferAmount,
+            amount: Number(transferAmount),
             type: "WITHDRAWAL_TRANSFER"
           }
         ]
@@ -88,12 +88,12 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
     } else if (account.name === bankingAccountTransferToName) {
       return {
         ...account,
-        currentBalance: account.currentBalance + transferAmount,
-        totalIn: account.totalIn + transferAmount,
+        currentBalance: account.currentBalance + Number(transferAmount),
+        totalIn: account.totalIn + Number(transferAmount),
         transactions: [
           ...account.transactions,
           {
-            amount: transferAmount,
+            amount: Number(transferAmount),
             type: "DEPOSIT_TRANSFER"
           }
         ] 
@@ -166,6 +166,8 @@ export const BankingProvider = ({ children }) => {
     const newAllBankingOut = bankingAccounts.reduce((allBankingOut, { totalOut }) => {
       return allBankingOut + totalOut;
     }, 0);
+
+    console.log(bankingAccounts);
 
     setBankingSummary({ newAllBankingBalance, newAllBankingIn, newAllBankingOut});
   }, [bankingAccounts]);
