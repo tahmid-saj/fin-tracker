@@ -30,6 +30,7 @@ const createInvestmentHelper = (investments, investment) => {
 
 const updateInvestmentHelper = (investments, originalInvestmentName, updatedInvestment) => {
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
+  // TODO: need a helper function to update endBalance, totalContribution and totalInterest for updatedInvestment
   const updatedInvestments = investments.map((investment) => {
     if (investment.investmentName === originalInvestmentName) {
       return {
@@ -50,6 +51,11 @@ const updateInvestmentHelper = (investments, originalInvestmentName, updatedInve
 const closeInvestmentHelper = (investments, closingInvestmentName) => {
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
+};
+
+const getInvestmentInfoHelper = (investments, investmentName) => {
+  // return the investment with the given investmentName
+  return investments.find(investment => investment.investmentName === investmentName);
 };
 
 // initial state
@@ -79,6 +85,7 @@ export const InvestmentsContext = createContext({
   createInvestment: () => {},
   updateInvestment: () => {},
   closeInvestment: () => {},
+  getInvestmentInfo: () => {},
 
   investmentsSummary: {},
   // investmentSummary structure:
@@ -126,8 +133,12 @@ export const InvestmentsProvider = ({ children }) => {
     setInvestments(closeInvestmentHelper(investments, closingInvestmentName));
   };
 
+  const getInvestmentInfo = (investmentName) => {
+    return getInvestmentInfoHelper(investments, investmentName);
+  };
+
   const value = { investments, createInvestment, updateInvestment, 
-                  closeInvestment, investmentsSummary };
+                  closeInvestment, getInvestmentInfo, investmentsSummary };
 
   return (
     <InvestmentsContext.Provider

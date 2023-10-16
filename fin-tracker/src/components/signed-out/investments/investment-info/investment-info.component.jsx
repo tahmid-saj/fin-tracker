@@ -1,4 +1,8 @@
+import { useContext } from "react";
+
 import "./investment-info.styles.scss";
+
+import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 
 const InvestmentInfo = ({ financeItemInfo }) => {
   const startDate = new Date(financeItemInfo.startDate);
@@ -7,15 +11,19 @@ const InvestmentInfo = ({ financeItemInfo }) => {
   const day = startDate.getDate();
   const endDate = `${Number(year) + Number(financeItemInfo.afterYears)}-${month}-${day}`;
 
+  const { getInvestmentInfo } = useContext(InvestmentsContext);
+
+  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+
   return (
     <div className="investment-info-container">
-      <h5>{`Investment name ${financeItemInfo.investmentName}`}</h5>
-      <h5>{`Investment type ${financeItemInfo.investmentType}`}</h5>
-      <h5>{`Return rate ${financeItemInfo.returnRate}%`}</h5>
-      <h5>{`Compounded ${financeItemInfo.compounded}`}</h5>
-      <h5>{`Additional contribution of $${financeItemInfo.additionalContribution}`}</h5>
-      <h5>{`at the ${financeItemInfo.contributionAt} of each ${financeItemInfo.contributionInterval}`}</h5>
-      <h6>{`Start date - ${financeItemInfo.startDate}`}</h6>
+      <h5>{`Investment name ${investmentInfo.investmentName}`}</h5>
+      <h5>{`Investment type ${investmentInfo.investmentType}`}</h5>
+      <h5>{`Return rate ${investmentInfo.returnRate}%`}</h5>
+      <h5>{`Compounded ${investmentInfo.compounded}`}</h5>
+      <h5>{`Additional contribution of $${investmentInfo.additionalContribution}`}</h5>
+      <h5>{`at the ${investmentInfo.contributionAt} of each ${investmentInfo.contributionInterval}`}</h5>
+      <h6>{`Start date - ${investmentInfo.startDate}`}</h6>
       <h6>{`End date - ${endDate}`}</h6>
     </div>
   );

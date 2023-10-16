@@ -55,7 +55,63 @@ const financeTrackerItemNames = [
 //   )
 // };
 
-class InvestmentForm extends Component {
+const InvestmentForm = ({ financeItemInfo }) => {
+  // constructor({ financeItemInfo, 
+  //   // closeAccountHandler, handleTrackerItemNameChange 
+  // }) {
+  //   super();
+
+  //   this.state = {
+  //     financeItemInfo: financeItemInfo,
+  //     // closeAccountHandler: closeAccountHandler,
+  //     // financeItemUpdatedInfo: financeItemInfo,
+  //     financeUpdatedInfo: false,
+  //     handleTrackerItemNameChange: handleTrackerItemNameChange
+  //   }
+  // };
+
+  // updateInvestmentInfoHandler = (financeItemFields) => {
+  //   this.setState({ financeItemUpdatedInfo: financeItemFields });
+  //   console.log(this.state.financeItemUpdatedInfo);
+  //   this.setState({ financeUpdatedInfo: true });
+  // };
+
+  // render() {
+    return (
+    <div className="investments-form-summary-container">
+
+      <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+                            financeItemInfo={ financeItemInfo }
+                            // financeTrackerItemNames={ financeTrackerItemNames }
+                            // closeAccountHandler={ this.state.closeAccountHandler } 
+                            // updateInvestmentInfoHandler={ this.updateInvestmentInfoHandler }
+                            // handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }
+                            ></UpdateInvestmentForm>
+                            
+      {/* { */}
+        {/* !this.state.financeUpdatedInfo &&  */}
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } 
+                                financeItemInfo={ financeItemInfo }
+                                // financeItemInfo={ this.state.financeItemUpdatedInfo }
+                                ></FinanceTrackerItemInfo>
+      {/* } */}
+
+      {/* {
+        this.state.financeUpdatedInfo &&
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+      } */}
+      
+      {/* <div className="investment-info-summary">
+        <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
+        <Summary financeItemInfo={ financeItemInfo }></Summary>
+      </div> */}
+    </div>
+  )
+  // }
+
+}
+
+class InvestmentForm2 extends Component {
   constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
     super();
 

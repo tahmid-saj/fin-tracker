@@ -1,8 +1,10 @@
-import React, { Fragment, useState, Component } from "react";
+import React, { Fragment, useState, Component, useContext } from "react";
 
 import "./investment-savings-tracker-item.styles.scss";
 
 import FormView from "../../signed-out/form-view/form-view.component";
+
+import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
 
 export let activeFormView = {
   label: "",
@@ -58,7 +60,107 @@ export let activeFormView = {
 //   );
 // };
 
-export class InvestmentSavingsTrackerItem extends Component {
+export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }) => {
+  // constructor({ label, financeItemInfo, ...otherProps }) {
+  //   super();
+
+  //   this.state = {
+  //     label: label,
+  //     financeItemInfo: financeItemInfo,
+  //     otherProps: otherProps,
+  //     closeAccount: false,
+  //     activeFormView: activeFormView
+  //   }
+  // };
+
+  const [activeFormView, setActiveFormView] = useState(activeFormView);
+    
+  const { investments } = useContext(InvestmentsContext);
+
+  let financeItemExists = false;
+
+  if (label === "Investments") {
+    financeItemExists = investments.find(investment => investment.investmentName === financeItemInfo.investmentName)
+  } else if (label === "Savings Accounts") {
+    // 
+  }
+
+  // closeAccountHandler = () => {
+  //   this.setState({ closeAccount: true });
+
+  //   console.log("closing account");
+  // };
+
+  const handleDisplayFinanceTrackerItemForm = (event) => {
+    // console.log(this.state.label, this.state.financeItemInfo);
+
+    setActiveFormView({
+      label: label,
+      financeItemInfo: financeItemInfo
+    });
+    console.log(activeFormView);
+
+    // this.setState({activeFormView: {
+    //   label: this.state.label,
+    //   financeItemInfo: this.state.financeItemInfo
+    // }});
+
+    // console.log(this.state.activeFormView);
+  };
+
+  // handleTrackerItemNameChange = (updatedName) => {
+  //   if (this.state.label === "Investments") {
+  //     this.setState({financeItemInfo: {
+  //       ...this.state.financeItemInfo,
+  //       investmentName: updatedName
+  //     }});
+  //   } else if (this.state.label === "Savings Accounts") {
+  //     this.setState({financeItemInfo: {
+  //       ...this.state.financeItemInfo,
+  //       savingsAccountName: updatedName
+  //     }});
+  //   }
+
+  //   console.log(this.state.financeItemInfo);
+  //   console.log('updated tracker item name');
+  // }
+
+  // render() {
+  return (
+    <div>
+      {
+        financeItemExists && financeItemInfo !== null && (
+          <Fragment>
+            <button className={`button-container investment-savings-tracker-item-button`} 
+                    { ...otherProps } style={{borderRadius: 1.5 + 'rem'}}
+                    onClick={ e => handleDisplayFinanceTrackerItemForm(e) }>
+              { label === "Investments" && `${financeItemInfo.investmentName}` }
+              { label === "Savings Accounts" && `${financeItemInfo.savingsAccountName}` }
+            </button>
+
+            <FormView financeItemLabel={ label } 
+                      financeItemInfo={ financeItemInfo }
+                      // closeAccountHandler={ this.closeAccountHandler }
+                      // handleTrackerItemNameChange={ this.handleTrackerItemNameChange }
+                      ></FormView>
+                      
+            <div className="form-view-separator-container">
+              <hr className="rounded"/>
+            </div>
+
+            {/* {
+              label !== "Savings Accounts" && (
+              )
+            } */}
+          </Fragment>
+        )
+      }
+    </div>
+  )
+  // };
+}
+
+export class InvestmentSavingsTrackerItem2 extends Component {
   constructor({ label, financeItemInfo, ...otherProps }) {
     super();
 

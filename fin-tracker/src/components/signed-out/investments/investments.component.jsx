@@ -19,7 +19,29 @@ class Investments extends Component {
         {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
         <div className="investments-form-summary-container">
-          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateInvestmentForm>
+          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+                                // financeTrackerItemNames={ financeTrackerItemNames }
+                                ></CreateInvestmentForm>
+
+          <div className="investment-info-summary">
+            {/* <InvestmentInfo></InvestmentInfo>
+            <Summary></Summary> */}
+          </div>
+        </div>
+      </div>
+    );
+  };
+}
+
+class Investments2 extends Component {
+  render() {
+    return (
+      <div className="investments-container">
+        {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+
+        <div className="investments-form-summary-container">
+          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+                                financeTrackerItemNames={ financeTrackerItemNames }></CreateInvestmentForm>
 
           <div className="investment-info-summary">
             {/* <InvestmentInfo></InvestmentInfo>
