@@ -212,7 +212,7 @@ class UpdateInvestmentForm extends Component {
             <FormInput label="After how many years?" type="text" required onChange={ this.handleChange }
                               name="afterYears" value={ this.state.formFields.afterYears }></FormInput>
             
-            <FormInput label="Return rate" type="text" required onChange={ this.handleChange }
+            <FormInput label="Return rate (%)" type="text" required onChange={ this.handleChange }
                               name="returnRate" value={ this.state.formFields.returnRate }></FormInput>
             
             <label className="compoundedDropdown" htmlFor="compounded">Compounded</label>
