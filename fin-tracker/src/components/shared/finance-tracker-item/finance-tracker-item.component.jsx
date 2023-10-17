@@ -2,6 +2,7 @@ import { Fragment, useState, useContext } from "react";
 
 import "./finance-tracker-item.styles.scss";
 
+// TODO: need to move FinanceTrackerItem from shared to signed-in and signed-out folders
 import FormView from "../../signed-out/form-view/form-view.component";
 
 import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";

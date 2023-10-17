@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
-import { BankingContext } from "../../signed-out/banking/banking.context";
-import { InvestmentsContext } from "../../signed-out/investments/investments.context";
-import { SavingsContext } from "../../signed-out/savings/savings.context";
+import { BankingContext } from "../banking/banking.context";
+import { InvestmentsContext } from "../investments/investments.context";
+import { SavingsContext } from "../savings/savings.context";
 
 export const DashboardContext = createContext({
   summaries: {},

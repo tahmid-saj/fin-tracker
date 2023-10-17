@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import "./transfer-money.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+
 const defaultFormFields = {
   transferTo: "",
   amount: ""
 };
 
-const TransferMoney = () => {
+const TransferMoney = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { transferTo, amount } = formFields;
+  // const { transferTo, amount } = formFields;
+
+  const { transferToBankingAccount } = useContext(BankingContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -21,13 +25,17 @@ const TransferMoney = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(event.target.value);
+    // console.log(formFields.transferTo, financeItemInfo, formFields.amount);
+    transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount);
+
+    // console.log(event.target.value);
+    resetFormFields();
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value })
+    setFormFields({ ...formFields, [name]: value })
   };
 
   return (
@@ -36,10 +44,10 @@ const TransferMoney = () => {
 
       <form onSubmit={ handleSubmit }>
       <FormInput label="Transfer to" type="text" required onChange={ handleChange }
-                          name="transferTo" value={ transferTo }></FormInput>
+                          name="transferTo" value={ formFields.transferTo }></FormInput>
 
         <FormInput label="Amount" type="text" required onChange={ handleChange }
-                          name="amount" value={ amount }></FormInput>
+                          name="amount" value={ formFields.amount }></FormInput>
         
         <div className="buttons-container">
           <Button type="submit">Transfer</Button>

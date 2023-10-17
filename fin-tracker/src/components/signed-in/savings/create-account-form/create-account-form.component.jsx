@@ -1,4 +1,4 @@
-import { useState, Component } from "react";
+import { useState, Component, useContext } from "react";
 
 import "./create-account-form.styles.scss";
 
@@ -7,6 +7,9 @@ import Button from "../../../shared/button/button.component";
 
 import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
 import InvestmentTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
+import InvestmentSavingsTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
+
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -100,7 +103,149 @@ const defaultFormFields = {
 //   );
 // };
 
-class CreateAccountForm extends Component {
+const CreateAccountForm = ({ label }) => {
+  // constructor({ label, financeTrackerItemNames }) {
+  //   super();
+
+  //   this.state = {
+  //     formFields: defaultFormFields,
+  //     label: label,
+  //     savingsAccounts: financeTrackerItemNames,
+  //     savingsAccountsInfo: []
+  //   }
+  // };
+
+  const [formFields, setFormFields] = useState(defaultFormFields);
+  const { createSavingsAccount } = useContext(SavingsContext);
+
+  const resetFormFields = () => {
+    // this.setState({ formFields: defaultFormFields });
+    setFormFields(defaultFormFields);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (formFields.savingsAccountName === "" || !formFields.savingsAccountName ||
+      formFields.initialDeposit === "" || !formFields.initialDeposit ||
+      formFields.startDate === "" || !formFields.startDate ||
+      formFields.monthlyContribution === "" || !formFields.monthlyContribution || 
+      formFields.contributionPeriod === "" || !formFields.contributionPeriod ||
+      formFields.contributionInterval === "" || !formFields.contributionInterval ||
+      formFields.apy === "" || !formFields.apy) {
+
+      console.log('please enter all fields');
+
+      return;
+    }
+
+    createSavingsAccount(formFields);
+    resetFormFields();
+
+    console.log(event.target.value);
+  };
+
+  // handleCreateSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   if (this.state.formFields.savingsAccountName === "" || !this.state.formFields.savingsAccountName ||
+  //     this.state.formFields.initialDeposit === "" || !this.state.formFields.initialDeposit ||
+  //     this.state.formFields.startDate === "" || !this.state.formFields.startDate ||
+  //     this.state.formFields.monthlyContribution === "" || !this.state.formFields.monthlyContribution || 
+  //     this.state.formFields.contributionPeriod === "" || !this.state.formFields.contributionPeriod ||
+  //     this.state.formFields.contributionInterval === "" || !this.state.formFields.contributionInterval ||
+  //     this.state.formFields.apy === "" || !this.state.formFields.apy) {
+
+  //     console.log('please enter all fields');
+
+  //     return;
+  //   }
+    
+  //   console.log(this.state.formFields);
+  //   this.state.savingsAccounts = [...this.state.savingsAccounts, this.state.formFields.savingsAccountName];
+  //   this.state.savingsAccountsInfo = [...this.state.savingsAccountsInfo, this.state.formFields];
+
+  //   this.setState({ formFields: defaultFormFields });
+
+  //   // this.setState({ savingsAccounts: [...this.state.savingsAccounts, this.state.formFields.savingsAccountName] });
+  //   // console.log(this.state.formFields.savingsAccountName);
+
+
+  //   console.log(this.state.savingsAccounts);
+  //   console.log(this.state.savingsAccountsInfo);
+  //   console.log(this.state.label);
+  // };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormFields({ ...formFields, [name]: value });
+    // this.setState({ formFields: {...this.state.formFields, [name]: value } });
+  };
+
+  // render() {
+    return (
+      <div className="update-savings-account-container">
+        <InvestmentSavingsTrackerItems label={ label } 
+                                // financeTrackerItemNames={ this.state.savingsAccounts }
+                                // financeTrackerItemsInfo={ this.state.savingsAccountsInfo }
+                                ></InvestmentSavingsTrackerItems>
+
+        <h3>Create Savings Account</h3>
+
+        <form className="create-savings-account-container" onSubmit={ handleSubmit }>
+          <FormInput label="Savings account name" type="text" required onChange={ handleChange }
+                            name="savingsAccountName" value={ formFields.savingsAccountName }></FormInput>
+          
+          <FormInput label="Initial deposit" type="text" required onChange={ handleChange }
+                            name="initialDeposit" value={ formFields.initialDeposit }></FormInput>
+
+          <h5>Start date</h5>
+          <FormInput type="date" required name="startDate" value={ formFields.startDate }
+                      onChange={ handleChange }></FormInput>
+          
+          <FormInput label="Monthly contribution" type="text" required onChange={ handleChange }
+                            name="monthlyContribution" value={ formFields.monthlyContribution }></FormInput>
+          
+          <div className="contribution-interval-container">
+            <FormInput label="Over a period of" type="text" required onChange={ handleChange }
+                              name="contributionPeriod" value={ formFields.contributionPeriod }></FormInput>
+            
+            {/* <div className="update-savings-account-contribution-at">
+              <label className="radio-contribution-at">
+                <input name="radio-contribution-at" type="radio" checked id="contributionAt1" value="Months"/>
+                <span>Months</span>
+              </label>
+
+              <label className="radio-contribution-at">
+                <input name="radio-contribution-at" type="radio" id="contributionAt2" value="Years"/>
+                <span>Years</span>
+              </label>
+            </div> */}
+
+            <select className="dropButton" name="contributionInterval" id="contributionInterval" 
+                    onChange={ handleChange } value={ formFields.contributionInterval }>
+
+              <option value="Months">Months</option>
+              <option value="Years">Years</option>
+            </select>
+          </div>
+
+          <FormInput label="APY" type="text" required onChange={ handleChange }
+                            name="apy" value={ formFields.apy }></FormInput>
+          
+          <div className="buttons-container">
+            {/* <button className="saving-button-update">Update</button> */}
+            <button className="saving-button-create" type="submit">Create</button>
+            {/* <button className="saving-button-close">Close</button> */}
+          </div>
+        </form>
+      </div>
+    )
+  // };
+}
+
+class CreateAccountForm2 extends Component {
   constructor({ label, financeTrackerItemNames }) {
     super();
 

@@ -1,12 +1,21 @@
+import { useContext } from "react";
+
 import "./summary.styles.scss";
 
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+
 export const Summary = ({ financeItemInfo }) => {
+  
+  const { getSavingsAccountInfo } = useContext(SavingsContext);
+
+  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
+
   return (
     <div className="summary-container">
-      <h5>{`Total savings $${1000}`}</h5>
-      <h5>{`Initial deposit $${financeItemInfo.initialDeposit}`}</h5>
-      <h5>{`Total contribution $${600}`}</h5>
-      <h5>{`Total interest $${10}`}</h5>
+      <h5>{`Total savings $${savingsAccountInfo.totalSavings}`}</h5>
+      <h5>{`Initial deposit $${savingsAccountInfo.initialDeposit}`}</h5>
+      <h5>{`Total contribution $${savingsAccountInfo.totalContribution}`}</h5>
+      <h5>{`Total interest $${savingsAccountInfo.totalInterest}`}</h5>
     </div>
   );
 };
