@@ -1,10 +1,10 @@
 import React, { Component, useContext } from "react";
-import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
+// import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
 
 import "./investments.styles.scss";
-import UpdateInvestmentForm from "./update-investment-form/update-investment-form.component";
-import InvestmentInfo from "./investment-info/investment-info.component";
-import Summary from "./summary/summary.component";
+// import UpdateInvestmentForm from "./update-investment-form/update-investment-form.component";
+// import InvestmentInfo from "./investment-info/investment-info.component";
+// import Summary from "./summary/summary.component";
 import CreateInvestmentForm from "./create-investment-form/create-investment-form.component";
 import AllInvestmentsSummary from "./all-investments-summary/all-investments-summary.component";
 

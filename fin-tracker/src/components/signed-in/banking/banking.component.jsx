@@ -1,18 +1,18 @@
 import React, { Component, useContext } from "react";
 
-import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
-import CreateAccount from "./create-account/create-account.component";
-import Summary from "./summary/summary.component";
-import Transactions from "./transactions/transactions.component";
-import ActionList from "./action-list/action-list.component";
+// import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
+// import CreateAccount from "./create-account/create-account.component";
+// import Summary from "./summary/summary.component";
+// import Transactions from "./transactions/transactions.component";
+// import ActionList from "./action-list/action-list.component";
 import BankAccounts from "./bank-accounts/bank-accounts.component";
 
 // import FormView from "../form-view/form-view.component";
 
 import "./banking.styles.scss";
-import BankAccountForm from "./bank-account-form/bank-account-form.component";
+// import BankAccountForm from "./bank-account-form/bank-account-form.component";
 
-import { activeFormView } from "../../shared/finance-tracker-item/finance-tracker-item.component";
+// import { activeFormView } from "../../shared/finance-tracker-item/finance-tracker-item.component";
 
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 import AllBankingSummary from "./all-banking-summary/all-banking-summary.component";

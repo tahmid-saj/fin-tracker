@@ -3,10 +3,10 @@ import React, { Fragment, useState, Component, useContext } from "react";
 import "./investment-savings-tracker-item.styles.scss";
 
 // TODO: need to move InvestmentSavingsTrackerItem from shared to signed-in and signed-out folders
-import FormView from "../../signed-out/form-view/form-view.component";
+import FormView from "../form-view/form-view.component";
 
-import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
-import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
 export let activeFormView = {
   label: "",

@@ -3,9 +3,10 @@ import React, { useState, Component, useContext } from "react";
 import "./create-investment-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
-import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
-import InvestmentSavingsTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
+// import Button from "../../../shared/button/button.component";
+// import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+// import InvestmentSavingsTrackerItems from "../../../shared/investment-savings-tracker-items/investment-savings-tracker-items.component";
+import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
 
 import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 

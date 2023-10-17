@@ -1,0 +1,46 @@
+.button-container {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 10px 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+
+  &.investment-savings-tracker-item-button {
+    background-color: #0074d3;
+    color: white;
+    margin-bottom: 10px;
+
+    &:hover {
+      background-color: #005daa;
+      border: none;
+      color: white;
+    }
+  }
+}
+
+.form-view-separator-container {
+  hr.rounded {
+    border-top: 5px solid #bbb;
+    border-radius: 5px;
+    max-width: 100%;
+  }
+
+  padding-bottom: 30px;
+}

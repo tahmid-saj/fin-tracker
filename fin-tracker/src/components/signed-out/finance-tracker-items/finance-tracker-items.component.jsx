@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
 
 import "./finance-tracker-items.styles.scss";
-import CreateAccount from "../../signed-out/banking/create-account/create-account.component";
-import { InvestmentTrackerItem } from "../investment-savings-tracker-item/investment-savings-tracker-item.component";
+// import CreateAccount from "../banking/create-account/create-account.component";
+// import { InvestmentTrackerItem } from "../investment-savings-tracker-item/investment-savings-tracker-item.component";
 
 // TODO: need to move FinanceTrackerItems from shared to signed-in and signed-out folders
 import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";

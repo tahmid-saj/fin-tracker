@@ -9,9 +9,9 @@ const AllInvestmentsSummary = () => {
 
   return (
     <div className="all-investments-summary-container">
-      <h4>{`Total Investments Balance - ${investmentsSummary.currentAllInvestmentsBalance}`}</h4>
-      <h4>{`Total Contribution - ${investmentsSummary.totalAllContribution}`}</h4>
-      <h4>{`Total Interest - ${investmentsSummary.totalAllInterest}`}</h4>
+      <h4>{`Total Investments Balance - $${investmentsSummary.currentAllInvestmentsBalance}`}</h4>
+      <h4>{`Total Contribution - $${investmentsSummary.totalAllContribution}`}</h4>
+      <h4>{`Total Interest - $${investmentsSummary.totalAllInterest}`}</h4>
     </div>
   )
 };
