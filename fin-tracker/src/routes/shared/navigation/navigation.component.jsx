@@ -1,6 +1,8 @@
 import { Fragment, useContext, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 import "./navigation.styles.scss";
 
 import { UserContext } from "../../../contexts/shared/user/user.context";
@@ -12,6 +14,12 @@ const Navigation = () => {
   document.body.style.backgroundColor = color;
 
   const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOutUser();
+    navigate("/")
+  };
 
   return (
     <Fragment>
@@ -52,7 +60,7 @@ const Navigation = () => {
                 Exports
               </Link>
 
-              <span className="nav-link" onClick={ signOutUser }>Sign Out</span>
+              <span className="nav-link" onClick={ handleSignOut }>Sign Out</span>
             </Fragment>
           ) : (
             <Fragment>

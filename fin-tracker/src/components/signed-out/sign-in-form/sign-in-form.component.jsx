@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { signInWithGooglePopup,
         signInAuthUserWithEmailAndPassword } from "../../../utils/firebase/firebase.utils";
@@ -17,20 +18,27 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  const navigate = useNavigate();
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+
+    navigate("/dashboard-signed-in");
+    resetFormFields();
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      return await signInAuthUserWithEmailAndPassword(email, password);
+      const signInResponse = await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
+      navigate("/dashboard-signed-in");
+      return signInResponse;
     } catch (error) {
       console.log('user sign in failed', error);
     }
