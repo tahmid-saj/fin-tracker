@@ -15,7 +15,7 @@ const validateInvestmentCreation = (investments, investment) => {
 
   // strings
   if (!(/^[A-Za-z0-9]*$/.test(String(investment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(investment.investmentName)))) {
+    !(/^[A-Za-z0-9]*$/.test(String(investment.investmentType)))) {
     console.log("Invalid invest name / investment type");
     return true;
   }
@@ -37,7 +37,7 @@ const validateInvestmentUpdate = (investments, originalInvestmentName, updatedIn
   
   // strings
   if (!(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentName)))) {
+    !(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentType)))) {
     console.log("Invalid invest name / investment type");
     return true;
   }
@@ -52,7 +52,8 @@ const validateInvestmentUpdate = (investments, originalInvestmentName, updatedIn
   }
 
   // validate if updatedInvestment.investmentName already exists in investments
-  if (investments.find(investment => String(investment.investmentName) === String(updatedInvestment.investmentName))) {
+  if (investments.find(investment => (String(investment.investmentName) === String(updatedInvestment.investmentName)) && 
+                                      String(updatedInvestment.investmentName) !== String(originalInvestmentName))) {
     return true;
   }
 

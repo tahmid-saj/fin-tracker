@@ -50,7 +50,8 @@ const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAccountNam
   }
 
   // validate if updatedInvestment.investmentName already exists in investments
-  if (savingsAccounts.find(account => String(account.savingsAccountName) === String(updatedSavingsAccount.savingsAccountName))) {
+  if (savingsAccounts.find(account => (String(account.savingsAccountName) === String(updatedSavingsAccount.savingsAccountName)) &&
+                                      String(updatedSavingsAccount.savingsAccountName) !== String(originalSavingsAccountName))) {
     return true;
   }
 
