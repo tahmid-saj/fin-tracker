@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
+import { calculateSavingsSummary } from "../../../utils/calculations/savings.calculation";
 
 // helper functions
 
@@ -10,6 +11,8 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
 
   console.log(savingsAccount.savingsAccountName);
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
+
+  const summary = calculateSavingsSummary(savingsAccount);
 
   // add savingsAccount to savingsAccounts
   return [ ...savingsAccounts, 
@@ -22,9 +25,9 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
       contributionInterval: String(savingsAccount.contributionInterval),
       apy: Number(savingsAccount.apy),
 
-      totalSavings: 0,
-      totalContribution: 0,
-      totalInterest: 0,
+      totalSavings: summary.totalSavings,
+      totalContribution: summary.totalContribution,
+      totalInterest: summary.totalInterest,
     }];
 };
 
@@ -33,16 +36,18 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
-
+  
   // update savingsAccounts with updatedSavingsAccount for the account with account.savingsAccountName === originalSavingsAccountName
   const updatedSavingsAccounts = savingsAccounts.map((account) => {
     if (account.savingsAccountName === originalSavingsAccountName) {
+      const summary = calculateSavingsSummary(updatedSavingsAccount);
+      
       return {
         ...updatedSavingsAccount,
 
-        totalSavings: account.totalSavings,
-        totalContribution: account.totalContribution,
-        totalInterest: account.totalInterest,
+        totalSavings: summary.totalSavings,
+        totalContribution: summary.totalContribution,
+        totalInterest: summary.totalInterest,
       }
     }
 
