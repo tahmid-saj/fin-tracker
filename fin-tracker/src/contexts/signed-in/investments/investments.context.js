@@ -1,66 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
+import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
+
 // helper functions
 
-// validation functions
-const validateInvestmentCreation = (investments, investment) => {
-  const investmentExists = investments.find((inv) => inv.investmentName === investment.investmentName);
-
-  if (investmentExists) {
-    console.log("Investment already exists");
-    return true;
-  }
-
-  // validating if investment fields are correct
-
-  // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(investment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(investment.investmentType)))) {
-    console.log("Invalid invest name / investment type");
-    return true;
-  }
-
-  // number
-  if (!(/^[0-9]*$/.test(String(investment.startingAmount))) || Number(investment.startingAmount) < 0 ||
-    !(/^[0-9]*$/.test(String(investment.afterYears))) || Number(investment.afterYears) < 0 ||
-    !(/^[0-9]*$/.test(String(investment.returnRate))) || 
-    !(/^[0-9]*$/.test(String(investment.additionalContribution))) || Number(investment.additionalContribution) < 0) {
-      console.log("Invalid starting amount / after years / return rate / additional contribution");
-      return true;
-  }
-
-  return false;
-};
-
-const validateInvestmentUpdate = (investments, originalInvestmentName, updatedInvestment) => {
-  // validate fields of updatedInvestment
-  
-  // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentType)))) {
-    console.log("Invalid invest name / investment type");
-    return true;
-  }
-
-  // number
-  if (!(/^[0-9]*$/.test(String(updatedInvestment.startingAmount))) || Number(updatedInvestment.startingAmount) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedInvestment.afterYears))) || Number(updatedInvestment.afterYears) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedInvestment.returnRate))) || 
-    !(/^[0-9]*$/.test(String(updatedInvestment.additionalContribution || Number(updatedInvestment.additionalContribution) < 0)))) {
-      console.log("Invalid starting amount / after years / return rate / additional contribution");
-      return true;
-  }
-
-  // validate if updatedInvestment.investmentName already exists in investments
-  if (investments.find(investment => (String(investment.investmentName) === String(updatedInvestment.investmentName)) && 
-                                      String(updatedInvestment.investmentName) !== String(originalInvestmentName))) {
-    return true;
-  }
-
-  return false;
-};
-
-// helpers
 const createInvestmentHelper = (investments, investment) => {
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;

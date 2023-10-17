@@ -1,64 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
+import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
+
 // helper functions
 
-// validation functions
-const validateSavingsAccountCreation = (savingsAccounts, savingsAccount) => {
-  const savingsAccountExists = savingsAccounts.find((account) => account.savingsAccountName === savingsAccount.savingsAccountName);
-
-  if (savingsAccountExists) {
-    console.log("Savings account already exists");
-    return true;
-  }
-
-  // validating if savingsAccount fields are correct
-
-  // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(savingsAccount.savingsAccountName)))) {
-    console.log("Invalid savings account name");
-    return true;
-  }
-
-  // number
-  if (!(/^[0-9]*$/.test(String(savingsAccount.initialDeposit))) || Number(savingsAccount.initialDeposit) < 0 ||
-    !(/^[0-9]*$/.test(String(savingsAccount.monthlyContribution))) || Number(savingsAccount.monthlyContribution) < 0 ||
-    !(/^[0-9]*$/.test(String(savingsAccount.contributionPeriod))) || Number(savingsAccount.contributionPeriod) < 0 ||
-    !(/^[0-9]*$/.test(String(savingsAccount.apy))) || Number(savingsAccount.apy) < 0) {
-      console.log("Invalid initial deposit / monthly contribution / contribution period / apy");
-      return true;
-  }
-
-  return false;
-};
-
-const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount) => {
-  // validate fields of updatedInvestment
-  
-  // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(updatedSavingsAccount.savingsAccountName)))) {
-    console.log("Invalid savings account name");
-    return true;
-  }
-
-  // number
-  if (!(/^[0-9]*$/.test(String(updatedSavingsAccount.initialDeposit))) || Number(updatedSavingsAccount.initialDeposit) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedSavingsAccount.monthlyContribution))) || Number(updatedSavingsAccount.monthlyContribution) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedSavingsAccount.contributionPeriod))) || Number(updatedSavingsAccount.contributionPeriod) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedSavingsAccount.apy))) || Number(updatedSavingsAccount.apy) < 0) {
-      console.log("Invalid initial deposit / monthly contribution / contribution period / apy");
-      return true;
-  }
-
-  // validate if updatedInvestment.investmentName already exists in investments
-  if (savingsAccounts.find(account => (String(account.savingsAccountName) === String(updatedSavingsAccount.savingsAccountName)) &&
-                                      String(updatedSavingsAccount.savingsAccountName) !== String(originalSavingsAccountName))) {
-    return true;
-  }
-
-  return false;
-};
-
-// helpers
 const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
   // validating if savingsAccount exists in savingsAccounts
   if (validateSavingsAccountCreation(savingsAccounts, savingsAccount)) return savingsAccounts;
