@@ -9,7 +9,7 @@ const AllBankingSummary = () => {
 
   return (
     <div className="all-banking-summary-container">
-      <h4>{`Total Balance - ${bankingSummary.currentAllBankingBalance}`}</h4>
+      <h4>{`Total Banking Balance - ${bankingSummary.currentAllBankingBalance}`}</h4>
       <h4>{`Total In - ${bankingSummary.totalAllBankingIn}`}</h4>
       <h4>{`Total Out - ${bankingSummary.totalAllBankingOut}`}</h4>
     </div>
