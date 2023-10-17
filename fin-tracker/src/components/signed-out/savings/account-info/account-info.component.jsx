@@ -27,8 +27,6 @@ const AccountInfo = ({ financeItemInfo }) => {
     endDate = `${Number(year) + Number(savingsAccountInfo.contributionPeriod)}-${month}-${day}`
   }
 
-  endDate = `${Number(year) + Number(savingsAccountInfo.afterYears)}-${month}-${day}`;
-
   return (
     <div className="account-info-container">
       <h5>{`Savings account name ${savingsAccountInfo.savingsAccountName}`}</h5>

@@ -226,8 +226,8 @@ const CreateAccountForm = ({ label }) => {
             <select className="dropButton" name="contributionInterval" id="contributionInterval" 
                     onChange={ handleChange } value={ formFields.contributionInterval }>
 
-              <option value="Month">Months</option>
-              <option value="Year">Years</option>
+              <option value="Months">Months</option>
+              <option value="Years">Years</option>
             </select>
           </div>
 

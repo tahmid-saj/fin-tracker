@@ -119,7 +119,7 @@ const closeInvestmentHelper = (investments, closingInvestmentName) => {
 
 const getInvestmentInfoHelper = (investments, investmentName) => {
   // return the investment with the given investmentName
-  return investments.find(investment => investment.investmentName === investmentName);
+  return investments.find(investment => String(investment.investmentName) === String(investmentName));
 };
 
 // initial state
