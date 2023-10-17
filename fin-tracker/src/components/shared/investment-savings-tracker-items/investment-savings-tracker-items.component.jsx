@@ -4,6 +4,7 @@ import "./investment-savings-tracker-items.styles.scss";
 
 import { InvestmentSavingsTrackerItem } from "../investment-savings-tracker-item/investment-savings-tracker-item.component";
 
+// TODO: need to move InvestmentSavingsTrackerItems from shared to signed-in and signed-out folders
 import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
 import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 

@@ -26,7 +26,59 @@ const financeTrackerItemNames = [
 //   );
 // };
 
-class SavingsAccountForm extends Component {
+const SavingsAccountForm = ({ financeItemInfo }) => {
+  // constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
+  //   super();
+
+  //   this.state = {
+  //     financeItemInfo: financeItemInfo,
+  //     closeAccountHandler: closeAccountHandler,
+  //     financeItemUpdatedInfo: financeItemInfo,
+  //     financeUpdatedInfo: false,
+  //     handleTrackerItemNameChange: handleTrackerItemNameChange
+  //   }
+  // };
+
+  // updateSavingsAccountHandler = (financeItemFields) => {
+  //   this.setState({ financeItemUpdatedInfo: financeItemFields });
+  //   console.log(this.state.financeItemUpdatedInfo);
+  //   this.setState({ financeUpdatedInfo: true });
+  // };
+
+  // render() {
+  return (
+    <div className="savings-accounts-form-summary-container">
+
+      <UpdateAccountForm label={ FINANCE_ITEM_TYPE } 
+                          financeItemInfo={ financeItemInfo }
+                            // financeTrackerItemNames={ financeTrackerItemNames }
+                            // closeAccountHandler={ this.state.closeAccountHandler } 
+                            // updateSavingsAccountHandler={ this.updateSavingsAccountHandler }
+                            // handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }
+                            ></UpdateAccountForm>
+                            
+      {/* {
+        !this.state.financeUpdatedInfo &&  */}
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } 
+                                financeItemInfo={ financeItemInfo }
+                                ></FinanceTrackerItemInfo>
+      {/* }
+
+      {
+        this.state.financeUpdatedInfo &&
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+      } */}
+      
+      {/* <div className="investment-info-summary">
+        <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
+        <Summary financeItemInfo={ financeItemInfo }></Summary>
+      </div> */}
+    </div>
+  )
+  // };
+}
+
+class SavingsAccountForm2 extends Component {
   constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
     super();
 

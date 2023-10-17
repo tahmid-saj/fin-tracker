@@ -11,6 +11,7 @@ let currentMonth = String(date.getMonth()+1).padStart(2,"0");
 let currentYear = date.getFullYear();
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
+// TODO: need to move FinanceTrackerItemSummary from shared to signed-in folder only
 const FinanceTrackerItemSummary = ({ financeTrackerItemName }) => {
   return (
     <div>

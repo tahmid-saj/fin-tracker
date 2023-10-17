@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import FinanceTrackerItems from "../../shared/finance-tracker-items/finance-tracker-items.component";
 
 import "./savings.styles.scss";
@@ -7,12 +7,40 @@ import CreateAccountForm from "./create-account-form/create-account-form.compone
 import AccountInfo from "./account-info/account-info.component";
 import Summary from "./summary/summary.component";
 
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
+import AllSavingsSummary from "./all-savings-summary/all-savings-summary.component";
+
 const FINANCE_ITEM_TYPE = "Savings Accounts";
 
 const financeTrackerItemNames = [
 ]
 
 const Savings = () => {
+  const { savingsAccounts } = useContext(SavingsContext);
+
+  return (
+    <div className="savings-acounts-container">
+      {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+        {
+          savingsAccounts.length !== 0 && <AllSavingsSummary></AllSavingsSummary>
+        }
+        
+        <CreateAccountForm label={ FINANCE_ITEM_TYPE } 
+                          // financeTrackerItemNames={ financeTrackerItemNames }
+                          ></CreateAccountForm>
+
+      <div className="savings-accounts-form-summary-container">
+
+        <div className="savings-account-info-summary">
+          {/* <AccountInfo></AccountInfo>
+          <Summary></Summary> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Savings2 = () => {
   return (
     <div className="savings-acounts-container">
       {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}

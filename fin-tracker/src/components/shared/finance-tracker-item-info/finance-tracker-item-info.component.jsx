@@ -2,6 +2,7 @@ import { Fragment } from "react";
 
 import "./finance-tracker-item-info.styles.scss";
 
+// TODO: need to move FinanceTrackerItemInfo from shared to signed-in and signed-out folders
 import InvestmentInfo from "../../signed-out/investments/investment-info/investment-info.component";
 import { Summary as InvestmentSummary} from "../../signed-out/investments/summary/summary.component";
 
