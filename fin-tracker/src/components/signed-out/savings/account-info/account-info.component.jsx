@@ -14,7 +14,6 @@ const AccountInfo = ({ financeItemInfo }) => {
   const day = startDate.getDate();
   let endDate;
 
-  // TODO: need to fix end date, currently shows as NaN for year
   if (savingsAccountInfo.contributionInterval === "Months") {
     if (Number(savingsAccountInfo.contributionPeriod) % 12 < 1) {
       endDate = `${Number(year)}-${Number(month) + Number(savingsAccountInfo.contributionPeriod)}-${day}`;

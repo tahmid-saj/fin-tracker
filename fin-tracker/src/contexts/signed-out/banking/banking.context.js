@@ -238,9 +238,10 @@ export const BankingProvider = ({ children }) => {
 
     console.log(bankingAccounts);
 
-    setBankingSummary({ newAllBankingBalance: newAllBankingBalance, 
-                        newAllBankingIn: newAllBankingIn, 
-                        newAllBankingOut: newAllBankingOut });
+    setBankingSummary({ 
+      currentAllBankingBalance: newAllBankingBalance, 
+      totalAllBankingIn: newAllBankingIn, 
+      totalAllBankingOut: newAllBankingOut });
   }, [bankingAccounts]);
 
   const createBankingAccount = (bankingAccountName) => {
