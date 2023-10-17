@@ -42,6 +42,8 @@ const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) =
 };
 
 const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
+  // TODO: validating transfer amount is valid
+  
   // validating bankingAccountTransferToName exists in bankingAccounts
   if (!bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))) {
     console.log("Banking account does not exist");
