@@ -10,6 +10,7 @@ import { UserProvider } from './contexts/shared/user/user.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
 import { InvestmentsProvider } from './contexts/signed-out/investments/investments.context';
 import { SavingsProvider } from './contexts/signed-out/savings/savings.context';
+import { DashboardProvider } from './contexts/signed-in/dashboard/dashboard.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,7 +20,9 @@ root.render(
         <BankingProvider>
           <InvestmentsProvider>
             <SavingsProvider>
-              <App />
+              <DashboardProvider>
+                <App />
+              </DashboardProvider>
             </SavingsProvider>
           </InvestmentsProvider>
         </BankingProvider>
