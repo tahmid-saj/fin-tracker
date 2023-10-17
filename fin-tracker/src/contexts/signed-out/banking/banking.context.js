@@ -1,74 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 
+import { validateBankingAccountCreation, validateDepositAmount, 
+        validateWithdrawalAmount, validateBankingAccountTransfer } 
+from "../../../utils/validations/banking.validation";
+
 // helper functions
 
-// validation functions
-const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => {
-  // validating if bankingAccountName exists in bankingAccounts
-  const bankingAccountExists = bankingAccounts.find((account) => account.name === bankingAccountName);
-
-  if (bankingAccountExists) {
-    console.log("Banking account already exists")
-    return true;
-  };
-
-  // validating if bankingAccountName is valid
-  if (!(/^[A-Za-z0-9]*$/.test(String(bankingAccountName)))) {
-    console.log("Banking account name is invalid")
-    return true;
-  }
-
-  return false;
-};
-
-const validateDepositAmount = (bankingAccounts, bankingAccountName, amount) => {
-  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0) {
-    console.log("Invalid transaction amount");
-    return true;
-  };
-
-  return false;
-};
-
-const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) => {
-  const currentBalance = bankingAccounts.find(account => account.name === String(bankingAccountName)).currentBalance;
-
-  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
-    console.log("Invalid transaction amount")
-    return true;
-  };
-
-  return false;
-};
-
-const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
-  // validating bankingAccountTransferToName exists in bankingAccounts
-  if (!bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))) {
-    console.log("Banking account does not exist");
-    console.log(bankingAccounts);
-    console.log(bankingAccountTransferToName);
-    return true;
-  };
-
-  // validating bankingAccountTransferToName is not equal to bankingAccountTransferFromName
-  if (String(bankingAccountTransferFromName) === String(bankingAccountTransferToName)) {
-    console.log("Banking account cannot be the same");
-    return true;
-  }
-
-  // validating transferAmount is greater than 0 and less than less than currentBalance of bankingAccountTransferFromName
-  const transferFromAccountCurrentBalance = bankingAccounts.find(account => account.name === String(bankingAccountTransferFromName)).currentBalance;
-
-  if (!(/^[0-9]*$/.test(String(transferAmount))) || Number(transferAmount) <= 0 || 
-      Number(transferAmount) > Number(transferFromAccountCurrentBalance)) {
-    console.log("Invalid transfer amount");
-    return true;
-  };
-
-  return false;
-};
-
-// helpers
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 

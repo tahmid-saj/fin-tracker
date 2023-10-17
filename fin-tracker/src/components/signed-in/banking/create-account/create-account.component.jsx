@@ -2,7 +2,7 @@ import React, { Component, useState, useContext } from "react";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
-import FinanceTrackerItems from "../../../shared/finance-tracker-items/finance-tracker-items.component";
+import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component";
 
 import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 

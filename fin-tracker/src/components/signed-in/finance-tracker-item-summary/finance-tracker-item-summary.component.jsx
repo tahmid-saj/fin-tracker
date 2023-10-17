@@ -1,9 +1,9 @@
 import React from "react";
 
-import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
+// import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
 
 import "./finance-tracker-item-summary.styles.scss";
-import Button from "../button/button.component";
+import Button from "../../shared/button/button.component";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');

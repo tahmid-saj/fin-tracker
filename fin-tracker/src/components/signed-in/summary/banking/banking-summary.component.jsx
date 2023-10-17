@@ -1,7 +1,8 @@
 import React from "react";
 
 import "./banking-summary.styles.scss";
-import FinanceTrackerItemSummary from "../../../shared/finance-tracker-item-summary/finance-tracker-item-summary.component";
+// import FinanceTrackerItemSummary from "../../../shared/finance-tracker-item-summary/finance-tracker-item-summary.component";
+import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
 const BankingSummary = () => {
   return (

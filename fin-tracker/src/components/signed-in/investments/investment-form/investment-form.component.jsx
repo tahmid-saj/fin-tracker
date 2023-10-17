@@ -3,9 +3,9 @@ import React, { useState, Component } from "react";
 import "./investment-form.styles.scss";
 
 import UpdateInvestmentForm from "../update-investment-form/update-investment-form.component";
-import InvestmentInfo from "../investment-info/investment-info.component";
-import Summary from "../summary/summary.component";
-import FinanceTrackerItemInfo from "../../../shared/finance-tracker-item-info/finance-tracker-item-info.component";
+// import InvestmentInfo from "../investment-info/investment-info.component";
+// import Summary from "../summary/summary.component";
+import FinanceTrackerItemInfo from "../../finance-tracker-item-info/finance-tracker-item-info.component";
 
 const FINANCE_ITEM_TYPE = "Investments";
 
