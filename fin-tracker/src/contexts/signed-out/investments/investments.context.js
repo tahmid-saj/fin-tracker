@@ -24,7 +24,7 @@ const validateInvestmentCreation = (investments, investment) => {
   if (!(/^[0-9]*$/.test(String(investment.startingAmount))) || Number(investment.startingAmount) < 0 ||
     !(/^[0-9]*$/.test(String(investment.afterYears))) || Number(investment.afterYears) < 0 ||
     !(/^[0-9]*$/.test(String(investment.returnRate))) || 
-    !(/^[0-9]*$/.test(String(investment.additionalContribution || Number(investment.additionalContribution) < 0)))) {
+    !(/^[0-9]*$/.test(String(investment.additionalContribution))) || Number(investment.additionalContribution) < 0) {
       console.log("Invalid starting amount / after years / return rate / additional contribution");
       return true;
   }
