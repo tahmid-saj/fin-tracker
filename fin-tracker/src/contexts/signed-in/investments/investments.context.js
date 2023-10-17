@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
+import { calculateInvestmentSummary } from "../../../utils/calculations/investments.calculation";
 
 // helper functions
 
@@ -10,6 +11,8 @@ const createInvestmentHelper = (investments, investment) => {
 
   console.log(`Creating ${investment.investmentName}`);
   // TODO: need a helper function to update endBalance, totalContribution and totalInterest
+
+  const summary = calculateInvestmentSummary(investment);
 
   // add investment to investments
   return [ ...investments,
@@ -25,9 +28,9 @@ const createInvestmentHelper = (investments, investment) => {
       contributionAt: String(investment.contributionAt),
       contributionInterval: String(investment.contributionInterval),
 
-      endBalance: 0,
-      totalContribution: 0,
-      totalInterest: 0,
+      endBalance: summary.endBalance,
+      totalContribution: summary.totalContribution,
+      totalInterest: summary.totalInterest,
     }];
 };
 
@@ -40,12 +43,14 @@ const updateInvestmentHelper = (investments, originalInvestmentName, updatedInve
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
   const updatedInvestments = investments.map((investment) => {
     if (investment.investmentName === originalInvestmentName) {
+      const summary = calculateInvestmentSummary(updatedInvestment);
+
       return {
         ...updatedInvestment,
 
-        endBalance: investment.endBalance,
-        totalContribution: investment.totalContribution,
-        totalInterest: investment.totalInterest,
+        endBalance: summary.endBalance,
+        totalContribution: summary.totalContribution,
+        totalInterest: summary.totalInterest,
       }
     }
 
