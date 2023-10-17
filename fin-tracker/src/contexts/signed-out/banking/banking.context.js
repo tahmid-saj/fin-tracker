@@ -9,7 +9,7 @@ const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => 
 
   if (bankingAccountExists) {
     console.log("Banking account already exists")
-    return bankingAccountExists;
+    return true;
   };
 
   // validating if bankingAccountName is valid
@@ -22,7 +22,7 @@ const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => 
 };
 
 const validateDepositAmount = (bankingAccounts, bankingAccountName, amount) => {
-  if (!(/^[0-9]*$/.test(String(amount))) || amount <= 0) {
+  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0) {
     console.log("Invalid transaction amount");
     return true;
   };
@@ -33,7 +33,7 @@ const validateDepositAmount = (bankingAccounts, bankingAccountName, amount) => {
 const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) => {
   const currentBalance = bankingAccounts.find(account => account.name === String(bankingAccountName)).currentBalance;
 
-  if (!(/^[0-9]*$/.test(String(amount))) || amount <= 0 || amount > currentBalance) {
+  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
     console.log("Invalid transaction amount")
     return true;
   };
