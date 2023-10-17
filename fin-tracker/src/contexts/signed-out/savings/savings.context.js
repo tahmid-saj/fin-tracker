@@ -114,7 +114,7 @@ const closeSavingsAccountHelper = (savingsAccounts, closingSavingsAccountName) =
 
 const getSavingsAccountInfoHelper = (savingsAccounts, savingsAccountName) => {
   // return the account with the given savingsAccountName
-  return savingsAccounts.find(account => account.savingsAccountName === savingsAccountName);
+  return savingsAccounts.find(account => String(account.savingsAccountName) === String(savingsAccountName));
 };
 
 // initial state

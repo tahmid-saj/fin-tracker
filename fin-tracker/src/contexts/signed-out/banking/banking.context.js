@@ -42,8 +42,6 @@ const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) =
 };
 
 const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
-  // TODO: validating transfer amount is valid
-  
   // validating bankingAccountTransferToName exists in bankingAccounts
   if (!bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))) {
     console.log("Banking account does not exist");
@@ -61,7 +59,8 @@ const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferF
   // validating transferAmount is greater than 0 and less than less than currentBalance of bankingAccountTransferFromName
   const transferFromAccountCurrentBalance = bankingAccounts.find(account => account.name === String(bankingAccountTransferFromName)).currentBalance;
 
-  if (transferAmount <= 0 || transferAmount > transferFromAccountCurrentBalance) {
+  if (!(/^[0-9]*$/.test(String(transferAmount))) || Number(transferAmount) <= 0 || 
+      Number(transferAmount) > Number(transferFromAccountCurrentBalance)) {
     console.log("Invalid transfer amount");
     return true;
   };
