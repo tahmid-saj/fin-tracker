@@ -1,3 +1,13 @@
 .home-route-container {
   
 }
+
+body {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(16, 44, 74, 0.95),
+    rgba(16, 44, 74, 0.95)
+  ), url("https://i.pinimg.com/originals/d2/35/01/d2350155f30ad946907bcb7a730cfeca.jpg");
+
+  // background-image: none;
+}
