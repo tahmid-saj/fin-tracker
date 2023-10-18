@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 // import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
 
 import "./finance-tracker-item-summary.styles.scss";
-import Button from "../../shared/button/button.component";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
@@ -14,23 +14,37 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const FINANCE_ITEM_TYPES = {
   banking: "Bank Accounts",
   investments: "Investments",
-  savings: "Savings Accounts"
+  savings: "Savings Accounts",
 };
 
 // TODO: need to move FinanceTrackerItemSummary from shared to signed-in folder only
 const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }) => {
+  const navigate = useNavigate();
+
+  const handleAccountClick = (event) => {
+    event.preventDefault();
+
+    if (financeItemType === FINANCE_ITEM_TYPES.banking) {
+      navigate("/banking-signed-in")
+    } else if (financeItemType === FINANCE_ITEM_TYPES.investments) {
+      navigate("/investments-signed-in")
+    } else if (financeItemType === FINANCE_ITEM_TYPES.savings) {
+      navigate("/savings-signed-in")
+    }
+  };
+
   return (
     <div>
       <div className="accounts-summary-container">
         {/* <FinanceTrackerItem name={`${financeTrackerItemName}`}></FinanceTrackerItem> */}
 
-        <Button type="button">{`${
+        <button className="dashboard-accounts-button" type="button" onClick={ handleAccountClick }>{`${
           
           financeItemType === FINANCE_ITEM_TYPES.banking ? financeTrackerItemInfo.name : (
             financeItemType === FINANCE_ITEM_TYPES.investments ? financeTrackerItemInfo.investmentName : financeTrackerItemInfo.savingsAccountName
           )
           
-          }`}</Button>
+          }`}</button>
           {
             financeItemType === FINANCE_ITEM_TYPES.banking &&
             <Fragment>
