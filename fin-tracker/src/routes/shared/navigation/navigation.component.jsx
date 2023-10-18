@@ -16,16 +16,24 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const linearGradient = `linear-gradient(to bottom, rgba(16, 44, 74, 0.95), rgba(16, 44, 74, 0.95)), url("https://i.pinimg.com/originals/d2/35/01/d2350155f30ad946907bcb7a730cfeca.jpg")`;
+
   const handleSignOut = () => {
     signOutUser();
     navigate("/")
+  };
+
+  const changeStyle = (backgroundImage, color) => {
+    changeColor(color);
+    document.body.style.backgroundImage = backgroundImage;
   };
 
   return (
     <Fragment>
       <div className="navigation">
         <Link className="logo" to="/"
-          onClick={ () => changeColor("#001732") }>
+          // onClick={ () => changeColor("#001732")}
+          >
           <h1>fin-tracker</h1>
         </Link>
 
@@ -36,27 +44,29 @@ const Navigation = () => {
             <Fragment>
 
               <Link className="nav-link" to="/dashboard-signed-in"
-                onClick={ () => changeColor("#001732") }>
+                onClick={ () => changeStyle(linearGradient, "none") }
+                >
                 Dashboard
               </Link>
 
               <Link className="nav-link" to="/banking-signed-in"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Banking
               </Link>
 
               <Link className="nav-link" to="/investments-signed-in"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Investments
               </Link>
 
               <Link className="nav-link" to="/savings-signed-in"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Savings
               </Link>
 
               <Link className="nav-link" to="/exports-signed-in"
-                onClick={ () => changeColor("#001732") }>
+                onClick={ () => changeStyle(linearGradient, "none") }
+                >
                 Exports
               </Link>
 
@@ -65,22 +75,22 @@ const Navigation = () => {
           ) : (
             <Fragment>
               <Link className="nav-link" to="/banking"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Banking
               </Link>
 
               <Link className="nav-link" to="/investments"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Investments
               </Link>
 
               <Link className="nav-link" to="/savings"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Savings
               </Link>
 
               <Link className="nav-link" to="/auth"
-                onClick={ () => changeColor("white") }>
+                onClick={ () => changeStyle("none", "white") }>
                 Login
               </Link>
             </Fragment>
