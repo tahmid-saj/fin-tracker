@@ -19,7 +19,7 @@ const Summary = () => {
   return (
     (bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 ) ? 
     <div className="empty-dashboard-container">
-      <h2>Nothing yet, keep track of some finance to get started!</h2>
+      <h2>Nothing yet, track some finance to get started!</h2>
     </div>
     :
     <div className="accounts-summary-dashboard-container">
