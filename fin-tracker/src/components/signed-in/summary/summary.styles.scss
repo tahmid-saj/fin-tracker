@@ -3,5 +3,37 @@
   // display: flex;
   margin: 0 auto;
   margin-bottom: 4%;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.summary-dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // padding-bottom: 5%;
+  border-radius: 2rem;
+  background-color: rgba(87, 149, 216, 0.39);
+  margin: 5%
+}
+
+.empty-dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  h2 {
+    color: white;
+  }
+}
+
+.summary-dashboard-banking-container,
+.summary-dashboard-investments-container,
+.summary-dashboard-savings-container {
+  color: white;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
 }
