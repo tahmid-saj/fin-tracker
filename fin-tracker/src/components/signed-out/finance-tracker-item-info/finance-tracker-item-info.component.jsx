@@ -9,11 +9,13 @@ import { Summary as InvestmentSummary} from "../investments/summary/summary.comp
 import AccountInfo from "../savings/account-info/account-info.component";
 import { Summary as SavingsSummary} from "../savings/summary/summary.component";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 const FinanceTrackerItemInfo = ({ label, financeItemInfo }) => {
   return (
     <Fragment>
       {
-        label === "Investments" &&
+        label === FINANCE_ITEM_TYPES.investments &&
         <div className="investment-info-summary">
           <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
           <InvestmentSummary financeItemInfo={ financeItemInfo }></InvestmentSummary>
@@ -21,7 +23,7 @@ const FinanceTrackerItemInfo = ({ label, financeItemInfo }) => {
       }
 
       {
-        label === "Savings Accounts" &&
+        label === FINANCE_ITEM_TYPES.savings &&
         <div className="savings-account-info-summary">
           <AccountInfo financeItemInfo={ financeItemInfo }></AccountInfo>
           <SavingsSummary financeItemInfo={ financeItemInfo }></SavingsSummary>

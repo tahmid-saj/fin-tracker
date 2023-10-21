@@ -9,6 +9,8 @@ import "./finance-tracker-items.styles.scss";
 // TODO: need to move FinanceTrackerItems from shared to signed-in and signed-out folders
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 const FinanceTrackerItems = ({ label }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
@@ -16,11 +18,11 @@ const FinanceTrackerItems = ({ label }) => {
     <div className="finance-tracker-item-container">
     
       {
-        label === "Investments" || label === "Savings Accounts" ? null : <h2>{ label }</h2>
+        label === FINANCE_ITEM_TYPES.investments || label === FINANCE_ITEM_TYPES.savings ? null : <h2>{ label }</h2>
       }
       
       {
-        label === "Bank Accounts" && bankingAccounts !== undefined && bankingAccounts.length !== 0 && 
+        label === FINANCE_ITEM_TYPES.banking && bankingAccounts !== undefined && bankingAccounts.length !== 0 && 
         bankingAccounts.map((account) => account.name)
           .map((name, index) => {
             return <FinanceTrackerItem key={ index } label={ label } name={ name }></FinanceTrackerItem>

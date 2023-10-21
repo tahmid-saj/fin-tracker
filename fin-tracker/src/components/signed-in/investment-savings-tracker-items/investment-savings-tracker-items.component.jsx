@@ -8,6 +8,8 @@ import { InvestmentSavingsTrackerItem } from "../investment-savings-tracker-item
 import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 const InvestmentSavingsTrackerItems = ({ label, 
   // financeTrackerItemNames, 
   // financeTrackerItemsInfo 
@@ -23,7 +25,7 @@ const InvestmentSavingsTrackerItems = ({ label,
       } */}
 
       {
-        label === "Investments" && 
+        label === FINANCE_ITEM_TYPES.investments && 
         investments.map((investmentInfo, index) => {
           return <InvestmentSavingsTrackerItem key={ index } label={ label } 
                   financeItemInfo={ investmentInfo }></InvestmentSavingsTrackerItem>
@@ -31,7 +33,7 @@ const InvestmentSavingsTrackerItems = ({ label,
       }
 
       {
-        label === "Savings Accounts" && 
+        label === FINANCE_ITEM_TYPES.savings && 
         savingsAccounts.map((savingsAccountInfo, index) => {
           return <InvestmentSavingsTrackerItem key={ index } label={ label } 
                   financeItemInfo={ savingsAccountInfo }></InvestmentSavingsTrackerItem>

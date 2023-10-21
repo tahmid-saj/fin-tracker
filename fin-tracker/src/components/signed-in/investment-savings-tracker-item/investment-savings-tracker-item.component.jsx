@@ -8,6 +8,8 @@ import FormView from "../form-view/form-view.component";
 import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 export let activeFormView = {
   label: "",
   financeItemInfo: {}
@@ -82,9 +84,9 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
 
   let financeItemExists = undefined;
 
-  if (label === "Investments") {
+  if (label === FINANCE_ITEM_TYPES.investments) {
     financeItemExists = investments.find(investment => investment.investmentName === financeItemInfo.investmentName)
-  } else if (label === "Savings Accounts") {
+  } else if (label === FINANCE_ITEM_TYPES.savings) {
     financeItemExists = savingsAccounts.find(account => account.savingsAccountName === financeItemInfo.savingsAccountName)
   }
 
@@ -142,8 +144,8 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
             <button className={`button-container investment-savings-tracker-item-button`} 
                     { ...otherProps } style={{borderRadius: 1.5 + 'rem'}}
                     onClick={ e => handleDisplayFinanceTrackerItemForm(e) }>
-              { label === "Investments" && `${financeItemInfo.investmentName}` }
-              { label === "Savings Accounts" && `${financeItemInfo.savingsAccountName}` }
+              { label === FINANCE_ITEM_TYPES.investments && `${financeItemInfo.investmentName}` }
+              { label === FINANCE_ITEM_TYPES.savings && `${financeItemInfo.savingsAccountName}` }
             </button>
 
             <FormView financeItemLabel={ label } 

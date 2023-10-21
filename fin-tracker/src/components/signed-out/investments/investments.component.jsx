@@ -10,7 +10,7 @@ import AllInvestmentsSummary from "./all-investments-summary/all-investments-sum
 
 import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
 
-const FINANCE_ITEM_TYPE = "Investments";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
 const financeTrackerItemNames = [
 ]
@@ -28,7 +28,7 @@ const Investments = () => {
         }
 
         <div className="investments-form-summary-container">
-          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+          <CreateInvestmentForm label={ FINANCE_ITEM_TYPES.investments } 
                                 // financeTrackerItemNames={ financeTrackerItemNames }
                                 ></CreateInvestmentForm>
 
@@ -42,24 +42,24 @@ const Investments = () => {
   // };
 }
 
-class Investments2 extends Component {
-  render() {
-    return (
-      <div className="investments-container">
-        {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+// class Investments2 extends Component {
+//   render() {
+//     return (
+//       <div className="investments-container">
+//         {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
 
-        <div className="investments-form-summary-container">
-          <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } 
-                                financeTrackerItemNames={ financeTrackerItemNames }></CreateInvestmentForm>
+//         <div className="investments-form-summary-container">
+//           <CreateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+//                                 financeTrackerItemNames={ financeTrackerItemNames }></CreateInvestmentForm>
 
-          <div className="investment-info-summary">
-            {/* <InvestmentInfo></InvestmentInfo>
-            <Summary></Summary> */}
-          </div>
-        </div>
-      </div>
-    );
-  };
-}
+//           <div className="investment-info-summary">
+//             {/* <InvestmentInfo></InvestmentInfo>
+//             <Summary></Summary> */}
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+// }
 
 export default Investments;

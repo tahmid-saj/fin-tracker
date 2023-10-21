@@ -10,7 +10,7 @@ const createInvestmentHelper = (investments, investment) => {
   if (validateInvestmentCreation(investments, investment)) return investments;
 
   console.log(`Creating ${investment.investmentName}`);
-  // TODO: need a helper function to update endBalance, totalContribution and totalInterest
+  // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
 
   const summary = calculateInvestmentSummary(investment);
 
@@ -38,7 +38,7 @@ const updateInvestmentHelper = (investments, originalInvestmentName, updatedInve
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
 
-  // TODO: need a helper function to update endBalance, totalContribution and totalInterest
+  // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
   
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
   const updatedInvestments = investments.map((investment) => {

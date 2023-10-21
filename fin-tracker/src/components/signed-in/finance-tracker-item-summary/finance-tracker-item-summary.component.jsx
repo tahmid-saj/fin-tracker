@@ -5,17 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 import "./finance-tracker-item-summary.styles.scss";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
 let currentMonth = String(date.getMonth()+1).padStart(2,"0");
 let currentYear = date.getFullYear();
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
-const FINANCE_ITEM_TYPES = {
-  banking: "Bank Accounts",
-  investments: "Investments",
-  savings: "Savings Accounts",
-};
 
 // TODO: need to move FinanceTrackerItemSummary from shared to signed-in folder only
 const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }) => {

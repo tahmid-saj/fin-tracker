@@ -7,7 +7,7 @@ import UpdateInvestmentForm from "../update-investment-form/update-investment-fo
 // import Summary from "../summary/summary.component";
 import FinanceTrackerItemInfo from "../../finance-tracker-item-info/finance-tracker-item-info.component";
 
-const FINANCE_ITEM_TYPE = "Investments";
+import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 
 const financeTrackerItemNames = [
 ]
@@ -80,7 +80,7 @@ const InvestmentForm = ({ financeItemInfo }) => {
     return (
     <div className="investments-form-summary-container">
 
-      <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } 
+      <UpdateInvestmentForm label={ FINANCE_ITEM_TYPES.investments } 
                             financeItemInfo={ financeItemInfo }
                             // financeTrackerItemNames={ financeTrackerItemNames }
                             // closeAccountHandler={ this.state.closeAccountHandler } 
@@ -90,7 +90,7 @@ const InvestmentForm = ({ financeItemInfo }) => {
                             
       {/* { */}
         {/* !this.state.financeUpdatedInfo &&  */}
-        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } 
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPES.investments } 
                                 financeItemInfo={ financeItemInfo }
                                 // financeItemInfo={ this.state.financeItemUpdatedInfo }
                                 ></FinanceTrackerItemInfo>
@@ -111,52 +111,52 @@ const InvestmentForm = ({ financeItemInfo }) => {
 
 }
 
-class InvestmentForm2 extends Component {
-  constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
-    super();
+// class InvestmentForm2 extends Component {
+//   constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
+//     super();
 
-    this.state = {
-      financeItemInfo: financeItemInfo,
-      closeAccountHandler: closeAccountHandler,
-      financeItemUpdatedInfo: financeItemInfo,
-      financeUpdatedInfo: false,
-      handleTrackerItemNameChange: handleTrackerItemNameChange
-    }
-  };
+//     this.state = {
+//       financeItemInfo: financeItemInfo,
+//       closeAccountHandler: closeAccountHandler,
+//       financeItemUpdatedInfo: financeItemInfo,
+//       financeUpdatedInfo: false,
+//       handleTrackerItemNameChange: handleTrackerItemNameChange
+//     }
+//   };
 
-  updateInvestmentInfoHandler = (financeItemFields) => {
-    this.setState({ financeItemUpdatedInfo: financeItemFields });
-    console.log(this.state.financeItemUpdatedInfo);
-    this.setState({ financeUpdatedInfo: true });
-  };
+//   updateInvestmentInfoHandler = (financeItemFields) => {
+//     this.setState({ financeItemUpdatedInfo: financeItemFields });
+//     console.log(this.state.financeItemUpdatedInfo);
+//     this.setState({ financeUpdatedInfo: true });
+//   };
 
-  render() {
-    return (
-      <div className="investments-form-summary-container">
+//   render() {
+//     return (
+//       <div className="investments-form-summary-container">
   
-        <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }
-                              closeAccountHandler={ this.state.closeAccountHandler } 
-                              updateInvestmentInfoHandler={ this.updateInvestmentInfoHandler }
-                              handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }></UpdateInvestmentForm>
+//         <UpdateInvestmentForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }
+//                               closeAccountHandler={ this.state.closeAccountHandler } 
+//                               updateInvestmentInfoHandler={ this.updateInvestmentInfoHandler }
+//                               handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }></UpdateInvestmentForm>
                               
-        {
-          !this.state.financeUpdatedInfo && 
-          <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
-        }
+//         {
+//           !this.state.financeUpdatedInfo && 
+//           <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+//         }
   
-        {
-          this.state.financeUpdatedInfo &&
-          <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
-        }
+//         {
+//           this.state.financeUpdatedInfo &&
+//           <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+//         }
         
-        {/* <div className="investment-info-summary">
-          <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
-          <Summary financeItemInfo={ financeItemInfo }></Summary>
-        </div> */}
-      </div>
-    )
-  }
+//         {/* <div className="investment-info-summary">
+//           <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
+//           <Summary financeItemInfo={ financeItemInfo }></Summary>
+//         </div> */}
+//       </div>
+//     )
+//   }
 
-}
+// }
 
 export default InvestmentForm;

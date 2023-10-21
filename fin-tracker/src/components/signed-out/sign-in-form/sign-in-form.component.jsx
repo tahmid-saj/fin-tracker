@@ -9,6 +9,8 @@ import Button from "../../shared/button/button.component";
 
 import "./sign-in-form.styles.scss";
 
+import { errorOnUserSignIn } from "../../../utils/errors/user.errors";
+
 const defaultFormFields = {
   email: "",
   password: ""
@@ -40,7 +42,7 @@ const SignInForm = () => {
       navigate("/dashboard-signed-in");
       return signInResponse;
     } catch (error) {
-      console.log('user sign in failed', error);
+      errorOnUserSignIn(error);
     }
   };
 

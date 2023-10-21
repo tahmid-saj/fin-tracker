@@ -17,7 +17,7 @@ import "./banking.styles.scss";
 import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 import AllBankingSummary from "./all-banking-summary/all-banking-summary.component";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/banking.constants";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
 // const financeTrackerItemNames = [
 // ];

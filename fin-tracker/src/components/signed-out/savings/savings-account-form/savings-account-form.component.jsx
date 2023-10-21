@@ -8,7 +8,7 @@ import UpdateAccountForm from "../update-account-form/update-account-form.compon
 
 import FinanceTrackerItemInfo from "../../finance-tracker-item-info/finance-tracker-item-info.component";
 
-const FINANCE_ITEM_TYPE = "Savings Accounts";
+import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 
 const financeTrackerItemNames = [
 ]
@@ -49,7 +49,7 @@ const SavingsAccountForm = ({ financeItemInfo }) => {
   return (
     <div className="savings-accounts-form-summary-container">
 
-      <UpdateAccountForm label={ FINANCE_ITEM_TYPE } 
+      <UpdateAccountForm label={ FINANCE_ITEM_TYPES.savings } 
                           financeItemInfo={ financeItemInfo }
                             // financeTrackerItemNames={ financeTrackerItemNames }
                             // closeAccountHandler={ this.state.closeAccountHandler } 
@@ -59,7 +59,7 @@ const SavingsAccountForm = ({ financeItemInfo }) => {
                             
       {/* {
         !this.state.financeUpdatedInfo &&  */}
-        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } 
+        <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPES.savings } 
                                 financeItemInfo={ financeItemInfo }
                                 ></FinanceTrackerItemInfo>
       {/* }
@@ -78,52 +78,52 @@ const SavingsAccountForm = ({ financeItemInfo }) => {
   // };
 }
 
-class SavingsAccountForm2 extends Component {
-  constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
-    super();
+// class SavingsAccountForm2 extends Component {
+//   constructor({ financeItemInfo, closeAccountHandler, handleTrackerItemNameChange }) {
+//     super();
 
-    this.state = {
-      financeItemInfo: financeItemInfo,
-      closeAccountHandler: closeAccountHandler,
-      financeItemUpdatedInfo: financeItemInfo,
-      financeUpdatedInfo: false,
-      handleTrackerItemNameChange: handleTrackerItemNameChange
-    }
-  };
+//     this.state = {
+//       financeItemInfo: financeItemInfo,
+//       closeAccountHandler: closeAccountHandler,
+//       financeItemUpdatedInfo: financeItemInfo,
+//       financeUpdatedInfo: false,
+//       handleTrackerItemNameChange: handleTrackerItemNameChange
+//     }
+//   };
 
-  updateSavingsAccountHandler = (financeItemFields) => {
-    this.setState({ financeItemUpdatedInfo: financeItemFields });
-    console.log(this.state.financeItemUpdatedInfo);
-    this.setState({ financeUpdatedInfo: true });
-  };
+//   updateSavingsAccountHandler = (financeItemFields) => {
+//     this.setState({ financeItemUpdatedInfo: financeItemFields });
+//     console.log(this.state.financeItemUpdatedInfo);
+//     this.setState({ financeUpdatedInfo: true });
+//   };
 
-  render() {
-    return (
-      <div className="savings-accounts-form-summary-container">
+//   render() {
+//     return (
+//       <div className="savings-accounts-form-summary-container">
   
-        <UpdateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }
-                              closeAccountHandler={ this.state.closeAccountHandler } 
-                              updateSavingsAccountHandler={ this.updateSavingsAccountHandler }
-                              handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }></UpdateAccountForm>
+//         <UpdateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }
+//                               closeAccountHandler={ this.state.closeAccountHandler } 
+//                               updateSavingsAccountHandler={ this.updateSavingsAccountHandler }
+//                               handleTrackerItemNameChange={ this.state.handleTrackerItemNameChange }></UpdateAccountForm>
                               
-        {
-          !this.state.financeUpdatedInfo && 
-          <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
-        }
+//         {
+//           !this.state.financeUpdatedInfo && 
+//           <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+//         }
 
-        {
-          this.state.financeUpdatedInfo &&
-          <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
-        }
+//         {
+//           this.state.financeUpdatedInfo &&
+//           <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPE } financeItemInfo={ this.state.financeItemUpdatedInfo }></FinanceTrackerItemInfo>
+//         }
         
-        {/* <div className="investment-info-summary">
-          <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
-          <Summary financeItemInfo={ financeItemInfo }></Summary>
-        </div> */}
-      </div>
-    )
-  }
-}
+//         {/* <div className="investment-info-summary">
+//           <InvestmentInfo financeItemInfo={ financeItemInfo }></InvestmentInfo>
+//           <Summary financeItemInfo={ financeItemInfo }></Summary>
+//         </div> */}
+//       </div>
+//     )
+//   }
+// }
 
 export default SavingsAccountForm;
 

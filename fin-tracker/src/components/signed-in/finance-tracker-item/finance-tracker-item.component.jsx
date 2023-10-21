@@ -7,6 +7,8 @@ import FormView from "../form-view/form-view.component";
 
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+
 export let activeFormView = {
   label: "",
   name: ""
@@ -103,7 +105,7 @@ export const FinanceTrackerItem2 = ({ name, label, ...otherProps }) => {
                     closeAccountHandler={ closeAccountHandler }></FormView>
 
           {
-            label !== "Savings Accounts" && label !== "Investments" && (
+            label !== FINANCE_ITEM_TYPES.savings && label !== FINANCE_ITEM_TYPES.investments && (
               <div className="form-view-separator-container">
                 <hr className="rounded"/>
               </div>
