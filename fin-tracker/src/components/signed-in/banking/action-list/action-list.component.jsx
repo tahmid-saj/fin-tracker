@@ -5,38 +5,16 @@ import CloseAccount from "../close-account/close-account.component";
 
 import "./action-list.styles.scss";
 
-const ActionList = ({ 
-  // closeAccountHandler, 
-  financeItemInfo
-  // newTransactionHandler 
-}) => {
+const ActionList = ({ financeItemInfo }) => {
   return (
     <div className="action-list-container">
-      <Deposit 
-        // newTransactionHandler={ newTransactionHandler }
-        financeItemInfo={ financeItemInfo }
-        ></Deposit>
-      <Withdraw 
-        // newTransactionHandler={ newTransactionHandler }
-        financeItemInfo={ financeItemInfo }
-      ></Withdraw>
+      <Deposit financeItemInfo={ financeItemInfo }></Deposit>
+      <Withdraw financeItemInfo={ financeItemInfo }></Withdraw>
       <TransferMoney financeItemInfo={ financeItemInfo }></TransferMoney>
-      <CloseAccount financeItemInfo={ financeItemInfo } 
-        // closeAccountHandler={ closeAccountHandler }
-      ></CloseAccount>
+      <CloseAccount financeItemInfo={ financeItemInfo }></CloseAccount>
     </div>
   );
 };
 
-const ActionList2 = ({ closeAccountHandler, newTransactionHandler }) => {
-  return (
-    <div className="action-list-container">
-      <Deposit newTransactionHandler={ newTransactionHandler }></Deposit>
-      <Withdraw newTransactionHandler={ newTransactionHandler }></Withdraw>
-      <TransferMoney></TransferMoney>
-      <CloseAccount closeAccountHandler={ closeAccountHandler }></CloseAccount>
-    </div>
-  );
-};
 
 export default ActionList;

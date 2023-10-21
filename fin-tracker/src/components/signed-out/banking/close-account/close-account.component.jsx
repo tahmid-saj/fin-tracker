@@ -13,11 +13,8 @@ const defaultFormFields = {
   confirmDelete: ""
 };
 
-const CloseAccount = ({ financeItemInfo
-  // closeAccountHandler 
-}) => {
+const CloseAccount = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  // const { confirmDelete } = formFields;
 
   const { closeBankingAccount } = useContext(BankingContext);
 
@@ -30,13 +27,11 @@ const CloseAccount = ({ financeItemInfo
     console.log(formFields.confirmDelete);
 
     if (formFields.confirmDelete === PERMANENTLY_DELETE) {
-      // closeAccountHandler();
       closeBankingAccount(financeItemInfo);
     } else {
       return;
     }
 
-    // console.log(event.target.value);
     resetFormFields();
   };
 

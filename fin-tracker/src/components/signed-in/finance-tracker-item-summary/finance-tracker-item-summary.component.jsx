@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item.component";
-
 import "./finance-tracker-item-summary.styles.scss";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
@@ -32,8 +30,6 @@ const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }) 
   return (
     <div>
       <div className="accounts-summary-container">
-        {/* <FinanceTrackerItem name={`${financeTrackerItemName}`}></FinanceTrackerItem> */}
-
         <button className="dashboard-accounts-button" type="button" onClick={ handleAccountClick }>{`${
           
           financeItemType === FINANCE_ITEM_TYPES.banking ? financeTrackerItemInfo.name : (
