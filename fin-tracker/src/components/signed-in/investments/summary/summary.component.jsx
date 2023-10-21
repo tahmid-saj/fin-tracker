@@ -19,5 +19,3 @@ export const Summary = ({ financeItemInfo }) => {
     </div>
   );
 };
-
-// export default Summary;

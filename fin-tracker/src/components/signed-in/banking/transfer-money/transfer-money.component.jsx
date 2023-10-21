@@ -14,7 +14,6 @@ const defaultFormFields = {
 
 const TransferMoney = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  // const { transferTo, amount } = formFields;
 
   const { transferToBankingAccount } = useContext(BankingContext);
 
@@ -25,10 +24,8 @@ const TransferMoney = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // console.log(formFields.transferTo, financeItemInfo, formFields.amount);
     transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount);
 
-    // console.log(event.target.value);
     resetFormFields();
   };
 

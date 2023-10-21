@@ -10,19 +10,13 @@ import { SavingsContext } from "../../../contexts/signed-in/savings/savings.cont
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
-const InvestmentSavingsTrackerItems = ({ label, 
-  // financeTrackerItemNames, 
-  // financeTrackerItemsInfo 
-}) => {
+const InvestmentSavingsTrackerItems = ({ label }) => {
 
   const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
 
   return (
     <div className="investment-savings-tracker-item-container">
-      {/* {
-        label === "Investments" || label === "Savings Accounts" ? <h2>{ label }</h2> : <h2>{ label }</h2>
-      } */}
 
       {
         label === FINANCE_ITEM_TYPES.investments && 
@@ -42,32 +36,5 @@ const InvestmentSavingsTrackerItems = ({ label,
     </div>
   )
 }
-
-const InvestmentSavingsTrackerItems2 = ({ label, financeTrackerItemNames, financeTrackerItemsInfo }) => {
-
-  return (
-    <div className="investment-savings-tracker-item-container">
-      {/* {
-        label === "Investments" || label === "Savings Accounts" ? <h2>{ label }</h2> : <h2>{ label }</h2>
-      } */}
-
-      {
-        label === "Investments" && 
-        financeTrackerItemsInfo.map((investmentInfo, index) => {
-          return <InvestmentSavingsTrackerItem key={ index } label={ label } 
-                  financeItemInfo={ investmentInfo }></InvestmentSavingsTrackerItem>
-        })
-      }
-
-      {
-        label === "Savings Accounts" && 
-        financeTrackerItemsInfo.map((savingsAccountInfo, index) => {
-          return <InvestmentSavingsTrackerItem key={ index } label={ label } 
-                  financeItemInfo={ savingsAccountInfo }></InvestmentSavingsTrackerItem>
-        })
-      }
-    </div>
-  )
-};
 
 export default InvestmentSavingsTrackerItems;
