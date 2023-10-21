@@ -18,7 +18,7 @@ const Caption = ({ caption }) => (
     {caption}
   </div>
 )
- 
+
 const slidesArray = [
       {
         url: "https://cdn.wallpapersafari.com/44/22/o06dUO.jpg",
@@ -37,7 +37,7 @@ const slidesArray = [
 const Home = () => {
   return (
     <div className="home-container">
-      <SmartSlider slides={ slidesArray } autoSlide={ true } autoSlideInterval={ 7000 }
+      <SmartSlider slides={ slidesArray } autoSlide={ true } autoSlideInterval={ 7000 } opacity={ 0.5 }
         buttonShape={ "round" }
       />
 

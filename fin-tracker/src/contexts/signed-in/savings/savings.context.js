@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
-import { calculateSavingsSummary } from "../../../utils/calculations/savings.calculation";
+import { calculateSavingsSummary } from "../../../utils/calculations/savings.calculations";
 
 // helper functions
 
