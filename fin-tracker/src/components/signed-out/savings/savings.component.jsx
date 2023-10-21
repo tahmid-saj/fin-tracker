@@ -10,7 +10,7 @@ import CreateAccountForm from "./create-account-form/create-account-form.compone
 import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 import AllSavingsSummary from "./all-savings-summary/all-savings-summary.component";
 
-const FINANCE_ITEM_TYPE = "Savings Accounts";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
 const financeTrackerItemNames = [
 ]
@@ -25,7 +25,7 @@ const Savings = () => {
           savingsAccounts.length !== 0 && <AllSavingsSummary></AllSavingsSummary>
         }
         
-        <CreateAccountForm label={ FINANCE_ITEM_TYPE } 
+        <CreateAccountForm label={ FINANCE_ITEM_TYPES.savings } 
                           // financeTrackerItemNames={ financeTrackerItemNames }
                           ></CreateAccountForm>
 
@@ -40,21 +40,21 @@ const Savings = () => {
   );
 };
 
-const Savings2 = () => {
-  return (
-    <div className="savings-acounts-container">
-      {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
-        <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
+// const Savings2 = () => {
+//   return (
+//     <div className="savings-acounts-container">
+//       {/* <FinanceTrackerItems label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></FinanceTrackerItems> */}
+//         <CreateAccountForm label={ FINANCE_ITEM_TYPE } financeTrackerItemNames={ financeTrackerItemNames }></CreateAccountForm>
 
-      <div className="savings-accounts-form-summary-container">
+//       <div className="savings-accounts-form-summary-container">
 
-        <div className="savings-account-info-summary">
-          {/* <AccountInfo></AccountInfo>
-          <Summary></Summary> */}
-        </div>
-      </div>
-    </div>
-  );
-};
+//         <div className="savings-account-info-summary">
+//           {/* <AccountInfo></AccountInfo>
+//           <Summary></Summary> */}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default Savings;

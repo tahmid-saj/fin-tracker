@@ -4,6 +4,8 @@ import "./account-info.styles.scss";
 
 import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 
+import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
+
 const AccountInfo = ({ financeItemInfo }) => {
   const { getSavingsAccountInfo } = useContext(SavingsContext);
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
@@ -14,7 +16,7 @@ const AccountInfo = ({ financeItemInfo }) => {
   const day = startDate.getDate();
   let endDate;
 
-  if (savingsAccountInfo.contributionInterval === "Months") {
+  if (savingsAccountInfo.contributionInterval === SAVINGS_CONTRIBUTION_INTERVALS.months) {
     if (Number(savingsAccountInfo.contributionPeriod) % 12 < 1) {
       endDate = `${Number(year)}-${Number(month) + Number(savingsAccountInfo.contributionPeriod)}-${day}`;
     } else if (Number(savingsAccountInfo.contributionPeriod) % 12 >= 1) {
@@ -22,7 +24,7 @@ const AccountInfo = ({ financeItemInfo }) => {
       const years = Math.trunc(Number(savingsAccountInfo.contributionPeriod) / 12);
       endDate = `${Number(year) + years}-${Number(month) + remainderMonths}-${day}`
     }
-  } else if (savingsAccountInfo.contributionInterval === "Years") {
+  } else if (savingsAccountInfo.contributionInterval === SAVINGS_CONTRIBUTION_INTERVALS.years) {
     endDate = `${Number(year) + Number(savingsAccountInfo.contributionPeriod)}-${month}-${day}`
   }
 

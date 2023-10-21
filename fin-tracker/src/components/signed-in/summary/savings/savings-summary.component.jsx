@@ -6,7 +6,7 @@ import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/financ
 
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 
-const FINANCE_ITEM_TYPE = "Savings Accounts";
+import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 
 const SavingsSummary = () => {
   const { savingsAccounts } = useContext(SavingsContext);
@@ -18,7 +18,7 @@ const SavingsSummary = () => {
       {
         savingsAccounts.map(account => {
           return <FinanceTrackerItemSummary financeTrackerItemInfo={ account }
-                                            financeItemType={ FINANCE_ITEM_TYPE }></FinanceTrackerItemSummary>
+                                            financeItemType={ FINANCE_ITEM_TYPES.savings }></FinanceTrackerItemSummary>
         })
       }
     </div>

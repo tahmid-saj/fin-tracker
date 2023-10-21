@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# env variables
+.env
+
 # firebase
 /src/utils
 /src/utils

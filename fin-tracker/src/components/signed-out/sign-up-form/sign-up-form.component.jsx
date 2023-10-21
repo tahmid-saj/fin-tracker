@@ -9,6 +9,8 @@ import Button from "../../shared/button/button.component";
 
 import "./sign-up-form.styles.scss";
 
+import { errorOnEmailAlreadyInUse, errorOnUserCreation } from "../../../utils/errors/user.errors";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -42,9 +44,9 @@ const SignUpForm = () => {
       navigate("/dashboard-signed-in")
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        alert("Cannot create user, email is already in use");
+        errorOnEmailAlreadyInUse();
       } else {
-        console.log("user creation encountered an error ", error);
+        errorOnUserCreation(error);
       }
     }
   };

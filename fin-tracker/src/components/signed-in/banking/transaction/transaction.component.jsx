@@ -1,11 +1,6 @@
 import "./transaction.styles.scss";
 
-const TRANSACTION_TYPE_CLASSES = {
-  DEPOSIT: "deposit-transaction",
-  WITHDRAWAL: "withdraw-transaction",
-  WITHDRAWAL_TRANSFER: "withdraw-transfer-transaction",
-  DEPOSIT_TRANSFER: "deposit-transfer-transaction",
-};
+import { TRANSACTION_TYPE_CLASSES } from "../../../../utils/constants/banking.constants";
 
 const Transaction = ({ date, amount, type }) => {
   return (

@@ -7,6 +7,8 @@ import Button from "../../../shared/button/button.component";
 
 import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
+import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
+
 const defaultFormFields = {
   confirmDelete: ""
 };
@@ -27,7 +29,7 @@ const CloseAccount = ({ financeItemInfo
     event.preventDefault();
     console.log(formFields.confirmDelete);
 
-    if (formFields.confirmDelete === "permanently delete") {
+    if (formFields.confirmDelete === PERMANENTLY_DELETE) {
       // closeAccountHandler();
       closeBankingAccount(financeItemInfo);
     } else {
