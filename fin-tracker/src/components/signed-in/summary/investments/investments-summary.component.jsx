@@ -13,7 +13,7 @@ const InvestmentsSummary = () => {
 
   return (
     <div className="investments-summary-container">
-      <h2 style={{color: "white"}}><strong>Investments Summary</strong></h2>
+      <h2 style={{color: "black"}}><strong>Investments Summary</strong></h2>
 
       {
         investments.map(investment => {

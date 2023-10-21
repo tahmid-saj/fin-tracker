@@ -42,28 +42,31 @@ const Navigation = () => {
             <Fragment>
 
               <Link className="nav-link" to="/dashboard-signed-in"
-                onClick={ () => changeStyle(linearGradient, "none") }
+                // onClick={ () => changeStyle(linearGradient, "none") }
                 >
                 Dashboard
               </Link>
 
               <Link className="nav-link" to="/banking-signed-in"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Banking
               </Link>
 
               <Link className="nav-link" to="/investments-signed-in"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Investments
               </Link>
 
               <Link className="nav-link" to="/savings-signed-in"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Savings
               </Link>
 
               <Link className="nav-link" to="/exports-signed-in"
-                onClick={ () => changeStyle(linearGradient, "none") }
+                // onClick={ () => changeStyle(linearGradient, "none") }
                 >
                 Exports
               </Link>
@@ -73,22 +76,26 @@ const Navigation = () => {
           ) : (
             <Fragment>
               <Link className="nav-link" to="/banking"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Banking
               </Link>
 
               <Link className="nav-link" to="/investments"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Investments
               </Link>
 
               <Link className="nav-link" to="/savings"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Savings
               </Link>
 
               <Link className="nav-link" to="/auth"
-                onClick={ () => changeStyle("none", "white") }>
+                // onClick={ () => changeStyle("none", "white") }
+                >
                 Login
               </Link>
             </Fragment>
@@ -98,7 +105,9 @@ const Navigation = () => {
         </div>
       </div>
 
-      <Outlet/>
+      <div className="outlet-container">
+        <Outlet/>
+      </div>
     </Fragment>
 
   );
