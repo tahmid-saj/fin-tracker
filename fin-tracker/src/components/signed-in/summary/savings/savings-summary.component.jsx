@@ -13,7 +13,7 @@ const SavingsSummary = () => {
 
   return (
     <div className="savings-summary-container">
-      <h2 style={{color: "white"}}><strong>Savings Summary</strong></h2>
+      <h2 style={{color: "black"}}><strong>Savings Summary</strong></h2>
 
       {
         savingsAccounts.map(account => {

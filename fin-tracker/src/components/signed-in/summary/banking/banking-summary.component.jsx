@@ -13,7 +13,7 @@ const BankingSummary = () => {
 
   return (
     <div className="banking-summary-container">
-      <h2 style={{color: "white"}}><strong>Bank Accounts</strong></h2>
+      <h2 style={{color: "black"}}><strong>Bank Accounts</strong></h2>
 
       {
         bankingAccounts.map(account => {

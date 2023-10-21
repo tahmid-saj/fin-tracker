@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
   background-color: #002a59;
   padding: 0px 20px 0px 40px;
 
@@ -12,7 +12,7 @@
   }
 
   .nav-links-container {
-    // width: 200px;
+    width: 50px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -20,6 +20,7 @@
 
     .nav-link {
       padding: 10px 15px 30px;
+      text-align: center;
       cursor: pointer;
       color: white;
     }
