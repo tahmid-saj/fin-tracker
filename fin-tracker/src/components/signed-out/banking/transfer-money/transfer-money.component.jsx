@@ -9,7 +9,8 @@ import { BankingContext } from "../../../../contexts/signed-out/banking/banking.
 
 const defaultFormFields = {
   transferTo: "",
-  amount: ""
+  amount: "",
+  reason: "",
 };
 
 const TransferMoney = ({ financeItemInfo }) => {
@@ -24,7 +25,7 @@ const TransferMoney = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount);
+    transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason);
 
     resetFormFields();
   };
@@ -40,11 +41,14 @@ const TransferMoney = ({ financeItemInfo }) => {
       <h3>Transfer Money</h3>
 
       <form onSubmit={ handleSubmit }>
-      <FormInput label="Transfer to" type="text" required onChange={ handleChange }
+        <FormInput label="Transfer to" type="text" required onChange={ handleChange }
                           name="transferTo" value={ formFields.transferTo }></FormInput>
 
         <FormInput label="Amount" type="text" required onChange={ handleChange }
                           name="amount" value={ formFields.amount }></FormInput>
+
+        <FormInput label="For" type="text" onChange={ handleChange }
+                          name="reason" value={ formFields.reason }></FormInput>
         
         <div className="buttons-container">
           <Button type="submit">Transfer</Button>
