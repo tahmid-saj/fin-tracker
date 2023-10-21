@@ -4,6 +4,10 @@ import { validateBankingAccountCreation, validateDepositAmount,
         validateWithdrawalAmount, validateBankingAccountTransfer } 
 from "../../../utils/validations/banking.validation";
 
+import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
+
+import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
+
 // helper functions
 
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
@@ -36,7 +40,7 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
           ...account.transactions, 
           {
             amount: Number(depositAmount),
-            type: "DEPOSIT", 
+            type: TRANSACTION_TYPES.deposit, 
           }
         ] 
       } : account;
@@ -59,7 +63,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
           ...account.transactions,
           {
             amount: Number(withdrawAmount), 
-            type: "WITHDRAWAL",
+            type: TRANSACTION_TYPES.withdrawal,
           } 
         ]
       } : account;
@@ -85,7 +89,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
           ...account.transactions,
           {
             amount: Number(transferAmount),
-            type: "WITHDRAWAL_TRANSFER"
+            type: TRANSACTION_TYPES.withdrawalTransfer,
           }
         ]
       }
@@ -100,7 +104,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
           ...account.transactions,
           {
             amount: Number(transferAmount),
-            type: "DEPOSIT_TRANSFER"
+            type: TRANSACTION_TYPES.depositTransfer,
           }
         ] 
       }
@@ -161,24 +165,14 @@ export const BankingProvider = ({ children }) => {
   const [bankingSummary, setBankingSummary] = useState({});
 
   useEffect(() => {
-    const newAllBankingBalance = bankingAccounts.reduce((allBankingBalance, { currentBalance }) => {
-      return allBankingBalance + currentBalance;
-    }, 0);
-
-    const newAllBankingIn = bankingAccounts.reduce((allBankingIn, { totalIn }) => {
-      return allBankingIn + totalIn;
-    }, 0);
-
-    const newAllBankingOut = bankingAccounts.reduce((allBankingOut, { totalOut }) => {
-      return allBankingOut + totalOut;
-    }, 0);
+    const bankingSummary = calculateBankingSummary(bankingAccounts);
 
     console.log(bankingAccounts);
 
     setBankingSummary({ 
-      currentAllBankingBalance: newAllBankingBalance, 
-      totalAllBankingIn: newAllBankingIn, 
-      totalAllBankingOut: newAllBankingOut });
+      currentAllBankingBalance: bankingSummary.newAllBankingBalance, 
+      totalAllBankingIn: bankingSummary.newAllBankingIn, 
+      totalAllBankingOut: bankingSummary.newAllBankingOut });
   }, [bankingAccounts]);
 
   const createBankingAccount = (bankingAccountName) => {

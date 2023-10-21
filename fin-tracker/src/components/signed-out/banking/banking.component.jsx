@@ -17,7 +17,7 @@ import "./banking.styles.scss";
 import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 import AllBankingSummary from "./all-banking-summary/all-banking-summary.component";
 
-const FINANCE_ITEM_TYPE = "Bank Accounts";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/banking.constants";
 
 // const financeTrackerItemNames = [
 // ];
@@ -39,7 +39,7 @@ const Banking = () => {
         bankingAccounts.length !== 0 && <AllBankingSummary></AllBankingSummary>
       }
 
-      <BankAccounts label={ FINANCE_ITEM_TYPE } 
+      <BankAccounts label={ FINANCE_ITEM_TYPES.banking } 
                     // financeTrackerItemNames={ financeTrackerItemNames }
                     ></BankAccounts>
 
