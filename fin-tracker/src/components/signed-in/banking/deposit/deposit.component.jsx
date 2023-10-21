@@ -23,7 +23,7 @@ const Deposit = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    depositToBankingAccount(financeItemInfo, formFields.amount);
+    depositToBankingAccount(financeItemInfo, formFields.amount, formFields.reason);
 
     resetFormFields();
   };
@@ -31,7 +31,7 @@ const Deposit = ({ financeItemInfo }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value })
+    setFormFields({ ...formFields, [name]: value })
   };
 
   return (
@@ -41,6 +41,9 @@ const Deposit = ({ financeItemInfo }) => {
       <form onSubmit={ handleSubmit }>
         <FormInput label="Amount" type="text" required onChange={ handleChange }
                           name="amount" value={ formFields.amount }></FormInput>
+
+        <FormInput label="For" type="text" onChange={ handleChange }
+                          name="reason" value={ formFields.reason }></FormInput>
         
         <div className="buttons-container">
           <Button type="submit">Deposit</Button>

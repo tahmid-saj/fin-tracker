@@ -22,10 +22,10 @@ const Transactions = ({ financeItemInfo }) => {
 
       <div className="transactions-scroll-container">
         {
-          transactions.map(({ amount, type }, index) => {
+          transactions.map(({ amount, type, reason }, index) => {
               return bankingAccounts.length !== 0 && transactions.length !== 0 &&
               <Transaction key={ index } date={ currentDate } 
-                            amount={ amount } type={ type }
+                            amount={ amount } type={ type } reason={ reason }
                             ></Transaction>
           })
         }
