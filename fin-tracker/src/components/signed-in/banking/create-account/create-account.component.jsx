@@ -21,10 +21,10 @@ const CreateAccount = ({ label }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    createBankingAccount(formFields.bankAccountName);
+    await createBankingAccount(formFields.bankAccountName);
     resetFormFields();
 
     console.log(bankingAccounts);

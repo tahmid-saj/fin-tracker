@@ -10,16 +10,17 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 
 import { UserContext } from "../../shared/user/user.context";
 
-import { getBankingAccountsData, postBankingAccountCreate } from "../../../utils/api-requests/banking.requests";
+import { getBankingAccountsData, 
+        postBankingAccountCreate, postBankingAccountTransaction } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
 
-const createBankingAccountHelper = (bankingAccounts, bankingAccountName, userid, email) => {
+const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
   console.log(`Creating ${bankingAccountName}`);
 
-  postBankingAccountCreate(userid, email, bankingAccountName);
+  postBankingAccountCreate(userId, email, bankingAccountName);
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -32,8 +33,10 @@ const createBankingAccountHelper = (bankingAccounts, bankingAccountName, userid,
   }]
 };
 
-const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depositAmount, depositReason) => {
+const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName, depositAmount, depositReason, userId, email) => {
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
+
+  await postBankingAccountTransaction(userId, email, bankingAccountName, depositAmount, depositReason);
 
   // update currentBalance, totalIn and transactions in bankingAccounts for bankingAccountName
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -215,15 +218,18 @@ export const BankingProvider = ({ children }) => {
         setDefaultBankingSummaryValues();
       }
     }
-    fetchData();
+    // TODO: uncomment when working on getting and updating data from sign in / sign out
+    // fetchData();
   }, [currentUser]);
 
-  const createBankingAccount = (bankingAccountName) => {
-    setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email));
+  const createBankingAccount = async (bankingAccountName) => {
+    const res = await createBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
+
+    setBankingAccounts(res);
   };
 
   const depositToBankingAccount = (bankingAccountName, depositAmount, depositReason) => {
-    setBankingAccounts(depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason));
+    setBankingAccounts(depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason, currentUser.uid, currentUser.email));
   };
 
   const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason) => {
