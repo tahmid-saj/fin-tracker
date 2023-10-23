@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -7,6 +7,10 @@ from "../../../utils/validations/banking.validation";
 import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
 
 import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
+
+import { UserContext } from "../../shared/user/user.context";
+
+import { getBankingAccountsData } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
 
@@ -124,6 +128,11 @@ const closeBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   return bankingAccounts.filter(account => account.name !== bankingAccountName);
 };
 
+// set default banking values
+const setDefaultBankingValuesHelper = () => {
+  console.log("Changing banking to default values")
+};
+
 // initial state
 export const BankingContext = createContext({
   bankingAccounts: [],
@@ -154,19 +163,23 @@ export const BankingContext = createContext({
   transferToBankingAccount: () => {},
   closeBankingAccount: () => {},
 
-  bankingSummary: {}
+  bankingSummary: {},
   // bankingSummary structure:
   // {
   //   currentAllBankingBalance: 105,
   //   totalAllBankingIn: 120,
   //   totalAllBankingOut: -15,
   // }
+
+  setDefaultBankingValues: () => {},
 });
 
 // context component
 export const BankingProvider = ({ children }) => {
   const [bankingAccounts, setBankingAccounts] = useState([]);
   const [bankingSummary, setBankingSummary] = useState({});
+
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
@@ -178,6 +191,18 @@ export const BankingProvider = ({ children }) => {
       totalAllBankingIn: bankingSummary.newAllBankingIn, 
       totalAllBankingOut: bankingSummary.newAllBankingOut });
   }, [bankingAccounts]);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (currentUser) {
+        await getBankingAccountsData(currentUser.uid, currentUser.email);
+        console.log(currentUser.uid, currentUser.email);
+      } else if (!currentUser) {
+        setDefaultBankingValues();
+      }
+    }
+    fetchData();
+  }, [currentUser]);
 
   const createBankingAccount = (bankingAccountName) => {
     setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName));
@@ -200,8 +225,14 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(closeBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
+  // set default banking values
+  const setDefaultBankingValues = () => {
+    setDefaultBankingValuesHelper();
+  };
+
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
-    withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary };
+    withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary,
+    setDefaultBankingValues };
 
   return (
     <BankingContext.Provider

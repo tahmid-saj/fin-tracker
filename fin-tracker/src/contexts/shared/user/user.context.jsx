@@ -4,6 +4,8 @@ import { onAuthStateChangedListener,
         signOutUser,
         createUserDocumentFromAuth } from "../../../utils/firebase/firebase.utils";
 
+import { getBankingAccountsData } from "../../../utils/api-requests/banking.requests";
+
 // actual value to be accessed
 export const UserContext = createContext({
   currentUser: null,
