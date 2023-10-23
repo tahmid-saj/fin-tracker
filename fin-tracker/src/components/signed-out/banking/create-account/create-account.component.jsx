@@ -25,6 +25,7 @@ const CreateAccount = ({ label }) => {
     event.preventDefault();
 
     createBankingAccount(formFields.bankAccountName);
+    
     resetFormFields();
 
     console.log(bankingAccounts);
