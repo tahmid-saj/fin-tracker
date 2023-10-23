@@ -10,14 +10,16 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 
 import { UserContext } from "../../shared/user/user.context";
 
-import { getBankingAccountsData } from "../../../utils/api-requests/banking.requests";
+import { getBankingAccountsData, postBankingAccountCreate } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
 
-const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const createBankingAccountHelper = (bankingAccounts, bankingAccountName, userid, email) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
   console.log(`Creating ${bankingAccountName}`);
+
+  postBankingAccountCreate(userid, email, bankingAccountName);
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -128,9 +130,14 @@ const closeBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   return bankingAccounts.filter(account => account.name !== bankingAccountName);
 };
 
-// set default banking values
-const setDefaultBankingValuesHelper = () => {
-  console.log("Changing banking to default values")
+// set default banking account values
+const setDefaultBankingAccountsValuesHelper = () => {
+  console.log("Changing banking accounts to default values")
+};
+
+// set default banking summary values
+const setDefaultBankingSummaryValuesHelper = () => {
+  console.log("Setting banking summary to default values")
 };
 
 // initial state
@@ -171,7 +178,14 @@ export const BankingContext = createContext({
   //   totalAllBankingOut: -15,
   // }
 
-  setDefaultBankingValues: () => {},
+  // requests
+  postBankingAccount: () => {},
+  postBankingAccountTransaction: () => {},
+  deleteBankingAccount: () => {},
+
+  // signing out
+  setDefaultBankingAccountValues: () => {},
+  setDefaultBankingSummaryValues: () => {},
 });
 
 // context component
@@ -198,14 +212,14 @@ export const BankingProvider = ({ children }) => {
         await getBankingAccountsData(currentUser.uid, currentUser.email);
         console.log(currentUser.uid, currentUser.email);
       } else if (!currentUser) {
-        setDefaultBankingValues();
+        setDefaultBankingSummaryValues();
       }
     }
     fetchData();
   }, [currentUser]);
 
   const createBankingAccount = (bankingAccountName) => {
-    setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName));
+    setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email));
   };
 
   const depositToBankingAccount = (bankingAccountName, depositAmount, depositReason) => {
@@ -225,14 +239,19 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(closeBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
-  // set default banking values
-  const setDefaultBankingValues = () => {
-    setDefaultBankingValuesHelper();
+  // set default banking accounts values
+  const setDefaultBankingAccountsValues = () => {
+    setDefaultBankingAccountsValuesHelper();
+  };
+
+  // set default banking summary values
+  const setDefaultBankingSummaryValues = () => {
+    setDefaultBankingSummaryValuesHelper();
   };
 
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
     withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary,
-    setDefaultBankingValues };
+    setDefaultBankingAccountsValues, setDefaultBankingSummaryValues };
 
   return (
     <BankingContext.Provider
