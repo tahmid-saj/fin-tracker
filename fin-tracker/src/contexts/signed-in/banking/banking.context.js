@@ -35,13 +35,20 @@ const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, u
 
 const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName, depositAmount, depositReason, userId, email) => {
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
-
-  await postBankingAccountTransaction(userId, email, bankingAccountName, depositAmount, depositReason);
-
+  
   // update currentBalance, totalIn and transactions in bankingAccounts for bankingAccountName
+  const transactionInfo = {
+    name: bankingAccountName,
+    amount: depositAmount,
+    type: TRANSACTION_TYPES.deposit,
+    reason: depositReason
+  };
+  postBankingAccountTransaction(userId, email, transactionInfo);
+  
   const updatedBankingAccounts = bankingAccounts.map((account) => {
-    return account.name === bankingAccountName ? 
-      { 
+    if (account.name === bankingAccountName) {
+      
+      return { 
         ...account, 
         currentBalance: account.currentBalance + Number(depositAmount), 
         totalIn: account.totalIn + Number(depositAmount),
@@ -53,7 +60,10 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
             reason: depositReason,
           }
         ] 
-      } : account;
+      }
+    }
+    
+    return account;
   });
 
   return updatedBankingAccounts;
@@ -228,8 +238,10 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(res);
   };
 
-  const depositToBankingAccount = (bankingAccountName, depositAmount, depositReason) => {
-    setBankingAccounts(depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason, currentUser.uid, currentUser.email));
+  const depositToBankingAccount = async (bankingAccountName, depositAmount, depositReason) => {
+    const res = await depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason, currentUser.uid, currentUser.email);
+
+    setBankingAccounts(res);
   };
 
   const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason) => {

@@ -21,7 +21,7 @@ const Deposit = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     depositToBankingAccount(financeItemInfo, formFields.amount, formFields.reason);

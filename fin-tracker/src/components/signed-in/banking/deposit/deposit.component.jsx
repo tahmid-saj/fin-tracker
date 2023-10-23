@@ -8,7 +8,8 @@ import Button from "../../../shared/button/button.component";
 import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 const defaultFormFields = {
-  amount: ""
+  amount: "",
+  reason: "",
 };
 
 const Deposit = ({ financeItemInfo }) => {

@@ -9,7 +9,8 @@ import { BankingContext } from "../../../../contexts/signed-in/banking/banking.c
 
 const defaultFormFields = {
   transferTo: "",
-  amount: ""
+  amount: "",
+  reason: "",
 };
 
 const TransferMoney = ({ financeItemInfo }) => {
