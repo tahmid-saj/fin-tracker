@@ -69,10 +69,18 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
+const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, userId, email) => {
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
+  const transactionInfo = {
+    name: bankingAccountName,
+    amount: withdrawAmount,
+    type: TRANSACTION_TYPES.withdrawal,
+    reason: withdrawReason,
+  };
+  postBankingAccountTransaction(userId, email, transactionInfo);
+
   const updatedBankingAccounts = bankingAccounts.map((account) => {
     return account.name === bankingAccountName ?
       {
@@ -191,11 +199,6 @@ export const BankingContext = createContext({
   //   totalAllBankingOut: -15,
   // }
 
-  // requests
-  postBankingAccount: () => {},
-  postBankingAccountTransaction: () => {},
-  deleteBankingAccount: () => {},
-
   // signing out
   setDefaultBankingAccountValues: () => {},
   setDefaultBankingSummaryValues: () => {},
@@ -244,8 +247,10 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(res);
   };
 
-  const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason) => {
-    setBankingAccounts(withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason));
+  const withdrawFromBankingAccount = async (bankingAccountName, withdrawAmount, withdrawReason) => {
+    const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, currentUser.uid, currentUser.email);
+    
+    setBankingAccounts(res);
   };
 
   const transferToBankingAccount = (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
