@@ -11,7 +11,7 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 import { UserContext } from "../../shared/user/user.context";
 
 import { getBankingAccountsData, 
-        postBankingAccountCreate, postBankingAccountTransaction } from "../../../utils/api-requests/banking.requests";
+        postBankingAccountCreate, postBankingAccountTransaction, deleteBankingAccount } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
 
@@ -157,8 +157,10 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   return updatedBankingAccounts;
 };
 
-const closeBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const closeBankingAccountHelper = (bankingAccounts, bankingAccountName, userId, email) => {
   // return bankingAccounts without the bankingAccountName
+  deleteBankingAccount(bankingAccountName, userId, email);
+
   return bankingAccounts.filter(account => account.name !== bankingAccountName);
 };
 
@@ -273,8 +275,10 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(res);
   };
 
-  const closeBankingAccount = (bankingAccountName) => {
-    setBankingAccounts(closeBankingAccountHelper(bankingAccounts, bankingAccountName));
+  const closeBankingAccount = async (bankingAccountName) => {
+    const res = await closeBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
+
+    setBankingAccounts(res);
   };
 
   // set default banking accounts values
