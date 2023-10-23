@@ -101,11 +101,21 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
   return updatedBankingAccounts;
 };
 
-const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
+const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, 
+  bankingAccountTransferToName, transferAmount, transferReason, userId, email) => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
   // console.log(bankingAccountTransferToName, transferAmount);
+
+  const transactionInfo = {
+    name: bankingAccountTransferFromName,
+    transferTo: bankingAccountTransferToName,
+    amount: transferAmount,
+    reason: transferReason,
+    type: TRANSACTION_TYPES.transfer,
+  };
+  postBankingAccountTransaction(userId, email, transactionInfo);
 
   // update bankingAccountTransferFromName and bankingAccountTransferToName in bankingAccounts
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -135,6 +145,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.depositTransfer,
+            transferReason: transferReason,
           }
         ] 
       }
@@ -242,20 +253,24 @@ export const BankingProvider = ({ children }) => {
   };
 
   const depositToBankingAccount = async (bankingAccountName, depositAmount, depositReason) => {
-    const res = await depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason, currentUser.uid, currentUser.email);
+    const res = await depositToBankingAccountHelper(bankingAccounts, bankingAccountName, 
+      depositAmount, depositReason, currentUser.uid, currentUser.email);
 
     setBankingAccounts(res);
   };
 
   const withdrawFromBankingAccount = async (bankingAccountName, withdrawAmount, withdrawReason) => {
-    const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, currentUser.uid, currentUser.email);
+    const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, 
+      withdrawAmount, withdrawReason, currentUser.uid, currentUser.email);
     
     setBankingAccounts(res);
   };
 
-  const transferToBankingAccount = (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
-    setBankingAccounts(transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
-                                                      bankingAccountTransferToName, transferAmount, transferReason));
+  const transferToBankingAccount = async (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
+    const res = await transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
+      bankingAccountTransferToName, transferAmount, transferReason, currentUser.uid, currentUser.email);
+
+    setBankingAccounts(res);
   };
 
   const closeBankingAccount = (bankingAccountName) => {
