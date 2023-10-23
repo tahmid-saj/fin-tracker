@@ -7,6 +7,13 @@ import { UserContext } from "../../shared/user/user.context";
 
 export const DashboardContext = createContext({
   summaries: {},
+  // summaries structure:
+  // {
+  //   bankingSummary: bankingSummary -> from useContext,
+  //   investmentsSummary: investmentsSummary -> from useContext,
+  //   savingsAccountsSummary: savingsAccountsSummary -> from useContext
+  // }
+
   userSummary: {},
   // useSummary structure:
   // {
