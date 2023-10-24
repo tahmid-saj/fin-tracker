@@ -10,7 +10,7 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 
 import { UserContext } from "../../shared/user/user.context";
 
-import { getBankingAccountsData, 
+import { getBankingAccountsData, getBankingSummaryData,
         postBankingAccountCreate, postBankingAccountTransaction, deleteBankingAccount } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
@@ -238,14 +238,18 @@ export const BankingProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       if (currentUser) {
-        await getBankingAccountsData(currentUser.uid, currentUser.email);
+        const { bankingAccounts } = await getBankingAccountsData(currentUser.uid, currentUser.email);
+        const { bankingSummary } = await getBankingSummaryData(currentUser.uid, currentUser.email);
+
+        setBankingAccounts(bankingAccounts);
+        setBankingSummary(bankingSummary);
         console.log(currentUser.uid, currentUser.email);
       } else if (!currentUser) {
         setDefaultBankingSummaryValues();
       }
     }
     // TODO: uncomment when working on getting and updating data from sign in / sign out
-    // fetchData();
+    fetchData();
   }, [currentUser]);
 
   const createBankingAccount = async (bankingAccountName) => {

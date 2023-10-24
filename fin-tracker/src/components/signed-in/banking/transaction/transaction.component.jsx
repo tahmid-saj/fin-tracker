@@ -22,6 +22,7 @@ const Transaction = ({ date, amount, type, reason }) => {
       <h4>{`$${amount}`}</h4>
 
       {
+        // TODO: need to fix transaction not displaying reason
         (reason !== undefined && reason !== null && reason !== "") &&
         <h5>{`For : ${reason}`}</h5>
       }
