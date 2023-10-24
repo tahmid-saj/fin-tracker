@@ -1,13 +1,22 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestmentSummary } from "../../../utils/calculations/investments.calculations";
+import { UserContext } from "../../shared/user/user.context";
+
+import { DEFAULT_INVESTMENTS, DEFAULT_INVESTMENTS_SUMMARY } from "../../../utils/constants/investments.constants";
+
+import { getInvestmentsData, getInvestmentsSummaryData,
+  postInvestmentCreate, putInvestmentData, deleteInvestment,
+  putInvestmentsData, putInvestmentsSummaryData } from "../../../utils/api-requests/investments.requests";
 
 // helper functions
 
-const createInvestmentHelper = (investments, investment) => {
+const createInvestmentHelper = async (investments, investment, userId, email) => {
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
+
+  postInvestmentCreate(userId, email, investment);
 
   console.log(`Creating ${investment.investmentName}`);
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
@@ -34,9 +43,11 @@ const createInvestmentHelper = (investments, investment) => {
     }];
 };
 
-const updateInvestmentHelper = (investments, originalInvestmentName, updatedInvestment) => {
+const updateInvestmentHelper = async (investments, originalInvestmentName, updatedInvestment, userId, email) => {
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
+  
+  putInvestmentData(userId, email, originalInvestmentName, updatedInvestment);
 
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
   
@@ -60,7 +71,9 @@ const updateInvestmentHelper = (investments, originalInvestmentName, updatedInve
   return updatedInvestments;
 };
 
-const closeInvestmentHelper = (investments, closingInvestmentName) => {
+const closeInvestmentHelper = async (investments, closingInvestmentName, userId, email) => {
+  deleteInvestment(userId, email, closingInvestmentName);
+
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
 };
@@ -69,6 +82,16 @@ const getInvestmentInfoHelper = (investments, investmentName) => {
   // return the investment with the given investmentName
   return investments.find(investment => String(investment.investmentName) === String(investmentName));
 };
+
+// set default investments values
+const setDefaultInvestmentsValuesHelper = () => {
+  return DEFAULT_INVESTMENTS;
+};
+
+// set default investments summary values
+const setDefaultInvestmentsSummaryValuesHelper = () => {
+  return DEFAULT_INVESTMENTS_SUMMARY;
+}
 
 // initial state
 export const InvestmentsContext = createContext({
@@ -106,12 +129,19 @@ export const InvestmentsContext = createContext({
   //   totalAllContribution: 600,
   //   totalAllInterest: 200,
   // }
+
+  // signing out
+  setDefaultInvestmentsValues: () => {},
+  setDefaultInvestmentsSummaryValues: () => {},
+  updateInvestmentsAndSummary: () => {},
 });
 
 // context component
 export const InvestmentsProvider = ({ children }) => {
   const [investments, setInvestments] = useState([]);
   const [investmentsSummary, setInvestmentsSummary] = useState({});
+
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     const newAllInvestmentsBalance = investments.reduce((allInvestmentsBalance, { endBalance }) => {
@@ -135,24 +165,65 @@ export const InvestmentsProvider = ({ children }) => {
     });
   }, [investments]);
 
-  const createInvestment = (investment) => {
-    setInvestments(createInvestmentHelper(investments, investment));
+  useEffect(() => {
+    async function fetchInvestmentsData() {
+      if (currentUser) {
+        const { investments } = await getInvestmentsData(currentUser.uid, currentUser.email);
+        const { investmentsSummary } = await getInvestmentsSummaryData(currentUser.uid, currentUser.email);
+
+        setInvestments(investments);
+        setInvestmentsSummary(investmentsSummary);
+      } else if (!currentUser) {
+        setDefaultInvestmentsValues();
+        setDefaultInvestmentsSummaryValues();
+      }
+    }
+    // TODO: uncomment when working on getting and updating data from sign in / sign out
+    // fetchInvestmentsData();
+  }, [currentUser])
+
+  const createInvestment = async (investment) => {
+    const res = await createInvestmentHelper(investments, investment, currentUser.uid, currentUser.email);
+
+    setInvestments(res);
   };
 
-  const updateInvestment = (originalInvestmentName, updatedInvestment) => {
-    setInvestments(updateInvestmentHelper(investments, originalInvestmentName, updatedInvestment));
+  const updateInvestment = async (originalInvestmentName, updatedInvestment) => {
+    const res = await updateInvestmentHelper(investments, originalInvestmentName, updatedInvestment, 
+      currentUser.uid, currentUser.email);
+
+    setInvestments(res);
   };
 
-  const closeInvestment = (closingInvestmentName) => {
-    setInvestments(closeInvestmentHelper(investments, closingInvestmentName));
+  const closeInvestment = async (closingInvestmentName) => {
+    const res = await closeInvestmentHelper(investments, closingInvestmentName, currentUser.uid, currentUser.email);
+
+    setInvestments(res);
   };
 
   const getInvestmentInfo = (investmentName) => {
     return getInvestmentInfoHelper(investments, investmentName);
   };
 
+  // set default investments
+  const setDefaultInvestmentsValues = () => {
+    setInvestments(setDefaultInvestmentsValuesHelper());
+  };
+
+  // set default investment summary
+  const setDefaultInvestmentsSummaryValues = () => {
+    setDefaultInvestmentsSummaryValues(setDefaultInvestmentsSummaryValuesHelper());
+  };
+
+  // update investments and summary on sign out
+  const updateInvestmentsAndSummary = () => {
+    putInvestmentsData(currentUser.uid, currentUser.email, investments);
+    putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
+  };
+
   const value = { investments, createInvestment, updateInvestment, 
-                  closeInvestment, getInvestmentInfo, investmentsSummary };
+                  closeInvestment, getInvestmentInfo, investmentsSummary,
+                  setDefaultInvestmentsValues, setDefaultInvestmentsSummaryValues, updateInvestmentsAndSummary };
 
   return (
     <InvestmentsContext.Provider

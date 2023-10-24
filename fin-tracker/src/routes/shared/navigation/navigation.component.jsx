@@ -5,6 +5,7 @@ import "./navigation.styles.scss";
 
 import { UserContext } from "../../../contexts/shared/user/user.context";
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
 
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
 
@@ -14,12 +15,14 @@ const Navigation = () => {
 
   const { currentUser } = useContext(UserContext);
   const { updateBankingAccountsAndSummary } = useContext(BankingContext);
+  const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
   const navigate = useNavigate();
 
   const linearGradient = `linear-gradient(to bottom, rgba(16, 44, 74, 0.95), rgba(16, 44, 74, 0.95)), url("https://i.pinimg.com/originals/d2/35/01/d2350155f30ad946907bcb7a730cfeca.jpg")`;
 
   const handleSignOut = () => {
     updateBankingAccountsAndSummary();
+    updateInvestmentsAndSummary();
     signOutUser();
     navigate("/")
   };
