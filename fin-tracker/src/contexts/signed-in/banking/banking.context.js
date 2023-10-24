@@ -6,7 +6,7 @@ from "../../../utils/validations/banking.validation";
 
 import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
 
-import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
+import { TRANSACTION_TYPES, DEFAULT_BANKING_ACCOUNTS, DEFAULT_BANKING_SUMMARY } from "../../../utils/constants/banking.constants";
 
 import { UserContext } from "../../shared/user/user.context";
 
@@ -166,12 +166,12 @@ const closeBankingAccountHelper = (bankingAccounts, bankingAccountName, userId, 
 
 // set default banking account values
 const setDefaultBankingAccountsValuesHelper = () => {
-  console.log("Changing banking accounts to default values")
+  return DEFAULT_BANKING_ACCOUNTS;
 };
 
 // set default banking summary values
 const setDefaultBankingSummaryValuesHelper = () => {
-  console.log("Setting banking summary to default values")
+  return DEFAULT_BANKING_SUMMARY;
 };
 
 // initial state
@@ -245,6 +245,7 @@ export const BankingProvider = ({ children }) => {
         setBankingSummary(bankingSummary);
         console.log(currentUser.uid, currentUser.email);
       } else if (!currentUser) {
+        setDefaultBankingAccountsValues();
         setDefaultBankingSummaryValues();
       }
     }
@@ -287,12 +288,12 @@ export const BankingProvider = ({ children }) => {
 
   // set default banking accounts values
   const setDefaultBankingAccountsValues = () => {
-    setDefaultBankingAccountsValuesHelper();
+    setBankingAccounts(setDefaultBankingAccountsValuesHelper());
   };
 
   // set default banking summary values
   const setDefaultBankingSummaryValues = () => {
-    setDefaultBankingSummaryValuesHelper();
+    setBankingSummary(setDefaultBankingSummaryValuesHelper());
   };
 
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 

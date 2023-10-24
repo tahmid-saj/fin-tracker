@@ -16,8 +16,8 @@ const BankingSummary = () => {
       <h2 style={{color: "black"}}><strong>Bank Accounts</strong></h2>
 
       {
-        bankingAccounts.map(account => {
-          return <FinanceTrackerItemSummary financeTrackerItemInfo={ account } 
+        bankingAccounts.map((account, index) => {
+          return <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ account } 
                                             financeItemType={ FINANCE_ITEM_TYPES.banking }></FinanceTrackerItemSummary>
         })
       }
