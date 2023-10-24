@@ -40,25 +40,25 @@ const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }) 
           {
             financeItemType === FINANCE_ITEM_TYPES.banking &&
             <Fragment>
-              <h4>{`Current balance   `}<h3><strong>{`$${financeTrackerItemInfo.currentBalance}`}</strong></h3></h4>
+              <h4>{`Current balance : `}{`$${financeTrackerItemInfo.currentBalance}`}</h4>
               <h5>{`As of ${currentDate}`}</h5>
-              <h4>{`IN $${financeTrackerItemInfo.totalIn}  -  OUT $${financeTrackerItemInfo.totalOut}`}</h4>
+              <h4>{`IN : $${financeTrackerItemInfo.totalIn}  -  OUT : $${financeTrackerItemInfo.totalOut}`}</h4>
             </Fragment>
           }
           {
             financeItemType === FINANCE_ITEM_TYPES.investments &&
             <Fragment>
-              <h4>{`Ending balance   `}<h3><strong>{`$${financeTrackerItemInfo.endBalance}`}</strong></h3></h4>
+              <h4>{`Ending balance : `}{`$${financeTrackerItemInfo.endBalance}`}</h4>
               <h5>{`As of ${currentDate}`}</h5>
-              <h4>{`Total contribution $${financeTrackerItemInfo.totalContribution}  -  Total interest $${financeTrackerItemInfo.totalInterest}`}</h4>
+              <h4>{`Total contribution : $${financeTrackerItemInfo.totalContribution}  -  Total interest : $${financeTrackerItemInfo.totalInterest}`}</h4>
             </Fragment>
           }
           {
             financeItemType === FINANCE_ITEM_TYPES.savings &&
             <Fragment>
-              <h4>{`Total savings   `}<h3><strong>{`$${financeTrackerItemInfo.totalSavings}`}</strong></h3></h4>
+              <h4>{`Total savings : `}{`$${financeTrackerItemInfo.totalSavings}`}</h4>
               <h5>{`As of ${currentDate}`}</h5>
-              <h4>{`Total contribution $${financeTrackerItemInfo.totalContribution}  -  Total interest $${financeTrackerItemInfo.totalInterest}`}</h4>
+              <h4>{`Total contribution : $${financeTrackerItemInfo.totalContribution}  -  Total interest : $${financeTrackerItemInfo.totalInterest}`}</h4>
             </Fragment>
           }
       </div>
