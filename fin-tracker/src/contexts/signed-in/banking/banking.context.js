@@ -11,7 +11,8 @@ import { TRANSACTION_TYPES, DEFAULT_BANKING_ACCOUNTS, DEFAULT_BANKING_SUMMARY } 
 import { UserContext } from "../../shared/user/user.context";
 
 import { getBankingAccountsData, getBankingSummaryData,
-        postBankingAccountCreate, postBankingAccountTransaction, deleteBankingAccount } from "../../../utils/api-requests/banking.requests";
+        postBankingAccountCreate, postBankingAccountTransaction, deleteBankingAccount,
+        putBankingAccountsData, putBankingSummaryData } from "../../../utils/api-requests/banking.requests";
 
 // helper functions
 
@@ -166,11 +167,13 @@ const closeBankingAccountHelper = (bankingAccounts, bankingAccountName, userId, 
 
 // set default banking account values
 const setDefaultBankingAccountsValuesHelper = () => {
+  // await putBankingAccountsData(bankingAccounts);
   return DEFAULT_BANKING_ACCOUNTS;
 };
 
 // set default banking summary values
 const setDefaultBankingSummaryValuesHelper = () => {
+  // await putBankingSummaryData(bankingSummary);
   return DEFAULT_BANKING_SUMMARY;
 };
 
@@ -296,9 +299,14 @@ export const BankingProvider = ({ children }) => {
     setBankingSummary(setDefaultBankingSummaryValuesHelper());
   };
 
+  const updateBankingAccountsAndSummary = () => {
+    putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
+    putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
+  };
+
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
     withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary,
-    setDefaultBankingAccountsValues, setDefaultBankingSummaryValues };
+    setDefaultBankingAccountsValues, setDefaultBankingSummaryValues, updateBankingAccountsAndSummary };
 
   return (
     <BankingContext.Provider
