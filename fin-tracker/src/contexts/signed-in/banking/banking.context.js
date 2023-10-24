@@ -19,9 +19,9 @@ import { getBankingAccountsData, getBankingSummaryData,
 const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
-  console.log(`Creating ${bankingAccountName}`);
-
   postBankingAccountCreate(userId, email, bankingAccountName);
+  
+  console.log(`Creating ${bankingAccountName}`);
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -159,9 +159,9 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
 };
 
 const closeBankingAccountHelper = (bankingAccounts, bankingAccountName, userId, email) => {
+  deleteBankingAccount(userId, email, bankingAccountName);
+  
   // return bankingAccounts without the bankingAccountName
-  deleteBankingAccount(bankingAccountName, userId, email);
-
   return bankingAccounts.filter(account => account.name !== bankingAccountName);
 };
 
@@ -218,6 +218,7 @@ export const BankingContext = createContext({
   // signing out
   setDefaultBankingAccountValues: () => {},
   setDefaultBankingSummaryValues: () => {},
+  updateBankingAccountsAndSummary: () => {},
 });
 
 // context component
@@ -239,7 +240,7 @@ export const BankingProvider = ({ children }) => {
   }, [bankingAccounts]);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchBankingData() {
       if (currentUser) {
         const { bankingAccounts } = await getBankingAccountsData(currentUser.uid, currentUser.email);
         const { bankingSummary } = await getBankingSummaryData(currentUser.uid, currentUser.email);
@@ -252,8 +253,7 @@ export const BankingProvider = ({ children }) => {
         setDefaultBankingSummaryValues();
       }
     }
-    // TODO: uncomment when working on getting and updating data from sign in / sign out
-    fetchData();
+    fetchBankingData();
   }, [currentUser]);
 
   const createBankingAccount = async (bankingAccountName) => {
@@ -299,6 +299,7 @@ export const BankingProvider = ({ children }) => {
     setBankingSummary(setDefaultBankingSummaryValuesHelper());
   };
 
+  // update banking accounts and summary on sign out
   const updateBankingAccountsAndSummary = () => {
     putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
     putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
