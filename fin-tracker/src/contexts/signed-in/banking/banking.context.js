@@ -242,11 +242,17 @@ export const BankingProvider = ({ children }) => {
   useEffect(() => {
     async function fetchBankingData() {
       if (currentUser) {
-        const { bankingAccounts } = await getBankingAccountsData(currentUser.uid, currentUser.email);
-        const { bankingSummary } = await getBankingSummaryData(currentUser.uid, currentUser.email);
+        const bankingAccountsData = await getBankingAccountsData(currentUser.uid, currentUser.email);
+        const bankingSummartData = await getBankingSummaryData(currentUser.uid, currentUser.email);
+        if (bankingAccountsData) {
+          const { bankingAccounts } = bankingAccountsData;
+          setBankingAccounts(bankingAccounts);
+        }
+        if (bankingSummartData) {
+          const { bankingSummary } = bankingSummartData;
+          setBankingSummary(bankingSummary);
+        }
 
-        setBankingAccounts(bankingAccounts);
-        setBankingSummary(bankingSummary);
         console.log(currentUser.uid, currentUser.email);
       } else if (!currentUser) {
         setDefaultBankingAccountsValues();
