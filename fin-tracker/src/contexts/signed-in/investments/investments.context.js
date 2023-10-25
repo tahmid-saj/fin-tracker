@@ -47,7 +47,7 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
   
-  putInvestmentData(userId, email, originalInvestmentName, updatedInvestment);
+  // putInvestmentData(userId, email, originalInvestmentName, updatedInvestment);
 
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
   
@@ -72,7 +72,7 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
 };
 
 const closeInvestmentHelper = async (investments, closingInvestmentName, userId, email) => {
-  deleteInvestment(userId, email, closingInvestmentName);
+  // deleteInvestment(userId, email, closingInvestmentName);
 
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
@@ -217,8 +217,9 @@ export const InvestmentsProvider = ({ children }) => {
 
   // update investments and summary on sign out
   const updateInvestmentsAndSummary = () => {
-    putInvestmentsData(currentUser.uid, currentUser.email, investments);
-    putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
+    // TODO: uncomment when working on updating data from sign out
+    // putInvestmentsData(currentUser.uid, currentUser.email, investments);
+    // putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
   };
 
   const value = { investments, createInvestment, updateInvestment, 
