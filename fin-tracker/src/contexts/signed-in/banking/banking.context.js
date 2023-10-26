@@ -244,12 +244,13 @@ export const BankingProvider = ({ children }) => {
       if (currentUser) {
         const bankingAccountsData = await getBankingAccountsData(currentUser.uid, currentUser.email);
         const bankingSummartData = await getBankingSummaryData(currentUser.uid, currentUser.email);
+        
         if (bankingAccountsData) {
-          const { bankingAccounts } = bankingAccountsData;
+          const { bankingAccounts } = await bankingAccountsData;
           setBankingAccounts(bankingAccounts);
         }
         if (bankingSummartData) {
-          const { bankingSummary } = bankingSummartData;
+          const { bankingSummary } = await bankingSummartData;
           setBankingSummary(bankingSummary);
         }
 
