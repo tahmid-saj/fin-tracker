@@ -28,7 +28,7 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
     totalContribution: summary.totalContribution,
     totalInterest: summary.totalInterest,
   }
-  
+
   postInvestmentCreate(userId, email, investmentInfo);
 
   // add investment to investments
@@ -247,8 +247,8 @@ export const InvestmentsProvider = ({ children }) => {
   // update investments and summary on sign out
   const updateInvestmentsAndSummary = () => {
     // TODO: uncomment when working on updating data from sign out
-    // putInvestmentsData(currentUser.uid, currentUser.email, investments);
-    // putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
+    putInvestmentsData(currentUser.uid, currentUser.email, investments);
+    putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
   };
 
   const value = { investments, createInvestment, updateInvestment, 
