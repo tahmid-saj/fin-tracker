@@ -16,12 +16,20 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
 
-  postInvestmentCreate(userId, email, investment);
-
   console.log(`Creating ${investment.investmentName}`);
-  // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
 
+  // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
   const summary = calculateInvestmentSummary(investment);
+
+  const investmentInfo = {
+    ...investment,
+
+    endBalance: summary.endBalance,
+    totalContribution: summary.totalContribution,
+    totalInterest: summary.totalInterest,
+  }
+  
+  postInvestmentCreate(userId, email, investmentInfo);
 
   // add investment to investments
   return [ ...investments,
@@ -47,15 +55,28 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
   
-  // putInvestmentData(userId, email, originalInvestmentName, updatedInvestment);
-
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
+  const summary = calculateInvestmentSummary(updatedInvestment);
+  
+  const originalInvestment = investments.find((investment) => {
+    return investment.investmentName === originalInvestmentName;
+  });
+
+  const investmentInfo = {
+    originalInvestmentInfo: originalInvestment,
+    updatedInvestmentInfo: {
+      ...updatedInvestment,
+
+      endBalance: summary.endBalance,
+      totalContribution: summary.totalContribution,
+      totalInterest: summary.totalInterest
+    }
+  }
+  putInvestmentData(userId, email, investmentInfo);
   
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
   const updatedInvestments = investments.map((investment) => {
     if (investment.investmentName === originalInvestmentName) {
-      const summary = calculateInvestmentSummary(updatedInvestment);
-
       return {
         ...updatedInvestment,
 
@@ -71,8 +92,9 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
   return updatedInvestments;
 };
 
+
 const closeInvestmentHelper = async (investments, closingInvestmentName, userId, email) => {
-  // deleteInvestment(userId, email, closingInvestmentName);
+  deleteInvestment(userId, email, closingInvestmentName);
 
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
@@ -168,18 +190,25 @@ export const InvestmentsProvider = ({ children }) => {
   useEffect(() => {
     async function fetchInvestmentsData() {
       if (currentUser) {
-        const { investments } = await getInvestmentsData(currentUser.uid, currentUser.email);
-        const { investmentsSummary } = await getInvestmentsSummaryData(currentUser.uid, currentUser.email);
+        const investmentsData = await getInvestmentsData(currentUser.uid, currentUser.email);
+        const investmentsSummaryData = await getInvestmentsSummaryData(currentUser.uid, currentUser.email);
 
-        setInvestments(investments);
-        setInvestmentsSummary(investmentsSummary);
+        if (investmentsData) {
+          const { investments } = await investmentsData;
+          setInvestments(investments);
+        }
+
+        if (investmentsSummaryData) {
+          const { investmentsSummary } = await investmentsSummaryData;
+          setInvestmentsSummary(investmentsSummary);
+        }
       } else if (!currentUser) {
         setDefaultInvestmentsValues();
         setDefaultInvestmentsSummaryValues();
       }
     }
     // TODO: uncomment when working on getting and updating data from sign in / sign out
-    // fetchInvestmentsData();
+    fetchInvestmentsData();
   }, [currentUser])
 
   const createInvestment = async (investment) => {
