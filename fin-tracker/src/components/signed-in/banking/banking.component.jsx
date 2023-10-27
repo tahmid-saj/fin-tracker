@@ -17,6 +17,7 @@ const Banking = () => {
     <div className="banking-container">
       
       {
+        // TODO: change colors of text
         bankingAccounts.length !== 0 && <AllBankingSummary></AllBankingSummary>
       }
 
