@@ -48,7 +48,8 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
       endBalance: summary.endBalance,
       totalContribution: summary.totalContribution,
       totalInterest: summary.totalInterest,
-    }];
+    }
+  ];
 };
 
 const updateInvestmentHelper = async (investments, originalInvestmentName, updatedInvestment, userId, email) => {
@@ -71,7 +72,7 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
       totalContribution: summary.totalContribution,
       totalInterest: summary.totalInterest
     }
-  }
+  };
   putInvestmentData(userId, email, investmentInfo);
   
   // update investments with updatedInvestment for the investment with investment.investmentName === investmentName
@@ -113,7 +114,7 @@ const setDefaultInvestmentsValuesHelper = () => {
 // set default investments summary values
 const setDefaultInvestmentsSummaryValuesHelper = () => {
   return DEFAULT_INVESTMENTS_SUMMARY;
-}
+};
 
 // initial state
 export const InvestmentsContext = createContext({
@@ -166,6 +167,7 @@ export const InvestmentsProvider = ({ children }) => {
   const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
+    // TODO: move below to calculations
     const newAllInvestmentsBalance = investments.reduce((allInvestmentsBalance, { endBalance }) => {
       return allInvestmentsBalance + endBalance;
     }, 0);
@@ -207,7 +209,6 @@ export const InvestmentsProvider = ({ children }) => {
         setDefaultInvestmentsSummaryValues();
       }
     }
-    // TODO: uncomment when working on getting and updating data from sign in / sign out
     fetchInvestmentsData();
   }, [currentUser])
 
@@ -241,12 +242,11 @@ export const InvestmentsProvider = ({ children }) => {
 
   // set default investment summary
   const setDefaultInvestmentsSummaryValues = () => {
-    setDefaultInvestmentsSummaryValues(setDefaultInvestmentsSummaryValuesHelper());
+    setInvestmentsSummary(setDefaultInvestmentsSummaryValuesHelper());
   };
 
   // update investments and summary on sign out
   const updateInvestmentsAndSummary = () => {
-    // TODO: uncomment when working on updating data from sign out
     putInvestmentsData(currentUser.uid, currentUser.email, investments);
     putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
   };
