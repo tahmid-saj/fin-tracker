@@ -5,6 +5,10 @@ import { calculateSavingsSummary } from "../../../utils/calculations/savings.cal
 
 import { UserContext } from "../../shared/user/user.context";
 
+import { getSavingsAccountsData, getSavingsAccountsSummaryData,
+  postSavingsAccountCreate, putSavingsAccountData, deleteSavingsAccount,
+  putSavingsAccountsData, putSavingsAccountsSummaryData } from "../../../utils/api-requests/savings.requests";
+
 import { DEFAULT_SAVINGS_ACCOUNTS, DEFAULT_SAVINGS_ACCOUNTS_SUMMARY } from "../../../utils/constants/savings.constants";
 
 // helper functions
