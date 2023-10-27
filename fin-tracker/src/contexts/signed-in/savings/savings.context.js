@@ -244,8 +244,8 @@ export const SavingsProvider = ({ children }) => {
   // update savings accounts and summary on sign out
   const updateSavingsAccountsAndSummary = () => {
     // TODO: uncomment when working on updating data from sign out
-    putSavingsAccountsData(currentUser.uid, currentUser.email, savingsAccounts);
-    putSavingsAccountsSummaryData(currentUser.uid, currentUser.email, savingsAccountsSummary);
+    // putSavingsAccountsData(currentUser.uid, currentUser.email, savingsAccounts);
+    // putSavingsAccountsSummaryData(currentUser.uid, currentUser.email, savingsAccountsSummary);
   };
 
   const value = { savingsAccounts, createSavingsAccount, updateSavingsAccount,
