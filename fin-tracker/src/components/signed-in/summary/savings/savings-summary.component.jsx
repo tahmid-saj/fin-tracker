@@ -7,6 +7,7 @@ import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/financ
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
+import SummaryGraphSavingsAccount from "../../savings/summary-graph/summary-graph.component";
 
 const SavingsSummary = () => {
   const { savingsAccounts } = useContext(SavingsContext);
@@ -14,13 +15,17 @@ const SavingsSummary = () => {
   return (
     <div className="savings-summary-container">
       <h2 style={{color: "black"}}><strong>Savings Summary</strong></h2>
-
-      {
-        savingsAccounts.map((account, index) => {
-          return <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ account }
-                                            financeItemType={ FINANCE_ITEM_TYPES.savings }></FinanceTrackerItemSummary>
-        })
-      }
+        {
+          savingsAccounts.map((account, index) => {
+            return (
+              <div className="savings-summary-graph-container">
+                <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ account }
+                                                financeItemType={ FINANCE_ITEM_TYPES.savings }></FinanceTrackerItemSummary>
+                <SummaryGraphSavingsAccount financeItemInfo={ account }></SummaryGraphSavingsAccount>
+              </div>
+            )
+          })
+        }
     </div>
   );
 };
