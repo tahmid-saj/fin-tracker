@@ -75,7 +75,6 @@ const SummaryGraphBanking = ({ financeItemInfo }) => {
 
   return (
     <Fragment>
-      <h2>Banking Transactions</h2>
       <div className="summary-graph-banking-container">
         <ReactApexChart options={ options } series={ series } type="bar" height={ 350 } width={ 1000 }/>
       </div>
