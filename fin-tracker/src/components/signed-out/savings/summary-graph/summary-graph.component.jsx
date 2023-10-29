@@ -18,6 +18,7 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
   const year = startDate.getFullYear();
   const month = startDate.getMonth() + 1;
   const day = startDate.getDate();
+  const startDateStr = year + "-" + month + "-" + day;
   let endDate;
 
   if (savingsAccountInfo.contributionInterval === SAVINGS_CONTRIBUTION_INTERVALS.months) {
@@ -60,7 +61,7 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
       text: 'Savings Timeline',
       align: 'left'
     },
-    labels: [ previousDate, savingsAccountInfo.startDate, endDate ],
+    labels: [ previousDate, startDateStr, endDate ],
     xaxis: {
       type: 'string',
     },
