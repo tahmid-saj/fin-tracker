@@ -22,7 +22,7 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
 
   // TODO: need to keep track of investments timeline by amount in calculations
   const series = [{
-    name: financeItemInfo.investmentNames,
+    name: financeItemInfo.investmentName,
     data: [ 0, financeItemInfo.startingAmount, financeItemInfo.endBalance ]
   }];
 
