@@ -1,7 +1,7 @@
 import { Component, useContext, Fragment } from "react";
 
 import ReactApexChart from 'react-apexcharts';
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 import "./summary-graph.styles.scss";
 

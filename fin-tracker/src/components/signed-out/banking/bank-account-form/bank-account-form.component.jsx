@@ -20,6 +20,7 @@ const BankAccountForm = ({ financeItemInfo }) => {
         bankingAccountTransactions.length !== 0 &&
         <SummaryGraphBanking financeItemInfo={ financeItemInfo }></SummaryGraphBanking>
       }
+
       <Summary financeItemInfo={ financeItemInfo }></Summary>
 
       <div className="transactions-action-container">
