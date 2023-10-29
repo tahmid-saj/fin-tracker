@@ -18,9 +18,12 @@ const BankAccountForm = ({ financeItemInfo }) => {
     <Fragment>
       {
         bankingAccountTransactions.length !== 0 &&
-        <SummaryGraphBanking financeItemInfo={ financeItemInfo }></SummaryGraphBanking>
+        <Fragment>
+          <h2>Banking Transactions</h2>
+          <SummaryGraphBanking financeItemInfo={ financeItemInfo }></SummaryGraphBanking>
+        </Fragment>
       }
-
+      
       <Summary financeItemInfo={ financeItemInfo }></Summary>
 
       <div className="transactions-action-container">
