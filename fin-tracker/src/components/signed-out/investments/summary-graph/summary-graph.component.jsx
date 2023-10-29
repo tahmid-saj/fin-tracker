@@ -16,6 +16,7 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
   const year = startDate.getFullYear();
   const month = startDate.getMonth() + 1;
   const day = startDate.getDate();
+  const startDateStr = year + '-' + month + '-' + day;
   const previousDay = day === 1 ? 28 : startDate.getDate();
   const endDate = `${Number(year) + Number(investmentInfo.afterYears)}-${month}-${day}`;
   const previousDate = `${Number(year)}-${month - 1}-${previousDay}`
@@ -45,7 +46,7 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
       text: 'Investment Value',
       align: 'left'
     },
-    labels: [ previousDate, investmentInfo.startDate, endDate ],
+    labels: [ previousDate, startDateStr, endDate ],
     xaxis: {
       type: 'string',
     },
