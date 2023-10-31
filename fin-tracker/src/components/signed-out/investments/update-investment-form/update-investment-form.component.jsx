@@ -150,7 +150,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
           {
             showConfirmClose === true &&
             <div className="buttons-container">
-              <h3>Are you sure you want to close the investment?</h3>
+              <h3>Sure you want to close the investment?</h3>
 
               <button className="investment-confirm-close-button" type="button"
                       onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.yes) }>Yes</button>
