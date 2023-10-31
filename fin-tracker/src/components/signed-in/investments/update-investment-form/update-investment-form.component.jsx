@@ -6,6 +6,8 @@ import FormInput from "../../../shared/form-input/form-input.component";
 
 import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
 
+import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants";
+
 const defaultFormFields = {
   investmentName: "",
   investmentType: "",
@@ -22,6 +24,7 @@ const defaultFormFields = {
 const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   const { updateInvestment, closeInvestment } = useContext(InvestmentsContext);
 
@@ -64,8 +67,16 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
 
   const handleClose = (event) => {
     event.preventDefault();
-    
-    closeInvestment(financeItemInfo.investmentName);
+    setShowConfirmClose(true);
+  };
+
+  const handleConfirmClose = (event, confirmClose) => {
+    event.preventDefault();
+    setShowConfirmClose(false);
+
+    if (confirmClose === INVESTMENT_CONFIRM_CLOSE.yes) {
+      closeInvestment(financeItemInfo.investmentName);
+    }
   };
 
   return (
@@ -137,6 +148,19 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
             <button className="investment-button-close" type="button"
                     onClick={ handleClose }>Close</button>
           </div>
+
+          {
+            showConfirmClose === true &&
+            <div className="buttons-container">
+              <h3>Sure you want to close the investment?</h3>
+
+              <button className="investment-confirm-close-button" type="button"
+                      onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.yes) }>Yes</button>
+              
+              <button className="investment-confirm-close-button" type="button"
+                      onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.no) }>No</button>
+            </div>
+          }
         </form>
       </div>
 
