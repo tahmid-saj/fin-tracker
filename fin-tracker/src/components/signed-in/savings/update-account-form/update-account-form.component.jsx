@@ -6,6 +6,8 @@ import FormInput from "../../../shared/form-input/form-input.component";
 
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 
+import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
+
 const defaultFormFields = {
   savingsAccountName: "",
   initialDeposit: "",
@@ -19,6 +21,7 @@ const defaultFormFields = {
 const UpdateAccountForm = ({ label, financeItemInfo }) => {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   const { updateSavingsAccount, closeSavingsAccount } = useContext(SavingsContext);
 
@@ -60,8 +63,16 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
 
   const handleClose = (event) => {
     event.preventDefault();
+    setShowConfirmClose(true);
+  };
 
-    closeSavingsAccount(financeItemInfo.savingsAccountName);
+  const handleConfirmClose = (event, confirmClose) => {
+    event.preventDefault();
+    setShowConfirmClose(false);
+    
+    if (confirmClose === SAVINGS_CONFIRM_CLOSE.yes) {
+      closeSavingsAccount(financeItemInfo.savingsAccountName);
+    }
   };
 
   return (
@@ -104,6 +115,18 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
           <button className="saving-button-close" type="button"
                   onClick={ handleClose }>Close</button>
         </div>
+
+        {
+          showConfirmClose === true &&
+          <div className="buttons-container">
+            <h3>Sure you want to close the savings account?</h3>
+
+            <button className="saving-button-confirm-close" type="button"
+                    onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.yes) }>Yes</button>
+            <button className="saving-button-confirm-close" type="button"
+                    onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.no) }>No</button>
+          </div>
+        }
       </form>
     </div>
   );
