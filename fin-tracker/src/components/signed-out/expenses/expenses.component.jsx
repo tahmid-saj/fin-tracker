@@ -1,5 +1,7 @@
 import AddExpense from "./add-expense/add-expense.component"
 import ExpensesFilter from "./expenses-filter/expense-filter.component"
+import ExpensesGraph from "./expenses-graph/expenses-graph.component"
+import ExpensesTable from "./expenses-table/expenses-table.component"
 import "./expenses.styles.scss"
 
 const Expenses = () => {
@@ -9,8 +11,10 @@ const Expenses = () => {
         <AddExpense></AddExpense>
         <ExpensesFilter></ExpensesFilter>
       </div>
+      
       <div className="expenses-info">
-        
+        <ExpensesGraph></ExpensesGraph>
+        <ExpensesTable></ExpensesTable>
       </div>
     </div>
   )
