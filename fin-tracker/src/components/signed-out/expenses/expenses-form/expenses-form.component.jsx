@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import "./expenses-form.styles.scss"
 import FormInput from "../../../shared/form-input/form-input.component"
 import Button from "../../../shared/button/button.component"
+import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 
 const defaultFormFields = {
   expenseFor: "",
@@ -11,8 +12,8 @@ const defaultFormFields = {
 }
 
 const ExpensesForm = () => {
-
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { expenses, addExpense } = useContext(ExpensesContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -31,8 +32,9 @@ const ExpensesForm = () => {
       !formFields.expenseFor || !formFields.expenseCost || !formFields.expenseDate || !formFields.expenseCategory) {
         console.log("please fill out all info")
         return
-      }
+    }
     
+    addExpense(formFields)
     resetFormFields()
   }
 

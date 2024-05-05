@@ -1,9 +1,12 @@
-import { Fragment } from "react"
+import { Fragment, useContext } from "react"
 import "./expenses-graph.styles.scss"
 import ReactApexChart from "react-apexcharts"
+import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 
 const ExpensesGraph = () => {
-  const series = [44, 55, 41, 17, 15]
+  const { expenses } = useContext(ExpensesContext)
+
+  const series = [expenses.length]
 
   const options = {
     chart: {
