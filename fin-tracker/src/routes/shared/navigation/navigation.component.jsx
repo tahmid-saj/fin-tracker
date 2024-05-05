@@ -56,6 +56,12 @@ const Navigation = () => {
                 Dashboard
               </Link>
 
+              <Link className="nav-link" to="/expenses-signed-in"
+                // onClick={ () => changeStyle("none", "white") }
+                >
+                Expenses
+              </Link>
+
               <Link className="nav-link" to="/banking-signed-in"
                 // onClick={ () => changeStyle("none", "white") }
                 >
@@ -84,6 +90,12 @@ const Navigation = () => {
             </Fragment>
           ) : (
             <Fragment>
+              <Link className="nav-link" to="/expenses"
+                // onClick={ () => changeStyle("none", "white") }
+                >
+                Expenses
+              </Link>
+
               <Link className="nav-link" to="/banking"
                 // onClick={ () => changeStyle("none", "white") }
                 >
