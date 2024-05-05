@@ -4,9 +4,9 @@ import ReactApexChart from "react-apexcharts"
 import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 
 const ExpensesGraph = () => {
-  const { expenses } = useContext(ExpensesContext)
+  const { expensesView } = useContext(ExpensesContext)
   let expensesCategoryCosts = new Map()
-  const categoryCosts = expenses.map((expense) => {
+  const categoryCosts = expensesView.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
