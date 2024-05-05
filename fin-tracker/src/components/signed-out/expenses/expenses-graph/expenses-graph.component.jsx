@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import "./expenses-graph.styles.scss"
 import ReactApexChart from "react-apexcharts"
 
@@ -7,13 +8,13 @@ const ExpensesGraph = () => {
   const options = {
     chart: {
       type: 'donut',
-      height: 500
+      height: 600,
     },
     responsive: [{
       breakpoint: 50,
       options: {
         chart: {
-          height: 500
+          height: 600
         },
         legend: {
           position: 'bottom'
@@ -24,7 +25,7 @@ const ExpensesGraph = () => {
 
   return (
     <div className="expenses-graph-container">
-        <ReactApexChart options={ options } series={ series } type="donut" height={ 500 } width={ 650 }/>
+      <ReactApexChart options={ options } series={ series } type="donut" height={ 600 } width={ 650 }/>
     </div>
   )
 }

@@ -24,12 +24,12 @@ const ExpensesFilter = () => {
     event.preventDefault()
     const { name, value } = event.target
 
-    setFormFields({ ...defaultFormFields, [name]: value })
-    filterUpdate()
+    setFormFields({ ...formFields, [name]: value })
+    // filterUpdate()
   }
 
   return (
-    <div>
+    <div className="expense-filter-container">
       <h3>Filter</h3>
 
       <FormInput label="Expense for" type="text" required onChange={ (e) => handleChange(e) }

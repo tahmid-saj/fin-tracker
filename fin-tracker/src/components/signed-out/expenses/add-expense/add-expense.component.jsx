@@ -4,7 +4,7 @@ import "./add-expense.styles.scss"
 
 const AddExpense = () => {
   return (
-    <div>
+    <div className="add-expense-form-view-container">
       <FormView financeItemLabel={ FINANCE_ITEM_TYPES.expenses } financeItemInfo={ null }></FormView>
     </div>
   )

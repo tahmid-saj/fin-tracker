@@ -41,7 +41,7 @@ const ExpensesForm = () => {
       <div className="add-expense-container">
         <h3>Add Expense</h3>
 
-        <form onSubmit={ (e) => handleSubmit(e) } className="add-expense-container">
+        <form class="add-expense-form-container" onSubmit={ (e) => handleSubmit(e) }>
           <FormInput label="Expense for" type="text" required onChange={ handleChange }
                     name="expenseFor" value={ formFields.expenseFor }></FormInput>
           
