@@ -14,7 +14,7 @@ const FormView = ({ financeItemLabel, financeItemInfo }) => {
   return (
     <div className="form-view-container">
       { financeItemLabel === FINANCE_ITEM_TYPES.banking && 
-        <BankAccountForm financeItemInfo={ financeItemInfo }></BankAccountForm> }
+        financeItemInfo !== undefined && <BankAccountForm financeItemInfo={ financeItemInfo }></BankAccountForm> }
 
       { financeItemLabel === FINANCE_ITEM_TYPES.investments && 
         financeItemInfo !== undefined && <InvestmentForm financeItemInfo={ financeItemInfo }></InvestmentForm> }
