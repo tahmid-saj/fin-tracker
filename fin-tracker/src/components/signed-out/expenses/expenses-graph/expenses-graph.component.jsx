@@ -5,16 +5,17 @@ import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expens
 
 const ExpensesGraph = () => {
   const { expenses } = useContext(ExpensesContext)
-  const expensesCategoryCosts = new Map()
+  let expensesCategoryCosts = new Map()
   const categoryCosts = expenses.map((expense) => {
-    if (expensesCategoryCosts.has(expense.expenseCategory)) {
-      expensesCategoryCosts.set(expense.expenseCategory, expensesCategoryCosts[expense.expenseCategory] + expense.expenseCost)
+    if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
+      expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
-      expensesCategoryCosts.set(expense.expenseCategory, expense.expenseCost)
+      expensesCategoryCosts.set(String(expense.expenseCategory), Number(expense.expenseCost))
     }
   })
 
   const series = [ ...expensesCategoryCosts.values() ]
+  console.log(series)
 
   const options = {
     chart: {

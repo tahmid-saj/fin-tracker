@@ -1,17 +1,23 @@
 import "./expenses-table.styles.scss"
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
 import DeleteExpense from "../delete-expense/delete-expense.component";
+import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context";
 
 const ExpensesTable = () => {
-  // Row Data: The data to be displayed.
-  const [rowData, setRowData] = useState([
-    { Date: "T", Category: "dd", For: "Y", Cost: 64950 },
-  ]);
+  const { expenses } = useContext(ExpensesContext)
+  const rowData = expenses.map((expense) => {
+    return {
+      Date: expense.expenseDate,
+      Category: expense.expenseCategory,
+      For: expense.expenseFor,
+      Cost: expense.expenseCost
+    }
+  })
 
   // Column Definitions: Defines the columns to be displayed.
   const [columnDefs, setColumnDefs] = useState([
