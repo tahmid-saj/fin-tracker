@@ -11,8 +11,9 @@ const Expenses = () => {
         <AddExpense></AddExpense>
         <ExpensesFilter></ExpensesFilter>
       </div>
-      
+
       <div className="expenses-info">
+        <h1>Summary</h1>
         <ExpensesGraph></ExpensesGraph>
         <ExpensesTable></ExpensesTable>
       </div>
