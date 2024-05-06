@@ -11,7 +11,7 @@ import Button from "../../../shared/button/button.component";
 
 const ExpensesTable = () => {
   const gridRef = useRef();
-  const { expensesView, removeExpense } = useContext(ExpensesContext)
+  const { expensesView, removeExpense, clearExpensesFilter } = useContext(ExpensesContext)
   const rowData = expensesView.map((expense) => {
     return {
       Date: expense.expenseDate,
@@ -44,14 +44,21 @@ const ExpensesTable = () => {
     removeExpense(selectedData[0].Tag)
   }
 
+  const handleClearFilter = (event) => {
+    event.preventDefault()
+
+    clearExpensesFilter()
+  }
+
   return (
     // wrapping container with theme & size
     <div className="ag-theme-quartz-dark expenses-table-container" // applying the grid theme
       style={{ height: 500, width: '100%' }} // the grid will fill the size of the parent container
       >
       <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
-      <div className="remove-expense-selected-button">
+      <div className="remove-expense-selected-button buttons-container">
         <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
+        <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
       </div>
     </div>
   )

@@ -14,7 +14,7 @@ const defaultFormFields = {
 
 const ExpensesFilter = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
-  const { filterExpenses } = useContext(ExpensesContext)
+  const { filterExpenses, clearExpensesFilter } = useContext(ExpensesContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -38,6 +38,13 @@ const ExpensesFilter = () => {
 
     filterExpenses(formFields)
   }
+
+  const handleClearFilter = (event) => {
+    event.preventDefault()
+
+    resetFormFields()
+    clearExpensesFilter()
+  }
   
   return (
     <div className="expense-filter-container">
@@ -59,7 +66,8 @@ const ExpensesFilter = () => {
                       name="expensesEndDate" value={ formFields.expensesEndDate }></FormInput>
 
         <div className="buttons-container">
-          <Button type="submit">Filter</Button>
+          <Button type="submit">Search</Button>
+          <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
         </div>
       </form>
     </div>
