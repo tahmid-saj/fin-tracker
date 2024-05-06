@@ -9,10 +9,14 @@ import SavingsAccountForm from "../savings/savings-account-form/savings-account-
 import "./form-view.styles.scss";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import ExpensesForm from "../expenses/expenses-form/expenses-form.component";
 
 const FormView = ({ financeItemLabel, financeItemInfo}) => {
   return (
     <div className="form-view-container">
+      { financeItemLabel === FINANCE_ITEM_TYPES.expenses &&
+        <ExpensesForm></ExpensesForm> }
+
       { financeItemLabel === FINANCE_ITEM_TYPES.banking && 
         financeItemInfo !== undefined && <BankAccountForm financeItemInfo={ financeItemInfo }></BankAccountForm> }
 

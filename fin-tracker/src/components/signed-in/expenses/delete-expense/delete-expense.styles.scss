@@ -1,0 +1,16 @@
+.remove-expense-container {
+  background-color: #dbc3c3;
+  border-radius: 5rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+  
+  &:hover {
+    background-color: #ff9c9c;
+    border-radius: 5rem;
+    border: none;
+    cursor: pointer;
+  }
+}
