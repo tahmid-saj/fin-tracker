@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, Fragment } from "react";
 import BankingSummary from "./banking/banking-summary.component";
 import InvestmentsSummary from "./investments/investments-summary.component";
 import SavingsSummary from "./savings/savings-summary.component";
@@ -9,9 +9,12 @@ import { SavingsContext } from "../../../contexts/signed-in/savings/savings.cont
 import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
 
 import "./summary.styles.scss";
+import ExpensesSummary from "./expenses/expenses.component";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
 
 const Summary = () => {
   const { summaries } = useContext(DashboardContext);
+  const { expenses } = useContext(ExpensesContext)
   const { bankingAccounts } = useContext(BankingContext);
   const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
@@ -23,6 +26,14 @@ const Summary = () => {
     </div>
     :
     <div className="accounts-summary-dashboard-container">
+      {
+        expenses.length ? 
+        <Fragment>
+          <h2>Expenses</h2>
+          <ExpensesSummary></ExpensesSummary> 
+        </Fragment>
+        : null
+      }
 
       <div className="summary-dashboard-container">
         {
