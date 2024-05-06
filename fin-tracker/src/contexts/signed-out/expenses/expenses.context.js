@@ -87,14 +87,11 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expensesSummary
   useEffect(() => {
-    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost }) => {
+    let newAllExpensesCategories = []
+    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost, expenseCategory }) => {
+      newAllExpensesCategories.push(expenseCategory)
       return allExpensesCost + expenseCost
     }, 0)
-
-    const newAllExpensesCategories = expenses.reduce((allExpensesCategories, { expenseCategory }) => {
-      allExpensesCategories.push(expenseCategory)
-      return allExpensesCategories
-    }, [])
     
     setExpensesSummary({
       currentAllExpensesCost: newAllExpensesCost,
