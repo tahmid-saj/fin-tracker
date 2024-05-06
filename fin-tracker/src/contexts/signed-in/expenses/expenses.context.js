@@ -5,8 +5,15 @@ import { DEFAULT_EXPENSES, DEFAULT_EXPENSES_SUMMARY } from "../../../utils/const
 
 import { UserContext } from "../../shared/user/user.context";
 
+import { getExpensesData, getExpensesSummaryData,
+  postExpenseCreate, deleteExpense,
+  putExpensesData, putExpensesSummaryData
+ } from "../../../utils/api-requests/expenses.requests";
+
 // helper functions
-const addExpenseHelper = (expenses, expense, expenseId) => {
+const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
+  postExpenseCreate(userId, email, expense)
+
   return [ ...expenses,
     {
       expenseFor: String(expense.expenseFor),
@@ -37,7 +44,9 @@ const filterExpensesHelper = (expenses, filterConditions) => {
   return filteredExpenses
 }
 
-const removeExpenseHelper = (expenses, expenseId) => {
+const removeExpenseHelper = (expenses, expenseId, userId, email) => {
+  deleteExpense(userId, email, expenseId)
+
   if (validateRemoveExpense(expenseId)) return expenses
 
   return expenses.filter(exp => exp.expenseId !== expenseId)
@@ -89,6 +98,11 @@ export const ExpensesContext = createContext({
   //   currentAllExpensesCost: 2000,
   //   currentAllExpensesCategories: []
   // }
+
+  // signing out
+  setDefaultExpensesValues: () => {},
+  setDefaultExpensesSummaryValues: () => {},
+  updateExpensesAndSummary: () => {}
 })
 
 // context component
@@ -99,16 +113,15 @@ export const ExpensesProvider = ({ children }) => {
   const [expensesView, setExpensesView] = useState(expenses)
   const [expensesSummary, setExpensesSummary] = useState({})
 
+  const { currentUser } = useContext(UserContext)
+
   // update expensesSummary
   useEffect(() => {
-    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost }) => {
+    let newAllExpensesCategories = []
+    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost, expenseCategory }) => {
+      newAllExpensesCategories.push(expenseCategory)
       return allExpensesCost + expenseCost
     }, 0)
-
-    const newAllExpensesCategories = expenses.reduce((allExpensesCategories, { expenseCategory }) => {
-      allExpensesCategories.push(expenseCategory)
-      return allExpensesCategories
-    }, [])
     
     setExpensesSummary({
       currentAllExpensesCost: newAllExpensesCost,
@@ -116,7 +129,7 @@ export const ExpensesProvider = ({ children }) => {
     })
   }, [expenses])
 
-  // update expensesView when expenses change
+  // update expensesView when expenses or filterConditions change
   useEffect(() => {
     if (filterConditions !== null) {
       setExpensesView(filterExpensesHelper(expenses, filterConditions))
@@ -124,6 +137,30 @@ export const ExpensesProvider = ({ children }) => {
       setExpensesView(expenses)
     }
   }, [expenses, filterConditions])
+
+  // update expenses and expensesSummary if currentUser changes
+  useEffect(() => {
+    async function fetchExpensesData() {
+      if (currentUser) {
+        const expensesData = await getExpensesData(currentUser.uid, currentUser.email)
+        const expensesSummaryData = await getExpensesSummaryData(currentUser.uid, currentUser.email)
+
+        if (expensesData) {
+          const { expenses } = await expensesData
+          setExpenses(expenses)
+        }
+
+        if (expensesSummaryData) {
+          const { expensesSummary } = await expensesSummaryData
+          setExpensesSummary(expensesSummary)
+        }
+      } else if (!currentUser) {
+        setDefaultExpensesValues()
+        setDefaultExpensesSummaryValues()
+      }
+    }
+    fetchExpensesData()
+  }, [currentUser])
 
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure expenseIds are not duplicate via validations
@@ -164,12 +201,18 @@ export const ExpensesProvider = ({ children }) => {
 
   // set default expenses summary values
   const setDefaultExpensesSummaryValues = () => {
-    setExpenses(setDefaultExpensesSummaryValuesHelper())
+    setExpensesSummary(setDefaultExpensesSummaryValuesHelper())
+  }
+
+  // update expenses and summary on sign out
+  const updateExpensesAndSummary = () => {
+    putExpensesData(currentUser.uid, currentUser.email, expenses)
+    putExpensesSummaryData(currentUser.uid, currentUser.email, expensesSummary)
   }
 
   const value = { expenses, expensesView, filterConditions,
-                  addExpense, filterExpenses, removeExpense, clearExpensesFilter, 
-                  expensesSummary, setDefaultExpensesValues, setDefaultExpensesSummaryValues }
+                  addExpense, filterExpenses, removeExpense, clearExpensesFilter, expensesSummary, 
+                  setDefaultExpensesValues, setDefaultExpensesSummaryValues, updateExpensesAndSummary }
   
   return (
     <ExpensesContext.Provider

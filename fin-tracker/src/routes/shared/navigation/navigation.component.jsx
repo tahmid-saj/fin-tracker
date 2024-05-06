@@ -4,6 +4,7 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import "./navigation.styles.scss";
 
 import { UserContext } from "../../../contexts/shared/user/user.context";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
@@ -15,6 +16,7 @@ const Navigation = () => {
   document.body.style.backgroundColor = color;
 
   const { currentUser } = useContext(UserContext);
+  const { updateExpensesAndSummary } = useContext(ExpensesContext)
   const { updateBankingAccountsAndSummary } = useContext(BankingContext);
   const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
   const { updateSavingsAccountsAndSummary } = useContext(SavingsContext);
@@ -23,6 +25,7 @@ const Navigation = () => {
   const linearGradient = `linear-gradient(to bottom, rgba(16, 44, 74, 0.95), rgba(16, 44, 74, 0.95)), url("https://i.pinimg.com/originals/d2/35/01/d2350155f30ad946907bcb7a730cfeca.jpg")`;
 
   const handleSignOut = () => {
+    updateExpensesAndSummary();
     updateBankingAccountsAndSummary();
     updateInvestmentsAndSummary();
     updateSavingsAccountsAndSummary();
