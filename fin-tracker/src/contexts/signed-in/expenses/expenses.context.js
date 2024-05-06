@@ -1,5 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
+
+import { DEFAULT_EXPENSES, DEFAULT_EXPENSES_SUMMARY } from "../../../utils/constants/expenses.constants"
+
+import { UserContext } from "../../shared/user/user.context";
 
 // helper functions
 const addExpenseHelper = (expenses, expense, expenseId) => {
@@ -37,6 +41,16 @@ const removeExpenseHelper = (expenses, expenseId) => {
   if (validateRemoveExpense(expenseId)) return expenses
 
   return expenses.filter(exp => exp.expenseId !== expenseId)
+}
+
+// set default expenses values
+const setDefaultExpensesValuesHelper = () => {
+  return DEFAULT_EXPENSES
+}
+
+// set default expenses summary values
+const setDefaultExpensesSummaryValuesHelper = () => {
+  return DEFAULT_EXPENSES_SUMMARY
 }
 
 // initial state
@@ -143,9 +157,19 @@ export const ExpensesProvider = ({ children }) => {
     setExpensesView(expenses)
   }
 
+  // set default expenses values
+  const setDefaultExpensesValues = () => {
+    setExpenses(setDefaultExpensesValuesHelper())
+  }
+
+  // set default expenses summary values
+  const setDefaultExpensesSummaryValues = () => {
+    setExpenses(setDefaultExpensesSummaryValuesHelper())
+  }
+
   const value = { expenses, expensesView, filterConditions,
                   addExpense, filterExpenses, removeExpense, clearExpensesFilter, 
-                  expensesSummary }
+                  expensesSummary, setDefaultExpensesValues, setDefaultExpensesSummaryValues }
   
   return (
     <ExpensesContext.Provider
