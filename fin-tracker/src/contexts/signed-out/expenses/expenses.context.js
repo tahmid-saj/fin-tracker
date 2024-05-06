@@ -22,7 +22,7 @@ const filterExpensesHelper = (expenses, filterConditions) => {
     if (filterConditions.expenseFor === "" || (expense.expenseFor.toLowerCase().includes(filterConditions.expenseFor.toLowerCase()))) {
       if (filterConditions.expenseCategory === "" || (expense.expenseCategory.toLowerCase().includes(filterConditions.expenseCategory.toLowerCase()))) {
         if (filterConditions.expensesStartDate === "" || (filterConditions.expensesStartDate <= expense.expenseDate)) {
-          if (filterConditions.expensesEndDate === "" || (filterConditions.expensesEndDate >= expense.expenseEnd)) {
+          if (filterConditions.expensesEndDate === "" || (filterConditions.expensesEndDate >= expense.expenseDate)) {
             filteredExpenses.push(expense)
           }
         }
@@ -87,8 +87,8 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expensesSummary
   useEffect(() => {
-    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expensesCost }) => {
-      return allExpensesCost + expensesCost
+    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost }) => {
+      return allExpensesCost + expenseCost
     }, 0)
 
     const newAllExpensesCategories = expenses.reduce((allExpensesCategories, { expenseCategory }) => {
@@ -98,7 +98,7 @@ export const ExpensesProvider = ({ children }) => {
     
     setExpensesSummary({
       currentAllExpensesCost: newAllExpensesCost,
-      currentAlllExpensesCategories: newAllExpensesCategories
+      currentAllExpensesCategories: newAllExpensesCategories
     })
   }, [expenses])
 
@@ -138,7 +138,14 @@ export const ExpensesProvider = ({ children }) => {
     setExpenses(removeExpenseHelper(expenses, expenseId))
   }
 
-  const value = { expenses, expensesView, addExpense, filterExpenses, removeExpense, expensesSummary }
+  const clearExpensesFilter = () => {
+    setFilterConditions(null)
+    setExpensesView(expenses)
+  }
+
+  const value = { expenses, expensesView, filterConditions,
+                  addExpense, filterExpenses, removeExpense, clearExpensesFilter, 
+                  expensesSummary }
   
   return (
     <ExpensesContext.Provider
