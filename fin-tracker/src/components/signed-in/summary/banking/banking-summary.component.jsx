@@ -18,8 +18,8 @@ const BankingSummary = () => {
         {
           bankingAccounts.map((account, index) => {
             return (
-              <div className="banking-summary-graph-container">
-                <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ account } 
+              <div className="banking-summary-graph-container" key={ index }>
+                <FinanceTrackerItemSummary financeTrackerItemInfo={ account } 
                                                 financeItemType={ FINANCE_ITEM_TYPES.banking }></FinanceTrackerItemSummary>
                 <SummaryGraphBanking financeItemInfo={ account.name }></SummaryGraphBanking>
               </div>

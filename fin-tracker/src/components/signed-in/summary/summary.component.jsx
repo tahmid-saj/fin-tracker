@@ -29,7 +29,6 @@ const Summary = () => {
       {
         expenses.length ? 
         <Fragment>
-          <h2>Expenses</h2>
           <ExpensesSummary></ExpensesSummary> 
         </Fragment>
         : null

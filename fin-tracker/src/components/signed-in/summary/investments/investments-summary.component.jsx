@@ -18,8 +18,8 @@ const InvestmentsSummary = () => {
         {
           investments.map((investment, index) => {
             return (
-              <div className="investments-summary-graph-container">
-                <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ investment }
+              <div className="investments-summary-graph-container" key={ index }>
+                <FinanceTrackerItemSummary financeTrackerItemInfo={ investment }
                                                 financeItemType={ FINANCE_ITEM_TYPES.investments }></FinanceTrackerItemSummary>
                 <SummaryGraphInvestment financeItemInfo={ investment }></SummaryGraphInvestment>
               </div>

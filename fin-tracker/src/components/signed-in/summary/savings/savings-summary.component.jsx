@@ -18,8 +18,8 @@ const SavingsSummary = () => {
         {
           savingsAccounts.map((account, index) => {
             return (
-              <div className="savings-summary-graph-container">
-                <FinanceTrackerItemSummary key={ index } financeTrackerItemInfo={ account }
+              <div className="savings-summary-graph-container" key={ index }>
+                <FinanceTrackerItemSummary financeTrackerItemInfo={ account }
                                                 financeItemType={ FINANCE_ITEM_TYPES.savings }></FinanceTrackerItemSummary>
                 <SummaryGraphSavingsAccount financeItemInfo={ account }></SummaryGraphSavingsAccount>
               </div>
