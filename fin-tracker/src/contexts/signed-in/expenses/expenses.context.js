@@ -12,7 +12,7 @@ import { getExpensesData, getExpensesSummaryData,
 
 // helper functions
 const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
-  // postExpenseCreate(userId, email, expense)
+  postExpenseCreate(userId, email, expense, expenseId)
 
   return [ ...expenses,
     {
@@ -45,7 +45,7 @@ const filterExpensesHelper = (expenses, filterConditions) => {
 }
 
 const removeExpenseHelper = (expenses, expenseId, userId, email) => {
-  // deleteExpense(userId, email, expenseId)
+  deleteExpense(userId, email, expenseId)
 
   if (validateRemoveExpense(expenseId)) return expenses
 
@@ -119,6 +119,7 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expensesSummary
   useEffect(() => {
+    // TODO: expense greater than 30 days but not past current date
     Date.prototype.subtractDays = function (d) {
         this.setDate(this.getDate() - d);
         return this;
@@ -159,28 +160,31 @@ export const ExpensesProvider = ({ children }) => {
   }, [expenses, filterConditions])
 
   // update expenses and expensesSummary if currentUser changes
-  // useEffect(() => {
-  //   async function fetchExpensesData() {
-  //     if (currentUser) {
-  //       const expensesData = await getExpensesData(currentUser.uid, currentUser.email)
-  //       const expensesSummaryData = await getExpensesSummaryData(currentUser.uid, currentUser.email)
+  useEffect(() => {
+    async function fetchExpensesData() {
+      if (currentUser) {
+        const expensesData = await getExpensesData(currentUser.uid, currentUser.email)
+        const expensesSummaryData = await getExpensesSummaryData(currentUser.uid, currentUser.email)
 
-  //       if (expensesData) {
-  //         const { expenses } = await expensesData
-  //         setExpenses(expenses)
-  //       }
+        if (expensesData) {
+          const { expenses } = await expensesData
+          setExpenses(expenses)
+        }
 
-  //       if (expensesSummaryData) {
-  //         const { expensesSummary } = await expensesSummaryData
-  //         setExpensesSummary(expensesSummary)
-  //       }
-  //     } else if (!currentUser) {
-  //       setDefaultExpensesValues()
-  //       setDefaultExpensesSummaryValues()
-  //     }
-  //   }
-  //   fetchExpensesData()
-  // }, [currentUser])
+        if (expensesSummaryData) {
+          const { expensesSummary: expSummary } = await expensesSummaryData
+          setExpensesSummary({
+            ...expensesSummary,
+            currentAllExpensesCost: expSummary.currentAllExpensesCost
+          })
+        }
+      } else if (!currentUser) {
+        setDefaultExpensesValues()
+        setDefaultExpensesSummaryValues()
+      }
+    }
+    fetchExpensesData()
+  }, [currentUser])
 
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure expenseIds are not duplicate via validations
@@ -188,7 +192,7 @@ export const ExpensesProvider = ({ children }) => {
     if (validateAddExpense(expense)) {
       return
     } else {
-      setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1))
+      setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1, currentUser.uid, currentUser.email))
       setExpenseLength(expenseLength + 1)
       console.log("created")
     }
@@ -206,7 +210,7 @@ export const ExpensesProvider = ({ children }) => {
   }
 
   const removeExpense = (expenseId) => {
-    setExpenses(removeExpenseHelper(expenses, expenseId))
+    setExpenses(removeExpenseHelper(expenses, expenseId, currentUser.uid, currentUser.email))
   }
 
   const clearExpensesFilter = () => {
@@ -226,8 +230,10 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expenses and summary on sign out
   const updateExpensesAndSummary = () => {
-    // putExpensesData(currentUser.uid, currentUser.email, expenses)
-    // putExpensesSummaryData(currentUser.uid, currentUser.email, expensesSummary)
+    putExpensesData(currentUser.uid, currentUser.email, expenses)
+    putExpensesSummaryData(currentUser.uid, currentUser.email, {
+      currentAllExpensesCost: expensesSummary.currentAllExpensesCost
+    })
   }
 
   const value = { expenses, expensesView, filterConditions,

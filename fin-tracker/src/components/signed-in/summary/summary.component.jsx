@@ -33,6 +33,8 @@ const Summary = () => {
         </Fragment>
         : null
       }
+      
+      <h1>Summary</h1>
 
       <div className="summary-dashboard-container">
         {
