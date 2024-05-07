@@ -1,0 +1,23 @@
+.h1 {
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(0, 0, 0);
+}
+
+.expenses-summary-dashboard-container {
+  margin-top: 5%;
+}
+
+.expenses-summary-info-graph-container {
+  border-radius: 1.5rem;
+  box-shadow: 3px 3px 3px 3px rgb(150, 150, 150);
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 2% 5% 5% 5%;
+  padding-top: 5%;
+  padding-bottom: 1%;
+  padding-left: 14%;
+  // padding-left: 6%;
+  width: 120%;
+}

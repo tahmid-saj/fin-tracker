@@ -1,20 +1,21 @@
-import { Fragment, useContext } from "react"
-import "./expenses-graph.styles.scss"
+import "./expenses-summary-graph.styles.scss"
+import { useContext } from "react"
 import ReactApexChart from "react-apexcharts"
-import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
 
-const ExpensesGraph = () => {
-  const { expensesView } = useContext(ExpensesContext)
-  
+const ExpensesSummaryGraph = () => {
+  const { expensesSummary } = useContext(ExpensesContext)
+  const { pastMonthExpenses } = expensesSummary
+
   let expensesCategoryCosts = new Map()
-  const categoryCosts = expensesView.map((expense) => {
+  const categoryCosts = pastMonthExpenses.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expense.expenseCost))
     }
   })
-
+  
   const series = [ ...expensesCategoryCosts.values() ]
   console.log(series)
 
@@ -38,10 +39,10 @@ const ExpensesGraph = () => {
   }
 
   return (
-    <div className="expenses-graph-container">
-      <ReactApexChart options={ options } series={ series } type="donut" height={ 600 } width={ 650 }/>
+    <div className="expenses-summary-graph-container">
+      <ReactApexChart options={ options } series={ series } type="donut" height={ 400 } width={ 450 }/>
     </div>
   )
 }
 
-export default ExpensesGraph
+export default ExpensesSummaryGraph
