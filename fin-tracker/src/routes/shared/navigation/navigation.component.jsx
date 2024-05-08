@@ -93,6 +93,12 @@ const Navigation = () => {
             </Fragment>
           ) : (
             <Fragment>
+              <Link className="nav-link" to="/dashboard"
+                // onClick={ () => changeStyle("none", "white") }
+                >
+                Dashboard
+              </Link>
+
               <Link className="nav-link" to="/expenses"
                 // onClick={ () => changeStyle("none", "white") }
                 >

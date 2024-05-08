@@ -1,6 +1,6 @@
 import "./expenses-summary-info.styles.scss"
 import { useContext } from "react"
-import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
+import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
 
 const ExpensesSummaryInfo = () => {
   const { expensesSummary } = useContext(ExpensesContext)

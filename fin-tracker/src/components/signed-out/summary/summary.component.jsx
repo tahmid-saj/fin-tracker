@@ -3,14 +3,14 @@ import BankingSummary from "./banking/banking-summary.component";
 import InvestmentsSummary from "./investments/investments-summary.component";
 import SavingsSummary from "./savings/savings-summary.component";
 
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
+import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
+import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboard.context";
 
 import "./summary.styles.scss";
 import ExpensesSummary from "./expenses/expenses.component";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
+import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
 
 const Summary = () => {
   const { summaries } = useContext(DashboardContext);
@@ -27,7 +27,7 @@ const Summary = () => {
     :
     <div className="accounts-summary-dashboard-container">
       {
-        expenses.length ? 
+        expenses.length !== 0 ? 
         <Fragment>
           <ExpensesSummary></ExpensesSummary> 
         </Fragment>

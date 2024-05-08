@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import HomeRoute from "./routes/shared/home/home.component";
 import Navigation from "./routes/shared/navigation/navigation.component";
+import DashboardRoute from "./routes/signed-out/dashboard/dashboard.component";
 import ExpensesRoute from "./routes/signed-out/expenses/expenses.component";
 import BankingRoute from "./routes/signed-out/banking/banking.component";
 import InvestmentsRoute from "./routes/signed-out/investments/investments.components";
@@ -20,14 +21,15 @@ const App = () => {
     <Routes>
       <Route path="/" element={ <Navigation/> }>
         <Route index element={ <HomeRoute/> }/>
+        <Route path="dashboard" element={ <DashboardRoute/> }/>
         <Route path="expenses" element={ <ExpensesRoute/> }/>
         <Route path="banking" element={ <BankingRoute/> }/>
         <Route path="investments" element={ <InvestmentsRoute/> }/>
         <Route path="savings" element={ <SavingsRoute/> }/>
         <Route path="auth" element={ <AuthenticationRoute/> }/>
 
-        <Route path="expenses-signed-in" element={ <ExpensesRouteSignedIn/> }/>
         <Route path="dashboard-signed-in" element={ <DashboardRouteSignedIn/> }/>
+        <Route path="expenses-signed-in" element={ <ExpensesRouteSignedIn/> }/>
         <Route path="banking-signed-in" element={ <BankingRouteSignedIn/> }/>
         <Route path="investments-signed-in" element={ <InvestmentsRouteSignedIn/> }/>
         <Route path="savings-signed-in" element={ <SavingsRouteSignedIn/> }/>
