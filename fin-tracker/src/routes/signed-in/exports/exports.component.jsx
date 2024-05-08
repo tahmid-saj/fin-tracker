@@ -4,7 +4,7 @@ import ExportBox from "../../../components/signed-in/exports/export-box/export-b
 const ExportsRouteSignedIn = () => {
   return (
     <div className="exports-route-container">
-      <h2 style={{color: "white"}}><strong>Export the summary</strong></h2>
+      <h2 style={{color: "black"}}><strong>Export the summary</strong></h2>
 
       <ExportBox></ExportBox>
     </div>
