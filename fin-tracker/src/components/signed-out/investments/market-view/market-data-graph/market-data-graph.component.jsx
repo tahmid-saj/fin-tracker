@@ -4,13 +4,15 @@ import ReactApexChart from 'react-apexcharts';
 import { MarketDataContext } from "../../../../../contexts/shared/market-data/market-data.context";
 import { Fragment, useContext } from "react";
 
+import { MARKET_DATA_INTERVALS } from "../../../../../utils/constants/market-data.constants";
+
 const MarketDataGraph = () => {
   const { marketData } = useContext(MarketDataContext)
-  if (!marketData) return (
+  if (!marketData || !marketData.queryResults) return (
     <Fragment></Fragment>
   )
 
-  // const { queryResults } = marketData
+  const { queryResults } = marketData
   console.log(marketData)
   
   // if (!queryResults) return (
@@ -18,8 +20,8 @@ const MarketDataGraph = () => {
   // )
 
   const queryResultsTimes = []
-  const queryResultsAmounts = marketData.map((queryResult) => {
-    queryResultsTimes.push(queryResult.time)
+  const queryResultsAmounts = queryResults.map((queryResult) => {
+    queryResultsTimes.push(Date(queryResult.time))
     return queryResult.closing
   })
 
@@ -31,7 +33,7 @@ const MarketDataGraph = () => {
   const options = {
     chart: {
       type: 'area',
-      height: 350,
+      height: 1000,
       zoom: {
         enabled: true
       }
@@ -44,12 +46,16 @@ const MarketDataGraph = () => {
     },
     
     title: {
-      text: 'Investment Value',
+      text: `${marketData.marketDataTicker} (${marketData.marketDataStartDate} 
+        - ${marketData.marketDataEndDate}, ${MARKET_DATA_INTERVALS[marketData.marketDataInterval]} interval)`,
       align: 'left'
     },
     labels: queryResultsTimes,
     xaxis: {
       type: 'string',
+      labels: {
+        show: false
+      }
     },
     yaxis: {
       opposite: false
@@ -61,7 +67,7 @@ const MarketDataGraph = () => {
 
   return (
     <div className="market-data-graph-container">
-      <ReactApexChart options={ options } series={ series } type="area" height={ 350 } width={ 1000 }/>
+      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
     </div>
   )
 }

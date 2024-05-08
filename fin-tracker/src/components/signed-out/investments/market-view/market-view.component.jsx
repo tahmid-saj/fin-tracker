@@ -11,9 +11,10 @@ const MarketView = () => {
 
   return (
     <div className="market-view-container">
+      <h3>Search Market Data</h3>
       <MarketDataSearch></MarketDataSearch>
       {
-        marketData !== undefined && <MarketDataGraph></MarketDataGraph>
+        marketData !== undefined && marketData.queryResults !== undefined && <MarketDataGraph></MarketDataGraph>
       }
     </div>
   )

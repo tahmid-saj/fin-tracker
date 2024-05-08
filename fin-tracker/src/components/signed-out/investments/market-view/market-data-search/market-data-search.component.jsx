@@ -4,6 +4,14 @@ import FormInput from "../../../../shared/form-input/form-input.component"
 import Button from "../../../../shared/button/button.component"
 import { MarketDataContext } from "../../../../../contexts/shared/market-data/market-data.context"
 
+const initialFormFields = {
+  marketDataType: "Crypto",
+  marketDataTicker: "BTCUSD",
+  marketDataInterval: "Hour",
+  marketDataStartDate: "",
+  marketDataEndDate: ""
+}
+
 const defaultFormFields = {
   marketDataType: "",
   marketDataTicker: "",
@@ -13,14 +21,15 @@ const defaultFormFields = {
 }
 
 const MarketDataSearch = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState(initialFormFields)
   const { searchMarketData } = useContext(MarketDataContext)
 
-  const resetFormFields = () => {
+  const resetFormFields = (event) => {
+    event.preventDefault()
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     if (formFields.marketDataType === "" || !formFields.marketDataType ||
@@ -33,8 +42,8 @@ const MarketDataSearch = () => {
       return
     }
 
-    searchMarketData(formFields)
-    resetFormFields()
+    await searchMarketData(formFields)
+    resetFormFields(event)
   }
 
   const handleChange = (event) => {
@@ -79,8 +88,11 @@ const MarketDataSearch = () => {
         <h5>End</h5>
         <FormInput type="date" required onChange={ handleChange }
                   name="marketDataEndDate" value={ formFields.marketDataEndDate }></FormInput>
-                  
-        <Button type="submit">Search</Button>
+        
+        <div className="buttons-container">
+          <Button type="submit">Search</Button>
+          <Button type="button" onClick={ (e) => resetFormFields(e) }>Clear</Button>
+        </div>
       </form>
     </div>
   )
