@@ -3,8 +3,8 @@ import MarketDataSearch from "./market-data-search/market-data-search.component"
 import MarketDataGraph from "./market-data-graph/market-data-graph.component"
 
 import { useContext, useEffect } from "react"
-import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context"
-import { DEFAULT_MARKET_DATA } from "../../../../utils/constants/market-data.constants"
+import { MarketDataContext } from "../../../contexts/shared/market-data/market-data.context"
+import { DEFAULT_MARKET_DATA } from "../../../utils/constants/market-data.constants"
 
 const MarketView = () => {
   const { marketData } = useContext(MarketDataContext)
@@ -14,7 +14,7 @@ const MarketView = () => {
       <h3>Search Market Data</h3>
       <MarketDataSearch></MarketDataSearch>
       {
-        marketData !== undefined && marketData.queryResults !== undefined && <MarketDataGraph></MarketDataGraph>
+        marketData !== DEFAULT_MARKET_DATA && marketData.queryResults !== undefined && <MarketDataGraph></MarketDataGraph>
       }
     </div>
   )
