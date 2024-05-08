@@ -1,0 +1,41 @@
+.accounts-summary-dashboard-container {
+  width: 1100px;
+  // display: flex;
+  // margin: 0 auto;
+  margin-left: 7%;
+  margin-bottom: 4%;
+  justify-content: center;
+  align-items: center;
+  display: block;
+}
+
+.summary-dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // padding-bottom: 5%;
+  border-radius: 2rem;
+  background-color: rgba(87, 149, 216, 0.39);
+  margin: 5%;
+  color: black;
+}
+
+.empty-dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  // h2 {
+  color: rgba(0, 0, 0, 0);
+  // }
+}
+
+.summary-dashboard-banking-container,
+.summary-dashboard-investments-container,
+.summary-dashboard-savings-container {
+  // color: white;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+}

@@ -119,12 +119,12 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expensesSummary
   useEffect(() => {
-    // TODO: expense greater than 30 days but not past current date
     Date.prototype.subtractDays = function (d) {
         this.setDate(this.getDate() - d);
         return this;
     }
     let past30Days = new Date()
+    let today = new Date()
     past30Days.subtractDays(30)
     console.log(past30Days)
 
@@ -134,7 +134,7 @@ export const ExpensesProvider = ({ children }) => {
 
     const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
       newAllExpensesCategories.push(expense.expenseCategory)
-      if (Date.parse(expense.expenseDate) >= past30Days) {
+      if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
         newPast30DaysAllExpensesCost += expense.expenseCost
         newPastMonthExpenses.push(expense)
       }

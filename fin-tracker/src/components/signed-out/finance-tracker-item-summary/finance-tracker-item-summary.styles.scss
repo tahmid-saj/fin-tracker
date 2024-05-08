@@ -1,0 +1,35 @@
+.accounts-summary-container {
+  justify-content: space-between;
+  display: flex;
+  margin: 2% 10% 2% 5%;
+  color: black;
+  width: 1000px;
+  background-color: rgba(87, 149, 216, 0.39);
+  border-radius: 2rem;
+  padding: 1.5rem;
+}
+
+.dashboard-accounts-button {
+  min-width: 165px;
+  width: auto;
+  height: 50px;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px 0 35px;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed';
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
+}

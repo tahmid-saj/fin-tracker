@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, Children } from "react";
+import { createContext, useState, useEffect } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
 // helper functions
@@ -74,6 +74,8 @@ export const ExpensesContext = createContext({
   // {
   //   currentAllExpensesCost: 2000,
   //   currentAllExpensesCategories: []
+  //   pastMonthAllExpensesCost: 1000,
+  //   pastMonthExpenses: []
   // }
 })
 
@@ -87,15 +89,45 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expensesSummary
   useEffect(() => {
+    // let newAllExpensesCategories = []
+    // const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost, expenseCategory }) => {
+    //   newAllExpensesCategories.push(expenseCategory)
+    //   return allExpensesCost + expenseCost
+    // }, 0)
+    
+    // setExpensesSummary({
+    //   currentAllExpensesCost: newAllExpensesCost,
+    //   currentAllExpensesCategories: newAllExpensesCategories
+    // })
+    
+    Date.prototype.subtractDays = function (d) {
+      this.setDate(this.getDate() - d);
+      return this;
+    }
+    let past30Days = new Date()
+    let today = new Date()
+    past30Days.subtractDays(30)
+    console.log(past30Days)
+
     let newAllExpensesCategories = []
-    const newAllExpensesCost = expenses.reduce((allExpensesCost, { expenseCost, expenseCategory }) => {
-      newAllExpensesCategories.push(expenseCategory)
-      return allExpensesCost + expenseCost
+    let newPastMonthExpenses = []
+    let newPast30DaysAllExpensesCost = 0
+
+    const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
+      newAllExpensesCategories.push(expense.expenseCategory)
+      if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
+        newPast30DaysAllExpensesCost += expense.expenseCost
+        newPastMonthExpenses.push(expense)
+      }
+
+      return allExpensesCost + expense.expenseCost
     }, 0)
     
     setExpensesSummary({
       currentAllExpensesCost: newAllExpensesCost,
-      currentAllExpensesCategories: newAllExpensesCategories
+      currentAllExpensesCategories: newAllExpensesCategories,
+      pastMonthAllExpensesCost: newPast30DaysAllExpensesCost,
+      pastMonthExpenses: newPastMonthExpenses
     })
   }, [expenses])
 
