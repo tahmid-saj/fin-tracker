@@ -1,8 +1,8 @@
 import "./market-data-search.styles.scss"
 import { useState, useContext } from "react"
-import FormInput from "../../../../shared/form-input/form-input.component"
-import Button from "../../../../shared/button/button.component"
-import { MarketDataContext } from "../../../../../contexts/shared/market-data/market-data.context"
+import FormInput from "../../form-input/form-input.component"
+import Button from "../../button/button.component"
+import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context"
 
 const initialFormFields = {
   marketDataType: "Crypto",

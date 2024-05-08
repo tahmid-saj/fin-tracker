@@ -1,10 +1,10 @@
 import "./market-data-graph.styles.scss"
 
 import ReactApexChart from 'react-apexcharts';
-import { MarketDataContext } from "../../../../../contexts/shared/market-data/market-data.context";
+import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context";
 import { Fragment, useContext } from "react";
 
-import { MARKET_DATA_INTERVALS } from "../../../../../utils/constants/market-data.constants";
+import { MARKET_DATA_INTERVALS } from "../../../../utils/constants/market-data.constants";
 
 const MarketDataGraph = () => {
   const { marketData } = useContext(MarketDataContext)
