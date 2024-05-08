@@ -8,23 +8,23 @@ import { getStocksMarketData, getIndicesMarketData,
  } from "../../../utils/api-requests/market-data.requests";
 
 // helper functions
-const searchMarketDataHelper = (marketDataQuery) => {
+const searchMarketDataHelper = async (marketDataQuery) => {
   if (validateMarketDataQuery(marketDataQuery)) return DEFAULT_MARKET_DATA
 
   // api request
   let res;
   switch (marketDataQuery.marketDataType) {
     case MARKET_DATA_TYPES.stocks:
-      res = getStocksMarketData(marketDataQuery)
+      res = await getStocksMarketData(marketDataQuery)
       break
     case MARKET_DATA_TYPES.indices:
-      res = getIndicesMarketData(marketDataQuery)
+      res = await getIndicesMarketData(marketDataQuery)
       break
     case MARKET_DATA_TYPES.crypto:
-      res = getCryptoMarketData(marketDataQuery)
+      res = await getCryptoMarketData(marketDataQuery)
       break
     case MARKET_DATA_TYPES.currencies:
-      res = getForexMarketData(marketDataQuery)
+      res = await getForexMarketData(marketDataQuery)
       break
     default:
       break
@@ -60,10 +60,13 @@ export const MarketDataProvider = ({ children }) => {
     console.log(marketData)
   }, [marketData])
 
-  const searchMarketData = (marketDataQuery) => {
-    const resMarketData = searchMarketDataHelper(marketDataQuery)
-    setMarketData(resMarketData)
-    // console.log(resMarketData)
+  const searchMarketData = async (marketDataQuery) => {
+    const resMarketData = await searchMarketDataHelper(marketDataQuery)
+    setMarketData({
+      ...marketDataQuery,
+      queryResults: resMarketData
+    })
+    console.log(resMarketData)
   } 
   
   const value = { marketData, setMarketData, searchMarketData }
