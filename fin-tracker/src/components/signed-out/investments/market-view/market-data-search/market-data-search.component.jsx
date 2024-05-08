@@ -20,7 +20,7 @@ const MarketDataSearch = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     if (formFields.marketDataType === "" || !formFields.marketDataType ||
@@ -33,7 +33,7 @@ const MarketDataSearch = () => {
       return
     }
 
-    searchMarketData(formFields)
+    await searchMarketData(formFields)
     resetFormFields()
   }
 
