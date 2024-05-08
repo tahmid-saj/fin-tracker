@@ -20,6 +20,7 @@ import { BankingProvider as BankingProviderSignedIn } from './contexts/signed-in
 import { InvestmentsProvider as InvestmentsProviderSignedIn } from './contexts/signed-in/investments/investments.context';
 import { SavingsProvider as SavingsProviderSignedIn } from './contexts/signed-in/savings/savings.context';
 import { DashboardProvider as DashboardProviderSignedIn } from './contexts/signed-in/dashboard/dashboard.context';
+import { ExportsProvider } from './contexts/signed-in/exports/exports.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,7 +38,9 @@ root.render(
                         <InvestmentsProviderSignedIn>
                           <SavingsProviderSignedIn>
                             <DashboardProviderSignedIn>
-                              <App />
+                              <ExportsProvider>
+                                <App />
+                              </ExportsProvider>
                             </DashboardProviderSignedIn>
                           </SavingsProviderSignedIn>
                         </InvestmentsProviderSignedIn>
