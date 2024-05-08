@@ -38,7 +38,7 @@ export const MarketDataContext = createContext({
   //   marketDataEndDate: "2024-04-01",
   //   queryResults: [
   //     {
-  //       closing: "100",
+  //       closing: 100,
   //       time: "2024-01-01"
   //     }
   //   ]
