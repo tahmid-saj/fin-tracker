@@ -2,6 +2,7 @@ import "./market-data-search.styles.scss"
 import { useState, useContext } from "react"
 import FormInput from "../../../../shared/form-input/form-input.component"
 import Button from "../../../../shared/button/button.component"
+import { MarketDataContext } from "../../../../../contexts/shared/market-data/market-data.context"
 
 const defaultFormFields = {
   marketDataType: "",
@@ -13,6 +14,7 @@ const defaultFormFields = {
 
 const MarketDataSearch = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { searchMarketData } = useContext(MarketDataContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -31,6 +33,7 @@ const MarketDataSearch = () => {
       return
     }
 
+    searchMarketData(formFields)
     resetFormFields()
   }
 
@@ -39,6 +42,7 @@ const MarketDataSearch = () => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
+    console.log(formFields)
   }
 
   return (
