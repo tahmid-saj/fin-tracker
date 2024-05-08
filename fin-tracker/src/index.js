@@ -11,6 +11,7 @@ import { UserProvider } from './contexts/shared/user/user.context';
 import { ExpensesProvider } from './contexts/signed-out/expenses/expenses.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
 import { InvestmentsProvider } from './contexts/signed-out/investments/investments.context';
+import { MarketDataProvider } from './contexts/shared/market-data/market-data.context';
 import { SavingsProvider } from './contexts/signed-out/savings/savings.context';
 
 import { ExpensesProvider as ExpensesProviderSignedIn } from './contexts/signed-in/expenses/expenses.context';
@@ -27,19 +28,21 @@ root.render(
         <ExpensesProvider>
           <BankingProvider>
             <InvestmentsProvider>
-              <SavingsProvider>
-                <ExpensesProviderSignedIn>
-                  <BankingProviderSignedIn>
-                    <InvestmentsProviderSignedIn>
-                      <SavingsProviderSignedIn>
-                        <DashboardProvider>
-                          <App />
-                        </DashboardProvider>
-                      </SavingsProviderSignedIn>
-                    </InvestmentsProviderSignedIn>
-                  </BankingProviderSignedIn>
-                </ExpensesProviderSignedIn>
-              </SavingsProvider>
+              <MarketDataProvider>
+                <SavingsProvider>
+                  <ExpensesProviderSignedIn>
+                    <BankingProviderSignedIn>
+                      <InvestmentsProviderSignedIn>
+                        <SavingsProviderSignedIn>
+                          <DashboardProvider>
+                            <App />
+                          </DashboardProvider>
+                        </SavingsProviderSignedIn>
+                      </InvestmentsProviderSignedIn>
+                    </BankingProviderSignedIn>
+                  </ExpensesProviderSignedIn>
+                </SavingsProvider>
+              </MarketDataProvider>
             </InvestmentsProvider>
           </BankingProvider>
         </ExpensesProvider>
