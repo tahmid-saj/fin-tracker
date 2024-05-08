@@ -20,7 +20,7 @@ const MarketDataSearch = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
 
     if (formFields.marketDataType === "" || !formFields.marketDataType ||
@@ -33,7 +33,7 @@ const MarketDataSearch = () => {
       return
     }
 
-    await searchMarketData(formFields)
+    searchMarketData(formFields)
     resetFormFields()
   }
 
@@ -48,15 +48,15 @@ const MarketDataSearch = () => {
   return (
     // TODO: make a component for dropdown below
     <div className="market-data-search-container">
-      <form onSubmit={ (e) => handleSubmit(e) }>
+      <form onSubmit={ handleSubmit }>
         <label className="marketTypeDropdown" htmlFor="marketDataType">Category</label>
 
         <select required className="dropButton" name="marketDataType" id="marketDataType" 
                 onChange={ handleChange } value={ formFields.marketDataType }>
-          <option value="Stocks">Stocks</option>
-          <option value="Indices">Indices</option>
           <option value="Crypto">Crypto</option>
           <option value="Currencies">Currencies</option>
+          <option value="Indices">Indices</option>
+          <option value="Stocks">Stocks</option>
         </select>
 
         <FormInput label="Ticker" type="text" required onChange={ handleChange }

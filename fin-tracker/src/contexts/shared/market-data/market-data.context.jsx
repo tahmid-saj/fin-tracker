@@ -8,27 +8,33 @@ import { getStocksMarketData, getIndicesMarketData,
  } from "../../../utils/api-requests/market-data.requests";
 
 // helper functions
-const searchMarketDataHelper = async (marketDataQuery) => {
+const searchMarketDataHelper = (marketDataQuery) => {
   if (validateMarketDataQuery(marketDataQuery)) return DEFAULT_MARKET_DATA
 
   // api request
+  let res;
   switch (marketDataQuery.marketDataType) {
     case MARKET_DATA_TYPES.stocks:
-      return await getStocksMarketData(marketDataQuery)
+      res = getStocksMarketData(marketDataQuery)
+      break
     case MARKET_DATA_TYPES.indices:
-      return await getIndicesMarketData(marketDataQuery)
+      res = getIndicesMarketData(marketDataQuery)
+      break
     case MARKET_DATA_TYPES.crypto:
-      return await getCryptoMarketData(marketDataQuery)
+      res = getCryptoMarketData(marketDataQuery)
+      break
     case MARKET_DATA_TYPES.currencies:
-      return await getForexMarketData(marketDataQuery)
+      res = getForexMarketData(marketDataQuery)
+      break
     default:
       break
   }
+  return res
 }
 
 // initial state
 export const MarketDataContext = createContext({
-  marketData: {}
+  marketData: DEFAULT_MARKET_DATA
   // marketData structure
   // {
   //   marketDataType: "stocks",
@@ -48,14 +54,16 @@ export const MarketDataContext = createContext({
 
 // context component
 export const MarketDataProvider = ({ children }) => {
-  const [marketData, setMarketData] = useState({})
+  const [marketData, setMarketData] = useState(DEFAULT_MARKET_DATA)
 
-  const searchMarketData = async (marketDataQuery) => {
-    const resMarketData = await searchMarketDataHelper(marketDataQuery)
-    setMarketData({
-      ...marketDataQuery,
-      queryResults: resMarketData
-    })
+  useEffect(() => {
+    console.log(marketData)
+  }, [marketData])
+
+  const searchMarketData = (marketDataQuery) => {
+    const resMarketData = searchMarketDataHelper(marketDataQuery)
+    setMarketData(resMarketData)
+    // console.log(resMarketData)
   } 
   
   const value = { marketData, setMarketData, searchMarketData }
