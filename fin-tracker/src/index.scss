@@ -6,9 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-image: url("https://i.pinimg.com/originals/85/6f/31/856f31d9f475501c7552c97dbe727319.jpg");
+  // background-image: url("https://images.unsplash.com/photo-1520531158340-44015069e78e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBhbmQlMjBncmF5fGVufDB8fDB8fHww");
   background-size: cover;
   background-repeat: no-repeat;
-  // background-image: none;
+  background-attachment: fixed;
 }
 
 code {
