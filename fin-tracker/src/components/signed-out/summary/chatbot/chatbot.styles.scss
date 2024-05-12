@@ -1,0 +1,15 @@
+.chatbot-container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 20% 2% 20%;
+  form {
+    margin-bottom: 2%;
+  }
+}
+
+hr.rounded {
+  border-top: 5px solid #bbb;
+  border-radius: 5px;
+  max-width: 100%;
+}
