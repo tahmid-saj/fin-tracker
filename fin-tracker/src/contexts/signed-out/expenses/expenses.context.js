@@ -129,6 +129,8 @@ export const ExpensesProvider = ({ children }) => {
       pastMonthAllExpensesCost: newPast30DaysAllExpensesCost,
       pastMonthExpenses: newPastMonthExpenses
     })
+
+    setExpenseLength(expenses.length)
   }, [expenses])
 
   // update expensesView when expenses change
@@ -147,7 +149,7 @@ export const ExpensesProvider = ({ children }) => {
       return
     } else {
       setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1))
-      setExpenseLength(expenseLength + 1)
+      // setExpenseLength(expenseLength + 1)
       console.log("created")
     }
   }

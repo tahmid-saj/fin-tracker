@@ -45,9 +45,9 @@ const filterExpensesHelper = (expenses, filterConditions) => {
 }
 
 const removeExpenseHelper = (expenses, expenseId, userId, email) => {
-  deleteExpense(userId, email, expenseId)
-
   if (validateRemoveExpense(expenseId)) return expenses
+  
+  deleteExpense(userId, email, expenseId)
 
   return expenses.filter(exp => exp.expenseId !== expenseId)
 }
@@ -148,6 +148,8 @@ export const ExpensesProvider = ({ children }) => {
       pastMonthAllExpensesCost: newPast30DaysAllExpensesCost,
       pastMonthExpenses: newPastMonthExpenses
     })
+
+    setExpenseLength(expenses.length)
   }, [expenses])
 
   // update expensesView when expenses or filterConditions change
@@ -193,7 +195,7 @@ export const ExpensesProvider = ({ children }) => {
       return
     } else {
       setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1, currentUser.uid, currentUser.email))
-      setExpenseLength(expenseLength + 1)
+      // setExpenseLength(expenseLength + 1)
       console.log("created")
     }
   }
