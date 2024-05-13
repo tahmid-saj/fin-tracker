@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { validateMortgageInput, validateCurrencyConverterInput, validateExchangeRateInput } from "../../../utils/validations/useful-tools.validation";
 import { getMortgageResult } from "../../../utils/api-requests/useful-tools.requests";
+import { getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
 
 // helper functions
 const calculateMortgageHelper = async (mortgageInput) => {
@@ -9,11 +10,18 @@ const calculateMortgageHelper = async (mortgageInput) => {
 }
 
 const convertCurrencyHelper = async (currencyInput) => {
-
+  const resConvertCurrencyResult = await getExchangeRate(currencyInput)
+  return {
+    fromCurrency: resConvertCurrencyResult.fromCurrency,
+    toCurrency: resConvertCurrencyResult.toCurrency,
+    fromCurrencyAmount: Number(currencyInput.fromCurrencyAmount),
+    toCurrencyAmount: resConvertCurrencyResult.exchangeRate * Number(currencyInput.fromCurrencyAmount)
+  }
 }
 
 const findExchangeRateHelper = async (currencyInput) => {
-
+  const resExchangeRate = await getExchangeRate(currencyInput)
+  return resExchangeRate
 }
 
 // initial state
@@ -43,13 +51,20 @@ export const UsefulToolsContext = createContext({
   currencyConverterResult: undefined,
   // currencyConverterResult structure
   // {
-  //   amount: 85,
-  //   currency: "USD"
+  //   fromCurrency: ,
+  //   toCurrency: ,
+  //   fromCurrencyAmount: 
+  //   toCurrencyAmount:
   // }
 
   // exchange rate
   exchangeRateResult: undefined,
-  // exchangeRateResult structure: number from api
+  // exchangeRateResult structure
+  // {
+  //   fromCurrency: ,
+  //   toCurrency: ,
+  //   exchangeRate: ,
+  // }
   
   calculateMortgage: () => {},
   convertCurrency: () => {},
