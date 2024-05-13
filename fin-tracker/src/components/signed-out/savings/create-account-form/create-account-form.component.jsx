@@ -60,7 +60,7 @@ const CreateAccountForm = ({ label }) => {
       <div className="update-savings-account-container">
         <InvestmentSavingsTrackerItems label={ label }></InvestmentSavingsTrackerItems>
 
-        <h3>Create Savings Account</h3>
+        <h3>Track Savings</h3>
 
         <form className="create-savings-account-container" onSubmit={ handleSubmit }>
           <FormInput label="Savings account name" type="text" required onChange={ handleChange }
