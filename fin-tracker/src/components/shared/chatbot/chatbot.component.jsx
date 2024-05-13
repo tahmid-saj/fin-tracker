@@ -1,9 +1,9 @@
 import { useState, useContext } from "react"
-import FormInput from "../../../shared/form-input/form-input.component"
-import Button from "../../../shared/button/button.component"
+import FormInput from "../form-input/form-input.component"
+import Button from "../button/button.component"
 import "./chatbot.styles.scss"
 import ChatBotResponse from "./chatbot-response/chatbot-response.component"
-import { ChatBotContext } from "../../../../contexts/signed-out/chatbot/chatbot.context"
+import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context"
 
 const defaultFormFields = {
   messageInput: ""

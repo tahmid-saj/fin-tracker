@@ -83,6 +83,12 @@ const Navigation = () => {
                 Savings
               </Link>
 
+              <Link className="nav-link" to="/useful-tools"
+                // onClick={ () => changeStyle("none", "white") }
+                >
+                Useful Tools
+              </Link>
+
               <Link className="nav-link" to="/exports-signed-in"
                 // onClick={ () => changeStyle(linearGradient, "none") }
                 >
@@ -121,6 +127,12 @@ const Navigation = () => {
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Savings
+              </Link>
+
+              <Link className="nav-link" to="/useful-tools"
+                // onClick={ () => changeStyle("none", "white") }
+                >
+                Useful Tools
               </Link>
 
               <Link className="nav-link" to="/auth"

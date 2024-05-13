@@ -1,6 +1,6 @@
 import "./chatbot-response.styles.scss"
 import { useContext } from "react"
-import { ChatBotContext } from "../../../../../contexts/signed-out/chatbot/chatbot.context"
+import { ChatBotContext } from "../../../../contexts/shared/chatbot/chatbot.context"
 
 const ChatBotResponse = () => {
   const { chatbotResponse } = useContext(ChatBotContext)

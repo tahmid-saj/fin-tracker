@@ -8,7 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/shared/user/user.context';
-import { ChatBotProvider } from './contexts/signed-out/chatbot/chatbot.context';
+import { ChatBotProvider } from './contexts/shared/chatbot/chatbot.context';
 import { ExpensesProvider } from './contexts/signed-out/expenses/expenses.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
 import { InvestmentsProvider } from './contexts/signed-out/investments/investments.context';
