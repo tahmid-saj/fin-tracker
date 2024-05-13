@@ -8,6 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/shared/user/user.context';
+import { UsefulToolsProvider } from './contexts/shared/useful-tools/useful-tools.context';
 import { ChatBotProvider } from './contexts/shared/chatbot/chatbot.context';
 import { ExpensesProvider } from './contexts/signed-out/expenses/expenses.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
@@ -28,33 +29,35 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ChatBotProvider>
-          <ExpensesProvider>
-            <BankingProvider>
-              <InvestmentsProvider>
-                <MarketDataProvider>
-                  <SavingsProvider>
-                    <DashboardProvider>
-                      <ExpensesProviderSignedIn>
-                        <BankingProviderSignedIn>
-                          <InvestmentsProviderSignedIn>
-                            <SavingsProviderSignedIn>
-                              <DashboardProviderSignedIn>
-                                <ExportsProvider>
-                                  <App />
-                                </ExportsProvider>
-                              </DashboardProviderSignedIn>
-                            </SavingsProviderSignedIn>
-                          </InvestmentsProviderSignedIn>
-                        </BankingProviderSignedIn>
-                      </ExpensesProviderSignedIn>
-                    </DashboardProvider>
-                  </SavingsProvider>
-                </MarketDataProvider>
-              </InvestmentsProvider>
-            </BankingProvider>
-          </ExpensesProvider>
-        </ChatBotProvider>
+        <UsefulToolsProvider>
+          <ChatBotProvider>
+            <ExpensesProvider>
+              <BankingProvider>
+                <InvestmentsProvider>
+                  <MarketDataProvider>
+                    <SavingsProvider>
+                      <DashboardProvider>
+                        <ExpensesProviderSignedIn>
+                          <BankingProviderSignedIn>
+                            <InvestmentsProviderSignedIn>
+                              <SavingsProviderSignedIn>
+                                <DashboardProviderSignedIn>
+                                  <ExportsProvider>
+                                    <App />
+                                  </ExportsProvider>
+                                </DashboardProviderSignedIn>
+                              </SavingsProviderSignedIn>
+                            </InvestmentsProviderSignedIn>
+                          </BankingProviderSignedIn>
+                        </ExpensesProviderSignedIn>
+                      </DashboardProvider>
+                    </SavingsProvider>
+                  </MarketDataProvider>
+                </InvestmentsProvider>
+              </BankingProvider>
+            </ExpensesProvider>
+          </ChatBotProvider>
+        </UsefulToolsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

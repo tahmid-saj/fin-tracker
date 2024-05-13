@@ -4,21 +4,23 @@ import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import { DOWNPAYMENT_FLAG_OPTIONS } from "../../../../utils/constants/useful-tools.constants"
 import MortgageCalculatorResult from "./mortgage-calculator-result.component"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
 
 const defaultFormFields = {
-  downpaymentFlag: "",
+  downpaymentFlag: "Yes",
   loanAmount: "",
   homeValue: "",
   downpayment: "",
   interestRate: "",
   durationYears: "",
-  homthlyHoa: "",
+  monthlyHoa: "",
   annualPropertyTax: "",
   annualHomeInsurance: ""
 }
 
 const MortgageCalculator = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { calculateMortgage, mortgageCalculatorResult } = useContext(UsefulToolsContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -27,6 +29,7 @@ const MortgageCalculator = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
+    await calculateMortgage(formFields)
     resetFormFields()
   }
 
@@ -70,7 +73,7 @@ const MortgageCalculator = () => {
         
         <p>Optional:</p>
         <FormInput label="Monthly homeowner association fees " type="text" onChange={ handleChange }
-            name="homthlyHoa" value={ formFields.homthlyHoa }/>
+            name="monthlyHoa" value={ formFields.monthlyHoa }/>
         <FormInput label="Annual property tax" type="text" onChange={ handleChange }
             name="annualPropertyTax" value={ formFields.annualPropertyTax }/>
         <FormInput label="Annual home insurance" type="text" onChange={ handleChange }
@@ -81,8 +84,11 @@ const MortgageCalculator = () => {
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
         </div>
       </form>
-      
-      <MortgageCalculatorResult></MortgageCalculatorResult>
+
+      {
+        mortgageCalculatorResult &&
+        <MortgageCalculatorResult></MortgageCalculatorResult>
+      }
     </div>
   )
 }
