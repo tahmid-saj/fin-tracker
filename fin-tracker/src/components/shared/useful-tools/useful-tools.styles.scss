@@ -1,0 +1,12 @@
+.useful-tools-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2% 10% 2% 10%;
+
+  .useful-tools-rounded {
+    border-top: 5px solid #ffffff;
+    border-radius: 1px;
+    max-width: 80%;
+  }
+}
