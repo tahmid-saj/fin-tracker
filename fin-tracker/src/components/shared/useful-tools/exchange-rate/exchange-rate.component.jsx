@@ -38,7 +38,7 @@ const ExchangeRate = () => {
             name="toCurrency" value={ formFields.toCurrency }/>
         
         <div className="buttons-container">
-          <Button type="submit">Convert</Button>
+          <Button type="submit">Find</Button>
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
         </div>
       </form>

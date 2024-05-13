@@ -34,21 +34,15 @@ const CurrencyConverter = () => {
     <div className="currency-converter-container">
       <form onSubmit={ handleSubmit }>
         <h3>Currency converter</h3>
-        <div className="currency-converter-from-currency-container">
           <p>From</p>
           <FormInput label="Amount" type="text" required onChange={ handleChange }
                       name="fromCurrencyAmount" value={ formFields.fromCurrencyAmount }/>
           <FormInput label="From (currency)" type="text" required onChange={ handleChange }
                       name="fromCurrency" value={ formFields.fromCurrency }/>
-        </div>
 
-        <div className="currency-converter-to-currency-container">
           <p>To</p>
-          <FormInput label="Amount" type="text" required onChange={ handleChange }
-                      name="toCurrencyAmount" value={ formFields.toCurrencyAmount }/>
           <FormInput label="To (currency)" type="text" required onChange={ handleChange }
                       name="toCurrency" value={ formFields.toCurrency }/>
-        </div>
 
         <div className="buttons-container">
           <Button type="submit">Convert</Button>

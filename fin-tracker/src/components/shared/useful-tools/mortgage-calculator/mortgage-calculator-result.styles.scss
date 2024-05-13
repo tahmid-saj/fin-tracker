@@ -4,4 +4,14 @@
   border-radius: 1.5rem;
   margin: 5% 0% 0% 0%;
   padding: 1% 2% 1% 2%;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+}
+
+.mortgage-calculator-result {
+  padding: 2%;
+  display: block;
+  justify-content: center;
+  // align-items: center;
 }
