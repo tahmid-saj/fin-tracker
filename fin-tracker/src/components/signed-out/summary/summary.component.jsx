@@ -11,7 +11,7 @@ import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboa
 import "./summary.styles.scss";
 import ExpensesSummary from "./expenses/expenses.component";
 import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
-import ChatBot from "./chatbot/chatbot.component";
+import ChatBot from "../../shared/chatbot/chatbot.component"
 
 const Summary = () => {
   const { summaries } = useContext(DashboardContext);
