@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import FormInput from "../../../shared/form-input/form-input.component"
 import Button from "../../../shared/button/button.component"
 import "./chatbot.styles.scss"
+import ChatBotResponse from "./chatbot-response/chatbot-response.component"
+import { ChatBotContext } from "../../../../contexts/signed-out/chatbot/chatbot.context"
 
 const defaultFormFields = {
   messageInput: ""
@@ -9,14 +11,16 @@ const defaultFormFields = {
 
 const ChatBot = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { getChatbotResponse, chatbotResponse } = useContext(ChatBotContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
+    await getChatbotResponse(formFields.messageInput)
     resetFormFields()
   }
 
@@ -40,6 +44,10 @@ const ChatBot = () => {
         </div>
       </form>
 
+      {
+        chatbotResponse !== "" &&
+        <ChatBotResponse></ChatBotResponse>
+      }
       <hr className="rounded"></hr>
     </div>
   )
