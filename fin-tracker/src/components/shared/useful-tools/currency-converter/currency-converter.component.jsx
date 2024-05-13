@@ -3,16 +3,17 @@ import { useState, useContext, Fragment } from "react"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import CurrencyConverterResult from "./currency-converter-result.component"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
 
 const defaultFormFields = {
   fromCurrency: "",
   fromCurrencyAmount: "",
-  toCurrency: "",
-  toCurrencyAmount: ""
+  toCurrency: ""
 }
 
 const CurrencyConverter = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { currencyConverterResult, convertCurrency } = useContext(UsefulToolsContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -21,6 +22,7 @@ const CurrencyConverter = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
+    await convertCurrency(formFields)
     resetFormFields()
   }
 
@@ -50,7 +52,10 @@ const CurrencyConverter = () => {
         </div>
       </form>
 
-      <CurrencyConverterResult></CurrencyConverterResult>
+      {
+        currencyConverterResult &&
+        <CurrencyConverterResult></CurrencyConverterResult>
+      }
     </div>
   )
 }

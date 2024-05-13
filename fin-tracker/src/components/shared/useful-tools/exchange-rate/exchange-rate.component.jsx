@@ -3,6 +3,7 @@ import { useState, useContext, Fragment } from "react"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import ExchangeRateResult from "./exchange-rate-result.component"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
 
 const defaultFormFields = {
   fromCurrency: "",
@@ -11,6 +12,7 @@ const defaultFormFields = {
 
 const ExchangeRate = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const { exchangeRateResult, findExchangeRate } = useContext(UsefulToolsContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -19,6 +21,7 @@ const ExchangeRate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
+    await findExchangeRate(formFields)
     resetFormFields()
   }
 
@@ -43,7 +46,10 @@ const ExchangeRate = () => {
         </div>
       </form>
 
-      <ExchangeRateResult></ExchangeRateResult>
+      {
+        exchangeRateResult &&
+        <ExchangeRateResult></ExchangeRateResult>
+      }
     </div>
   )
 }
