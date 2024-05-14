@@ -32,7 +32,6 @@ root.render(
       <UserProvider>
         <UsefulToolsProvider>
           <SavingsGoalCalculatorProvider>
-            <ChatBotProvider>
               <ExpensesProvider>
                 <BankingProvider>
                   <InvestmentsProvider>
@@ -45,7 +44,9 @@ root.render(
                                 <SavingsProviderSignedIn>
                                   <DashboardProviderSignedIn>
                                     <ExportsProvider>
-                                      <App />
+                                      <ChatBotProvider>
+                                        <App />
+                                      </ChatBotProvider>
                                     </ExportsProvider>
                                   </DashboardProviderSignedIn>
                                 </SavingsProviderSignedIn>
@@ -58,7 +59,6 @@ root.render(
                   </InvestmentsProvider>
                 </BankingProvider>
               </ExpensesProvider>
-            </ChatBotProvider>
           </SavingsGoalCalculatorProvider>
         </UsefulToolsProvider>
       </UserProvider>
