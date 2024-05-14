@@ -1,15 +1,76 @@
 import { useState, Component, useContext, Fragment } from "react";
-
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
-
 import "./summary-graph.styles.scss";
-
 import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
-
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
 
 const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
+  const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
+  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName)
+  const { savings } = savingsAccountInfo
+
+  let savingsTimes = []
+  let monthlySavingsTotalInterestEarned = []
+  const monthlySavingsBalance = savings.map((savingMonth) => {
+    savingsTimes.push(savingMonth.currentDate)
+    monthlySavingsTotalInterestEarned.push(Number(savingMonth.totalInterestEarned).toFixed(2))
+    return savingMonth.balance.toFixed(2)
+  })
+
+  const series = [
+    // {
+    //   name: "Balance",
+    //   data: monthlySavingsGoalsBalance
+    // },
+    {
+      name: "Total Interest Earned",
+      data: monthlySavingsTotalInterestEarned
+    }
+  ]
+
+  const options = {
+    chart: {
+      type: 'area',
+      height: 1000,
+      zoom: {
+        enabled: true
+      }
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'straight'
+    },
+    
+    title: {
+      text: `Savings Goal`,
+      align: 'left'
+    },
+    labels: savingsTimes,
+    xaxis: {
+      type: 'string',
+      labels: {
+        show: false
+      }
+    },
+    yaxis: {
+      opposite: false
+    },
+    legend: {
+      horizontalAlign: 'right'
+    }
+  };
+
+  return (
+    <div className="summary-graph-savings-container">
+      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
+    </div>
+  )
+}
+
+const SummaryGraphSavingsAccountOld = ({ financeItemInfo }) => {
   const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext);
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
 
@@ -75,7 +136,7 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
     
   return (
     <div className="summary-graph-savings-container">
-      <ReactApexChart options={ options } series={ series } type="area" height={ 350 } width={ 1000 }/>
+      <ReactApexChart options={ options } series={ series } type="area" height={ 350 } width={ "100%" }/>
     </div>
   )
 }

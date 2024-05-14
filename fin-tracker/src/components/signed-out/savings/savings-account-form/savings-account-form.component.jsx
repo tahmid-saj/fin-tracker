@@ -6,6 +6,7 @@ import UpdateAccountForm from "../update-account-form/update-account-form.compon
 
 import FinanceTrackerItemInfo from "../../finance-tracker-item-info/finance-tracker-item-info.component";
 import SummaryGraphSavingsAccount from "../summary-graph/summary-graph.component";
+import SummaryTableSavingsAccount from "../summary-table-savings-account/summary-table-savings-account.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 
@@ -14,6 +15,7 @@ const SavingsAccountForm = ({ financeItemInfo }) => {
   return (
     <Fragment>
       <SummaryGraphSavingsAccount financeItemInfo={ financeItemInfo }></SummaryGraphSavingsAccount>
+      <SummaryTableSavingsAccount financeItemInfo={ financeItemInfo }></SummaryTableSavingsAccount>
 
       <div className="savings-accounts-form-summary-container">
 

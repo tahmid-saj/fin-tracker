@@ -14,7 +14,7 @@ const defaultFormFields = {
   startDate: "",
   monthlyContribution: "",
   contributionPeriod: "",
-  contributionInterval: "",
+  contributionInterval: "Months",
   apy: ""
 }
 
@@ -77,7 +77,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
 
   return (
     <div className="update-savings-account-container">
-      <h3>Update Savings</h3>
+      <h3>Update savings</h3>
 
       <form className="update-savings-account-form-container">
         <FormInput label="Savings account name" type="text" required onChange={ handleChange }

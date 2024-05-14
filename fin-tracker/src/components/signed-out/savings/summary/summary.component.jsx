@@ -12,10 +12,10 @@ export const Summary = ({ financeItemInfo }) => {
 
   return (
     <div className="summary-container">
-      <h5>{`Total savings $${savingsAccountInfo.totalSavings}`}</h5>
-      <h5>{`Initial deposit $${savingsAccountInfo.initialDeposit}`}</h5>
-      <h5>{`Total contribution $${savingsAccountInfo.totalContribution}`}</h5>
-      <h5>{`Total interest $${savingsAccountInfo.totalInterest}`}</h5>
+      <p>{`Total savings $${Number(savingsAccountInfo.totalSavings).toFixed(2)}`}</p>
+      <p>{`Initial deposit $${Number(savingsAccountInfo.initialDeposit).toFixed(2)}`}</p>
+      <p>{`Total contribution $${Number(savingsAccountInfo.totalContribution).toFixed(2)}`}</p>
+      <p>{`Total interest $${Number(savingsAccountInfo.totalInterest).toFixed(2)}`}</p>
     </div>
   );
 };

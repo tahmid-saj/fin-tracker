@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
-import { calculateSavingsSummary } from "../../../utils/calculations/savings.calculations";
+import { calculateSavings } from "../../../utils/calculations/savings.calculations";
 
 import { UserContext } from "../../shared/user/user.context";
 
@@ -20,14 +20,14 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
   console.log(savingsAccount.savingsAccountName);
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
 
-  const summary = calculateSavingsSummary(savingsAccount);
+  const calculation = calculateSavings(savingsAccount);
 
   const savingsAccountInfo = {
     ...savingsAccount,
 
-    totalSavings: summary.totalSavings,
-    totalContribution: summary.totalContribution,
-    totalInterest: summary.totalInterest,
+    totalSavings: calculation.totalSavings,
+    totalContribution: calculation.totalContribution,
+    totalInterest: calculation.totalInterest,
   }
 
   postSavingsAccountCreate(userId, email, savingsAccountInfo);
@@ -43,9 +43,9 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
       contributionInterval: String(savingsAccount.contributionInterval),
       apy: Number(savingsAccount.apy),
 
-      totalSavings: summary.totalSavings,
-      totalContribution: summary.totalContribution,
-      totalInterest: summary.totalInterest,
+      totalSavings: calculation.totalSavings,
+      totalContribution: calculation.totalContribution,
+      totalInterest: calculation.totalInterest,
     }
   ];
 };
@@ -55,7 +55,7 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
-  const summary = calculateSavingsSummary(updatedSavingsAccount);
+  const calculation = calculateSavings(updatedSavingsAccount);
   
   const originalSavingsAccount = savingsAccounts.find((savingsAccount) => {
     return savingsAccount.savingsAccountName === originalSavingsAccountName;
@@ -66,9 +66,9 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
     updatedSavingsAccountInfo: {
       ...updatedSavingsAccount,
 
-      totalSavings: summary.totalSavings,
-      totalContribution: summary.totalContribution,
-      totalInterest: summary.totalInterest,
+      totalSavings: calculation.totalSavings,
+      totalContribution: calculation.totalContribution,
+      totalInterest: calculation.totalInterest,
     }
   };
   putSavingsAccountData(userId, email, savingsAccountInfo);
@@ -80,9 +80,9 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
       return {
         ...updatedSavingsAccount,
 
-        totalSavings: summary.totalSavings,
-        totalContribution: summary.totalContribution,
-        totalInterest: summary.totalInterest,
+        totalSavings: calculation.totalSavings,
+        totalContribution: calculation.totalContribution,
+        totalInterest: calculation.totalInterest,
       }
     }
 
