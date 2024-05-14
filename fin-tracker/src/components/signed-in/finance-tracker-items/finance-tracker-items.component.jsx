@@ -8,6 +8,7 @@ import "./finance-tracker-items.styles.scss";
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import { AccordionTransition } from "../../shared/accordion/accordion.component";
 
 const FinanceTrackerItems = ({ label }) => {
   const { bankingAccounts } = useContext(BankingContext);
@@ -23,7 +24,11 @@ const FinanceTrackerItems = ({ label }) => {
         label === FINANCE_ITEM_TYPES.banking && bankingAccounts !== undefined && bankingAccounts.length !== 0 && 
         bankingAccounts.map((account) => account.name)
           .map((name, index) => {
-            return <FinanceTrackerItem key={ index } label={ label } name={ name }></FinanceTrackerItem>
+            return (
+              <AccordionTransition header={ name }>
+                <FinanceTrackerItem key={ index } label={ label } name={ name }></FinanceTrackerItem>
+              </AccordionTransition>
+            )
           })  
       }
     </div>

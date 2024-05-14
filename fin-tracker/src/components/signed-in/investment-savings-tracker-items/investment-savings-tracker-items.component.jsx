@@ -9,6 +9,7 @@ import { InvestmentsContext } from "../../../contexts/signed-in/investments/inve
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import { AccordionTransition } from "../../shared/accordion/accordion.component";
 
 const InvestmentSavingsTrackerItems = ({ label }) => {
 
@@ -21,16 +22,24 @@ const InvestmentSavingsTrackerItems = ({ label }) => {
       {
         label === FINANCE_ITEM_TYPES.investments && 
         investments.map((investmentInfo, index) => {
-          return <InvestmentSavingsTrackerItem key={ index } label={ label } 
-                  financeItemInfo={ investmentInfo }></InvestmentSavingsTrackerItem>
+          return (
+            <AccordionTransition header={ investmentInfo.investmentName }>
+              <InvestmentSavingsTrackerItem key={ index } label={ label } 
+                      financeItemInfo={ investmentInfo }></InvestmentSavingsTrackerItem>
+            </AccordionTransition>
+          )
         })
       }
 
       {
         label === FINANCE_ITEM_TYPES.savings && 
         savingsAccounts.map((savingsAccountInfo, index) => {
-          return <InvestmentSavingsTrackerItem key={ index } label={ label } 
-                  financeItemInfo={ savingsAccountInfo }></InvestmentSavingsTrackerItem>
+          return (
+            <AccordionTransition header={ savingsAccountInfo.savingsAccountName }>
+              <InvestmentSavingsTrackerItem key={ index } label={ label } 
+                      financeItemInfo={ savingsAccountInfo }></InvestmentSavingsTrackerItem>
+            </AccordionTransition>
+          )
         })
       }
     </div>

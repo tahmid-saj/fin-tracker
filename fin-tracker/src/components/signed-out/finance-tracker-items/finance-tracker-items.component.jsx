@@ -8,7 +8,7 @@ import "./finance-tracker-items.styles.scss";
 import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import AccordionTransition from "../../shared/accordion/accordion.component";
+import { AccordionTransition } from "../../shared/accordion/accordion.component";
 
 const FinanceTrackerItems = ({ label }) => {
   const { bankingAccounts } = useContext(BankingContext);
