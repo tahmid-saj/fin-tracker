@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    padding: "0% 10% 0% 10%",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -18,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function AccordionTransition({ header, children }) {
-  const [expanded, setExpanded] = useState(false);
+export function AccordionTransition({ header, children }) {
+  const [expanded, setExpanded] = useState(true);
   const classes = useStyles();
 
   const handleExpansion = () => {

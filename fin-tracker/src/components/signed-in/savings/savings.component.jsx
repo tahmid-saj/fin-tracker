@@ -16,7 +16,6 @@ const Savings = () => {
   return (
     <div className="savings-acounts-container">
       <SavingsGoalCalculator></SavingsGoalCalculator>
-
         {
           savingsAccounts.length !== 0 && <AllSavingsSummary></AllSavingsSummary>
         }
