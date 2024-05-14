@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
-import { calculateSavingsSummary } from "../../../utils/calculations/savings.calculations";
+import { calculateSavings } from "../../../utils/calculations/savings.calculations";
 
 // helper functions
 
@@ -12,7 +12,14 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
   console.log(savingsAccount.savingsAccountName);
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
 
-  const summary = calculateSavingsSummary(savingsAccount);
+  const calculation = calculateSavings({
+    initialDeposit: Number(savingsAccount.initialDeposit),
+    startDate: String(savingsAccount.startDate),
+    monthlyContribution: Number(savingsAccount.monthlyContribution),
+    contributionPeriod: Number(savingsAccount.contributionPeriod),
+    contributionInterval: String(savingsAccount.contributionInterval),
+    apy: Number(savingsAccount.apy)
+  });
 
   // add savingsAccount to savingsAccounts
   return [ ...savingsAccounts, 
@@ -25,9 +32,11 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
       contributionInterval: String(savingsAccount.contributionInterval),
       apy: Number(savingsAccount.apy),
 
-      totalSavings: summary.totalSavings,
-      totalContribution: summary.totalContribution,
-      totalInterest: summary.totalInterest,
+      totalSavings: calculation.totalSavings,
+      totalContribution: calculation.totalContribution,
+      totalInterest: calculation.totalInterest,
+
+      savings: calculation.savings
     }];
 };
 
@@ -40,14 +49,23 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   // update savingsAccounts with updatedSavingsAccount for the account with account.savingsAccountName === originalSavingsAccountName
   const updatedSavingsAccounts = savingsAccounts.map((account) => {
     if (account.savingsAccountName === originalSavingsAccountName) {
-      const summary = calculateSavingsSummary(updatedSavingsAccount);
+      const calculation = calculateSavings({
+        initialDeposit: Number(updatedSavingsAccount.initialDeposit),
+        startDate: String(updatedSavingsAccount.startDate),
+        monthlyContribution: Number(updatedSavingsAccount.monthlyContribution),
+        contributionPeriod: Number(updatedSavingsAccount.contributionPeriod),
+        contributionInterval: String(updatedSavingsAccount.contributionInterval),
+        apy: Number(updatedSavingsAccount.apy)
+      });
 
       return {
         ...updatedSavingsAccount,
 
-        totalSavings: summary.totalSavings,
-        totalContribution: summary.totalContribution,
-        totalInterest: summary.totalInterest,
+        totalSavings: calculation.totalSavings,
+        totalContribution: calculation.totalContribution,
+        totalInterest: calculation.totalInterest,
+
+        savings: calculation.savings
       }
     }
 
@@ -85,6 +103,15 @@ export const SavingsContext = createContext({
   //     totalSavings: 3000,
   //     totalContribution: 600,
   //     totalInterest: 200,
+
+  //     savings: [
+  //       {
+        //  currentDate: ,
+        //  interestEarned: ,
+        //  totalInterestEarned: ,
+        //  balance: 
+  //       } 
+  //     ]  
   //   }
   // ]
 

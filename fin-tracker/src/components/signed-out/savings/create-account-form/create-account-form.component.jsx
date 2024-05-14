@@ -14,7 +14,7 @@ const defaultFormFields = {
   startDate: "",
   monthlyContribution: "",
   contributionPeriod: "",
-  contributionInterval: "",
+  contributionInterval: "Months",
   apy: ""
 }
 
@@ -60,7 +60,7 @@ const CreateAccountForm = ({ label }) => {
       <div className="update-savings-account-container">
         <InvestmentSavingsTrackerItems label={ label }></InvestmentSavingsTrackerItems>
 
-        <h3>Track Savings</h3>
+        <h3>Track savings</h3>
 
         <form className="create-savings-account-container" onSubmit={ handleSubmit }>
           <FormInput label="Savings account name" type="text" required onChange={ handleChange }

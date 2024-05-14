@@ -11,7 +11,7 @@ const SavingsGoalGraph = () => {
   let monthlySavingsGoalsTotalInterestEarned = []
   const monthlySavingsGoalsBalance = savingsGoalScheduleResult.map((savingsGoal) => {
     monthlySavingsGoalsTimes.push(savingsGoal.currentDate)
-    monthlySavingsGoalsTotalInterestEarned.push(Number(savingsGoal.totalInterestEarned).toFixed())
+    monthlySavingsGoalsTotalInterestEarned.push(Number(savingsGoal.totalInterestEarned).toFixed(2))
     return savingsGoal.balance.toFixed(2)
   })
 
