@@ -30,12 +30,12 @@ const AccountInfo = ({ financeItemInfo }) => {
 
   return (
     <div className="account-info-container">
-      <h5>{`Savings account name ${savingsAccountInfo.savingsAccountName}`}</h5>
-      <h5>{`Monthly contribution of $${savingsAccountInfo.monthlyContribution}`}</h5> 
-      <h5>{`a period of $${savingsAccountInfo.contributionPeriod} ${savingsAccountInfo.contributionInterval}`}</h5>
-      <h5>{`APY ${savingsAccountInfo.apy}%`}</h5>
-      <h6>{`Start date - ${savingsAccountInfo.startDate}`}</h6>
-      <h6>{`End date - ${endDate}`}</h6>
+      <h5>{`${savingsAccountInfo.savingsAccountName}`}</h5>
+      <p>{`Monthly contribution of $${Number(savingsAccountInfo.monthlyContribution).toFixed(2)}`}</p> 
+      <p>{`a period of ${Number(savingsAccountInfo.contributionPeriod).toFixed(2)} ${savingsAccountInfo.contributionInterval}`}</p>
+      <p>{`APY ${Number(savingsAccountInfo.apy).toFixed(2)}%`}</p>
+      <p>{`Start date - ${savingsAccountInfo.startDate}`}</p>
+      <p>{`End date - ${endDate}`}</p>
     </div>
   );
 };

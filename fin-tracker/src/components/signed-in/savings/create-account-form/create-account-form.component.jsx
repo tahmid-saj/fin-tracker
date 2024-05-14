@@ -14,7 +14,7 @@ const defaultFormFields = {
   startDate: "",
   monthlyContribution: "",
   contributionPeriod: "",
-  contributionInterval: "",
+  contributionInterval: "Months",
   apy: ""
 }
 

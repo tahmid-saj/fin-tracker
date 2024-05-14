@@ -20,14 +20,29 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
   console.log(savingsAccount.savingsAccountName);
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
 
-  const calculation = calculateSavings(savingsAccount);
+  const calculation = calculateSavings({
+    initialDeposit: Number(savingsAccount.initialDeposit),
+    startDate: String(savingsAccount.startDate),
+    monthlyContribution: Number(savingsAccount.monthlyContribution),
+    contributionPeriod: Number(savingsAccount.contributionPeriod),
+    contributionInterval: String(savingsAccount.contributionInterval),
+    apy: Number(savingsAccount.apy)
+  });
 
   const savingsAccountInfo = {
-    ...savingsAccount,
+    savingsAccountName: String(savingsAccount.savingsAccountName),
+    initialDeposit: Number(savingsAccount.initialDeposit),
+    startDate: String(savingsAccount.startDate),
+    monthlyContribution: Number(savingsAccount.monthlyContribution),
+    contributionPeriod: Number(savingsAccount.contributionPeriod),
+    contributionInterval: String(savingsAccount.contributionInterval),
+    apy: Number(savingsAccount.apy),
 
     totalSavings: calculation.totalSavings,
     totalContribution: calculation.totalContribution,
     totalInterest: calculation.totalInterest,
+
+    savings: calculation.savings
   }
 
   postSavingsAccountCreate(userId, email, savingsAccountInfo);
@@ -46,6 +61,8 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
       totalSavings: calculation.totalSavings,
       totalContribution: calculation.totalContribution,
       totalInterest: calculation.totalInterest,
+
+      savings: calculation.savings
     }
   ];
 };
@@ -55,7 +72,14 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
-  const calculation = calculateSavings(updatedSavingsAccount);
+  const calculation = calculateSavings({
+    initialDeposit: Number(updatedSavingsAccount.initialDeposit),
+    startDate: String(updatedSavingsAccount.startDate),
+    monthlyContribution: Number(updatedSavingsAccount.monthlyContribution),
+    contributionPeriod: Number(updatedSavingsAccount.contributionPeriod),
+    contributionInterval: String(updatedSavingsAccount.contributionInterval),
+    apy: Number(updatedSavingsAccount.apy)
+  });
   
   const originalSavingsAccount = savingsAccounts.find((savingsAccount) => {
     return savingsAccount.savingsAccountName === originalSavingsAccountName;
@@ -69,8 +93,11 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
       totalSavings: calculation.totalSavings,
       totalContribution: calculation.totalContribution,
       totalInterest: calculation.totalInterest,
+
+      savings: calculation.savings
     }
   };
+
   putSavingsAccountData(userId, email, savingsAccountInfo);
 
   // update savingsAccounts with updatedSavingsAccount for the account with account.savingsAccountName === originalSavingsAccountName
@@ -83,6 +110,8 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
         totalSavings: calculation.totalSavings,
         totalContribution: calculation.totalContribution,
         totalInterest: calculation.totalInterest,
+
+        savings: calculation.savings
       }
     }
 
@@ -132,6 +161,15 @@ export const SavingsContext = createContext({
   //     totalSavings: 3000,
   //     totalContribution: 600,
   //     totalInterest: 200,
+
+    //     savings: [
+  //       {
+        //  currentDate: ,
+        //  interestEarned: ,
+        //  totalInterestEarned: ,
+        //  balance: 
+  //       } 
+  //     ]  
   //   }
   // ]
 

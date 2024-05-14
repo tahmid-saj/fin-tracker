@@ -9,9 +9,9 @@ const AllSavingsSummary = () => {
 
   return (
     <div className="all-savings-summary-container">
-      <h4>{`Total Savings Balance - $${savingsAccountsSummary.currentAllSavingsAccountsBalance}`}</h4>
-      <h4>{`Total Contribution - $${savingsAccountsSummary.totalAllContribution}`}</h4>
-      <h4>{`Total Interest - $${savingsAccountsSummary.totalAllInterest}`}</h4>
+      <h4>{`Total Savings Balance - $${Number(savingsAccountsSummary.currentAllSavingsAccountsBalance).toFixed(2)}`}</h4>
+      <h4>{`Total Contribution - $${Number(savingsAccountsSummary.totalAllContribution).toFixed(2)}`}</h4>
+      <h4>{`Total Interest - $${Number(savingsAccountsSummary.totalAllInterest).toFixed(2)}`}</h4>
     </div>
   )
 };
