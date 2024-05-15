@@ -1,7 +1,8 @@
 import { Fragment, useContext, useState } from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
-import "./navigation.styles.scss";
+import "./navigation.styles.jsx";
+import { OutletContainer } from "./navigation.styles.jsx";
 
 import { UserContext } from "../../../contexts/shared/user/user.context";
 import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
@@ -10,146 +11,151 @@ import { InvestmentsContext } from "../../../contexts/signed-in/investments/inve
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
 import { signOutUser } from "../../../utils/firebase/firebase.utils";
+import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component";
+import AboutLinks from "../../../components/shared/about-links/about-links.component.jsx";
+
+import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
+
+// TODO: put navigation paths in constants
 
 const Navigation = () => {
-  const [color, changeColor] = useState("white");
-  document.body.style.backgroundColor = color;
-
   const { currentUser } = useContext(UserContext);
-  const { updateExpensesAndSummary } = useContext(ExpensesContext)
-  const { updateBankingAccountsAndSummary } = useContext(BankingContext);
-  const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
-  const { updateSavingsAccountsAndSummary } = useContext(SavingsContext);
-  const navigate = useNavigate();
 
-  const linearGradient = `linear-gradient(to bottom, rgba(16, 44, 74, 0.95), rgba(16, 44, 74, 0.95)), url("https://i.pinimg.com/originals/d2/35/01/d2350155f30ad946907bcb7a730cfeca.jpg")`;
+  // const { updateExpensesAndSummary } = useContext(ExpensesContext)
+  // const { updateBankingAccountsAndSummary } = useContext(BankingContext);
+  // const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
+  // const { updateSavingsAccountsAndSummary } = useContext(SavingsContext);
+  // const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    updateExpensesAndSummary();
-    updateBankingAccountsAndSummary();
-    updateInvestmentsAndSummary();
-    updateSavingsAccountsAndSummary();
-    signOutUser();
-    navigate("/")
-  };
-
-  const changeStyle = (backgroundImage, color) => {
-    changeColor(color);
-    document.body.style.backgroundImage = backgroundImage;
-  };
+  // const handleSignOut = () => {
+  //   updateExpensesAndSummary();
+  //   updateBankingAccountsAndSummary();
+  //   updateInvestmentsAndSummary();
+  //   updateSavingsAccountsAndSummary();
+  //   signOutUser();
+  //   navigate("/")
+  // };
 
   return (
     <Fragment>
-      <div className="navigation">
+      <MiniDrawer
+        navLinksHeaders={
+          currentUser ? NAV_LINKS.signedIn : NAV_LINKS.signedOut
+        }
+      >
+        {/* <AboutLinks></AboutLinks> */}
+      </MiniDrawer>
+
+      {/* <NavigationContainer>
         <Link className="logo" to="/"
           // onClick={ () => changeColor("#001732")}
           >
           <h1>fin-tracker</h1>
         </Link>
 
-        <div className="nav-links-container">
+        <NavLinks>
 
         {
           currentUser ? (
             <Fragment>
 
-              <Link className="nav-link" to="/dashboard-signed-in"
+              <NavLink to="/dashboard-signed-in"
                 // onClick={ () => changeStyle(linearGradient, "none") }
                 >
                 Dashboard
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/expenses-signed-in"
+              <NavLink to="/expenses-signed-in"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Expenses
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/banking-signed-in"
+              <NavLink to="/banking-signed-in"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Banking
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/investments-signed-in"
+              <NavLink to="/investments-signed-in"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Investments
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/savings-signed-in"
+              <NavLink to="/savings-signed-in"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Savings
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/useful-tools"
+              <NavLink to="/useful-tools"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Useful Tools
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/exports-signed-in"
+              <NavLink to="/exports-signed-in"
                 // onClick={ () => changeStyle(linearGradient, "none") }
                 >
                 Exports
-              </Link>
+              </NavLink>
 
               <span className="nav-link" onClick={ handleSignOut }>Sign Out</span>
             </Fragment>
           ) : (
             <Fragment>
-              <Link className="nav-link" to="/dashboard"
+              <NavLink to="/dashboard"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Dashboard
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/expenses"
+              <NavLink to="/expenses"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Expenses
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/banking"
+              <NavLink to="/banking"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Banking
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/investments"
+              <NavLink to="/investments"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Investments
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/savings"
+              <NavLink to="/savings"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Savings
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/useful-tools"
+              <NavLink to="/useful-tools"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Useful Tools
-              </Link>
+              </NavLink>
 
-              <Link className="nav-link" to="/auth"
+              <NavLink to="/auth"
                 // onClick={ () => changeStyle("none", "white") }
                 >
                 Login
-              </Link>
+              </NavLink>
             </Fragment>
           )
         }
 
-        </div>
-      </div>
+        </NavLinks>
+      </NavigationContainer> */}
 
-      <div className="outlet-container">
+      <OutletContainer>
         <Outlet/>
-      </div>
+      </OutletContainer>
     </Fragment>
 
   );

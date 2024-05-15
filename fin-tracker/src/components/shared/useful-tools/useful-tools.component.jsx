@@ -2,7 +2,7 @@ import CurrencyConverter from "./currency-converter/currency-converter.component
 import ExchangeRate from "./exchange-rate/exchange-rate.component"
 import MortgageCalculator from "./mortgage-calculator/mortgage-calculator.component"
 import "./useful-tools.component"
-import { AccordionTransition } from "../accordion/accordion.component"
+import { AccordionTransition } from "../mui/accordion/accordion.component"
 
 const UsefulTools = () => {
 
