@@ -9,7 +9,7 @@ import { InvestmentsContext } from "../../../contexts/signed-in/investments/inve
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import { AccordionTransition } from "../../shared/accordion/accordion.component";
+import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
 const InvestmentSavingsTrackerItems = ({ label }) => {
 
