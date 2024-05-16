@@ -37,7 +37,8 @@ export function AccordionTransition({ header, children }) {
         slots={{ transition: Fade }}
         slotProps={{ transition: { timeout: 400 } }}
         sx={{
-          width: "90%",
+          width: "100%",
+          marginBottom: "0.75%",
           '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
           '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
         }}
@@ -47,12 +48,10 @@ export function AccordionTransition({ header, children }) {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography>{ header }</Typography>
+          <Typography paragraph>{ header }</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            { children }
-          </Typography>
+          { children }
         </AccordionDetails>
       </Accordion>
 

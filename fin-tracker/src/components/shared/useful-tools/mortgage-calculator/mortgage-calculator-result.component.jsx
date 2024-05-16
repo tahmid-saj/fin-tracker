@@ -1,35 +1,38 @@
-import "./mortgage-calculator-result.styles.scss"
+import "./mortgage-calculator-result.styles.jsx"
+import { MortgageCalculatorResultContainer, MortgageResult } from "./mortgage-calculator-result.styles.jsx"
+
 import { Fragment, useContext } from "react"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
 
 const MortgageCalculatorResult = () => {
   const { mortgageCalculatorResult } = useContext(UsefulToolsContext)
 
   return (
-    <div className="mortgage-calculator-result-container">
-      <div className="mortgage-calculator-result">
-        <h5>{`Monthly payment`}</h5>
-        <p>{`Total: ${mortgageCalculatorResult.monthlyPayment.total}`}</p>
-        <p>{`Mortgage: ${mortgageCalculatorResult.monthlyPayment.mortgage}`}</p>
-        <p>{`Property tax: ${mortgageCalculatorResult.monthlyPayment.propertyTax}`}</p>
-        <p>{`Homeowner association fees: ${mortgageCalculatorResult.monthlyPayment.hoa}`}</p>
-        <p>{`Annual home insurance: ${mortgageCalculatorResult.monthlyPayment.annualHomeInsurance}`}</p>
-      </div>
+    <MortgageCalculatorResultContainer>
+      <MortgageResult>
+        <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Monthly payment`}</Typography>
+        <Typography paragraph>{`Total: $${mortgageCalculatorResult.monthlyPayment.total}`}</Typography>
+        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult.monthlyPayment.mortgage}`}</Typography>
+        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult.monthlyPayment.propertyTax}`}</Typography>
+        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult.monthlyPayment.hoa}`}</Typography>
+        <Typography paragraph>{`Annual home insurance: $${mortgageCalculatorResult.monthlyPayment.annualHomeInsurance}`}</Typography>
+      </MortgageResult>
 
-      <div className="mortgage-calculator-result">
-        <h5>{`Annual payment`}</h5>
-        <p>{`Total: ${mortgageCalculatorResult.annualPayment.total}`}</p>
-        <p>{`Mortgage: ${mortgageCalculatorResult.annualPayment.mortgage}`}</p>
-        <p>{`Property tax: ${mortgageCalculatorResult.annualPayment.propertyTax}`}</p>
-        <p>{`Homeowner association fees: ${mortgageCalculatorResult.annualPayment.hoa}`}</p>
-        <p>{`Home insurance: ${mortgageCalculatorResult.annualPayment.homeInsurance}`}</p>
-      </div>
+      <MortgageResult>
+        <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Annual payment`}</Typography>
+        <Typography paragraph>{`Total: $${mortgageCalculatorResult.annualPayment.total}`}</Typography>
+        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult.annualPayment.mortgage}`}</Typography>
+        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult.annualPayment.propertyTax}`}</Typography>
+        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult.annualPayment.hoa}`}</Typography>
+        <Typography paragraph>{`Home insurance: $${mortgageCalculatorResult.annualPayment.homeInsurance}`}</Typography>
+      </MortgageResult>
 
-      <div className="mortgage-calculator-result">
-        <h5>{`Total interest paid`}</h5>
-        <p>{`${mortgageCalculatorResult.totalInterestPaid}`}</p>
-      </div>
-    </div>
+      <MortgageResult>
+        <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Total interest paid`}</Typography>
+        <Typography paragraph>{`$${mortgageCalculatorResult.totalInterestPaid}`}</Typography>
+      </MortgageResult>
+    </MortgageCalculatorResultContainer>
   )
 }
 

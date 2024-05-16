@@ -1,5 +1,5 @@
-import "./home.styles.scss";
-
+import "./home.styles.jsx";
+import { HomeContainer } from "./home.styles.jsx";
 import MediaCard from "../mui/card/card.component";
 import { Fragment } from "react";
 
@@ -70,7 +70,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <div className="home-container">
+      <HomeContainer>
         <MediaCard styles={ styles } header={ homeCardContent.chatbot.header } imageUrl={ homeCardContent.chatbot.imageUrl } 
           imageTitle={ homeCardContent.chatbot.header } path={ homeCardContent.chatbot.path } content={ homeCardContent.chatbot.description }></MediaCard>
 
@@ -82,9 +82,9 @@ const Home = () => {
         
         <MediaCard styles={ styles } header={ homeCardContent.expenses.header } imageUrl={ homeCardContent.expenses.imageUrl } 
           imageTitle={ homeCardContent.expenses.header } path={ homeCardContent.expenses.path } content={ homeCardContent.expenses.description }></MediaCard>
-      </div>
+      </HomeContainer>
 
-      <div className="home-container">
+      <HomeContainer>
         <MediaCard styles={ styles } header={ homeCardContent.banking.header } imageUrl={ homeCardContent.banking.imageUrl } 
           imageTitle={ homeCardContent.banking.header } path={ homeCardContent.banking.path } content={ homeCardContent.banking.description }></MediaCard>
         
@@ -96,7 +96,7 @@ const Home = () => {
         
         <MediaCard styles={ styles } header={ homeCardContent.tools.header } imageUrl={ homeCardContent.tools.imageUrl } 
           imageTitle={ homeCardContent.tools.header } path={ homeCardContent.tools.path } content={ homeCardContent.tools.description }></MediaCard>
-      </div>
+      </HomeContainer>
     </Fragment>
   );
 };

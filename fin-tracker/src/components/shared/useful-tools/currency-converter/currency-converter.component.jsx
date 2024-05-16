@@ -1,9 +1,13 @@
-import "./currency-converter.styles.scss"
+import "./currency-converter.styles.jsx"
+import { CurrencyConverterContainer } from "./currency-converter.styles.jsx"
+
 import { useState, useContext, Fragment } from "react"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import CurrencyConverterResult from "./currency-converter-result.component"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
+import { ButtonsContainer } from "../../button/button.styles.jsx"
 
 const defaultFormFields = {
   fromCurrency: "",
@@ -33,30 +37,31 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <div className="currency-converter-container">
+    <CurrencyConverterContainer>
       <form onSubmit={ handleSubmit }>
-        <h3>Currency converter</h3>
-          <p>From</p>
+        <Typography sx={{ paddingBottom: "2%" }} variant="h6">Convert currency</Typography>
+          
+          <Typography paragraph>From</Typography>
           <FormInput label="Amount" type="text" required onChange={ handleChange }
                       name="fromCurrencyAmount" value={ formFields.fromCurrencyAmount }/>
           <FormInput label="From (currency)" type="text" required onChange={ handleChange }
                       name="fromCurrency" value={ formFields.fromCurrency }/>
 
-          <p>To</p>
+          <Typography paragraph>To</Typography>
           <FormInput label="To (currency)" type="text" required onChange={ handleChange }
                       name="toCurrency" value={ formFields.toCurrency }/>
 
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Convert</Button>
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
-        </div>
+        </ButtonsContainer>
       </form>
 
       {
         currencyConverterResult &&
         <CurrencyConverterResult></CurrencyConverterResult>
       }
-    </div>
+    </CurrencyConverterContainer>
   )
 }
 

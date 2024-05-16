@@ -1,14 +1,17 @@
-import "./exchange-rate-result.styles.scss"
+import "./exchange-rate-result.styles.jsx"
+import { ExchangeRateResultContainer } from "./exchange-rate-result.styles.jsx"
+
 import { useContext } from "react"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
 
 const ExchangeRateResult = () => {
   const { exchangeRateResult } = useContext(UsefulToolsContext)
 
   return (
-    <div className="exchange-rate-result-container">
-      <p>{`Exchange rate from ${exchangeRateResult.fromCurrency} to ${exchangeRateResult.toCurrency}: ${exchangeRateResult.exchangeRate}`}</p>
-    </div>
+    <ExchangeRateResultContainer>
+      <Typography paragraph>{`Exchange rate from ${exchangeRateResult.fromCurrency} to ${exchangeRateResult.toCurrency}: ${exchangeRateResult.exchangeRate}`}</Typography>
+    </ExchangeRateResultContainer>
   )
 }
 

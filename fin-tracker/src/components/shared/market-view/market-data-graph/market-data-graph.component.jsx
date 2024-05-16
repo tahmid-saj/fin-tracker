@@ -1,10 +1,12 @@
-import "./market-data-graph.styles.scss"
+import "./market-data-graph.styles.jsx"
+import { MarketDataGraphContainer } from "./market-data-graph.styles.jsx";
 
 import ReactApexChart from 'react-apexcharts';
 import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context";
 import { Fragment, useContext } from "react";
 
 import { MARKET_DATA_INTERVALS } from "../../../../utils/constants/market-data.constants";
+import { Divider } from "@mui/material";
 
 const MarketDataGraph = () => {
   const { marketData } = useContext(MarketDataContext)
@@ -33,7 +35,7 @@ const MarketDataGraph = () => {
   const options = {
     chart: {
       type: 'area',
-      height: 1000,
+      height: 500,
       zoom: {
         enabled: true
       }
@@ -66,9 +68,9 @@ const MarketDataGraph = () => {
   };
 
   return (
-    <div className="market-data-graph-container">
+    <MarketDataGraphContainer>
       <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </div>
+    </MarketDataGraphContainer>
   )
 }
 

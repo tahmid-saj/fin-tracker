@@ -9,6 +9,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@polygon.io/client-js": "^7.3.2",
