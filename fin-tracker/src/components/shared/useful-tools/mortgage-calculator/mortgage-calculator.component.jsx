@@ -1,10 +1,15 @@
+import "./mortgage-calculator.styles.jsx"
+import { MortgageCalculatorContainer, MortgageCalculatorForm } from "./mortgage-calculator.styles.jsx"
+
 import { useState, useContext, Fragment } from "react"
-import "./mortgage-calculator.styles.scss"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import { DOWNPAYMENT_FLAG_OPTIONS } from "../../../../utils/constants/useful-tools.constants"
 import MortgageCalculatorResult from "./mortgage-calculator-result.component"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
+import { DropButton } from "../../drop-button/drop-button.styles.jsx"
+import { ButtonsContainer } from "../../button/button.styles.jsx"
 
 const defaultFormFields = {
   downpaymentFlag: "Yes",
@@ -40,15 +45,16 @@ const MortgageCalculator = () => {
   }
 
   return (
-    <div className="mortgage-calculator-container">
-      <form onSubmit={ handleSubmit }>
-        <h3>Mortgage calculator</h3>
-        <label className="downpaymentFlagDropdown" htmlFor="downpaymentFlag">Is there a downpayment?</label>
-        <select required className="dropButton" name="downpaymentFlag" id="downpaymentFlag" 
+    <MortgageCalculatorContainer>
+      <MortgageCalculatorForm onSubmit={ handleSubmit }>
+        <Typography sx={{ paddingBottom: "2%" }} variant="h6">Estimate your mortgage</Typography>
+
+        <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Is there a downpayment?</Typography>
+        <DropButton required name="downpaymentFlag" id="downpaymentFlag" 
                 onChange={ handleChange } value={ formFields.downpaymentFlag }>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
-        </select>
+        </DropButton>
 
         {
           formFields.downpaymentFlag === DOWNPAYMENT_FLAG_OPTIONS.no ?
@@ -71,7 +77,7 @@ const MortgageCalculator = () => {
         <FormInput label="Duration in years" type="text" required onChange={ handleChange }
                     name="durationYears" value={ formFields.durationYears }/>
         
-        <p>Optional:</p>
+        <Typography paragraph>Optional:</Typography>
         <FormInput label="Monthly homeowner association fees " type="text" onChange={ handleChange }
             name="monthlyHoa" value={ formFields.monthlyHoa }/>
         <FormInput label="Annual property tax" type="text" onChange={ handleChange }
@@ -79,17 +85,17 @@ const MortgageCalculator = () => {
         <FormInput label="Annual home insurance" type="text" onChange={ handleChange }
             name="annualHomeInsurance" value={ formFields.annualHomeInsurance }/>
 
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Calculate</Button>
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
-        </div>
-      </form>
+        </ButtonsContainer>
+      </MortgageCalculatorForm>
 
       {
         mortgageCalculatorResult &&
         <MortgageCalculatorResult></MortgageCalculatorResult>
       }
-    </div>
+    </MortgageCalculatorContainer>
   )
 }
 

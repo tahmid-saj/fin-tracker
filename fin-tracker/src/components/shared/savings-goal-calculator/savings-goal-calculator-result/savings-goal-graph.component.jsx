@@ -1,4 +1,6 @@
-import "./savings-goal-graph.styles.scss"
+import "./savings-goal-graph.styles.jsx"
+import { SavingsGoalGraphChart } from "./savings-goal-graph.styles.jsx";
+
 import { useState, useContext } from "react";
 import ReactApexChart from "react-apexcharts"
 
@@ -29,7 +31,7 @@ const SavingsGoalGraph = () => {
   const options = {
     chart: {
       type: 'area',
-      height: 1000,
+      height: 500,
       zoom: {
         enabled: true
       }
@@ -61,9 +63,9 @@ const SavingsGoalGraph = () => {
   };
 
   return (
-    <div className="savings-goal-graph-container">
+    <SavingsGoalGraphChart>
       <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </div>
+    </SavingsGoalGraphChart>
   )
 }
 

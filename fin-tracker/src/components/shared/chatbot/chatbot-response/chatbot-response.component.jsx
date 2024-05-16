@@ -1,15 +1,17 @@
-import "./chatbot-response.styles.scss"
+import "./chatbot-response.styles.jsx"
+import { ChatBotResponseContainer } from "./chatbot-response.styles.jsx"
 import { useContext } from "react"
 import { ChatBotContext } from "../../../../contexts/shared/chatbot/chatbot.context"
+import { Typography } from "@mui/material"
 
 const ChatBotResponse = () => {
   const { chatbotResponse } = useContext(ChatBotContext)
 
   return (
-    <div className="chatbot-response-container">
-      <h5>Chatbot:</h5>
-      <p>{ `${chatbotResponse}` }</p>
-    </div>
+    <ChatBotResponseContainer>
+      <Typography variant="h6">Chatbot:</Typography>
+      <Typography paragraph>{ `${chatbotResponse}` }</Typography>
+    </ChatBotResponseContainer>
   )
 }
 

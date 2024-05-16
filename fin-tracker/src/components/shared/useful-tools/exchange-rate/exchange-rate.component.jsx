@@ -1,9 +1,13 @@
-import "./exchange-rate.styles.scss"
+import "./exchange-rate.styles.jsx"
+import { ExchangeRateContainer } from "./exchange-rate.styles.jsx"
+
 import { useState, useContext, Fragment } from "react"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import ExchangeRateResult from "./exchange-rate-result.component"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
+import { ButtonsContainer } from "../../button/button.styles.jsx"
 
 const defaultFormFields = {
   fromCurrency: "",
@@ -32,25 +36,26 @@ const ExchangeRate = () => {
   }
 
   return (
-    <div className="exchange-rate-container">
+    <ExchangeRateContainer>
       <form onSubmit={ handleSubmit }>
-        <h3>Find exchange rate</h3>
+        <Typography sx={{ paddingBottom: "2%" }} variant="h6">Find the exchange rate</Typography>
+
         <FormInput label="From (currency)" type="text" required onChange={ handleChange }
                       name="fromCurrency" value={ formFields.fromCurrency }/>
         <FormInput label="To (currency)" type="text" required onChange={ handleChange }
             name="toCurrency" value={ formFields.toCurrency }/>
         
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Find</Button>
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
-        </div>
+        </ButtonsContainer>
       </form>
 
       {
         exchangeRateResult &&
         <ExchangeRateResult></ExchangeRateResult>
       }
-    </div>
+    </ExchangeRateContainer>
   )
 }
 

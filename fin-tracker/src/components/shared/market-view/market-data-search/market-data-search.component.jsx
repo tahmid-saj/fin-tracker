@@ -1,8 +1,13 @@
-import "./market-data-search.styles.scss"
+import "./market-data-search.styles.jsx"
+import { DropButton } from "../../drop-button/drop-button.styles.jsx"
+import { ButtonsContainer } from "../../button/button.styles.jsx"
+import { MarketDataSearchContainer } from "./market-data-search.styles.jsx"
+
 import { useState, useContext } from "react"
 import FormInput from "../../form-input/form-input.component"
 import Button from "../../button/button.component"
 import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context"
+import { Typography } from "@mui/material"
 
 const initialFormFields = {
   marketDataType: "Crypto",
@@ -56,45 +61,48 @@ const MarketDataSearch = () => {
 
   return (
     // TODO: make a component for dropdown below
-    <div className="market-data-search-container">
-      <form onSubmit={ handleSubmit }>
-        <label className="marketTypeDropdown" htmlFor="marketDataType">Category</label>
+    <MarketDataSearchContainer>
+      <Typography variant="h6" sx={{ paddingBottom: "2%" }}>Search Market Data</Typography>
 
-        <select required className="dropButton" name="marketDataType" id="marketDataType" 
+      <form onSubmit={ handleSubmit }>
+        {/* <label className="marketTypeDropdown" htmlFor="marketDataType">Category</label> */}
+
+        <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Category</Typography>
+        <DropButton required name="marketDataType" id="marketDataType" 
                 onChange={ handleChange } value={ formFields.marketDataType }>
           <option value="Crypto">Crypto</option>
           <option value="Currencies">Currencies</option>
           <option value="Indices">Indices</option>
           <option value="Stocks">Stocks</option>
-        </select>
+        </DropButton>
 
         <FormInput label="Ticker" type="text" required onChange={ handleChange }
                     name="marketDataTicker" value={ formFields.marketDataTicker }></FormInput>
 
-        <label className="marketDataIntervalDropdown" htmlFor="marketDataInterval">Interval</label>
-
-        <select required className="dropButton" name="marketDataInterval" id="marketDataInterval" 
+        {/* <label className="marketDataIntervalDropdown" htmlFor="marketDataInterval">Interval</label> */}
+        <Typography sx={{ display: "inline-block", position: "relative" }} paragraph>Interval</Typography>
+        <DropButton required className="dropButton" id="marketDataInterval" 
                 onChange={ handleChange } value={ formFields.marketDataInterval }>
           <option value="Hour">Hour</option>
           <option value="Day">Day</option>
           <option value="Week">Week</option>
           <option value="Month">Month</option>
-        </select>
+        </DropButton>
 
-        <h5>Start</h5>
+        <Typography sx={{ marginTop: "2%" }} variant="subtitle2">Start date</Typography>
         <FormInput type="date" required onChange={ handleChange }
                   name="marketDataStartDate" value={ formFields.marketDataStartDate }></FormInput>
 
-        <h5>End</h5>
+        <Typography variant="subtitle2">End date</Typography>
         <FormInput type="date" required onChange={ handleChange }
                   name="marketDataEndDate" value={ formFields.marketDataEndDate }></FormInput>
         
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Search</Button>
           <Button type="button" onClick={ (e) => resetFormFields(e) }>Clear</Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </MarketDataSearchContainer>
   )
 }
 

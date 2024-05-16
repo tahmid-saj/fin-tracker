@@ -1,9 +1,11 @@
 import { useState, useContext } from "react"
 import FormInput from "../form-input/form-input.component"
 import Button from "../button/button.component"
-import "./chatbot.styles.scss"
+import "./chatbot.styles.jsx"
+import { ChatBotContainer, ChatBotInputMessage } from "./chatbot.styles.jsx"
 import ChatBotResponse from "./chatbot-response/chatbot-response.component"
 import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context"
+import { Divider, Typography } from "@mui/material"
 
 const defaultFormFields = {
   messageInput: ""
@@ -31,25 +33,27 @@ const ChatBot = () => {
   }
 
   return (
-    <div className="chatbot-container">
-      <h3>Ask the chatbot for some financial advice</h3>
-      <h5>Example: Can you give me some financial advice?</h5>
+    <ChatBotContainer>
+      <Typography variant="h6">Ask the chatbot for some financial advice</Typography>
+      <Typography paragraph>Example: Can you give me some financial advice?</Typography>
 
-      <form onSubmit={ handleSubmit }>
+      <ChatBotInputMessage onSubmit={ handleSubmit }>
         <FormInput label="Message chatbot" type="text" required onChange={ handleChange }
                   name="messageInput" value={ formFields.messageInput }/>
         <div className="buttons-container">
           <Button type="submit">Send Message</Button>
           <Button type="button" onClick={ resetFormFields }>Clear</Button>
         </div>
-      </form>
+      </ChatBotInputMessage>
 
       {
-        chatbotResponse !== "" &&
+        chatbotResponse !== "" && chatbotResponse !== undefined &&
         <ChatBotResponse></ChatBotResponse>
       }
-      <hr className="rounded"></hr>
-    </div>
+
+      <Divider orientation="horizontal" flexItem/>
+
+    </ChatBotContainer>
   )
 }
 

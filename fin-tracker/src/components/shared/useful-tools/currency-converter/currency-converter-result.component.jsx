@@ -1,14 +1,17 @@
-import "./currency-converter-result.styles.scss"
+import "./currency-converter-result.styles.jsx"
+import { CurrencyConverterResultContainer } from "./currency-converter-result.styles.jsx"
+
 import { useContext } from "react"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { Typography } from "@mui/material"
 
 const CurrencyConverterResult = () => {
   const { currencyConverterResult } = useContext(UsefulToolsContext)
 
   return (
-    <div className="currency-converter-result-container">
-      <p>{`Converted amount: ${currencyConverterResult.toCurrencyAmount} ${currencyConverterResult.toCurrency}`}</p>
-    </div>
+    <CurrencyConverterResultContainer>
+      <Typography paragraph>{`Converted amount: ${currencyConverterResult.toCurrencyAmount} ${currencyConverterResult.toCurrency}`}</Typography>
+    </CurrencyConverterResultContainer>
   )
 }
 

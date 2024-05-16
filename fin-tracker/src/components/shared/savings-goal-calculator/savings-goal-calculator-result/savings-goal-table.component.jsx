@@ -1,10 +1,13 @@
-import "./savings-goal-table.styles.scss"
+import "./savings-goal-table.styles.jsx"
+import { SavingsGoalTableGrid } from "./savings-goal-table.styles.jsx";
+
 import { useState, useContext, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
 import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
+import { Typography } from "@mui/material";
 
 const SavingsGoalTable = () => {
   const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
@@ -29,11 +32,12 @@ const SavingsGoalTable = () => {
   ])
 
   return (
-    <div className="ag-theme-quartz-dark expenses-table-container savings-goal-table-container" // applying the grid theme
+    <SavingsGoalTableGrid className="ag-theme-quartz-dark" // applying the grid theme
       style={{ height: 650, width: '90%' }} // the grid will fill the size of the parent container
       >
+      <Typography variant="subtitle1" sx={{ color: "black" }}>Savings Goal Summary</Typography>
       <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
-    </div>
+    </SavingsGoalTableGrid>
   )
 }
 
