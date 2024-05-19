@@ -8,9 +8,11 @@ jobs:
   build:
     env:
       CI: true
+      MONGO_URL: mongodb://localhost/fin-tracker
     strategy:
       matrix:
         node-version: [20.x]
+        mongodb-version: [ '7.0', '6.0' ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,6 +20,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Use MongoDB from Github Actions
+        uses: supercharge/mongodb-github-actions@1.6.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm install
       # - run: npm run build
       # - run: npm test
