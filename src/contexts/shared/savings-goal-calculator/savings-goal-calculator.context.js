@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation";
+import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation"
 import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations";
 
 // helper functions
