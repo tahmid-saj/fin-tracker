@@ -39,7 +39,7 @@ root.render(
             <UsefulToolsProvider>
               <SavingsGoalCalculatorProvider>
                   <ExpensesProvider>
-                    <BankingProvider>
+                    {/* <BankingProvider> */}
                       <InvestmentsProvider>
                         <MarketDataProvider>
                           <SavingsProvider>
@@ -63,7 +63,7 @@ root.render(
                           </SavingsProvider>
                         </MarketDataProvider>
                       </InvestmentsProvider>
-                    </BankingProvider>
+                    {/* </BankingProvider> */}
                   </ExpensesProvider>
               </SavingsGoalCalculatorProvider>
             </UsefulToolsProvider>

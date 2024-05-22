@@ -5,7 +5,10 @@ import "./close-account.styless.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { closeBankingAccount } from "../../../../store/signed-out/banking/banking.action";
 
 import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
 
@@ -15,8 +18,10 @@ const defaultFormFields = {
 
 const CloseAccount = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  // const { closeBankingAccount } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const { closeBankingAccount } = useContext(BankingContext);
+  const dispatch = useDispatch()
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -27,7 +32,7 @@ const CloseAccount = ({ financeItemInfo }) => {
     console.log(formFields.confirmDelete);
 
     if (formFields.confirmDelete === PERMANENTLY_DELETE) {
-      closeBankingAccount(financeItemInfo);
+      dispatch(closeBankingAccount(bankingAccounts, financeItemInfo))
     } else {
       return;
     }

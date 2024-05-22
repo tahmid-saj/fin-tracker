@@ -4,7 +4,10 @@ import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component";
 
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { createBankingAccount } from "../../../../store/signed-out/banking/banking.action";
 
 import "./create-account.styles.scss";
 
@@ -14,8 +17,10 @@ const defaultFormFields = {
 
 const CreateAccount = ({ label }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  // const { bankingAccounts, createBankingAccount } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const { bankingAccounts, createBankingAccount } = useContext(BankingContext);
+  const dispatch = useDispatch()
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -24,7 +29,7 @@ const CreateAccount = ({ label }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    createBankingAccount(formFields.bankAccountName);
+    dispatch(createBankingAccount(bankingAccounts, formFields.bankAccountName))
 
     resetFormFields();
 
