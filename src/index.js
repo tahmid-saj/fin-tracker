@@ -25,44 +25,52 @@ import { SavingsProvider as SavingsProviderSignedIn } from './contexts/signed-in
 import { DashboardProvider as DashboardProviderSignedIn } from './contexts/signed-in/dashboard/dashboard.context';
 import { ExportsProvider } from './contexts/signed-in/exports/exports.context';
 
+import { Provider } from 'react-redux';
+import { persistor, store } from "./store/store"
+import { PersistGate } from 'redux-persist/integration/react';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <UsefulToolsProvider>
-          <SavingsGoalCalculatorProvider>
-              <ExpensesProvider>
-                <BankingProvider>
-                  <InvestmentsProvider>
-                    <MarketDataProvider>
-                      <SavingsProvider>
-                        <DashboardProvider>
-                          <ExpensesProviderSignedIn>
-                            <BankingProviderSignedIn>
-                              <InvestmentsProviderSignedIn>
-                                <SavingsProviderSignedIn>
-                                  <DashboardProviderSignedIn>
-                                    <ExportsProvider>
-                                      <ChatBotProvider>
-                                        <App />
-                                      </ChatBotProvider>
-                                    </ExportsProvider>
-                                  </DashboardProviderSignedIn>
-                                </SavingsProviderSignedIn>
-                              </InvestmentsProviderSignedIn>
-                            </BankingProviderSignedIn>
-                          </ExpensesProviderSignedIn>
-                        </DashboardProvider>
-                      </SavingsProvider>
-                    </MarketDataProvider>
-                  </InvestmentsProvider>
-                </BankingProvider>
-              </ExpensesProvider>
-          </SavingsGoalCalculatorProvider>
-        </UsefulToolsProvider>
-      </UserProvider>
-    </BrowserRouter>
+    <Provider store={ store }>
+      <PersistGate loading={ null } persistor={ persistor }>
+        <BrowserRouter>
+          <UserProvider>
+            <UsefulToolsProvider>
+              <SavingsGoalCalculatorProvider>
+                  <ExpensesProvider>
+                    <BankingProvider>
+                      <InvestmentsProvider>
+                        <MarketDataProvider>
+                          <SavingsProvider>
+                            <DashboardProvider>
+                              <ExpensesProviderSignedIn>
+                                <BankingProviderSignedIn>
+                                  <InvestmentsProviderSignedIn>
+                                    <SavingsProviderSignedIn>
+                                      <DashboardProviderSignedIn>
+                                        <ExportsProvider>
+                                          <ChatBotProvider>
+                                            <App />
+                                          </ChatBotProvider>
+                                        </ExportsProvider>
+                                      </DashboardProviderSignedIn>
+                                    </SavingsProviderSignedIn>
+                                  </InvestmentsProviderSignedIn>
+                                </BankingProviderSignedIn>
+                              </ExpensesProviderSignedIn>
+                            </DashboardProvider>
+                          </SavingsProvider>
+                        </MarketDataProvider>
+                      </InvestmentsProvider>
+                    </BankingProvider>
+                  </ExpensesProvider>
+              </SavingsGoalCalculatorProvider>
+            </UsefulToolsProvider>
+          </UserProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
 
