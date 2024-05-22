@@ -1,11 +1,14 @@
 import { useState, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { transferToBankingAccount } from "../../../../store/signed-out/banking/banking.action"
 
 import "./transfer-money.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 
 const defaultFormFields = {
   transferTo: "",
@@ -15,8 +18,10 @@ const defaultFormFields = {
 
 const TransferMoney = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  // const { transferToBankingAccount } = useContext(BankingContext);
 
-  const { transferToBankingAccount } = useContext(BankingContext);
+  const dispatch = useDispatch()
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -25,7 +30,7 @@ const TransferMoney = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason);
+    dispatch(transferToBankingAccount(bankingAccounts, financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason))
 
     resetFormFields();
   };

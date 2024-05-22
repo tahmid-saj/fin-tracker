@@ -5,13 +5,15 @@ import { FinanceTrackerItem } from "../finance-tracker-item/finance-tracker-item
 import "./finance-tracker-items.styles.scss";
 
 // TODO: need to move FinanceTrackerItems from shared to signed-in and signed-out folders
-import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
+import { useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../store/signed-out/banking/banking.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
 const FinanceTrackerItems = ({ label }) => {
-  const { bankingAccounts } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts);
 
   return (
     <div className="finance-tracker-item-container">

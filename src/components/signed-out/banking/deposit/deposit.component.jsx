@@ -5,7 +5,10 @@ import "./deposit.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { depositToBankingAccount } from "../../../../store/signed-out/banking/banking.action";
 
 const defaultFormFields = {
   amount: "",
@@ -14,8 +17,10 @@ const defaultFormFields = {
 
 const Deposit = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  // const { depositToBankingAccount } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const { depositToBankingAccount } = useContext(BankingContext);
+  const dispatch = useDispatch()
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -24,7 +29,7 @@ const Deposit = ({ financeItemInfo }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    depositToBankingAccount(financeItemInfo, formFields.amount, formFields.reason);
+    dispatch(depositToBankingAccount(bankingAccounts, financeItemInfo, formFields.amount, formFields.reason))
 
     resetFormFields();
   };
