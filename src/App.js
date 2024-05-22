@@ -17,7 +17,28 @@ import InvestmentsRouteSignedIn from "./routes/signed-in/investments/investments
 import SavingsRouteSignedIn from "./routes/signed-in/savings/savings.components";
 import ExportsRouteSignedIn from "./routes/signed-in/exports/exports.component";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./store/shared/user/user.action";
+
+import { onAuthStateChangedListener,
+  createUserDocumentFromAuth
+} from "./utils/firebase/firebase.utils";
+
 const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user)
+      }
+      dispatch(setCurrentUser(user))
+    })
+
+    return unsubscribe
+  }, [dispatch])
+
   return (
     <Routes>
       <Route path="/" element={ <Navigation/> }>

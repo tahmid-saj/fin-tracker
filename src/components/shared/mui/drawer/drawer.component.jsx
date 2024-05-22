@@ -38,7 +38,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../../../contexts/shared/user/user.context';
 import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expenses.context';
 import { BankingContext } from '../../../../contexts/signed-in/banking/banking.context';
 import { InvestmentsContext } from '../../../../contexts/signed-in/investments/investments.context';
@@ -46,6 +45,9 @@ import { SavingsContext } from '../../../../contexts/signed-in/savings/savings.c
 import { signOutUser } from '../../../../utils/firebase/firebase.utils';
 
 import { NAV_LINKS } from '../../../../utils/constants/shared.constants';
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../../store/shared/user/user.selector";
 
 const drawerWidth = 240;
 
@@ -119,7 +121,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
 
-  const { currentUser } = useContext(UserContext)
+  const currentUser = useSelector(selectCurrentUser)
   const { updateExpensesAndSummary } = useContext(ExpensesContext)
   const { updateBankingAccountsAndSummary } = useContext(BankingContext);
   const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
