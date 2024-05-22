@@ -35,7 +35,7 @@ root.render(
     <Provider store={ store }>
       <PersistGate loading={ null } persistor={ persistor }>
         <BrowserRouter>
-          <UserProvider>
+          {/* <UserProvider> */}
             <UsefulToolsProvider>
               <SavingsGoalCalculatorProvider>
                   <ExpensesProvider>
@@ -67,7 +67,7 @@ root.render(
                   </ExpensesProvider>
               </SavingsGoalCalculatorProvider>
             </UsefulToolsProvider>
-          </UserProvider>
+          {/* </UserProvider> */}
         </BrowserRouter>
       </PersistGate>
     </Provider>

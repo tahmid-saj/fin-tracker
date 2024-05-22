@@ -1,25 +1,18 @@
-import { Fragment, useContext, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
 
 import "./navigation.styles.jsx";
 import { OutletContainer } from "./navigation.styles.jsx";
-
-import { UserContext } from "../../../contexts/shared/user/user.context";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-
-import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component";
-import AboutLinks from "../../../components/shared/about-links/about-links.component.jsx";
-
 import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
 
 // TODO: put navigation paths in constants
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser)
 
   // const { updateExpensesAndSummary } = useContext(ExpensesContext)
   // const { updateBankingAccountsAndSummary } = useContext(BankingContext);
