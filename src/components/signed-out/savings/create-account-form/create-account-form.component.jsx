@@ -6,7 +6,10 @@ import FormInput from "../../../shared/form-input/form-input.component";
 
 import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
 
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { createSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -19,9 +22,11 @@ const defaultFormFields = {
 }
 
 const CreateAccountForm = ({ label }) => {
-
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { createSavingsAccount } = useContext(SavingsContext);
+
+  // const { createSavingsAccount } = useContext(SavingsContext);
+  const dispatch = useDispatch()
+  const savingsAccounts = useSelector(selectSavingsAccounts)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -43,7 +48,7 @@ const CreateAccountForm = ({ label }) => {
       return;
     }
 
-    createSavingsAccount(formFields);
+    dispatch(createSavingsAccount(savingsAccounts, formFields))
     resetFormFields();
 
     console.log(event.target.value);

@@ -4,11 +4,16 @@ import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+import { useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 
 const SummaryTableSavingsAccount = ({ financeItemInfo }) => {
-  const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
-  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName)
+  // const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
+  const savingsAccounts = useSelector(selectSavingsAccounts)
+
+  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts, financeItemInfo.savingsAccountName)
   const { savings } = savingsAccountInfo
 
   const rowData = savings.map((savingMonth) => {

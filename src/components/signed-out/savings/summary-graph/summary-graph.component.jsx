@@ -2,12 +2,18 @@ import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 import "./summary-graph.styles.scss";
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
 
+import { useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
+
 const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
-  const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
-  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName)
+  // const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
+  const savingsAccounts = useSelector(selectSavingsAccounts)
+
+  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts, financeItemInfo.savingsAccountName)
   const { savings } = savingsAccountInfo
 
   let savingsTimes = []
@@ -71,7 +77,7 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
 }
 
 const SummaryGraphSavingsAccountOld = ({ financeItemInfo }) => {
-  const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext);
+  // const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext);
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
 
   // TODO: manage dates on graph better
