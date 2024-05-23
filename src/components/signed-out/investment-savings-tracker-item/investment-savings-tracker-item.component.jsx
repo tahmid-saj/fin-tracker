@@ -9,7 +9,8 @@ import FormView from "../form-view/form-view.component";
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../store/signed-out/investments/investments.selector";
 
-import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
@@ -22,7 +23,8 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
   // const { investments } = useContext(InvestmentsContext);
   const investments = useSelector(selectInvestments)
     
-  const { savingsAccounts } = useContext(SavingsContext);
+  // const { savingsAccounts } = useContext(SavingsContext);
+  const savingsAccounts = useSelector(selectSavingsAccounts)
 
   let financeItemExists = undefined;
 

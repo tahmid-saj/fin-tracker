@@ -4,7 +4,10 @@ import "./update-account-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { updateSavingsAccount, closeSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
 
 import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
 
@@ -19,11 +22,13 @@ const defaultFormFields = {
 }
 
 const UpdateAccountForm = ({ label, financeItemInfo }) => {
+  // const { updateSavingsAccount, closeSavingsAccount } = useContext(SavingsContext);
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
 
-  const { updateSavingsAccount, closeSavingsAccount } = useContext(SavingsContext);
+  const dispatch = useDispatch()
+  const savingsAccounts = useSelector(selectSavingsAccounts)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -57,7 +62,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
       return;
     }
 
-    updateSavingsAccount(financeItemInfo.savingsAccountName, formFields);
+    dispatch(updateSavingsAccount(savingsAccounts, financeItemInfo.savingsAccountName, formFields))
     resetFormFields();
   };
 
@@ -71,7 +76,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
     setShowConfirmClose(false);
     
     if (confirmClose === SAVINGS_CONFIRM_CLOSE.yes) {
-      closeSavingsAccount(financeItemInfo.savingsAccountName);
+      dispatch(closeSavingsAccount(savingsAccounts, financeItemInfo.savingsAccountName))
     }
   };
 

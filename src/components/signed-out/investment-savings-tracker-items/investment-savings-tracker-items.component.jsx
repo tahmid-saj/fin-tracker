@@ -9,7 +9,8 @@ import { InvestmentSavingsTrackerItem } from "../investment-savings-tracker-item
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../store/signed-out/investments/investments.selector";
 
-import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
@@ -18,7 +19,8 @@ const InvestmentSavingsTrackerItems = ({ label }) => {
   const investments = useSelector(selectInvestments)
 
   // const { investments } = useContext(InvestmentsContext);
-  const { savingsAccounts } = useContext(SavingsContext);
+  // const { savingsAccounts } = useContext(SavingsContext);
+  const savingsAccounts = useSelector(selectSavingsAccounts)
 
   return (
     <div className="investment-savings-tracker-item-container">

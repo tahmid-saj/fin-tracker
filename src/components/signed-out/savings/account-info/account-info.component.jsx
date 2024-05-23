@@ -2,13 +2,18 @@ import { useContext } from "react";
 
 import "./account-info.styles.scss";
 
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+import { useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
 
 const AccountInfo = ({ financeItemInfo }) => {
-  const { getSavingsAccountInfo } = useContext(SavingsContext);
-  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
+  // const { getSavingsAccountInfo } = useContext(SavingsContext);
+  const savingsAccounts = useSelector(selectSavingsAccounts)
+
+  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts, financeItemInfo.savingsAccountName);
 
   const startDate = new Date(savingsAccountInfo.startDate);
   const year = startDate.getFullYear();

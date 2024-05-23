@@ -2,13 +2,16 @@ import { useContext } from "react";
 
 import "./summary.styles.scss";
 
-import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+// import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
+import { useSelector } from "react-redux";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
+import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 
 export const Summary = ({ financeItemInfo }) => {
-  
-  const { getSavingsAccountInfo } = useContext(SavingsContext);
+  // const { getSavingsAccountInfo } = useContext(SavingsContext);
+  const savingsAccounts = useSelector(selectSavingsAccounts)
 
-  const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
+  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts, financeItemInfo.savingsAccountName);
 
   return (
     <div className="summary-container">
