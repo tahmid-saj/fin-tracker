@@ -5,7 +5,7 @@ export const SAVINGS_GOAL_CALCULATOR_INITIAL_STATE = {
   savingsGoalScheduleResult: undefined
 }
 
-export const savingsGoalCalculatorReducer = (state, action) => {
+export const savingsGoalCalculatorReducer = (state=SAVINGS_GOAL_CALCULATOR_INITIAL_STATE, action={}) => {
   const { type, payload } = action
 
   switch(type) {
