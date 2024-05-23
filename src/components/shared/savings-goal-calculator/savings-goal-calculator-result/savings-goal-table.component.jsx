@@ -6,11 +6,15 @@ import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
+// import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
+import { useSelector } from "react-redux";
+import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
+
 import { Typography } from "@mui/material";
 
 const SavingsGoalTable = () => {
-  const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
+  // const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
+  const savingsGoalScheduleResult = useSelector(selectSavingsGoalScheduleResult)
 
   const rowData = savingsGoalScheduleResult.map((savingsGoalMonth) => {
     return {

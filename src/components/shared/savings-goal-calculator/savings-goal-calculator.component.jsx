@@ -5,11 +5,15 @@ import { SavingsGoalCalculatorContainer, SavingsGoalCalculatorForm,
   SavingsGoalResultContainer, SavingsGoalGraphContainer, SavingsGoalTableContainer
 } from "./savings-goal-calculator.styles.jsx"
 
-import { Fragment, useState, useContext } from "react"
+import { Fragment, useState, useEffect } from "react"
 import FormInput from "../form-input/form-input.component"
 import Button from "../button/button.component"
 import SavingsGoalResult from "./savings-goal-calculator-result/savings-goal-result.component"
-import { SavingsGoalCalculatorContext } from "../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context"
+// import { SavingsGoalCalculatorContext } from "../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context"
+import { useDispatch, useSelector } from "react-redux"
+import { selectSavingsGoalResult, selectSavingsGoalScheduleResult } from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js"
+import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.action.js"
+
 import SavingsGoalGraph from "./savings-goal-calculator-result/savings-goal-graph.component"
 import SavingsGoalTable from "./savings-goal-calculator-result/savings-goal-table.component"
 import { SAVINGS_GOAL_COMPOUNDED } from "../../../utils/constants/savings.constants"
@@ -26,8 +30,16 @@ const defaultFormFields = {
 
 const SavingsGoalCalculator = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
-  const { savingsGoalResult, savingsGoalScheduleResult, 
-    calculateSavingsGoal } = useContext(SavingsGoalCalculatorContext)
+  // const { savingsGoalResult, savingsGoalScheduleResult, calculateSavingsGoal } = useContext(SavingsGoalCalculatorContext)
+  const dispatch = useDispatch()
+  const savingsGoalResult = useSelector(selectSavingsGoalResult)
+  const savingsGoalScheduleResult = useSelector(selectSavingsGoalScheduleResult)
+
+  useEffect(() => {
+    if (savingsGoalResult) {
+      dispatch(calculateSavingsGoalSchedule(savingsGoalResult))
+    }
+  }, [savingsGoalResult, dispatch])
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -36,7 +48,7 @@ const SavingsGoalCalculator = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    calculateSavingsGoal(formFields)
+    dispatch(calculateSavingsGoal(savingsGoalResult, formFields))
     resetFormFields()
   }
 
@@ -84,14 +96,14 @@ const SavingsGoalCalculator = () => {
 
       <SavingsGoalResultContainer>
         {
-          savingsGoalResult !== undefined &&
+          savingsGoalResult &&
           <SavingsGoalResult></SavingsGoalResult>
         }
       </SavingsGoalResultContainer>
 
       <SavingsGoalGraphContainer>
         {
-          savingsGoalScheduleResult !== undefined &&
+          savingsGoalScheduleResult &&
             <SavingsGoalGraph></SavingsGoalGraph>
         }
       </SavingsGoalGraphContainer>
@@ -99,7 +111,7 @@ const SavingsGoalCalculator = () => {
 
       <SavingsGoalTableContainer>
         {
-          savingsGoalScheduleResult !== undefined &&
+          savingsGoalScheduleResult &&
           <SavingsGoalTable></SavingsGoalTable>
         }
       </SavingsGoalTableContainer>

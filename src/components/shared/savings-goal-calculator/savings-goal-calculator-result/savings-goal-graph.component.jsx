@@ -4,10 +4,13 @@ import { SavingsGoalGraphChart } from "./savings-goal-graph.styles.jsx";
 import { useState, useContext } from "react";
 import ReactApexChart from "react-apexcharts"
 
-import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
+// import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
+import { useSelector } from "react-redux";
+import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
 
 const SavingsGoalGraph = () => {
-  const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
+  // const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
+  const savingsGoalScheduleResult = useSelector(selectSavingsGoalScheduleResult)
 
   let monthlySavingsGoalsTimes = []
   let monthlySavingsGoalsTotalInterestEarned = []
