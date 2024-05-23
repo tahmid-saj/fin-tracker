@@ -5,15 +5,19 @@ import "./investment-savings-tracker-items.styles.scss";
 import { InvestmentSavingsTrackerItem } from "../investment-savings-tracker-item/investment-savings-tracker-item.component";
 
 // TODO: need to move InvestmentSavingsTrackerItems from shared to signed-in and signed-out folders
-import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+import { useSelector } from "react-redux";
+import { selectInvestments } from "../../../store/signed-out/investments/investments.selector";
+
 import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
 const InvestmentSavingsTrackerItems = ({ label }) => {
+  const investments = useSelector(selectInvestments)
 
-  const { investments } = useContext(InvestmentsContext);
+  // const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
 
   return (

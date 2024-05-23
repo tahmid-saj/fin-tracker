@@ -5,11 +5,16 @@ import ApexCharts from 'apexcharts';
 
 import "./summary-graph.styles.scss";
 
-import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+import { useSelector } from "react-redux";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
+import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
 
 const SummaryGraphInvestment = ({ financeItemInfo }) => {
-  const { investments, getInvestmentInfo } = useContext(InvestmentsContext);
-  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+  // const { investments, getInvestmentInfo } = useContext(InvestmentsContext);
+  const investments = useSelector(selectInvestments)
+
+  const investmentInfo = getInvestmentInfo(investments, financeItemInfo.investmentName);
 
   // TODO: manage dates on graph better
   const startDate = new Date(investmentInfo.startDate);
