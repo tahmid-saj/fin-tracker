@@ -37,7 +37,7 @@ root.render(
         <BrowserRouter>
           {/* <UserProvider> */}
             <UsefulToolsProvider>
-              <SavingsGoalCalculatorProvider>
+              {/* <SavingsGoalCalculatorProvider> */}
                   {/* <ExpensesProvider> */}
                     {/* <BankingProvider> */}
                       {/* <InvestmentsProvider> */}
@@ -65,7 +65,7 @@ root.render(
                       {/* </InvestmentsProvider> */}
                     {/* </BankingProvider> */}
                   {/* </ExpensesProvider> */}
-              </SavingsGoalCalculatorProvider>
+              {/* </SavingsGoalCalculatorProvider> */}
             </UsefulToolsProvider>
           {/* </UserProvider> */}
         </BrowserRouter>
