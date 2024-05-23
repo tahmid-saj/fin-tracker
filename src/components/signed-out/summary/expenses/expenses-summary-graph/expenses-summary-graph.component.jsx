@@ -1,10 +1,13 @@
 import "./expenses-summary-graph.styles.scss"
 import { useContext } from "react"
 import ReactApexChart from "react-apexcharts"
-import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
+// import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
+import { useSelector } from "react-redux"
+import { selectExpensesSummary } from "../../../../../store/signed-out/expenses/expenses.selector"
 
 const ExpensesSummaryGraph = () => {
-  const { expensesSummary } = useContext(ExpensesContext)
+  // const { expensesSummary } = useContext(ExpensesContext)
+  const expensesSummary = useSelector(selectExpensesSummary)
   const { pastMonthExpenses } = expensesSummary
 
   console.log(expensesSummary)

@@ -4,13 +4,16 @@ import "./banking-summary.styles.scss";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
-import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphBanking from "../../banking/summary-graph/summary-graph.component";
 
 const BankingSummary = () => {
-  const { bankingAccounts } = useContext(BankingContext);
+  // const { bankingAccounts } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   return (
     <div className="banking-summary-container">
