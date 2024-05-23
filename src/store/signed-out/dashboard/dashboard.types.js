@@ -1,0 +1,4 @@
+export const DASHBOARD_ACTION_TYPES = {
+  SET_SUMMARIES: "dashboard/SET_SUMMARIES",
+  SET_USER_SUMMARY: "dashboard/SET_USER_SUMMARY"
+}
