@@ -1,10 +1,13 @@
 import { Fragment, useContext } from "react"
 import "./expenses-graph.styles.scss"
 import ReactApexChart from "react-apexcharts"
-import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+// import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+import { useSelector } from "react-redux"
+import { selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector"
 
 const ExpensesGraph = () => {
-  const { expensesView } = useContext(ExpensesContext)
+  // const { expensesView } = useContext(ExpensesContext)
+  const expensesView = useSelector(selectExpensesView)
   
   let expensesCategoryCosts = new Map()
   const categoryCosts = expensesView.map((expense) => {

@@ -15,7 +15,8 @@ const composeEnhancer = (
   process.env.NODE_ENV !== "production" && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 ) || compose
 
-const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares))
+// const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares))
+const composedEnhancers = compose(applyMiddleware(...middleWares))
 
 // redux persist
 const persistConfig = {
@@ -24,9 +25,9 @@ const persistConfig = {
   blacklist: ["user"]
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 // store
-export const store = createStore(persistedReducer, undefined, composedEnhancers)
+export const store = createStore(rootReducer, undefined, composedEnhancers)
 
-export const persistor = persistStore(store)
+// export const persistor = persistStore(store)
