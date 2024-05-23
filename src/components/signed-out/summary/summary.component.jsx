@@ -1,24 +1,64 @@
-import React, { useContext, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import BankingSummary from "./banking/banking-summary.component";
 import InvestmentsSummary from "./investments/investments-summary.component";
 import SavingsSummary from "./savings/savings-summary.component";
 
-import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
-import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
-import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
-import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboard.context";
+// import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
+// import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+// import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
+// import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboard.context";
 
 import "./summary.styles.scss";
 import ExpensesSummary from "./expenses/expenses.component";
-import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
+// import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
 import ChatBot from "../../shared/chatbot/chatbot.component"
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector";
+import { selectExpenses, selectExpensesSummary } from "../../../store/signed-out/expenses/expenses.selector";
+import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector";
+import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector";
+import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector";
+import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action";
+
 const Summary = () => {
-  const { summaries } = useContext(DashboardContext);
-  const { expenses } = useContext(ExpensesContext)
-  const { bankingAccounts } = useContext(BankingContext);
-  const { investments } = useContext(InvestmentsContext);
-  const { savingsAccounts } = useContext(SavingsContext);
+  // const { summaries } = useContext(DashboardContext);
+  // const { expenses } = useContext(ExpensesContext)
+  // const { bankingAccounts } = useContext(BankingContext);
+  // const { investments } = useContext(InvestmentsContext);
+  // const { savingsAccounts } = useContext(SavingsContext);
+  const dispatch = useDispatch()
+
+  const summaries = useSelector(selectSummaries)
+  const expenses = useSelector(selectExpenses)
+  const bankingAccounts = useSelector(selectBankingAccounts)
+  const investments = useSelector(selectInvestments)
+  const savingsAccounts = useSelector(selectSavingsAccounts)
+
+  const expensesSummary = useSelector(selectExpensesSummary)
+  const bankingSummary = useSelector(selectBankingSummary)
+  const investmentsSummary = useSelector(selectInvestmentsSummary)
+  const savingsAccountsSummary = useSelector(selectSavingsAccountsSummary)
+
+  useEffect(() => {
+    // updating summaries
+    dispatch(setSummaries({
+      expensesSummary: expensesSummary,
+      bankingSummary: bankingSummary,
+      investmentsSummary: investmentsSummary,
+      savingsAccountsSummary: savingsAccountsSummary,
+    }))
+  }, [expensesSummary, bankingSummary, investmentsSummary, savingsAccountsSummary, dispatch]);
+
+  useEffect(() => {
+    // updating userSummary if user is signed in
+    dispatch(setUserSummary({
+      expenses: expenses,
+      bankingAccounts: bankingAccounts,
+      investments: investments,
+      savingsAccounts: savingsAccounts
+    }))
+  }, [expenses, bankingAccounts, investments, savingsAccounts, dispatch]);
 
   return (
     <Fragment>

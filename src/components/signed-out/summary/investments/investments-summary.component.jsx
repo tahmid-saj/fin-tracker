@@ -4,13 +4,16 @@ import "./investments-summary.styles.scss";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
-import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+import { useSelector } from "react-redux";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component";
 
 const InvestmentsSummary = () => {
-  const { investments } = useContext(InvestmentsContext);
+  // const { investments } = useContext(InvestmentsContext);
+  const investments = useSelector(selectInvestments)
 
   return (
     <div className="investments-summary-container">
