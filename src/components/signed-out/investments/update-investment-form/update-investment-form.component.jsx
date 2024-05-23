@@ -4,9 +4,12 @@ import "./update-investment-form.styles.scss";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
-import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
-
+// import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
+import { updateInvestment, closeInvestment } from "../../../../store/signed-out/investments/investments.action";
 
 const defaultFormFields = {
   investmentName: "",
@@ -26,7 +29,9 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
 
-  const { updateInvestment, closeInvestment } = useContext(InvestmentsContext);
+  // const { updateInvestment, closeInvestment } = useContext(InvestmentsContext);
+  const dispatch = useDispatch()
+  const investments = useSelector(selectInvestments)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -59,7 +64,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
       return;
     }
 
-    updateInvestment(financeItemInfo.investmentName, formFields)
+    dispatch(updateInvestment(investments, financeItemInfo.investmentName, formFields))
     resetFormFields();
   };
 
@@ -73,7 +78,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
     setShowConfirmClose(false);
 
     if (confirmClose === INVESTMENT_CONFIRM_CLOSE.yes) {
-      closeInvestment(financeItemInfo.investmentName);
+      dispatch(closeInvestment(investments, financeItemInfo.investmentName))
     }
   };
 

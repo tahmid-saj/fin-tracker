@@ -5,7 +5,10 @@ import "./investment-savings-tracker-item.styles.scss";
 // TODO: need to move InvestmentSavingsTrackerItem from shared to signed-in and signed-out folders
 import FormView from "../form-view/form-view.component";
 
-import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
+import { useSelector } from "react-redux";
+import { selectInvestments } from "../../../store/signed-out/investments/investments.selector";
+
 import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
@@ -16,8 +19,9 @@ export let activeFormView = {
 }
 
 export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }) => {
+  // const { investments } = useContext(InvestmentsContext);
+  const investments = useSelector(selectInvestments)
     
-  const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
 
   let financeItemExists = undefined;

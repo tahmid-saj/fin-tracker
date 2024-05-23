@@ -6,7 +6,10 @@ import FormInput from "../../../shared/form-input/form-input.component";
 
 import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
 
-import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
+import { createInvestment } from "../../../../store/signed-out/investments/investments.action";
 
 const defaultFormFields = {
   investmentName: "",
@@ -37,9 +40,11 @@ const defaultInvestmentsInfo = [
 ]
 
 const CreateInvestmentForm = ({ label }) => {
-
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const { createInvestment } = useContext(InvestmentsContext);
+  // const { createInvestment } = useContext(InvestmentsContext);
+
+  const investments = useSelector(selectInvestments)
+  const dispatch = useDispatch()
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -59,7 +64,7 @@ const CreateInvestmentForm = ({ label }) => {
       return;
     }
 
-    createInvestment(formFields);
+    dispatch(createInvestment(investments, formFields))
     resetFormFields();
 
     console.log(event.target.value);

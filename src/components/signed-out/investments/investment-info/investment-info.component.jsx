@@ -2,11 +2,16 @@ import { useContext } from "react";
 
 import "./investment-info.styles.scss";
 
-import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+// import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
+import { useSelector } from "react-redux";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
+import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
 
 const InvestmentInfo = ({ financeItemInfo }) => {
-  const { getInvestmentInfo } = useContext(InvestmentsContext);
-  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+  // const { getInvestmentInfo } = useContext(InvestmentsContext);
+  const investments = useSelector(selectInvestments)
+
+  const investmentInfo = getInvestmentInfo(investments, financeItemInfo.investmentName);
 
   const startDate = new Date(investmentInfo.startDate);
   const year = startDate.getFullYear();
