@@ -1,9 +1,15 @@
 import "./expenses-summary.styles.scss"
 import { useContext } from "react"
-import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+// import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+
+import { useSelector } from "react-redux"
+import { selectExpensesView, selectFilterConditions, selectExpensesSummary } from "../../../../store/signed-out/expenses/expenses.selector"
 
 const ExpensesSummary = () => {
-  const { expensesView, filterConditions, expensesSummary } = useContext(ExpensesContext)
+  // const { expensesView, filterConditions, expensesSummary } = useContext(ExpensesContext)
+  const expensesView = useSelector(selectExpensesView)
+  const filterConditions = useSelector(selectFilterConditions)
+  const expensesSummary = useSelector(selectExpensesSummary)
 
   const allExpensesCategories = new Set()
   const filteredSpend = expensesView.reduce((spend, expense) => {

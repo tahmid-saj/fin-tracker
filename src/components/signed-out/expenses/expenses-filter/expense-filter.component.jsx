@@ -2,8 +2,11 @@ import { useState, useContext } from "react"
 import FormInput from "../../../shared/form-input/form-input.component"
 import "./expense-filter.styles.scss"
 
-import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
+// import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 import Button from "../../../shared/button/button.component"
+
+import { useDispatch } from "react-redux"
+import { filterExpenses, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action"
 
 const defaultFormFields = {
   expenseFor: "",
@@ -14,7 +17,8 @@ const defaultFormFields = {
 
 const ExpensesFilter = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
-  const { filterExpenses, clearExpensesFilter } = useContext(ExpensesContext)
+  // const { filterExpenses, clearExpensesFilter } = useContext(ExpensesContext)
+  const dispatch = useDispatch()
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -36,14 +40,14 @@ const ExpensesFilter = () => {
         return
     }
 
-    filterExpenses(formFields)
+    dispatch(filterExpenses(formFields))
   }
 
   const handleClearFilter = (event) => {
     event.preventDefault()
 
     resetFormFields()
-    clearExpensesFilter()
+    dispatch(clearExpensesFilter())
   }
   
   return (

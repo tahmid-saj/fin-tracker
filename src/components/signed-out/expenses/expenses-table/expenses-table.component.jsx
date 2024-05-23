@@ -6,12 +6,20 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
 import DeleteExpense from "../delete-expense/delete-expense.component";
-import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context";
+// import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context";
 import Button from "../../../shared/button/button.component";
 
+import { useDispatch, useSelector } from "react-redux";
+import { selectExpenses, selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector";
+import { removeExpense, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action";
+
 const ExpensesTable = () => {
+  const dispatch = useDispatch()
+  const expenses = useSelector(selectExpenses)
+  const expensesView = useSelector(selectExpensesView)
+
   const gridRef = useRef();
-  const { expensesView, removeExpense, clearExpensesFilter } = useContext(ExpensesContext)
+  // const { expensesView, removeExpense, clearExpensesFilter } = useContext(ExpensesContext)
   const rowData = expensesView.map((expense) => {
     return {
       Date: expense.expenseDate,
@@ -41,13 +49,13 @@ const ExpensesTable = () => {
     // const res = gridRef.current.api.applyTransaction({ remove: selectedData });
     // removeExpense(selectedData)
     console.log(selectedData[0])
-    removeExpense(selectedData[0].Tag)
+    dispatch(removeExpense(expenses, selectedData[0].Tag))
   }
 
   const handleClearFilter = (event) => {
     event.preventDefault()
 
-    clearExpensesFilter()
+    dispatch(clearExpensesFilter())
   }
 
   return (

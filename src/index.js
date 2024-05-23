@@ -33,12 +33,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={ store }>
-      <PersistGate loading={ null } persistor={ persistor }>
+      {/* <PersistGate loading={ null } persistor={ persistor }> */}
         <BrowserRouter>
           {/* <UserProvider> */}
             <UsefulToolsProvider>
               <SavingsGoalCalculatorProvider>
-                  <ExpensesProvider>
+                  {/* <ExpensesProvider> */}
                     {/* <BankingProvider> */}
                       <InvestmentsProvider>
                         <MarketDataProvider>
@@ -64,12 +64,12 @@ root.render(
                         </MarketDataProvider>
                       </InvestmentsProvider>
                     {/* </BankingProvider> */}
-                  </ExpensesProvider>
+                  {/* </ExpensesProvider> */}
               </SavingsGoalCalculatorProvider>
             </UsefulToolsProvider>
           {/* </UserProvider> */}
         </BrowserRouter>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );
