@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -8,17 +8,18 @@ import { calculateBankingSummary } from "../../../utils/calculations/banking.cal
 
 import { TRANSACTION_TYPES, DEFAULT_BANKING_ACCOUNTS, DEFAULT_BANKING_SUMMARY } from "../../../utils/constants/banking.constants";
 
-import { UserContext } from "../../shared/user/user.context";
-
 import { getBankingAccountsData, getBankingSummaryData,
         postBankingAccountCreate, postBankingAccountTransaction, deleteBankingAccount,
         putBankingAccountsData, putBankingSummaryData } from "../../../utils/api-requests/banking.requests";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 // helper functions
 
 const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
-
+   
   postBankingAccountCreate(userId, email, bankingAccountName);
   
   console.log(`Creating ${bankingAccountName}`);
@@ -70,7 +71,7 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, userId, email) => {
+const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, userId, email) => {
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
@@ -102,7 +103,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
   return updatedBankingAccounts;
 };
 
-const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, 
+const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTransferFromName, 
   bankingAccountTransferToName, transferAmount, transferReason, userId, email) => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
@@ -158,7 +159,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   return updatedBankingAccounts;
 };
 
-const closeBankingAccountHelper = (bankingAccounts, bankingAccountName, userId, email) => {
+const closeBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
   deleteBankingAccount(userId, email, bankingAccountName);
   
   // return bankingAccounts without the bankingAccountName
@@ -226,7 +227,7 @@ export const BankingProvider = ({ children }) => {
   const [bankingAccounts, setBankingAccounts] = useState([]);
   const [bankingSummary, setBankingSummary] = useState({});
 
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
@@ -307,7 +308,7 @@ export const BankingProvider = ({ children }) => {
   };
 
   // update banking accounts and summary on sign out
-  const updateBankingAccountsAndSummary = () => {
+  const updateBankingAccountsAndSummary = async () => {
     putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
     putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
   };

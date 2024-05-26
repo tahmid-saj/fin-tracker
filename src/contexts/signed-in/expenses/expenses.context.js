@@ -1,14 +1,15 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
 import { DEFAULT_EXPENSES, DEFAULT_EXPENSES_SUMMARY } from "../../../utils/constants/expenses.constants"
 
-import { UserContext } from "../../shared/user/user.context";
-
 import { getExpensesData, getExpensesSummaryData,
   postExpenseCreate, deleteExpense,
   putExpensesData, putExpensesSummaryData
- } from "../../../utils/api-requests/expenses.requests";
+} from "../../../utils/api-requests/expenses.requests";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 // helper functions
 const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
@@ -115,7 +116,7 @@ export const ExpensesProvider = ({ children }) => {
   const [expensesView, setExpensesView] = useState(expenses)
   const [expensesSummary, setExpensesSummary] = useState({})
 
-  const { currentUser } = useContext(UserContext)
+  const currentUser = useSelector(selectCurrentUser)
 
   // update expensesSummary
   useEffect(() => {

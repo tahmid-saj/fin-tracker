@@ -1,17 +1,14 @@
 import { Component, useContext, Fragment } from "react";
 
 import ReactApexChart from 'react-apexcharts';
-// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../../store/signed-in/banking/banking.selector";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 import "./summary-graph.styles.scss";
 
 import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
 
 const SummaryGraphBanking = ({ financeItemInfo }) => {
-  // const { bankingAccounts } = useContext(BankingContext);
-  const bankingAccounts = useSelector(selectBankingAccounts)
+  const { bankingAccounts } = useContext(BankingContext);
 
   const transactionAmounts = bankingAccounts.find(account => {
     return account.name === financeItemInfo

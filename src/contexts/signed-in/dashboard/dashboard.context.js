@@ -3,7 +3,9 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { BankingContext } from "../banking/banking.context";
 import { InvestmentsContext } from "../investments/investments.context";
 import { SavingsContext } from "../savings/savings.context";
-import { UserContext } from "../../shared/user/user.context";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 export const DashboardContext = createContext({
   summaries: {},
@@ -34,7 +36,7 @@ export const DashboardProvider = ({ children }) => {
   const { bankingAccounts, bankingSummary } = useContext(BankingContext);
   const { investments, investmentsSummary } = useContext(InvestmentsContext);
   const { savingsAccounts, savingsAccountsSummary } = useContext(SavingsContext);
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     // updating summaries

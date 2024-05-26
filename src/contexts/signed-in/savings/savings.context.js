@@ -1,15 +1,16 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
 import { calculateSavings } from "../../../utils/calculations/savings.calculations";
-
-import { UserContext } from "../../shared/user/user.context";
 
 import { getSavingsAccountsData, getSavingsAccountsSummaryData,
   postSavingsAccountCreate, putSavingsAccountData, deleteSavingsAccount,
   putSavingsAccountsData, putSavingsAccountsSummaryData } from "../../../utils/api-requests/savings.requests";
 
 import { DEFAULT_SAVINGS_ACCOUNTS, DEFAULT_SAVINGS_ACCOUNTS_SUMMARY } from "../../../utils/constants/savings.constants";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 // helper functions
 
@@ -197,7 +198,7 @@ export const SavingsProvider = ({ children }) => {
   const [savingsAccounts, setSavingsAccounts] = useState([]);
   const [savingsAccountsSummary, setSavingsAccountsSummary] = useState({});
 
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     // TODO: move below to calculations

@@ -1,14 +1,16 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestmentSummary } from "../../../utils/calculations/investments.calculations";
-import { UserContext } from "../../shared/user/user.context";
 
 import { DEFAULT_INVESTMENTS, DEFAULT_INVESTMENTS_SUMMARY } from "../../../utils/constants/investments.constants";
 
 import { getInvestmentsData, getInvestmentsSummaryData,
   postInvestmentCreate, putInvestmentData, deleteInvestment,
   putInvestmentsData, putInvestmentsSummaryData } from "../../../utils/api-requests/investments.requests";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 // helper functions
 
@@ -164,7 +166,7 @@ export const InvestmentsProvider = ({ children }) => {
   const [investments, setInvestments] = useState([]);
   const [investmentsSummary, setInvestmentsSummary] = useState({});
 
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     // TODO: move below to calculations

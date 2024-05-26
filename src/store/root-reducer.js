@@ -7,13 +7,10 @@ import { investmentsReducer } from "./signed-out/investments/investments.reducer
 import { savingsReducer } from "./signed-out/savings/savings.reducer";
 import { savingsGoalCalculatorReducer } from "./shared/savings-goal-calculator/savings-goal-calculator.reducer";
 import { dashboardReducer } from "./signed-out/dashboard/dashboard.reducer";
-import { bankingReducerSignedIn } from "./signed-in/banking/banking.reducer";
 
 export const rootReducer = combineReducers({
   user: userReducer,
   savingsGoalCalculator: savingsGoalCalculatorReducer,
-
-  bankingSignedIn: bankingReducerSignedIn,
 
   dashboard: dashboardReducer,
   expenses: expensesReducer,

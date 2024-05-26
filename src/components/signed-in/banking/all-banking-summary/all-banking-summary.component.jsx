@@ -2,13 +2,10 @@ import "./all-banking-summary.styles.scss";
 
 import { useContext } from "react";
 
-// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { useSelector } from "react-redux";
-import { selectBankingSummary } from "../../../../store/signed-in/banking/banking.selector";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 const AllBankingSummary = () => {
-  // const { bankingSummary } = useContext(BankingContext);
-  const bankingSummary = useSelector(selectBankingSummary)
+  const { bankingSummary } = useContext(BankingContext);
 
   return (
     <div className="all-banking-summary-container">

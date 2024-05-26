@@ -7,13 +7,10 @@ import SummaryGraphBanking from "../summary-graph/summary-graph.component";
 
 import "./bank-account-form.styles.scss";
 
-// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../../store/signed-in/banking/banking.selector";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 const BankAccountForm = ({ financeItemInfo }) => {
-  // const { bankingAccounts } = useContext(BankingContext);
-  const bankingAccounts = useSelector(selectBankingAccounts)
+  const { bankingAccounts } = useContext(BankingContext);
 
   const bankingAccountTransactions = bankingAccounts.find(account => account.name === financeItemInfo).transactions;
 

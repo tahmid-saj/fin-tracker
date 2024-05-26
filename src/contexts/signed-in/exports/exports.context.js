@@ -1,6 +1,8 @@
-import { createContext, useContext } from "react";
-import { UserContext } from "../../shared/user/user.context";
+import { createContext } from "react";
 import { postExportsToEmail, postExportsToPdf, postExportsToTxt } from "../../../utils/api-requests/exports.requests";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
 // helper functions
 const exportToEmailHelper = async (email) => {
@@ -24,7 +26,7 @@ export const ExportsContext = createContext({
 
 // context component
 export const ExportsProvider = ({ children }) => {
-  const { currentUser } = useContext(UserContext)
+  const currentUser = useSelector(selectCurrentUser)
 
   const exportToEmail = async () => {
     await exportToEmailHelper(currentUser.email)
