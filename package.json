@@ -13,6 +13,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@polygon.io/client-js": "^7.3.2",
+    "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
