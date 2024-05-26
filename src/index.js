@@ -45,7 +45,7 @@ root.render(
                           {/* <SavingsProvider> */}
                             {/* <DashboardProvider> */}
                               <ExpensesProviderSignedIn>
-                                {/* <BankingProviderSignedIn> */}
+                                <BankingProviderSignedIn>
                                   <InvestmentsProviderSignedIn>
                                     <SavingsProviderSignedIn>
                                       <DashboardProviderSignedIn>
@@ -57,7 +57,7 @@ root.render(
                                       </DashboardProviderSignedIn>
                                     </SavingsProviderSignedIn>
                                   </InvestmentsProviderSignedIn>
-                                {/* </BankingProviderSignedIn> */}
+                                </BankingProviderSignedIn>
                               </ExpensesProviderSignedIn>
                             {/* </DashboardProvider> */}
                           {/* </SavingsProvider> */}

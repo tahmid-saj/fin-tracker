@@ -5,11 +5,7 @@ import "./withdraw.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
-// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../../store/shared/user/user.selector";
-import { selectBankingAccounts } from "../../../../store/signed-in/banking/banking.selector";
-import { withdrawFromBankingAccount } from "../../../../store/signed-in/banking/banking.action";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 const defaultFormFields = {
   amount: "",
@@ -18,10 +14,8 @@ const defaultFormFields = {
 
 const Withdraw = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  // const { withdrawFromBankingAccount } = useContext(BankingContext);
-  const dispatch = useDispatch()
-  const currentUser = useSelector(selectCurrentUser)
-  const bankingAccounts = useSelector(selectBankingAccounts)
+
+  const { withdrawFromBankingAccount } = useContext(BankingContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -30,7 +24,7 @@ const Withdraw = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(withdrawFromBankingAccount(currentUser, bankingAccounts, financeItemInfo, formFields.amount, formFields.reason))
+    withdrawFromBankingAccount(financeItemInfo, formFields.amount, formFields.reason);
 
     resetFormFields();
   };

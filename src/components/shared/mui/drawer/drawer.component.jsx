@@ -39,7 +39,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expenses.context';
-// import { BankingContext } from '../../../../contexts/signed-in/banking/banking.context';
+import { BankingContext } from '../../../../contexts/signed-in/banking/banking.context';
 import { InvestmentsContext } from '../../../../contexts/signed-in/investments/investments.context';
 import { SavingsContext } from '../../../../contexts/signed-in/savings/savings.context';
 // import { signOutUser } from '../../../../utils/firebase/firebase.utils';
@@ -49,9 +49,6 @@ import { NAV_LINKS } from '../../../../utils/constants/shared.constants';
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../../store/shared/user/user.selector";
 import { signOutStart } from "../../../../store/shared/user/user.action";
-
-import { updateBankingAccountsAndSummary } from "../../../../store/signed-in/banking/banking.action";
-import { selectBankingAccounts, selectBankingSummary } from "../../../../store/signed-in/banking/banking.selector";
 
 const drawerWidth = 240;
 
@@ -125,12 +122,10 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const dispatch = useDispatch()
-  const bankingAccounts = useSelector(selectBankingAccounts)
-  const bankingSummary = useSelector(selectBankingSummary)
 
   const currentUser = useSelector(selectCurrentUser)
   const { updateExpensesAndSummary } = useContext(ExpensesContext)
-  // const { updateBankingAccountsAndSummary } = useContext(BankingContext);
+  const { updateBankingAccountsAndSummary } = useContext(BankingContext);
   const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
   const { updateSavingsAccountsAndSummary } = useContext(SavingsContext);
   const navigate = useNavigate();
@@ -145,8 +140,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
 
   const handleSignOut = () => {
     updateExpensesAndSummary();
-    // updateBankingAccountsAndSummary();
-    dispatch(updateBankingAccountsAndSummary(currentUser, bankingAccounts, bankingSummary))
+    updateBankingAccountsAndSummary();
     updateInvestmentsAndSummary();
     updateSavingsAccountsAndSummary();
     // signOutUser();

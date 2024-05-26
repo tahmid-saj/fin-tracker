@@ -11,7 +11,6 @@ export const getBankingAccountsData = async (userId, email) => {
   try {
     console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
-    // await fetch("http://localhost:5000/v1/banking/accounts/123/bob@gmail.com")
 
     return response.json();
   } catch (error) {

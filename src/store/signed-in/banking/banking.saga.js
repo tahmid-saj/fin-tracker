@@ -15,26 +15,19 @@ export function* setBankingAccounts({ payload }) {
   try {
     const { bankingSubActionType, userId, email, bankingAccounts } = payload
     
-    switch(bankingSubActionType) {
-      case BANKING_SUB_ACTION_TYPES.CREATE:
-        yield call(postBankingAccountCreate, userId, email, payload.bankingAccountName)
-        yield put(setBankingAccountsSuccess(bankingAccounts))
-        break
-      case BANKING_SUB_ACTION_TYPES.DEPOSIT:
-      case BANKING_SUB_ACTION_TYPES.WITHDRAWAL:
-      case BANKING_SUB_ACTION_TYPES.TRANSFER:
+    if (bankingSubActionType === BANKING_SUB_ACTION_TYPES.CREATE) {
+      yield call(postBankingAccountCreate, userId, email, payload.bankingAccountName)
+      yield put(setBankingAccountsSuccess(bankingAccounts))
+    } else if (bankingSubActionType === BANKING_SUB_ACTION_TYPES.DEPOSIT || 
+      bankingSubActionType === BANKING_SUB_ACTION_TYPES.WITHDRAWAL || 
+      bankingSubActionType === BANKING_SUB_ACTION_TYPES.TRANSFER) {
         const { transactionInfo } = payload
-
+         
         yield call(postBankingAccountTransaction, userId, email, transactionInfo)
         yield put(setBankingAccountsSuccess(bankingAccounts))
-        break
-      case BANKING_SUB_ACTION_TYPES.CLOSE:
-
+    } else if (bankingSubActionType === BANKING_SUB_ACTION_TYPES.CLOSE) {
         yield call(deleteBankingAccount, userId, email, payload.bankingAccountName)
         yield put(setBankingAccountsSuccess(bankingAccounts))
-        break
-      default:
-        break
     }
   } catch (error) {
     yield put(setBankingAccountsFailed(error))
