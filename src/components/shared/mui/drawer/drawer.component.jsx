@@ -42,12 +42,13 @@ import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expense
 import { BankingContext } from '../../../../contexts/signed-in/banking/banking.context';
 import { InvestmentsContext } from '../../../../contexts/signed-in/investments/investments.context';
 import { SavingsContext } from '../../../../contexts/signed-in/savings/savings.context';
-import { signOutUser } from '../../../../utils/firebase/firebase.utils';
+// import { signOutUser } from '../../../../utils/firebase/firebase.utils';
 
 import { NAV_LINKS } from '../../../../utils/constants/shared.constants';
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../../store/shared/user/user.selector";
+import { signOutStart } from "../../../../store/shared/user/user.action";
 
 const drawerWidth = 240;
 
@@ -120,6 +121,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer({ navLinksHeaders, children }) {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
+  const dispatch = useDispatch()
 
   const currentUser = useSelector(selectCurrentUser)
   const { updateExpensesAndSummary } = useContext(ExpensesContext)
@@ -141,7 +143,8 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
     updateBankingAccountsAndSummary();
     updateInvestmentsAndSummary();
     updateSavingsAccountsAndSummary();
-    signOutUser();
+    // signOutUser();
+    dispatch(signOutStart())
     navigate("/")
   }
 

@@ -37,7 +37,7 @@ const App = () => {
     // })
 
     // return unsubscribe
-    dispatch(checkUserSession)
+    dispatch(checkUserSession())
   }, [dispatch])
 
   return (
