@@ -19,7 +19,7 @@ import ExportsRouteSignedIn from "./routes/signed-in/exports/exports.component";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setCurrentUser } from "./store/shared/user/user.action";
+import { checkUserSession, setCurrentUser } from "./store/shared/user/user.action";
 
 import { onAuthStateChangedListener,
   createUserDocumentFromAuth
@@ -29,14 +29,15 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user)
-      }
-      dispatch(setCurrentUser(user))
-    })
+    // const unsubscribe = onAuthStateChangedListener((user) => {
+    //   if (user) {
+    //     createUserDocumentFromAuth(user)
+    //   }
+    //   dispatch(setCurrentUser(user))
+    // })
 
-    return unsubscribe
+    // return unsubscribe
+    dispatch(checkUserSession)
   }, [dispatch])
 
   return (
