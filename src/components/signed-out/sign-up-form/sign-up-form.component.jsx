@@ -11,6 +11,9 @@ import "./sign-up-form.styles.scss";
 
 import { errorOnEmailAlreadyInUse, errorOnUserCreation } from "../../../utils/errors/user.errors";
 
+import { useDispatch } from "react-redux";
+import { signUpStart } from "../../../store/shared/user/user.action";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -21,6 +24,7 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+  const dispatch = useDispatch()
 
   const navigate = useNavigate();
 
@@ -37,9 +41,10 @@ const SignUpForm = () => {
     }
 
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(email, password);
+      // const { user } = await createAuthUserWithEmailAndPassword(email, password);
+      // await createUserDocumentFromAuth(user, { displayName });
+      dispatch(signUpStart(email, password, displayName))
 
-      await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
       navigate("/dashboard-signed-in")
     } catch (error) {
