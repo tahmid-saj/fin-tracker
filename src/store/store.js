@@ -6,7 +6,7 @@ import { rootReducer } from "./root-reducer"
 import { loggerMiddleware } from "./middleware/logger"
 
 // root-reducer
-const middleWares = [
+const middlewares = [
   process.env.NODE_ENV !== "production" && loggerMiddleware,
   process.env.NODE_ENV !== "production" && logger
 ].filter(Boolean)
@@ -16,7 +16,7 @@ const composeEnhancer = (
 ) || compose
 
 // const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares))
-const composedEnhancers = compose(applyMiddleware(...middleWares))
+const composedEnhancers = compose(applyMiddleware(...middlewares))
 
 // redux persist
 const persistConfig = {
