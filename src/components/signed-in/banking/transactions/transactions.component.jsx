@@ -3,7 +3,9 @@ import { useContext } from "react";
 import Transaction from "../transaction/transaction.component";
 import "./transactions.styles.scss";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../../store/signed-in/banking/banking.selector";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
@@ -12,7 +14,8 @@ let currentYear = date.getFullYear();
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
 const Transactions = ({ financeItemInfo }) => {
-  const { bankingAccounts } = useContext(BankingContext);
+  // const { bankingAccounts } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   const bankingAccount = bankingAccounts.find(account => account.name === financeItemInfo);
   const transactions = bankingAccount.transactions;

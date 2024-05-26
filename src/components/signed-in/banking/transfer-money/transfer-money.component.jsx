@@ -5,7 +5,11 @@ import "./transfer-money.styles.scss";
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+// import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../../store/shared/user/user.selector";
+import { selectBankingAccounts } from "../../../../store/signed-in/banking/banking.selector";
+import { transferToBankingAccount } from "../../../../store/signed-in/banking/banking.action";
 
 const defaultFormFields = {
   transferTo: "",
@@ -15,8 +19,10 @@ const defaultFormFields = {
 
 const TransferMoney = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-
-  const { transferToBankingAccount } = useContext(BankingContext);
+  // const { transferToBankingAccount } = useContext(BankingContext);
+  const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -25,7 +31,7 @@ const TransferMoney = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    transferToBankingAccount(financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason);
+    dispatch(transferToBankingAccount(currentUser, bankingAccounts, financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason))
 
     resetFormFields();
   };

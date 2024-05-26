@@ -304,6 +304,10 @@ export const updateBankingAccountsAndSummaryFailed = (error) => {
   return createAction(BANKING_ACTION_TYPES.UPDATE_BANKING_ACCOUNTS_AND_SUMMARY_FAILED, error)
 }
 
+export const setBankingAccounts = (bankingAccounts) => {
+  return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, bankingAccounts)
+}
+
 export const setBankingSummary = (bankingSummary) => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_SUMMARY, bankingSummary)
 }
