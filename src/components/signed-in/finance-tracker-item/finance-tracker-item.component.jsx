@@ -5,7 +5,9 @@ import "./finance-tracker-item.styles.scss";
 // TODO: need to move FinanceTrackerItem from shared to signed-in and signed-out folders
 import FormView from "../form-view/form-view.component";
 
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
+// import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
+import { useSelector } from "react-redux";
+import { selectBankingAccounts } from "../../../store/signed-in/banking/banking.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
@@ -15,8 +17,8 @@ export let activeFormView = {
 }
 
 export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
-
-  const { bankingAccounts } = useContext(BankingContext);
+  // const { bankingAccounts } = useContext(BankingContext);
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   const bankingAccountExists = bankingAccounts.find(account => account.name === name)
 
