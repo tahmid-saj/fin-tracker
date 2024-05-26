@@ -170,9 +170,17 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
             <MenuIcon />
           </IconButton>
 
-          <Typography variant="h6" noWrap component="div">
-            fin-tracker
-          </Typography>
+          <div className="fin-tracker-title">
+            <Typography variant="h6" noWrap component="div">
+              fin-tracker
+            </Typography>
+            {
+              currentUser ?
+              <Typography variant="body2" noWrap component="div">
+                { `Hello ${currentUser.displayName}` }
+              </Typography> : null
+            }
+          </div>
         </Toolbar>
       </AppBar>
 
