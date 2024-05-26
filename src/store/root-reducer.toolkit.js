@@ -10,7 +10,7 @@ import { dashboardReducer } from "./signed-out/dashboard/dashboard.reducer.toolk
 
 export const rootReducer = combineReducers({
   user: userReducer,
-  savingsGoalCalculatorReducer,
+  savingsGoalCalculator: savingsGoalCalculatorReducer,
 
   dashboard: dashboardReducer,
   banking: bankingReducer,
