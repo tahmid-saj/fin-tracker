@@ -34,8 +34,8 @@ export const getBankingSummaryData = async (userId, email) => {
 // banking operations
 export const postBankingAccountCreate = async (userId, email, bankingAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_CREATE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_CREATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'text/plain'
@@ -101,9 +101,9 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
 
 export const deleteBankingAccount = async (userId, email, bankingAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_BANKING_ACCOUNT_CLOSE}`)
+    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`)
   
-    const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_BANKING_ACCOUNT_CLOSE}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'text/plain'

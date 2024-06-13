@@ -32,8 +32,8 @@ export const getInvestmentsSummaryData = async (userId, email) => {
 // investment operations
 export const postInvestmentCreate = async (userId, email, investmentInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_INVESTMENTS_CREATE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_INVESTMENTS_CREATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -50,8 +50,8 @@ export const postInvestmentCreate = async (userId, email, investmentInfo) => {
 
 export const putInvestmentData = async (userId, email, investmentInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_PUT_INVESTMENTS_UPDATE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_PUT_INVESTMENTS_UPDATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -68,8 +68,8 @@ export const putInvestmentData = async (userId, email, investmentInfo) => {
 
 export const deleteInvestment = async (userId, email, closingInvestmentName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_INVESTMENTS_CLOSE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_INVESTMENTS_CLOSE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "text/plain"

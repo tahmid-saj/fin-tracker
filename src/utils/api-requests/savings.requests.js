@@ -32,8 +32,8 @@ export const getSavingsAccountsSummaryData = async (userId, email) => {
 // saving accounts operations
 export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_SAVINGS_ACCOUNTS_CREATE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_SAVINGS_ACCOUNTS_CREATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -50,8 +50,8 @@ export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo
 
 export const putSavingsAccountData = async (userId, email, savingsAccountInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_PUT_SAVINGS_ACCOUNTS_UPDATE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_PUT_SAVINGS_ACCOUNTS_UPDATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
@@ -68,8 +68,8 @@ export const putSavingsAccountData = async (userId, email, savingsAccountInfo) =
 
 export const deleteSavingsAccount = async (userId, email, closingSavingsAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_SAVINGS_ACCOUNTS_CLOSE}`);
-    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_DELETE_SAVINGS_ACCOUNTS_CLOSE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "text/plain"
