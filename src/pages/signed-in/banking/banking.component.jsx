@@ -1,12 +1,12 @@
 import React, { Component, useContext } from "react";
 
-import BankAccounts from "./bank-accounts/bank-accounts.component";
+import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component";
 
 
 import "./banking.styles.scss";
 
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
-import AllBankingSummary from "./all-banking-summary/all-banking-summary.component";
+import AllBankingSummary from "../../../components/signed-in/banking/all-banking-summary/all-banking-summary.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 

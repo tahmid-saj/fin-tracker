@@ -1,6 +1,6 @@
 import "./expenses.styles.scss"
 
-import Expenses from "../../../components/signed-out/expenses/expenses.component"
+import Expenses from "../../../pages/signed-out/expenses/expenses.component"
 
 const ExpensesRoute = () => {
   return (

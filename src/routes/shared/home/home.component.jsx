@@ -1,7 +1,7 @@
 import "./home.styles.scss";
 
 import { Outlet } from "react-router-dom";
-import Home from "../../../components/shared/home/home.component"
+import Home from "../../../pages/shared/home/home.component";
 
 const HomeRoute = () => {
   return (

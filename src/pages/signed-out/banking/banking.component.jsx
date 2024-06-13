@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../store/signed-out/banking/banking.selector";
 import { setBankingSummary } from "../../../store/signed-out/banking/banking.action";
 
-import BankAccounts from "./bank-accounts/bank-accounts.component";
+import BankAccounts from "../../../components/signed-out/banking/bank-accounts/bank-accounts.component";
 
 import "./banking.styles.scss";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
-import AllBankingSummary from "./all-banking-summary/all-banking-summary.component";
+import AllBankingSummary from "../../../components/signed-out/banking/all-banking-summary/all-banking-summary.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import SummaryGraphBanking from "./summary-graph/summary-graph.component";
+import SummaryGraphBanking from "../../../components/signed-out/banking/summary-graph/summary-graph.component";
 
 const Banking = () => {
   // const { bankingAccounts } = useContext(BankingContext);
