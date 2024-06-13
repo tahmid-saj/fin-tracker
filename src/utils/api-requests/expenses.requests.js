@@ -33,8 +33,8 @@ export const getExpensesSummaryData = async (userId, email) => {
 // expenses operations
 export const postExpenseCreate = async (userId, email, expense, expenseId) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_EXPENSE_CREATE}`)
-    const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_EXPENSE_CREATE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,8 +57,8 @@ export const postExpenseCreate = async (userId, email, expense, expenseId) => {
 
 export const deleteExpense = async (userId, email, expenseId) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_EXPENSE_REMOVE}`)
-    const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_EXPENSE_REMOVE}`, {
+    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "text/plain"
