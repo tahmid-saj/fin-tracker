@@ -2,13 +2,13 @@ import React, { Component, useContext } from "react";
 
 import "./savings.styles.scss";
 
-import CreateAccountForm from "./create-account-form/create-account-form.component";
+import CreateAccountForm from "../../../components/signed-in/savings/create-account-form/create-account-form.component";
 
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-import AllSavingsSummary from "./all-savings-summary/all-savings-summary.component";
+import AllSavingsSummary from "../../../components/signed-in/savings/all-savings-summary/all-savings-summary.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import SavingsGoalCalculator from "../../shared/savings-goal-calculator/savings-goal-calculator.component";
+import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component";
 
 const Savings = () => {
   const { savingsAccounts } = useContext(SavingsContext);

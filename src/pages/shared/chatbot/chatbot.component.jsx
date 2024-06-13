@@ -1,10 +1,10 @@
 import { useState, useContext } from "react"
-import FormInput from "../form-input/form-input.component"
-import Button from "../button/button.component"
+import FormInput from "../../../components/shared/form-input/form-input.component.jsx"
+import Button from "../../../components/shared/button/button.component.jsx"
 import "./chatbot.styles.jsx"
 import { ChatBotContainer, ChatBotInputMessage } from "./chatbot.styles.jsx"
-import ChatBotResponse from "./chatbot-response/chatbot-response.component"
-import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context"
+import ChatBotResponse from "../../../components/shared/chatbot/chatbot-response/chatbot-response.component.jsx"
+import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context.js"
 import { Divider, Typography } from "@mui/material"
 
 const defaultFormFields = {

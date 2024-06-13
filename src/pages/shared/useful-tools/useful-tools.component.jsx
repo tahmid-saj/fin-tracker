@@ -1,11 +1,11 @@
 import "./useful-tools.styles.jsx"
 import { UsefulToolsContainer } from "./useful-tools.styles"
 
-import CurrencyConverter from "./currency-converter/currency-converter.component"
-import ExchangeRate from "./exchange-rate/exchange-rate.component"
-import MortgageCalculator from "./mortgage-calculator/mortgage-calculator.component"
-import "./useful-tools.component"
-import { AccordionTransition } from "../mui/accordion/accordion.component"
+import CurrencyConverter from "../../../components/shared/useful-tools/currency-converter/currency-converter.component.jsx"
+import ExchangeRate from "../../../components/shared/useful-tools/exchange-rate/exchange-rate.component.jsx"
+import MortgageCalculator from "../../../components/shared/useful-tools/mortgage-calculator/mortgage-calculator.component.jsx"
+import "./useful-tools.component.jsx"
+import { AccordionTransition } from "../../../components/shared/mui/accordion/accordion.component.jsx"
 import { Typography } from "@mui/material"
 
 const UsefulTools = () => {

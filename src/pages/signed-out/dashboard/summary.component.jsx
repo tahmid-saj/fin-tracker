@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from "react";
-import BankingSummary from "./banking/banking-summary.component";
-import InvestmentsSummary from "./investments/investments-summary.component";
-import SavingsSummary from "./savings/savings-summary.component";
+import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component";
+import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component";
+import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 // import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
@@ -9,9 +9,9 @@ import SavingsSummary from "./savings/savings-summary.component";
 // import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboard.context";
 
 import "./summary.styles.scss";
-import ExpensesSummary from "./expenses/expenses.component";
+import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component";
 // import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
-import ChatBot from "../../shared/chatbot/chatbot.component"
+import ChatBot from "../../shared/chatbot/chatbot.component";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector";

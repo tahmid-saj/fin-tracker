@@ -1,4 +1,4 @@
-import Savings from "../../../components/signed-in/savings/savings.component";
+import Savings from "../../../pages/signed-in/savings/savings.component";
 import "./savings.styles.scss";
 
 const SavingsRouteSignedIn = () => {

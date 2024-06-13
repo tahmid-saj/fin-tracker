@@ -2,8 +2,8 @@ import React, { Component, useContext, useEffect } from "react";
 
 import "./investments.styles.scss";
 import MarketView from "../../shared/market-view/market-view.component";
-import CreateInvestmentForm from "./create-investment-form/create-investment-form.component";
-import AllInvestmentsSummary from "./all-investments-summary/all-investments-summary.component";
+import CreateInvestmentForm from "../../../components/signed-out/investments/create-investment-form/create-investment-form.component";
+import AllInvestmentsSummary from "../../../components/signed-out/investments/all-investments-summary/all-investments-summary.component";
 
 // import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
