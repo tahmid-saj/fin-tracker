@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import { validateMortgageInput, validateCurrencyConverterInput, validateExchangeRateInput } from "../../../utils/validations/useful-tools.validation";
-import { getMortgageResult } from "../../../utils/api-requests/useful-tools.requests";
-import { getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
+import { getMortgageResult, getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
 
 // helper functions
 const calculateMortgageHelper = async (mortgageInput) => {

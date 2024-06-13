@@ -1,85 +1,43 @@
 import { errorOnMortgageResult, errorOnCurrencyResult } from "../errors/useful-tools.errors";
-import { restClient } from "@polygon.io/client-js";
-
-import { DOWNPAYMENT_FLAG_OPTIONS } from "../constants/useful-tools.constants";
-import { MARKET_DATA_FOREX_PREFIX } from "../constants/market-data.constants";
-
-// useful tools api requests
-
-// helper functions
-async function processMortgageResult(resJSON) {
-  return {
-    monthlyPayment: {
-      total: resJSON.monthly_payment.total,
-      mortgage: resJSON.monthly_payment.mortgage,
-      propertyTax: resJSON.monthly_payment.property_tax,
-      hoa: resJSON.monthly_payment.hoa,
-      annualHomeInsurance: resJSON.monthly_payment.annual_home_ins,
-    },
-    annualPayment: {
-      total: resJSON.annual_payment.total,
-      mortgage: resJSON.annual_payment.mortgage,
-      propertyTax: resJSON.annual_payment.property_tax,
-      hoa: resJSON.annual_payment.hoa,
-      homeInsurance: resJSON.annual_payment.home_insurance,
-    },
-    totalInterestPaid: resJSON.total_interest_paid
-  }
-}
 
 // mortgage calculator
 export async function getMortgageResult(mortgageInput) {
   try {
-    let url;
-    if (mortgageInput.downpaymentFlag === DOWNPAYMENT_FLAG_OPTIONS.no) {
-      url = `${process.env.REACT_APP_API_NINJAS_MORTGAGE_CALCULATOR_URL}?loan_amount=${mortgageInput.loanAmount}`
-    } else if (mortgageInput.downpaymentFlag === DOWNPAYMENT_FLAG_OPTIONS.yes) {
-      url = `${process.env.REACT_APP_API_NINJAS_MORTGAGE_CALCULATOR_URL}?home_value=${mortgageInput.homeValue}&downpayment=${mortgageInput.downpayment}`
-    }
-
-    url = url + `&interest_rate=${mortgageInput.interestRate}&duration_years=${mortgageInput.durationYears}`
-
-    if (mortgageInput.monthlyHoa !== "") {
-      url = url + `&monthly_hoa=${mortgageInput.monthlyHoa}`
-    } else if (mortgageInput.annualPropertyTax !== "") {
-      url = url + `&annual_property_tax=${mortgageInput.annualPropertyTax}`
-    } else if (mortgageInput.annualHomeInsurance !== "") {
-      url = url + `&annual_home_insurance=${mortgageInput.annualHomeInsurance}`
-    }
-
-    console.log(url)
-
-    const resMortgageResult = await fetch(url, {
-      method: "GET",
+    console.log(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_MORTGAGE_CALCULATOR}`)
+    const response = await fetch(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_MORTGAGE_CALCULATOR}`, {
+      method: "POST",
       headers: {
-        "X-Api-Key": `${process.env.REACT_APP_API_NINJAS_KEY}`
-      }
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(mortgageInput)
     })
+    const resMortgageCalculation = await response.json()
 
-    const resJSON = await resMortgageResult.json()
-    const res = await processMortgageResult(resJSON)
-    return res
+    return resMortgageCalculation.mortgageCalculation
   } catch (error) {
-    errorOnMortgageResult()
     console.log(error)
+    errorOnMortgageResult()
   }
 }
 
 // currency converter
 // exchange rate
-const polygonRestClient = restClient(process.env.REACT_APP_POLYGON_API_KEY)
 
 export async function getExchangeRate(currencyInput) {
-  const resExchangeRate = await polygonRestClient.forex.previousClose(MARKET_DATA_FOREX_PREFIX + currencyInput.fromCurrency + currencyInput.toCurrency)
-    .catch((error) => {
-      errorOnCurrencyResult()
-      console.log(error)
-      return undefined
+  try {
+    console.log(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_EXCHANGE_RATE}`)
+    const response = await fetch(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_EXCHANGE_RATE}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(currencyInput)
     })
-  
-  return {
-    fromCurrency: String(currencyInput.fromCurrency),
-    toCurrency: String(currencyInput.toCurrency),
-    exchangeRate: Number(resExchangeRate.results[0].c)
+    const resExchangeRate = await response.json()
+
+    return resExchangeRate
+  } catch (error) {
+    console.log(error)
+    errorOnCurrencyResult()
   }
 }
