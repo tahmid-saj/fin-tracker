@@ -91,7 +91,7 @@ const Insurance = () => {
       }
     })
 
-    // update insurancesSummary and insurancePayments 
+    // update insurancesSummary and insurancePayments
     dispatch(setInsurancesSummary({
       currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
       currentAllInsurancesCategories: newAllInsurancesCategories,

@@ -1,10 +1,18 @@
-import { errorOnInvalidInsuranceFor,
+import { errorOnInsuranceExists, errorOnInvalidInsuranceFor,
   errorOnInvalidInsurancePayment, errorOnStartDateBeforeEndDate
 } from "../errors/insurance.errors"
 
 // insurance validation functions
 
-export const validateAddInsurance = (insurance) => {
+export const validateAddInsurance = (insurances, insurance) => {
+  // validating if insuranceFor exists in insurances
+  const insuranceExists = insurances.find((ins) => ins.insuranceFor === insurance.insuranceFor)
+
+  if (insuranceExists) {
+    errorOnInsuranceExists()
+    return true
+  }
+
   // validating if insuranceFor is valid
   if (insurance.insuranceFor && !(/^[A-Za-z0-9]*$/.test(String(insurance.insuranceFor)))) {
     errorOnInvalidInsuranceFor()

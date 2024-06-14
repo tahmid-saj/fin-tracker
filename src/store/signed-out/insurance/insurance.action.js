@@ -35,8 +35,6 @@ const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
 export const filterInsurancesHelper = (insurances, filterConditions) => {
   let filteredInsurances = []
 
-  console.log(filterConditions)
-
   insurances.map((insurance) => {
     if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
       if (filterConditions.insuranceInterval === "" || (insurance.insuranceInterval.toLowerCase() === filterConditions.insuranceInterval.toLowerCase())) {
@@ -52,8 +50,6 @@ export const filterInsurancesHelper = (insurances, filterConditions) => {
 
 export const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
   let filteredInsurancePayments = []
-
-  console.log(filterConditions)
 
   insurancePayments.map((insurancePayment) => {
     if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
@@ -79,7 +75,7 @@ const removeInsuranceHelper = (insurances, insuranceFor) => {
 // actions
 
 export const addInsurance = (insurances, insurance) => {
-  if (validateAddInsurance(insurance)) {
+  if (validateAddInsurance(insurances, insurance)) {
     return
   } else {
     const newInsurances = addInsuranceHelper(insurances, insurance)

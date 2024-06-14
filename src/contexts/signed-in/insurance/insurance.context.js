@@ -1,9 +1,21 @@
 import { createContext, useState, useEffect } from "react";
-import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants";
+import { DEFAULT_INSURANCES, DEFAULT_INSURANCES_SUMMARY,
+  INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER 
+} from "../../../utils/constants/insurance.constants";
 import { validateAddInsurance, validateFilterInsurances, validateRemoveInsurance } from "../../../utils/validations/insurance.validation";
 
+import { getInsurancesData, getInsurancesSummaryData,
+  postInsuranceCreate, deleteInsurance,
+  putInsurancesData, putInsurancesSummaryData
+} from "../../../utils/api-requests/insurance.requests";
+
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+
 // helper functions
-const addInsuranceHelper = (insurances, insurance) => {
+const addInsuranceHelper = (insurances, insurance, userId, email) => {
+  postInsuranceCreate(userId, email, insurance, insurance.insuranceFor)
+
   return [ ...insurances,
     {
       insuranceFor: String(insurance.insuranceFor),
@@ -61,10 +73,22 @@ const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
   return filteredInsurancePayments
 }
 
-const removeInsuranceHelper = (insurances, insuranceFor) => {
+const removeInsuranceHelper = (insurances, insuranceFor, userId, email) => {
   if (validateRemoveInsurance(insuranceFor)) return insurances
 
+  deleteInsurance(userId, email, insuranceFor)
+
   return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
+}
+
+// set default insurances values
+const setDefaultInsurancesValuesHelper = () => {
+  return DEFAULT_INSURANCES
+}
+
+// set default insurances summary values
+const setDefaultInsurancesSummaryValuesHelper = () => {
+  return DEFAULT_INSURANCES_SUMMARY
 }
 
 // initial state
@@ -117,12 +141,17 @@ export const InsuranceContext = createContext({
   filterInsurance: () => {},
   removeInsurance: () => {},
 
-  insurancesSummary: {}
+  insurancesSummary: {},
   // insurances structure:
   // {
   //   currentTotalInsurancePlanned: 5000
   //   currentAllInsurancesCategories: new Set(),
   // }
+
+  // signing out
+  setDefaultInsurancesValues: () => {},
+  setDefaultInsurancesSummaryValues: () => {},
+  updateInsurancesAndSummary: () => {}
 })
 
 // context component
@@ -133,6 +162,8 @@ export const InsuranceProvider = ({ children }) => {
   const [insurancesView, setInsurancesView] = useState(insurances)
   const [insurancePaymentsView, setInsurancePaymentsView] = useState(insurancePayments)
   const [insurancesSummary, setInsurancesSummary] = useState({})
+
+  const currentUser = useSelector(selectCurrentUser)
 
   // update insurancesSummary and insurancePayments
   useEffect(() => {
@@ -220,13 +251,41 @@ export const InsuranceProvider = ({ children }) => {
     }
   }, [insurances, insurancePayments, filterConditions])
 
+  // update insurances and insurancesSummary if currentUser changes
+  useEffect(() => {
+    async function fetchInsurancesData() {
+      if (currentUser) {
+        const insurancesData = await getInsurancesData(currentUser.uid, currentUser.email)
+        const insurancesSummaryData = await getInsurancesSummaryData(currentUser.uid, currentUser.email)
+
+        if (insurancesData) {
+          const { insurances } = await insurancesData
+          setInsurances(insurances)
+        }
+
+        if (insurancesSummaryData) {
+          const { insurancesSummary: insSummary } = await insurancesSummaryData
+          setInsurancesSummary({
+            ...insurancesSummary,
+            currentTotalInsurancePlanned: insSummary.currentTotalInsurancePlanned
+          })
+        }
+      } else if (!currentUser) {
+        setDefaultInsurancesValues()
+        setDefaultInsurancesSummaryValues()
+      }
+    }
+
+    fetchInsurancesData()
+  }, [currentUser])
+
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure insuranceIds are not duplicate via validations
   const addInsurance = (insurance) => {
     if (validateAddInsurance(insurances, insurance)) {
       return
     } else {
-      setInsurances(addInsuranceHelper(insurances, insurance))
+      setInsurances(addInsuranceHelper(insurances, insurance, currentUser.uid, currentUser.email))
     }
   }
 
@@ -241,7 +300,7 @@ export const InsuranceProvider = ({ children }) => {
   }
 
   const removeInsurance = (insuranceFor) => {
-    setInsurances(removeInsuranceHelper(insurances, insuranceFor))
+    setInsurances(removeInsuranceHelper(insurances, insuranceFor, currentUser.uid, currentUser.email))
   }
 
   const clearInsuranceFilter = () => {
@@ -250,9 +309,29 @@ export const InsuranceProvider = ({ children }) => {
     setInsurancePaymentsView(insurancePayments)
   }
 
-  const value = { insurances, insurancesView, filterConditions,
+  // set default insurances values
+  const setDefaultInsurancesValues = () => {
+    setInsurances(setDefaultInsurancesValuesHelper())
+  }
+
+  // set default insurances summary values
+  const setDefaultInsurancesSummaryValues = () => {
+    setInsurancesSummary(setDefaultInsurancesSummaryValuesHelper())
+  }
+
+  // update insurances and summary on sign out
+  const updateInsurancesAndSummary = () => {
+    putInsurancesData(currentUser.uid, currentUser.email, insurances)
+
+    // TODO: double check summary portion
+    putInsurancesSummaryData(currentUser.uid, currentUser.email, {
+      currentTotalInsurancePlanned: insurancesSummary.currentTotalInsurancePlanned
+    })
+  }
+
+  const value = { insurances, insurancesView, insurancePaymentsView, filterConditions,
     addInsurance, filterInsurances, removeInsurance, clearInsuranceFilter,
-    insurancesSummary }
+    insurancesSummary, setDefaultInsurancesValues, setDefaultInsurancesSummaryValues, updateInsurancesAndSummary }
   
   return (
     <InsuranceContext.Provider
