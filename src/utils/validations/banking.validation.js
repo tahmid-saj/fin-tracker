@@ -13,7 +13,7 @@ export const validateBankingAccountCreation = (bankingAccounts, bankingAccountNa
   };
 
   // validating if bankingAccountName is valid
-  if (!(/^[A-Za-z]*$/.test(String(bankingAccountName)))) {
+  if (!(/^[A-Za-z0-9]*$/.test(String(bankingAccountName)))) {
     errorOnInvalidBankAccountName();
     return true;
   }

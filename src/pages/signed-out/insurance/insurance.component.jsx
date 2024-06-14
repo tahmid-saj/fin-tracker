@@ -66,16 +66,27 @@ const Insurance = () => {
         default:
           break
       }
+      
+      Date.prototype.addDays = function (d) {
+        this.setDate(this.getDate() + d);
+        return this;
+      }
+        
+      const startDate = new Date(insurance.insuranceFirstPaymentDate)
+      const endDate = new Date(insurance.insuranceEndDate)
+      console.log(insuranceIntervalDaysMultiplier, startDate, endDate)
 
-      for (let paymentDate = insurance.insuranceFirstPaymentDate; 
-        paymentDate <= insurance.insuranceEndDate; 
-        paymentDate.setDate(paymentDate.getDate() + insuranceIntervalDaysMultiplier)) {
+      for (let paymentDate = startDate; 
+        paymentDate <= endDate; 
+        // paymentDate.setDate(paymentDate.getDate() + insuranceIntervalDaysMultiplier)
+        paymentDate = paymentDate.addDays(insuranceIntervalDaysMultiplier)
+      ) {
         
         newInsurancePayments.push({
           insuranceFor: String(insurance.insuranceFor),
           insurancePayment: Number(insurance.insurancePayment),
           insuranceInterval: String(insurance.insuranceInterval),
-          insuranceDate: Date(paymentDate)
+          insuranceDate: String(paymentDate)
         });
       }
     })

@@ -6,7 +6,7 @@ import { errorOnInvalidInsuranceFor,
 
 export const validateAddInsurance = (insurance) => {
   // validating if insuranceFor is valid
-  if (!(/^[A-Za-z]*$/.test(String(insurance.insuranceFor)))) {
+  if (insurance.insuranceFor && !(/^[A-Za-z0-9]*$/.test(String(insurance.insuranceFor)))) {
     errorOnInvalidInsuranceFor()
     return true;
   }
@@ -22,7 +22,7 @@ export const validateAddInsurance = (insurance) => {
 
 export const validateFilterInsurances = (filterConditions) => {
   // validating if expenseFor is valid
-  if (!(/^[A-Za-z]*$/.test(String(filterConditions.insuranceFor)))) {
+  if (filterConditions.insuranceFor && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.insuranceFor)))) {
     errorOnInvalidInsuranceFor()
     return true
   }
