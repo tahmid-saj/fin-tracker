@@ -1,5 +1,9 @@
 // insurance constants
 
+export const DEFAULT_INSURANCES = []
+
+export const DEFAULT_INSURANCES_SUMMARY = {}
+
 export const INSURANCE_INTERVALS = {
   daily: "Daily",
   weekly: "Weekly",

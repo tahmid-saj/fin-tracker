@@ -16,11 +16,11 @@ defaultInsuranceEndDate.setFullYear(defaultInsuranceEndDate.getFullYear() + 50);
 const defaultFormFields = {
   insuranceFor: "",
   insurancePayment: "",
-  insuranceInterval: "",
+  insuranceInterval: "Daily",
   insuranceFirstPaymentDate: "",
   // optional
   // if insuranceEndDate is not specified, insurance will end after 50 years
-  insuranceEndDate: defaultInsuranceEndDate
+  insuranceEndDate: defaultInsuranceEndDate.toISOString().split('T')[0]
 }
 
 const AddInsuranceForm = () => {

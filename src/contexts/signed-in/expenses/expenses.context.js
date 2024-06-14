@@ -186,6 +186,7 @@ export const ExpensesProvider = ({ children }) => {
         setDefaultExpensesSummaryValues()
       }
     }
+    
     fetchExpensesData()
   }, [currentUser])
 
@@ -234,6 +235,8 @@ export const ExpensesProvider = ({ children }) => {
   // update expenses and summary on sign out
   const updateExpensesAndSummary = () => {
     putExpensesData(currentUser.uid, currentUser.email, expenses)
+
+    // TODO: double check summary portion
     putExpensesSummaryData(currentUser.uid, currentUser.email, {
       currentAllExpensesCost: expensesSummary.currentAllExpensesCost
     })

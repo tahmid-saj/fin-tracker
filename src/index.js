@@ -22,6 +22,7 @@ import { ExpensesProvider as ExpensesProviderSignedIn } from './contexts/signed-
 import { BankingProvider as BankingProviderSignedIn } from './contexts/signed-in/banking/banking.context';
 import { InvestmentsProvider as InvestmentsProviderSignedIn } from './contexts/signed-in/investments/investments.context';
 import { SavingsProvider as SavingsProviderSignedIn } from './contexts/signed-in/savings/savings.context';
+import { InsuranceProvider as InsuranceProviderSignedIn } from './contexts/signed-in/insurance/insurance.context';
 import { DashboardProvider as DashboardProviderSignedIn } from './contexts/signed-in/dashboard/dashboard.context';
 import { ExportsProvider } from './contexts/signed-in/exports/exports.context';
 
@@ -48,13 +49,15 @@ root.render(
                                 <BankingProviderSignedIn>
                                   <InvestmentsProviderSignedIn>
                                     <SavingsProviderSignedIn>
-                                      <DashboardProviderSignedIn>
-                                        <ExportsProvider>
-                                          <ChatBotProvider>
-                                            <App />
-                                          </ChatBotProvider>
-                                        </ExportsProvider>
-                                      </DashboardProviderSignedIn>
+                                      <InsuranceProviderSignedIn>
+                                        <DashboardProviderSignedIn>
+                                          <ExportsProvider>
+                                            <ChatBotProvider>
+                                              <App />
+                                            </ChatBotProvider>
+                                          </ExportsProvider>
+                                        </DashboardProviderSignedIn>
+                                      </InsuranceProviderSignedIn>
                                     </SavingsProviderSignedIn>
                                   </InvestmentsProviderSignedIn>
                                 </BankingProviderSignedIn>
