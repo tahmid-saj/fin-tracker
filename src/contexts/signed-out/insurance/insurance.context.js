@@ -110,6 +110,7 @@ export const InsuranceContext = createContext({
   insurancesSummary: {}
   // insurances structure:
   // {
+  //   currentTotalInsurancePlanned: 5000
   //   currentAllInsurancesCategories: new Set(),
   // }
 })

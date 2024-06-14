@@ -34,12 +34,9 @@ const Insurance = () => {
       newAllInsurancesCategories.add(String(insurance.insuranceFor))
     })
 
-    dispatch(setInsurancesSummary({
-      currentAllInsurancesCategories: newAllInsurancesCategories
-    }))
-
     // update insurancePayments
     let newInsurancePayments = []
+    let newCurrentTotalInsurancePlanned = 0
     
     insurances.map((insurance) => {
       let insuranceIntervalDaysMultiplier;
@@ -81,15 +78,24 @@ const Insurance = () => {
         // paymentDate.setDate(paymentDate.getDate() + insuranceIntervalDaysMultiplier)
         paymentDate = paymentDate.addDays(insuranceIntervalDaysMultiplier)
       ) {
+
+        newCurrentTotalInsurancePlanned += Number(insurance.insurancePayment)
+        const newPaymentDate = paymentDate.toISOString().split('T')[0]
         
         newInsurancePayments.push({
           insuranceFor: String(insurance.insuranceFor),
           insurancePayment: Number(insurance.insurancePayment),
           insuranceInterval: String(insurance.insuranceInterval),
-          insuranceDate: String(paymentDate)
+          insuranceDate: String(newPaymentDate)
         });
       }
     })
+
+    // update insurancesSummary and insurancePayments 
+    dispatch(setInsurancesSummary({
+      currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
+      currentAllInsurancesCategories: newAllInsurancesCategories,
+    }))
 
     dispatch(setInsurancePayments(newInsurancePayments))
   }, [insurances, dispatch])
@@ -134,9 +140,15 @@ const Insurance = () => {
       }
 
       {
-        insurancesView && insurancesView.length ?
-        <div className="insurance-charts-container">
+        insurancePaymentsView && insurancePaymentsView.length ?
+        <div className="insurance-chart-container">
           <InsurancePieChart></InsurancePieChart>
+        </div> : null
+      }
+
+      {
+        insurancesView && insurancesView.length ?
+        <div className="insurance-chart-container">
           <InsuranceTable></InsuranceTable>
         </div> : null
       }
