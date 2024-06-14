@@ -14,8 +14,8 @@ export const validateInvestmentCreation = (investments, investment) => {
   // validating if investment fields are correct
 
   // strings
-  if (!(/^[A-Za-z]*$/.test(String(investment.investmentName))) || 
-    !(/^[A-Za-z]*$/.test(String(investment.investmentType)))) {
+  if (!(/^[A-Za-z0-9]*$/.test(String(investment.investmentName))) || 
+    !(/^[A-Za-z0-9]*$/.test(String(investment.investmentType)))) {
     errorOnInvalidInvestmentNameAndType();
     return true;
   }
@@ -36,8 +36,8 @@ export const validateInvestmentUpdate = (investments, originalInvestmentName, up
   // validate fields of updatedInvestment
   
   // strings
-  if (!(/^[A-Za-z]*$/.test(String(updatedInvestment.investmentName))) || 
-    !(/^[A-Za-z]*$/.test(String(updatedInvestment.investmentType)))) {
+  if (!(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentName))) || 
+    !(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentType)))) {
     errorOnInvalidInvestmentNameAndType();
     return true;
   }

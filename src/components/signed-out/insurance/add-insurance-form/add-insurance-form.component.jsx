@@ -6,6 +6,10 @@ import { Typography } from "@mui/material"
 import { ButtonsContainer } from "../../../shared/button/button.styles"
 import Button from "../../../shared/button/button.component"
 
+import { useDispatch, useSelector } from "react-redux"
+import { selectInsurances } from "../../../../store/signed-out/insurance/insurance.selector"
+import { addInsurance } from "../../../../store/signed-out/insurance/insurance.action"
+
 const defaultInsuranceEndDate = new Date();
 defaultInsuranceEndDate.setFullYear(defaultInsuranceEndDate.getFullYear() + 50);
 
@@ -21,6 +25,8 @@ const defaultFormFields = {
 
 const AddInsuranceForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
+  const dispatch = useDispatch()
+  const insurances = useSelector(selectInsurances)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -36,7 +42,8 @@ const AddInsuranceForm = () => {
       console.log("please fill out all info")
       return
     }
-    
+
+    dispatch(addInsurance(insurances, formFields))
     resetFormFields()
   }
 
@@ -56,8 +63,8 @@ const AddInsuranceForm = () => {
         <FormInput label="Insurance payment per period" type="text" required onChange={ handleChange }
           name="insurancePayment" value={ formFields.insurancePayment }></FormInput>
         
-        <Typography sx={{ display: "inline-block", position: "relative" }} paragraph>Interval</Typography>
-        <DropButton required className="dropButton" id="insuranceInterval" 
+        <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Interval</Typography>
+        <DropButton required name="insuranceInterval" id="insuranceInterval" 
                 onChange={ handleChange } value={ formFields.insuranceInterval }>
           <option value="Daily">Daily</option>
           <option value="Weekly">Weekly</option>
@@ -73,7 +80,7 @@ const AddInsuranceForm = () => {
         
         <Typography paragraph>Optional:</Typography>
         <Typography sx={{ marginTop: "2%" }} variant="subtitle2">End date</Typography>
-        <FormInput type="date" required onChange={ handleChange }
+        <FormInput type="date" onChange={ handleChange }
                   name="insuranceEndDate" value={ formFields.insuranceEndDate }></FormInput>
         
         <ButtonsContainer>

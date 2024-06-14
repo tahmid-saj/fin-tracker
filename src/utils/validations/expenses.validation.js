@@ -7,8 +7,8 @@ import { errorOnInvalidExpenseForAndCategory, errorOnInvalidExpenseCost,
 // TODO: include underscores to be approved
 export const validateAddExpense = (expense) => {
   // validating if expenseFor and expenseCategory are valid
-  if (!(/^[A-Za-z]*$/.test(String(expense.expenseFor))) || 
-    !(/^[A-Za-z]*$/.test(String(expense.expenseCategory)))) {
+  if ((expense.expenseFor && !(/^[A-Za-z0-9]*$/.test(String(expense.expenseFor)))) || 
+    (expense.expenseCategory && !(/^[A-Za-z0-9]*$/.test(String(expense.expenseCategory))))) {
     errorOnInvalidExpenseForAndCategory()
     return true;
   }
@@ -24,8 +24,8 @@ export const validateAddExpense = (expense) => {
 
 export const validateFilterExpenses = (filterConditions) => {
   // validating if expenseFor and expenseCategory are valid
-  if (!(/^[A-Za-z]*$/.test(String(filterConditions.expenseFor))) || 
-    !(/^[A-Za-z]*$/.test(String(filterConditions.expenseCategory)))) {
+  if ((filterConditions.expenseFor && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.expenseFor)))) || 
+    (filterConditions.expenseCategory && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.expenseCategory))))) {
     errorOnInvalidExpenseForAndCategory()
     return true
   }

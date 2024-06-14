@@ -15,7 +15,7 @@ export const validateSavingsAccountCreation = (savingsAccounts, savingsAccount) 
   // validating if savingsAccount fields are correct
 
   // strings
-  if (!(/^[A-Za-z]*$/.test(String(savingsAccount.savingsAccountName)))) {
+  if (!(/^[A-Za-z0-9]*$/.test(String(savingsAccount.savingsAccountName)))) {
     errorOnInvalidSavingsAccountName();
     return true;
   }
@@ -36,7 +36,7 @@ export const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAcc
   // validate fields of updatedInvestment
   
   // strings
-  if (!(/^[A-Za-z]*$/.test(String(updatedSavingsAccount.savingsAccountName)))) {
+  if (!(/^[A-Za-z0-9]*$/.test(String(updatedSavingsAccount.savingsAccountName)))) {
     errorOnInvalidSavingsAccountName();
     return true;
   }
