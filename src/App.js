@@ -7,6 +7,7 @@ import ExpensesRoute from "./routes/signed-out/expenses/expenses.component";
 import BankingRoute from "./routes/signed-out/banking/banking.component";
 import InvestmentsRoute from "./routes/signed-out/investments/investments.components";
 import SavingsRoute from "./routes/signed-out/savings/savings.components";
+import InsuranceRoute from "./routes/signed-out/insurance/insurance.component";
 import UsefulToolsRoute from "./routes/shared/useful-tools/useful-tools.component";
 import AuthenticationRoute from "./routes/signed-out/authentication/authentication.component";
 
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="banking" element={ <BankingRoute/> }/>
         <Route path="investments" element={ <InvestmentsRoute/> }/>
         <Route path="savings" element={ <SavingsRoute/> }/>
+        <Route path="insurance" element={ <InsuranceRoute/> }/>
         <Route path="useful-tools" element={ <UsefulToolsRoute/> }></Route>
         <Route path="auth" element={ <AuthenticationRoute/> }/>
 

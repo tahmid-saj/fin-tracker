@@ -22,7 +22,6 @@ export async function getMortgageResult(mortgageInput) {
 
 // currency converter
 // exchange rate
-
 export async function getExchangeRate(currencyInput) {
   try {
     console.log(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_EXCHANGE_RATE}`)
