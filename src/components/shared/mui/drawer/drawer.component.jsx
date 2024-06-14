@@ -29,6 +29,7 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PaymentIcon from '@mui/icons-material/Payment';
 import SavingsIcon from '@mui/icons-material/Savings';
 import CalculateIcon from '@mui/icons-material/Calculate';
+import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -220,6 +221,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
                     { header === NAV_LINKS.headers.marketData ? <ShowChartIcon/> : null }
                     { header === NAV_LINKS.headers.investments ? <PaymentIcon/> : null }
                     { header === NAV_LINKS.headers.savings ? <SavingsIcon/> : null }
+                    { header === NAV_LINKS.headers.insurance ? <SafetyCheckIcon/> : null }
                     { header === NAV_LINKS.headers.usefulTools ? <CalculateIcon/> : null }
                     { header === NAV_LINKS.headers.exports ? <FileDownloadIcon/> : null }
                   </ListItemIcon>

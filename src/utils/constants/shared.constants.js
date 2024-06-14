@@ -11,6 +11,7 @@ export const FINANCE_ITEM_TYPES = {
   banking: "Bank Accounts",
   investments: "Investments",
   savings: "Savings Accounts",
+  insurance: "Insurance"
 };
 
 export const NAV_LINKS = {
@@ -23,6 +24,7 @@ export const NAV_LINKS = {
     marketData: "Market Data",
     investments: "Investments",
     savings: "Savings",
+    insurance: "Insurance",
     usefulTools: "Useful Tools",
     exports: "Exports",
     signedOut: "Sign In / Register",
@@ -42,6 +44,7 @@ export const NAV_LINKS = {
       marketData: "/investments",
       investments: "/investments",
       savings: "/savings",
+      insurance: "/insurance",
       usefulTools: "/useful-tools",
       exports: "/exports",
       auth: "/auth",
@@ -55,6 +58,7 @@ export const NAV_LINKS = {
       marketData: "/investments-signed-in",
       investments: "/investments-signed-in",
       savings: "/savings-signed-in",
+      // insurance: "/insurance-signed-in",
       usefulTools: "/useful-tools",
       exports: "/exports-signed-in",
       signOut: "/",
@@ -93,6 +97,10 @@ export const NAV_LINKS = {
       {
         header: "Savings",
         path: "/savings"
+      },
+      {
+        header: "Insurance",
+        path: "/insurance"
       },
       {
         header: "Useful Tools",
@@ -158,6 +166,10 @@ export const NAV_LINKS = {
         header: "Savings",
         path: "/savings-signed-in"
       },
+      // {
+      //   header: "Insurance",
+      //   path: "/insurance-signed-in"
+      // },
       {
         header: "Useful Tools",
         path: "/useful-tools"
