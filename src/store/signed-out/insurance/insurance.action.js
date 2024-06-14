@@ -20,16 +20,28 @@ const addInsuranceHelper = (insurances, insurance) => {
   ]
 }
 
+const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
+  if (filterConditions.insuranceStartDate === "" || ((filterConditions.insuranceStartDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceStartDate <= insurance.insuranceEndDate) 
+      || (filterConditions.insuranceEndDate === "" && filterConditions.insuranceStartDate <= insurance.insuranceFirstPaymentDate))) {
+    if (filterConditions.insuranceEndDate === "" || ((filterConditions.insuranceEndDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceEndDate <= insurance.insuranceEndDate)
+      || (filterConditions.insuranceStartDate === "" && filterConditions.insuranceEndDate >= insurance.insuranceEndDate))) {
+      return true
+    }
+  }
+
+  return false
+}
+
 export const filterInsurancesHelper = (insurances, filterConditions) => {
   let filteredInsurances = []
+
+  console.log(filterConditions)
 
   insurances.map((insurance) => {
     if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
       if (filterConditions.insuranceInterval === "" || (insurance.insuranceInterval.toLowerCase() === filterConditions.insuranceInterval.toLowerCase())) {
-        if (filterConditions.insuranceStartDate === "" || (filterConditions.insuranceStartDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceStartDate <= insurance.insuranceEndDate)) {
-          if (filterConditions.insuranceEndDate === "" || (filterConditions.insuranceEndDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceEndDate <= insurance.insuranceEndDate)) {
-            filteredInsurances.push(insurance)
-          }
+        if (checkDateRangeFilterOverlap(filterConditions, insurance)) {
+          filteredInsurances.push(insurance)
         }
       }
     }
@@ -40,6 +52,8 @@ export const filterInsurancesHelper = (insurances, filterConditions) => {
 
 export const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
   let filteredInsurancePayments = []
+
+  console.log(filterConditions)
 
   insurancePayments.map((insurancePayment) => {
     if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
