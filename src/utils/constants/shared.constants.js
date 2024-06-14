@@ -58,7 +58,7 @@ export const NAV_LINKS = {
       marketData: "/investments-signed-in",
       investments: "/investments-signed-in",
       savings: "/savings-signed-in",
-      // insurance: "/insurance-signed-in",
+      insurance: "/insurance-signed-in",
       usefulTools: "/useful-tools",
       exports: "/exports-signed-in",
       signOut: "/",
@@ -166,10 +166,10 @@ export const NAV_LINKS = {
         header: "Savings",
         path: "/savings-signed-in"
       },
-      // {
-      //   header: "Insurance",
-      //   path: "/insurance-signed-in"
-      // },
+      {
+        header: "Insurance",
+        path: "/insurance-signed-in"
+      },
       {
         header: "Useful Tools",
         path: "/useful-tools"
