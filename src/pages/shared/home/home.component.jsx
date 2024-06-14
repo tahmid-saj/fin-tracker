@@ -63,6 +63,12 @@ const Home = () => {
       imageUrl: "https://media.istockphoto.com/id/1297385692/vector/banker-taking-clients-money-for-saving.jpg?s=612x612&w=0&k=20&c=qRmb_2QDb-JfJio9PFZsOwf7pspUwdWWoG9teZ8k6CQ=",
       path: currentUser ? NAV_LINKS.paths.signedIn.savings : NAV_LINKS.paths.signedOut.savings
     },
+    insurance: {
+      header: "Insurance",
+      description: "Keep track of all your insurance payments over different time periods in one place",
+      imageUrl: "https://media.istockphoto.com/id/1388146104/vector/health-insurance-contract-vector-illustration-of-insurance-concept.jpg?s=612x612&w=0&k=20&c=gjFpcqbtdWV5PXzj9ZLANekZ17ul6kFTqluOQvN82pI=",
+      path: currentUser ? NAV_LINKS.paths.signedIn.insurance : NAV_LINKS.paths.signedOut.insurance
+    },
     tools: {
       header: "Tools",
       description: "We also provide helpful financial tools to estimate savings goals, mortgage, insurance, foreign exchange and more",
@@ -82,20 +88,25 @@ const Home = () => {
         
         <MediaCard styles={ cardStyles } header={ homeCardContent.market.header } imageUrl={ homeCardContent.market.imageUrl } 
           imageTitle={ homeCardContent.market.header } path={ homeCardContent.market.path } content={ homeCardContent.market.description }></MediaCard>
-        
-        <MediaCard styles={ cardStyles } header={ homeCardContent.expenses.header } imageUrl={ homeCardContent.expenses.imageUrl } 
-          imageTitle={ homeCardContent.expenses.header } path={ homeCardContent.expenses.path } content={ homeCardContent.expenses.description }></MediaCard>
       </HomeContainer>
 
       <HomeContainer>
+        <MediaCard styles={ cardStyles } header={ homeCardContent.expenses.header } imageUrl={ homeCardContent.expenses.imageUrl } 
+          imageTitle={ homeCardContent.expenses.header } path={ homeCardContent.expenses.path } content={ homeCardContent.expenses.description }></MediaCard>
+
         <MediaCard styles={ cardStyles } header={ homeCardContent.banking.header } imageUrl={ homeCardContent.banking.imageUrl } 
           imageTitle={ homeCardContent.banking.header } path={ homeCardContent.banking.path } content={ homeCardContent.banking.description }></MediaCard>
         
         <MediaCard styles={ cardStyles } header={ homeCardContent.investment.header } imageUrl={ homeCardContent.investment.imageUrl } 
-          imageTitle={ homeCardContent.investment.header } path={ homeCardContent.investment.path } content={ homeCardContent.investment.description }></MediaCard>
-        
+          imageTitle={ homeCardContent.investment.header } path={ homeCardContent.investment.path } content={ homeCardContent.investment.description }></MediaCard>        
+      </HomeContainer>
+
+      <HomeContainer>
         <MediaCard styles={ cardStyles } header={ homeCardContent.savings.header } imageUrl={ homeCardContent.savings.imageUrl } 
           imageTitle={ homeCardContent.savings.header } path={ homeCardContent.savings.path } content={ homeCardContent.savings.description }></MediaCard>
+
+        <MediaCard styles={ cardStyles } header={ homeCardContent.insurance.header } imageUrl={ homeCardContent.insurance.imageUrl } 
+          imageTitle={ homeCardContent.insurance.header } path={ homeCardContent.insurance.path } content={ homeCardContent.insurance.description }></MediaCard>
         
         <MediaCard styles={ cardStyles } header={ homeCardContent.tools.header } imageUrl={ homeCardContent.tools.imageUrl } 
           imageTitle={ homeCardContent.tools.header } path={ homeCardContent.tools.path } content={ homeCardContent.tools.description }></MediaCard>

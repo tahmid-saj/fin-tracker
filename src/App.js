@@ -16,10 +16,12 @@ import ExpensesRouteSignedIn from "./routes/signed-in/expenses/expenses.componen
 import BankingRouteSignedIn from "./routes/signed-in/banking/banking.component";
 import InvestmentsRouteSignedIn from "./routes/signed-in/investments/investments.components";
 import SavingsRouteSignedIn from "./routes/signed-in/savings/savings.components";
+import InsuranceRouteSignedIn from "./routes/signed-in/insurance/insurance.component";
 import ExportsRouteSignedIn from "./routes/signed-in/exports/exports.component";
 
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "./store/shared/user/user.selector";
 import { checkUserSession, setCurrentUser } from "./store/shared/user/user.action";
 
 import { onAuthStateChangedListener,
@@ -28,6 +30,7 @@ import { onAuthStateChangedListener,
 
 const App = () => {
   const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     // const unsubscribe = onAuthStateChangedListener((user) => {
@@ -44,22 +47,34 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={ <Navigation/> }>
+        {/* shared */}
         <Route index element={ <HomeRoute/> }/>
-        <Route path="dashboard" element={ <DashboardRoute/> }/>
-        <Route path="expenses" element={ <ExpensesRoute/> }/>
-        <Route path="banking" element={ <BankingRoute/> }/>
-        <Route path="investments" element={ <InvestmentsRoute/> }/>
-        <Route path="savings" element={ <SavingsRoute/> }/>
-        <Route path="insurance" element={ <InsuranceRoute/> }/>
         <Route path="useful-tools" element={ <UsefulToolsRoute/> }></Route>
-        <Route path="auth" element={ <AuthenticationRoute/> }/>
 
-        <Route path="dashboard-signed-in" element={ <DashboardRouteSignedIn/> }/>
-        <Route path="expenses-signed-in" element={ <ExpensesRouteSignedIn/> }/>
-        <Route path="banking-signed-in" element={ <BankingRouteSignedIn/> }/>
-        <Route path="investments-signed-in" element={ <InvestmentsRouteSignedIn/> }/>
-        <Route path="savings-signed-in" element={ <SavingsRouteSignedIn/> }/>
-        <Route path="exports-signed-in" element={ <ExportsRouteSignedIn/> }/>
+        {
+          currentUser ? 
+          (
+            <Fragment>
+              <Route path="dashboard-signed-in" element={ <DashboardRouteSignedIn/> }/>
+              <Route path="expenses-signed-in" element={ <ExpensesRouteSignedIn/> }/>
+              <Route path="banking-signed-in" element={ <BankingRouteSignedIn/> }/>
+              <Route path="investments-signed-in" element={ <InvestmentsRouteSignedIn/> }/>
+              <Route path="savings-signed-in" element={ <SavingsRouteSignedIn/> }/>
+              <Route path="insurance-signed-in" element={ <InsuranceRouteSignedIn/> }/>
+              <Route path="exports-signed-in" element={ <ExportsRouteSignedIn/> }/>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Route path="dashboard" element={ <DashboardRoute/> }/>
+              <Route path="expenses" element={ <ExpensesRoute/> }/>
+              <Route path="banking" element={ <BankingRoute/> }/>
+              <Route path="investments" element={ <InvestmentsRoute/> }/>
+              <Route path="savings" element={ <SavingsRoute/> }/>
+              <Route path="insurance" element={ <InsuranceRoute/> }/>
+              <Route path="auth" element={ <AuthenticationRoute/> }/>
+            </Fragment>
+          )
+        }
       </Route>
     </Routes>
   );

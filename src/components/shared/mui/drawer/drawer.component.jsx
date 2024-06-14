@@ -43,6 +43,7 @@ import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expense
 import { BankingContext } from '../../../../contexts/signed-in/banking/banking.context';
 import { InvestmentsContext } from '../../../../contexts/signed-in/investments/investments.context';
 import { SavingsContext } from '../../../../contexts/signed-in/savings/savings.context';
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context";
 // import { signOutUser } from '../../../../utils/firebase/firebase.utils';
 
 import { NAV_LINKS } from '../../../../utils/constants/shared.constants';
@@ -129,6 +130,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
   const { updateBankingAccountsAndSummary } = useContext(BankingContext);
   const { updateInvestmentsAndSummary } = useContext(InvestmentsContext);
   const { updateSavingsAccountsAndSummary } = useContext(SavingsContext);
+  const { updateInsurancesAndSummary } = useContext(InsuranceContext)
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
@@ -144,6 +146,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
     updateBankingAccountsAndSummary();
     updateInvestmentsAndSummary();
     updateSavingsAccountsAndSummary();
+    updateInsurancesAndSummary()
     // signOutUser();
     dispatch(signOutStart())
     navigate("/")
@@ -173,7 +176,7 @@ export default function MiniDrawer({ navLinksHeaders, children }) {
 
           <div className="fin-tracker-title">
             <Typography variant="h6" noWrap component="div">
-              fin-tracker
+              Finance Planner
             </Typography>
             {
               currentUser ?
