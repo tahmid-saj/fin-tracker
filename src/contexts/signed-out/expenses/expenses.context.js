@@ -100,6 +100,7 @@ export const ExpensesProvider = ({ children }) => {
     //   currentAllExpensesCategories: newAllExpensesCategories
     // })
     
+    // past 30 days of expenses
     Date.prototype.subtractDays = function (d) {
       this.setDate(this.getDate() - d);
       return this;
@@ -115,6 +116,7 @@ export const ExpensesProvider = ({ children }) => {
 
     const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
       newAllExpensesCategories.push(expense.expenseCategory)
+      
       if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
         newPast30DaysAllExpensesCost += expense.expenseCost
         newPastMonthExpenses.push(expense)
