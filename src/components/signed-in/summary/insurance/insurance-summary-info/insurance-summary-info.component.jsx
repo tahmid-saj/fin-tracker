@@ -1,9 +1,10 @@
 import "./insurance-summary-info.styles.scss"
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context"
+import { useSelector } from "react-redux"
+import { selectInsurancesSummary } from "../../../../../store/signed-out/insurance/insurance.selector"
 
 const InsurancesSummaryInfo = () => {
-  const { insurancesSummary } = useContext(InsuranceContext)
+  const insurancesSummary = useSelector(selectInsurancesSummary)
 
   return (
     <div className="insurances-summary-info-container">
