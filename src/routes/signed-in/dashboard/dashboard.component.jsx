@@ -1,6 +1,6 @@
 import "./dashboard.styles.scss";
 
-import Summary from "../../../components/signed-in/summary/summary.component";
+import Summary from "../../../pages/signed-in/dashboard/summary.component";
 
 const DashboardRouteSignedIn = () => {
   return (

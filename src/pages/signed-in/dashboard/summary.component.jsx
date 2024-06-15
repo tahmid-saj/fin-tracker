@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from "react";
-import BankingSummary from "./banking/banking-summary.component";
-import InvestmentsSummary from "./investments/investments-summary.component";
-import SavingsSummary from "./savings/savings-summary.component";
+import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component";
+import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component";
+import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component";
 
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
@@ -9,9 +9,9 @@ import { SavingsContext } from "../../../contexts/signed-in/savings/savings.cont
 import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
 
 import "./summary.styles.scss";
-import ExpensesSummary from "./expenses/expenses.component";
+import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component";
 import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
-import ChatBot from "../../../pages/shared/chatbot/chatbot.component";
+import ChatBot from "../../shared/chatbot/chatbot.component";
 
 const Summary = () => {
   const { summaries } = useContext(DashboardContext);
