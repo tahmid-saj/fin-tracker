@@ -2,7 +2,6 @@ import { createContext, useState, useEffect } from "react";
 import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants";
 import { validateAddInsurance, validateFilterInsurances, validateRemoveInsurance } from "../../../utils/validations/insurance.validation";
 
-// helper functions
 const addInsuranceHelper = (insurances, insurance) => {
   return [ ...insurances,
     {
@@ -179,7 +178,7 @@ export const InsuranceProvider = ({ children }) => {
         this.setDate(this.getDate() + d);
         return this;
       }
-        
+
       const startDate = new Date(insurance.insuranceFirstPaymentDate)
       const endDate = new Date(insurance.insuranceEndDate)
       console.log(insuranceIntervalDaysMultiplier, startDate, endDate)

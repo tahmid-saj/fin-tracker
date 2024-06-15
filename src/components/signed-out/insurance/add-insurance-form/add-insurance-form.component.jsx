@@ -20,7 +20,7 @@ const defaultFormFields = {
   insuranceFirstPaymentDate: "",
   // optional
   // if insuranceEndDate is not specified, insurance will end after 50 years
-  insuranceEndDate: defaultInsuranceEndDate.toISOString().split('T')[0]
+  insuranceEndDate: "",
 }
 
 const AddInsuranceForm = () => {
@@ -43,7 +43,12 @@ const AddInsuranceForm = () => {
       return
     }
 
-    dispatch(addInsurance(insurances, formFields))
+    const adjustedFormFields = {
+      ...formFields,
+      insuranceEndDate: formFields.insuranceEndDate === "" ? defaultInsuranceEndDate.toISOString().split('T')[0] : formFields.insuranceEndDate
+    }
+
+    dispatch(addInsurance(insurances, adjustedFormFields))
     resetFormFields()
   }
 
@@ -82,6 +87,13 @@ const AddInsuranceForm = () => {
         <Typography sx={{ marginTop: "2%" }} variant="subtitle2">End date</Typography>
         <FormInput type="date" onChange={ handleChange }
                   name="insuranceEndDate" value={ formFields.insuranceEndDate }></FormInput>
+
+        <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Add to expenses?</Typography>
+        <DropButton required name="addToExpenses" id="addToExpenses" 
+                onChange={ handleChange } value={ formFields.addToExpenses }>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </DropButton>
         
         <ButtonsContainer>
           <Button type="submit">Add</Button>

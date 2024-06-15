@@ -18,7 +18,7 @@ const defaultFormFields = {
   insuranceFirstPaymentDate: "",
   // optional
   // if insuranceEndDate is not specified, insurance will end after 50 years
-  insuranceEndDate: defaultInsuranceEndDate.toISOString().split('T')[0]
+  insuranceEndDate: ""
 }
 
 const AddInsuranceForm = () => {
@@ -40,7 +40,12 @@ const AddInsuranceForm = () => {
       return
     }
 
-    addInsurance(formFields)
+    const adjustedFormFields = {
+      ...formFields,
+      insuranceEndDate: formFields.insuranceEndDate === "" ? defaultInsuranceEndDate.toISOString().split('T')[0] : formFields.insuranceEndDate
+    }
+
+    addInsurance(adjustedFormFields)
     resetFormFields()
   }
 

@@ -21,3 +21,8 @@ export const INSURANCE_INTERVALS_DAYS_MULTIPLIER = {
   semiannually: 183,
   annually: 365
 }
+
+export const INSURANCE_ADD_TO_EXPENSES = {
+  yes: "Yes",
+  no: "No"
+}
