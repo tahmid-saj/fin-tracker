@@ -1,17 +1,17 @@
+import "./summary.styles.scss";
 import React, { useEffect, Fragment } from "react";
+import ChatBot from "../../shared/chatbot/chatbot.component";
+import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component";
 import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component";
 import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component";
 import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component";
+import InsurancesSummary from "../../../components/signed-out/summary/insurance/insurance-summary.component";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 // import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
 // import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 // import { DashboardContext } from "../../../contexts/signed-out/dashboard/dashboard.context";
-
-import "./summary.styles.scss";
-import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component";
 // import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
-import ChatBot from "../../shared/chatbot/chatbot.component";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector";
@@ -19,6 +19,7 @@ import { selectExpenses, selectExpensesSummary } from "../../../store/signed-out
 import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector";
 import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector";
 import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector";
+import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector";  
 import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action";
 
 const Summary = () => {
@@ -34,11 +35,13 @@ const Summary = () => {
   const bankingAccounts = useSelector(selectBankingAccounts)
   const investments = useSelector(selectInvestments)
   const savingsAccounts = useSelector(selectSavingsAccounts)
+  const insurances = useSelector(selectInsurances)
 
   const expensesSummary = useSelector(selectExpensesSummary)
   const bankingSummary = useSelector(selectBankingSummary)
   const investmentsSummary = useSelector(selectInvestmentsSummary)
   const savingsAccountsSummary = useSelector(selectSavingsAccountsSummary)
+  const insurancesSummary = useSelector(selectInsurancesSummary)
 
   useEffect(() => {
     // updating summaries
@@ -47,8 +50,9 @@ const Summary = () => {
       bankingSummary: bankingSummary,
       investmentsSummary: investmentsSummary,
       savingsAccountsSummary: savingsAccountsSummary,
+      insurancesSummary: insurancesSummary
     }))
-  }, [expensesSummary, bankingSummary, investmentsSummary, savingsAccountsSummary, dispatch]);
+  }, [expensesSummary, bankingSummary, investmentsSummary, savingsAccountsSummary, insurancesSummary, dispatch]);
 
   useEffect(() => {
     // updating userSummary if user is signed in
@@ -56,15 +60,16 @@ const Summary = () => {
       expenses: expenses,
       bankingAccounts: bankingAccounts,
       investments: investments,
-      savingsAccounts: savingsAccounts
+      savingsAccounts: savingsAccounts,
+      insurances: insurances
     }))
-  }, [expenses, bankingAccounts, investments, savingsAccounts, dispatch]);
+  }, [expenses, bankingAccounts, investments, savingsAccounts, insurances, dispatch]);
 
   return (
     <Fragment>
       <ChatBot></ChatBot>
       {
-        (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 ) ? 
+        (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) ? 
         <div className="empty-dashboard-container">
           <h2>Nothing yet in the dashboard, track some finance to get started!</h2>
         </div>
@@ -74,6 +79,14 @@ const Summary = () => {
             expenses.length !== 0 ? 
             <Fragment>
               <ExpensesSummary></ExpensesSummary> 
+            </Fragment>
+            : null
+          }
+
+          {
+            insurances.length !== 0 ? 
+            <Fragment>
+              <InsurancesSummary></InsurancesSummary> 
             </Fragment>
             : null
           }

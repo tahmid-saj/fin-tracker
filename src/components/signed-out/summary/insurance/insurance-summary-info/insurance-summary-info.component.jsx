@@ -12,3 +12,5 @@ const InsurancesSummaryInfo = () => {
     </div>
   )
 }
+
+export default InsurancesSummaryInfo
