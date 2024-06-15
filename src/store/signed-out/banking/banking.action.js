@@ -48,8 +48,8 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
-  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
+const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
+  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount, addToExpenses)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -64,6 +64,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
             reason: withdrawReason,
+            addToExpenses: addToExpenses
           } 
         ]
       } : account;
@@ -134,8 +135,8 @@ export const depositToBankingAccount = (bankingAccounts, bankingAccountName, dep
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
 };
 
-export const withdrawFromBankingAccount = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
-  const newBankingAccounts = withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason)
+export const withdrawFromBankingAccount = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
+  const newBankingAccounts = withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
 };
 
