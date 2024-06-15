@@ -1,5 +1,5 @@
 import "./expenses-summary-graph.styles.scss"
-import { useContext } from "react"
+import { Fragment, useContext } from "react"
 import ReactApexChart from "react-apexcharts"
 import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
 
@@ -15,6 +15,10 @@ const ExpensesSummaryGraph = () => {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expense.expenseCost))
     }
   })
+
+  if (!expensesCategoryCosts.size) {
+    return <Fragment></Fragment>
+  }
   
   const series = [ ...expensesCategoryCosts.values() ]
   console.log(series)

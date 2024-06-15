@@ -145,7 +145,7 @@ export const InsuranceProvider = ({ children }) => {
 
     // update insurancePayments
     let newInsurancePayments = []
-    let newCurrentTotalInsurancePlanned = 0
+    let newCurrentTotalInsurancePlanned = 0.0
     
     insurances.map((insurance) => {
       let insuranceIntervalDaysMultiplier;

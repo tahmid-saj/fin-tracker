@@ -176,7 +176,7 @@ export const InsuranceProvider = ({ children }) => {
 
     // update insurancePayments
     let newInsurancePayments = []
-    let newCurrentTotalInsurancePlanned = 0
+    let newCurrentTotalInsurancePlanned = 0.0
     
     insurances.map((insurance) => {
       let insuranceIntervalDaysMultiplier;
@@ -211,7 +211,6 @@ export const InsuranceProvider = ({ children }) => {
         
       const startDate = new Date(insurance.insuranceFirstPaymentDate)
       const endDate = new Date(insurance.insuranceEndDate)
-      console.log(insuranceIntervalDaysMultiplier, startDate, endDate)
 
       for (let paymentDate = startDate; 
         paymentDate <= endDate; 

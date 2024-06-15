@@ -7,7 +7,7 @@ const ExpensesSummaryInfo = () => {
 
   return (
     <div className="expenses-summary-info-container">
-      <h3>{ `Total spend past month - ${expensesSummary.pastMonthAllExpensesCost}` }</h3>
+      <h3>{ `Total spend past month - $${expensesSummary.pastMonthAllExpensesCost}` }</h3>
     </div>
   )
 }
