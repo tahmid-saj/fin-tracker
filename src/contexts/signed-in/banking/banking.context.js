@@ -71,7 +71,7 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, userId, email) => {
+const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses, userId, email) => {
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
@@ -80,6 +80,7 @@ const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountN
     amount: withdrawAmount,
     type: TRANSACTION_TYPES.withdrawal,
     reason: withdrawReason,
+    addToExpenses: addToExpenses
   };
   postBankingAccountTransaction(userId, email, transactionInfo);
 
@@ -95,6 +96,7 @@ const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountN
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
             reason: withdrawReason,
+            addToExpenses: addToExpenses
           } 
         ]
       } : account;
@@ -197,6 +199,7 @@ export const BankingContext = createContext({
   //         amount: -15,
   //         type: "WITHDRAW",
   //         reason: "gas",
+  //         addToExpenses: true
   //       }
   //     ],
   //   }
@@ -277,9 +280,9 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(res);
   };
 
-  const withdrawFromBankingAccount = async (bankingAccountName, withdrawAmount, withdrawReason) => {
+  const withdrawFromBankingAccount = async (bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
     const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, 
-      withdrawAmount, withdrawReason, currentUser.uid, currentUser.email);
+      withdrawAmount, withdrawReason, addToExpenses, currentUser.uid, currentUser.email);
     
     setBankingAccounts(res);
   };

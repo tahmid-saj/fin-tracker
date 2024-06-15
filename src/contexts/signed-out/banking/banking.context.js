@@ -50,8 +50,8 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
-  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
+const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
+  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount, addToExpenses)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -66,6 +66,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
             reason: withdrawReason,
+            addToExpenses: addToExpenses
           } 
         ]
       } : account;
@@ -143,7 +144,13 @@ export const BankingContext = createContext({
   //         amount: -15,
   //         type: "WITHDRAW",
   //         reason: "gas",
-  //       }
+  //       },
+  //       {
+  //         amount: -10,
+  //         type: "WITHDRAW",
+  //         reason: "gas",
+  //         addedToExpenses: true
+  //       },
   //     ],
   //   }
   // ]
@@ -187,8 +194,8 @@ export const BankingProvider = ({ children }) => {
     setBankingAccounts(depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason));
   };
 
-  const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason) => {
-    setBankingAccounts(withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason));
+  const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
+    setBankingAccounts(withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses));
   };
 
   const transferToBankingAccount = (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {

@@ -77,18 +77,24 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
   } else if (transactionInfo.type === TRANSACTION_TYPES.deposit || transactionInfo.type === TRANSACTION_TYPES.withdrawal) {
     try {
       console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`);
+      
+      let reqJSONBody = {
+        bankingAccountName: transactionInfo.name,
+        amount: transactionInfo.amount,
+        reason: transactionInfo.reason,
+        type: transactionInfo.type
+      }
+
+      if (transactionInfo.type === TRANSACTION_TYPES.withdrawal) {
+        reqJSONBody.addToExpenses = transactionInfo.addToExpenses
+      }
 
       const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          bankingAccountName: transactionInfo.name,
-          amount: transactionInfo.amount,
-          reason: transactionInfo.reason,
-          type: transactionInfo.type
-        })
+        body: JSON.stringify(reqJSONBody)
       });
   
       return response.status;

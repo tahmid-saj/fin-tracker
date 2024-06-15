@@ -2,7 +2,11 @@ import "./transaction.styles.scss";
 
 import { TRANSACTION_TYPE_CLASSES, TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
 
-const Transaction = ({ date, amount, type, reason }) => {
+import { Checkbox, Typography } from "@mui/material";
+import { useState } from "react";
+
+const Transaction = ({ date, amount, type, reason, addToExpenses = false }) => {
+
   return (
     <div className={ `transaction-container ${TRANSACTION_TYPE_CLASSES[type]}` }>
       {
@@ -24,6 +28,13 @@ const Transaction = ({ date, amount, type, reason }) => {
       {
         (reason !== undefined && reason !== null && reason !== "") &&
         <h5>{`For : ${reason}`}</h5>
+      }
+        
+      {
+        type === TRANSACTION_TYPES.withdrawal && addToExpenses ?
+        <div className="transaction-added-to-expenses-container">
+          <Typography variant="subtitle2">Added to expenses</Typography>
+        </div> : null
       }
     </div>
   );
