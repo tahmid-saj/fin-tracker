@@ -1,5 +1,5 @@
 import "./expenses-summary-graph.styles.scss"
-import { useContext } from "react"
+import { useContext, Fragment } from "react"
 import ReactApexChart from "react-apexcharts"
 // import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
@@ -20,6 +20,10 @@ const ExpensesSummaryGraph = () => {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expense.expenseCost))
     }
   })
+
+  if (!expensesCategoryCosts.size) {
+    return <Fragment></Fragment>
+  }
   
   const series = [ ...expensesCategoryCosts.values() ]
   console.log(series)
