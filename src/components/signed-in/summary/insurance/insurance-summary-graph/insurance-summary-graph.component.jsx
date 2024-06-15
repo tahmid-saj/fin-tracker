@@ -1,11 +1,12 @@
 import "./insurance-summary-graph.styles.scss"
 import ReactApexChart from "react-apexcharts"
 
-import { useContext, Fragment } from "react"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context"
+import { Fragment } from "react"
+import { useSelector } from "react-redux"
+import { selectInsurancesSummary } from "../../../../../store/signed-out/insurance/insurance.selector"
 
 const InsurancesSummaryGraph = () => {
-  const { insurancesSummary } = useContext(InsuranceContext)
+  const insurancesSummary = useSelector(selectInsurancesSummary)
   const { pastMonthInsurances } = insurancesSummary
 
   let insuranceCategoryPayments = new Map()

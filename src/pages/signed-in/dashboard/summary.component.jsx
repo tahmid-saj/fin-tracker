@@ -1,16 +1,18 @@
+import "./summary.styles.scss";
 import React, { useContext, Fragment } from "react";
+import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component";
 import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component";
 import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component";
 import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component";
+import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component"
 
+import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
 import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
 import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
 import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
+import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context";
 
-import "./summary.styles.scss";
-import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
 import ChatBot from "../../shared/chatbot/chatbot.component";
 
 const Summary = () => {
@@ -19,6 +21,7 @@ const Summary = () => {
   const { bankingAccounts } = useContext(BankingContext);
   const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
+  const { insurances } = useContext(InsuranceContext)
 
   return (
     <Fragment>
@@ -34,6 +37,14 @@ const Summary = () => {
             expenses.length ? 
             <Fragment>
               <ExpensesSummary></ExpensesSummary> 
+            </Fragment>
+            : null
+          }
+
+          {
+            insurances.length ? 
+            <Fragment>
+              <InsurancesSummary></InsurancesSummary> 
             </Fragment>
             : null
           }
