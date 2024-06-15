@@ -122,6 +122,8 @@ export const InsuranceContext = createContext({
   // {
   //   currentTotalInsurancePlanned: 5000
   //   currentAllInsurancesCategories: new Set(),
+  //   pastMonthAllInsurancesPayment: 355,
+  //   pastMonthInsurances: []
   // }
 })
 
@@ -208,6 +210,41 @@ export const InsuranceProvider = ({ children }) => {
 
     setInsurancePayments(newInsurancePayments)
   }, [insurances])
+
+  // update insurancesSummary if insurancePayments change
+  useEffect(() => {
+    Date.prototype.subtractDays = function (d) {
+      this.setDate(this.getDate() - d);
+      return this;
+    }
+
+    let past30Days = new Date()
+    let today = new Date()
+    past30Days.subtractDays(30)
+    console.log(past30Days)
+
+    let newCurrentAllInsurancesCategories = new Set()
+    let newPastMonthAllInsurancesPayment = 0.0
+    let newPastMonthInsurances = []
+
+    const newCurrentTotalInsurancePlanned = insurancePayments.reduce((allInsurancePlanned, insurance) => {
+      newCurrentAllInsurancesCategories.add(String(insurance.insuranceFor))
+      
+      if (Date.parse(insurance.insuranceDate) >= past30Days && Date.parse(insurance.insuranceDate) <= today) {
+        newPastMonthAllInsurancesPayment += insurance.insurancePayment
+        newPastMonthInsurances.push(insurance)
+      }
+
+      return allInsurancePlanned + insurance.insurancePayment
+    }, 0)
+
+    setInsurancesSummary({
+      currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
+      currentAllInsurancesCategories: newCurrentAllInsurancesCategories,
+      pastMonthAllInsurancesPayment: newPastMonthAllInsurancesPayment,
+      pastMonthInsurances: newPastMonthInsurances
+    })
+  }, [insurancePayments])
 
   // update insurancesView when insurances change
   useEffect(() => {
