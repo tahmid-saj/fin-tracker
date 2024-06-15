@@ -22,7 +22,7 @@ const addInsuranceHelper = (insurances, insurance, userId, email) => {
       insurancePayment: Number(insurance.insurancePayment),
       insuranceInterval: String(insurance.insuranceInterval),
       insuranceFirstPaymentDate: String(insurance.insuranceFirstPaymentDate),
-      insuranceEndDate: String(insurance.insuranceEndDate)
+      insuranceEndDate: String(insurance.insuranceEndDate),
     }
   ]
 }
@@ -101,7 +101,7 @@ export const InsuranceContext = createContext({
   //     insurancePayment: 200,
   //     insuranceInterval: "Daily",
   //     insuranceFirstPaymentDate: "2024-06-15",
-  //     insuranceEndDate: ""
+  //     insuranceEndDate: "",
   //   }
   // ]
 
@@ -112,13 +112,13 @@ export const InsuranceContext = createContext({
   //     insuranceFor: "car",
   //     insurancePayment: 195,
   //     insuranceInterval: Daily,
-  //     insuranceDate: new Date()
+  //     insuranceDate: new Date(),
   //   },
   //   {
   //     insuranceFor: "dental",
   //     insurancePayment: 50,
   //     insuranceInterval: Monthly
-  //     insuranceDate: new Date()
+  //     insuranceDate: new Date(),
   //   }
   // ]
 
@@ -225,7 +225,7 @@ export const InsuranceProvider = ({ children }) => {
           insuranceFor: String(insurance.insuranceFor),
           insurancePayment: Number(insurance.insurancePayment),
           insuranceInterval: String(insurance.insuranceInterval),
-          insuranceDate: String(newPaymentDate)
+          insuranceDate: String(newPaymentDate),
         });
       }
     })

@@ -11,6 +11,7 @@ import Button from "../../../shared/button/button.component";
 import { useDispatch, useSelector } from "react-redux";
 import { selectInsurances, selectInsurancesView } from "../../../../store/signed-out/insurance/insurance.selector";
 import { removeInsurance, clearInsuranceFilter } from "../../../../store/signed-out/insurance/insurance.action";
+import { alertAddedToExpenses, alertRemovedFromExpenses } from "../../../../utils/alerts/insurance.alerts";
 
 const InsuranceTable = () => {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const InsuranceTable = () => {
 
   const rowData = insurancesView.map((insurance) => {
     return {
+      // AddToExpenses: "",
       For: insurance.insuranceFor,
       PaymentPerPeriod: insurance.insurancePayment,
       Interval: insurance.insuranceInterval,
@@ -29,38 +31,64 @@ const InsuranceTable = () => {
     }
   })
 
-    // Column Definitions: Defines the columns to be displayed.
-    const [columnDefs, setColumnDefs] = useState([
-      { field: "For"},
-      { field: "PaymentPerPeriod"},
-      { field: "Interval"},
-      { field: "Start"},
-      { field: "End"},
-    ])
-  
-    const onRemoveSelected = (event) => {
-      event.preventDefault()
-      const selectedData = gridRef.current.api.getSelectedRows();
-      // TODO: better manage selectedData[0] without the 0 in index
-      if (!selectedData[0] || selectedData[0] === null || !selectedData[0].For || selectedData[0] === undefined) {
-        return
-      }
+  // Column Definitions: Defines the columns to be displayed.
+  const [columnDefs, setColumnDefs] = useState([
+    // { field: "AddToExpenses",
+    //   showDisabledCheckboxes: true,
+    //   checkboxSelection: true
+    // },
+    { field: "For"},
+    { field: "PaymentPerPeriod"},
+    { field: "Interval"},
+    { field: "Start"},
+    { field: "End"},
+  ])
 
-      console.log(selectedData[0])
-      dispatch(removeInsurance(insurances, selectedData[0].For))
+  const onRemoveSelected = (event) => {
+    event.preventDefault()
+    const selectedData = gridRef.current.api.getSelectedRows();
+    // TODO: better manage selectedData[0] without the 0 in index
+    if (!selectedData[0] || selectedData[0] === null || !selectedData[0].For || selectedData[0] === undefined) {
+      return
     }
-  
-    const handleClearFilter = (event) => {
-      event.preventDefault()
-  
-      dispatch(clearInsuranceFilter())
+
+    console.log(selectedData[0])
+    dispatch(removeInsurance(insurances, selectedData[0].For))
+  }
+
+  const handleClearFilter = (event) => {
+    event.preventDefault()
+
+    dispatch(clearInsuranceFilter())
+  }
+
+  const onRowSelected = (event) => {
+    if (event.source === "checkboxSelected") {
+      if (event.node.isSelected()) {
+        alertAddedToExpenses()
+      } else {
+        alertRemovedFromExpenses()
+      }
     }
+  }
+
+  const onDataRendered = useCallback((params) => {
+    const nodesToSelect = [];
+    params.api.forEachNode((node) => {
+      if (node.data && node.data.Interval === "Annually") {
+        nodesToSelect.push(node);
+      }
+    });
+    params.api.setNodesSelected({ nodes: nodesToSelect, newValue: true });
+  }, []);
 
   return (
     <div className="ag-theme-quartz-dark insurances-table" // applying the grid theme
       style={{ height: 500, width: '100%' }} // the grid will fill the size of the parent container
       >
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
+      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }
+        // onRowSelected={ onRowSelected } onRowDataUpdated={ onDataRendered }
+      />
       <div className="remove-insurance-selected-button buttons-container">
         <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
         <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
