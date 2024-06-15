@@ -249,6 +249,8 @@ export const InsuranceProvider = ({ children }) => {
     let past30Days = new Date()
     let today = new Date()
     past30Days.subtractDays(30)
+    today = today.toISOString().split('T')[0]
+    past30Days = past30Days.toISOString().split('T')[0]
     console.log(past30Days)
 
     let newCurrentAllInsurancesCategories = new Set()
