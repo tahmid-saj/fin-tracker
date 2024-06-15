@@ -102,6 +102,8 @@ const Insurance = () => {
 
   // update insurancesSummary if insurancePayments change
   useEffect(() => {
+    console.log(insurancePayments)
+
     Date.prototype.subtractDays = function (d) {
       this.setDate(this.getDate() - d);
       return this;
@@ -110,7 +112,9 @@ const Insurance = () => {
     let past30Days = new Date()
     let today = new Date()
     past30Days.subtractDays(30)
-    console.log(past30Days)
+    today = today.toISOString().split('T')[0]
+    past30Days = past30Days.toISOString().split('T')[0]
+    console.log(past30Days, today)
 
     let newCurrentAllInsurancesCategories = new Set()
     let newPastMonthAllInsurancesPayment = 0.0
@@ -118,14 +122,24 @@ const Insurance = () => {
 
     const newCurrentTotalInsurancePlanned = insurancePayments.reduce((allInsurancePlanned, insurance) => {
       newCurrentAllInsurancesCategories.add(String(insurance.insuranceFor))
+
+      console.log(insurance.insuranceDate)
       
-      if (Date.parse(insurance.insuranceDate) >= past30Days && Date.parse(insurance.insuranceDate) <= today) {
+      if (insurance.insuranceDate >= past30Days && insurance.insuranceDate <= today) {
+        console.log("insurance")
         newPastMonthAllInsurancesPayment += insurance.insurancePayment
         newPastMonthInsurances.push(insurance)
       }
 
       return allInsurancePlanned + insurance.insurancePayment
     }, 0)
+
+    console.log({
+      currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
+      currentAllInsurancesCategories: newCurrentAllInsurancesCategories,
+      pastMonthAllInsurancesPayment: newPastMonthAllInsurancesPayment,
+      pastMonthInsurances: newPastMonthInsurances
+    })
 
     dispatch(setInsurancesSummary({
       currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
