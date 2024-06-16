@@ -1,3 +1,4 @@
+import { REGEX_PATTERNS } from "../constants/regex.constants"
 import { errorOnInsuranceExists, errorOnInvalidInsuranceFor,
   errorOnInvalidInsurancePayment, errorOnStartDateBeforeEndDate
 } from "../errors/insurance.errors"
@@ -14,13 +15,13 @@ export const validateAddInsurance = (insurances, insurance) => {
   }
 
   // validating if insuranceFor is valid
-  if (insurance.insuranceFor && !(/^[A-Za-z0-9]*$/.test(String(insurance.insuranceFor)))) {
+  if (insurance.insuranceFor && !(REGEX_PATTERNS.names.test(String(insurance.insuranceFor)))) {
     errorOnInvalidInsuranceFor()
     return true;
   }
 
   // validating if insurancePayment is valid
-  if (!(/^[0-9]*$/.test(String(insurance.insurancePayment))) || Number(insurance.insurancePayment) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(insurance.insurancePayment))) || Number(insurance.insurancePayment) < 0) {
     errorOnInvalidInsurancePayment()
     return true
   }
@@ -30,7 +31,7 @@ export const validateAddInsurance = (insurances, insurance) => {
 
 export const validateFilterInsurances = (filterConditions) => {
   // validating if expenseFor is valid
-  if (filterConditions.insuranceFor && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.insuranceFor)))) {
+  if (filterConditions.insuranceFor && !(REGEX_PATTERNS.names.test(String(filterConditions.insuranceFor)))) {
     errorOnInvalidInsuranceFor()
     return true
   }

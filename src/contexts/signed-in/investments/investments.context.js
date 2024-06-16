@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
-import { calculateInvestmentSummary } from "../../../utils/calculations/investments.calculations";
+import { calculateInvestment } from "../../../utils/calculations/investments.calculations";
 
 import { DEFAULT_INVESTMENTS, DEFAULT_INVESTMENTS_SUMMARY } from "../../../utils/constants/investments.constants";
 
@@ -21,14 +21,16 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
   console.log(`Creating ${investment.investmentName}`);
 
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
-  const summary = calculateInvestmentSummary(investment);
+  const investmentCalculation = calculateInvestment(investment);
 
   const investmentInfo = {
     ...investment,
 
-    endBalance: summary.endBalance,
-    totalContribution: summary.totalContribution,
-    totalInterest: summary.totalInterest,
+    endBalance: Number(investmentCalculation.endBalance),
+    totalContribution: Number(investmentCalculation.totalContribution),
+    totalInterest: Number(investmentCalculation.totalInterest),
+
+    investments: investmentCalculation.investments
   }
 
   postInvestmentCreate(userId, email, investmentInfo);
@@ -47,9 +49,11 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
       contributionAt: String(investment.contributionAt),
       contributionInterval: String(investment.contributionInterval),
 
-      endBalance: summary.endBalance,
-      totalContribution: summary.totalContribution,
-      totalInterest: summary.totalInterest,
+      endBalance: Number(investmentCalculation.endBalance),
+      totalContribution: Number(investmentCalculation.totalContribution),
+      totalInterest: Number(investmentCalculation.totalInterest),
+
+      investments: investmentCalculation.investments
     }
   ];
 };
@@ -59,7 +63,7 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
   
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
-  const summary = calculateInvestmentSummary(updatedInvestment);
+  const investmentCalculation = calculateInvestment(updatedInvestment);
   
   const originalInvestment = investments.find((investment) => {
     return investment.investmentName === originalInvestmentName;
@@ -70,9 +74,11 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
     updatedInvestmentInfo: {
       ...updatedInvestment,
 
-      endBalance: summary.endBalance,
-      totalContribution: summary.totalContribution,
-      totalInterest: summary.totalInterest
+      endBalance: Number(investmentCalculation.endBalance),
+      totalContribution: Number(investmentCalculation.totalContribution),
+      totalInterest: Number(investmentCalculation.totalInterest),
+
+      investments: investmentCalculation.investments
     }
   };
   putInvestmentData(userId, email, investmentInfo);
@@ -83,9 +89,11 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
       return {
         ...updatedInvestment,
 
-        endBalance: summary.endBalance,
-        totalContribution: summary.totalContribution,
-        totalInterest: summary.totalInterest,
+        endBalance: Number(investmentCalculation.endBalance),
+        totalContribution: Number(investmentCalculation.totalContribution),
+        totalInterest: Number(investmentCalculation.totalInterest),
+  
+        investments: investmentCalculation.investments
       }
     }
 
@@ -139,6 +147,15 @@ export const InvestmentsContext = createContext({
   //     endBalance: 1000,
   //     totalContribution: 600,
   //     totalInterest: 200
+
+     //  investments: [
+     //   {
+     //     currentDate: ,
+     //     contribution: ,
+     //     interestAccumulated: ,
+     //     endingBalance: ,
+     //   }
+     //  ]
   //   }
   // ]
 

@@ -1,3 +1,4 @@
+import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnBankingAccountExists, errorOnInvalidBankAccountName, errorOnInvalidTransactionAmount, 
          errorOnBankingAccountDoesNotExist, errorOnBankingAccountCannotBeSame, errorOnInvalidTransferAmount } from "../errors/banking.errors";
 
@@ -13,7 +14,7 @@ export const validateBankingAccountCreation = (bankingAccounts, bankingAccountNa
   };
 
   // validating if bankingAccountName is valid
-  if (!(/^[A-Za-z0-9]*$/.test(String(bankingAccountName)))) {
+  if (!(REGEX_PATTERNS.names.test(String(bankingAccountName)))) {
     errorOnInvalidBankAccountName();
     return true;
   }
@@ -22,7 +23,7 @@ export const validateBankingAccountCreation = (bankingAccounts, bankingAccountNa
 };
 
 export const validateDepositAmount = (bankingAccounts, bankingAccountName, amount) => {
-  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(amount))) || Number(amount) <= 0) {
     errorOnInvalidTransactionAmount();
     return true;
   };
@@ -33,7 +34,7 @@ export const validateDepositAmount = (bankingAccounts, bankingAccountName, amoun
 export const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) => {
   const currentBalance = bankingAccounts.find(account => account.name === String(bankingAccountName)).currentBalance;
 
-  if (!(/^[0-9]*$/.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
     errorOnInvalidTransactionAmount();
     return true;
   };
@@ -59,7 +60,7 @@ export const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTr
   // validating transferAmount is greater than 0 and less than less than currentBalance of bankingAccountTransferFromName
   const transferFromAccountCurrentBalance = bankingAccounts.find(account => account.name === String(bankingAccountTransferFromName)).currentBalance;
 
-  if (!(/^[0-9]*$/.test(String(transferAmount))) || Number(transferAmount) <= 0 || 
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(transferAmount))) || Number(transferAmount) <= 0 || 
       Number(transferAmount) > Number(transferFromAccountCurrentBalance)) {
         errorOnInvalidTransferAmount();
     return true;

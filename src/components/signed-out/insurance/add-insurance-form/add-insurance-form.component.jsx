@@ -87,13 +87,6 @@ const AddInsuranceForm = () => {
         <Typography sx={{ marginTop: "2%" }} variant="subtitle2">End date</Typography>
         <FormInput type="date" onChange={ handleChange }
                   name="insuranceEndDate" value={ formFields.insuranceEndDate }></FormInput>
-
-        <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Add to expenses?</Typography>
-        <DropButton required name="addToExpenses" id="addToExpenses" 
-                onChange={ handleChange } value={ formFields.addToExpenses }>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </DropButton>
         
         <ButtonsContainer>
           <Button type="submit">Add</Button>

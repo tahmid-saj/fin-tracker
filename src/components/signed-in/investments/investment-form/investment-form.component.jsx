@@ -7,12 +7,14 @@ import FinanceTrackerItemInfo from "../../finance-tracker-item-info/finance-trac
 import SummaryGraphInvestment from "../summary-graph/summary-graph.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
+import SummaryTableInvestments from "../summary-table-investments/summary-table-investments.component";
 
 const InvestmentForm = ({ financeItemInfo }) => {
     
   return (
     <Fragment>
       <SummaryGraphInvestment financeItemInfo={ financeItemInfo }></SummaryGraphInvestment>
+      <SummaryTableInvestments financeItemInfo={ financeItemInfo }></SummaryTableInvestments>
 
       <div className="investments-form-summary-container">
 

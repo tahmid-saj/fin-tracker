@@ -1,3 +1,4 @@
+import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnInvestmentAlreadyExists, errorOnInvalidInvestmentNameAndType,
         errorOnInvalidInvestmentInputs } from "../errors/investments.errors";
 
@@ -14,17 +15,17 @@ export const validateInvestmentCreation = (investments, investment) => {
   // validating if investment fields are correct
 
   // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(investment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(investment.investmentType)))) {
+  if (!(REGEX_PATTERNS.names.test(String(investment.investmentName))) || 
+    !(REGEX_PATTERNS.names.test(String(investment.investmentType)))) {
     errorOnInvalidInvestmentNameAndType();
     return true;
   }
 
   // number
-  if (!(/^[0-9]*$/.test(String(investment.startingAmount))) || Number(investment.startingAmount) < 0 ||
-    !(/^[0-9]*$/.test(String(investment.afterYears))) || Number(investment.afterYears) <= 0 ||
-    !(/^[0-9]*$/.test(String(investment.returnRate))) || Number(investment.returnRate) <= 0 ||
-    !(/^[0-9]*$/.test(String(investment.additionalContribution))) || Number(investment.additionalContribution) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(investment.startingAmount))) || Number(investment.startingAmount) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(investment.afterYears))) || Number(investment.afterYears) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(investment.returnRate))) || Number(investment.returnRate) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(investment.additionalContribution))) || Number(investment.additionalContribution) < 0) {
       errorOnInvalidInvestmentInputs();
       return true;
   }
@@ -36,17 +37,17 @@ export const validateInvestmentUpdate = (investments, originalInvestmentName, up
   // validate fields of updatedInvestment
   
   // strings
-  if (!(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentName))) || 
-    !(/^[A-Za-z0-9]*$/.test(String(updatedInvestment.investmentType)))) {
+  if (!(REGEX_PATTERNS.names.test(String(updatedInvestment.investmentName))) || 
+    !(REGEX_PATTERNS.names.test(String(updatedInvestment.investmentType)))) {
     errorOnInvalidInvestmentNameAndType();
     return true;
   }
 
   // number
-  if (!(/^[0-9]*$/.test(String(updatedInvestment.startingAmount))) || Number(updatedInvestment.startingAmount) < 0 ||
-    !(/^[0-9]*$/.test(String(updatedInvestment.afterYears))) || Number(updatedInvestment.afterYears) <= 0 ||
-    !(/^[0-9]*$/.test(String(updatedInvestment.returnRate))) || Number(updatedInvestment.returnRate) <= 0 ||
-    !(/^[0-9]*$/.test(String(updatedInvestment.additionalContribution || Number(updatedInvestment.additionalContribution) < 0)))) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(updatedInvestment.startingAmount))) || Number(updatedInvestment.startingAmount) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedInvestment.afterYears))) || Number(updatedInvestment.afterYears) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedInvestment.returnRate))) || Number(updatedInvestment.returnRate) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedInvestment.additionalContribution || Number(updatedInvestment.additionalContribution) < 0)))) {
       errorOnInvalidInvestmentInputs();
       return true;
   }

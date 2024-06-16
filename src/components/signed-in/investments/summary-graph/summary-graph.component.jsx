@@ -9,6 +9,7 @@ import { InvestmentsContext } from "../../../../contexts/signed-in/investments/i
 
 const SummaryGraphInvestment = ({ financeItemInfo }) => {
   const { investments, getInvestmentInfo } = useContext(InvestmentsContext);
+
   const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
 
   // TODO: manage dates on graph better
@@ -21,16 +22,33 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
   const endDate = `${Number(year) + Number(investmentInfo.afterYears)}-${month}-${day}`;
   const previousDate = `${Number(year)}-${month - 1}-${previousDay}`
 
+  const { investments: investmentsSchedule } = investmentInfo
+
+  console.log(investmentsSchedule)
+
+  let investmentTimes = []
+  let monthlyInvestmentTotalInterestEarned = []
+  let monthlyInvestmentEndBalance = []
+
+  const monthlyInvestmentBalance = investmentsSchedule.map((investmentMonth) => {
+    investmentTimes.push(investmentMonth.currentDate)
+
+    monthlyInvestmentTotalInterestEarned.push(Number(investmentMonth.interestAccumulated).toFixed(2))
+    monthlyInvestmentEndBalance.push(Number(investmentMonth.endingBalance).toFixed(2))
+
+    return investmentMonth.endingBalance.toFixed(2)
+  })
+
   // TODO: need to keep track of investments timeline by amount in calculations
   const series = [{
     name: financeItemInfo.investmentName,
-    data: [ 0, financeItemInfo.startingAmount, financeItemInfo.endBalance ]
+    data: monthlyInvestmentEndBalance
   }];
 
   const options = {
     chart: {
       type: 'area',
-      height: 350,
+      height: 1000,
       zoom: {
         enabled: true
       }
@@ -46,9 +64,12 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
       text: 'Investment Value',
       align: 'left'
     },
-    labels: [ previousDate, startDateStr, endDate ],
+    labels: investmentTimes,
     xaxis: {
       type: 'string',
+      labels: {
+        show: false
+      }
     },
     yaxis: {
       opposite: false
@@ -60,7 +81,7 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
     
   return (
     <div className="summary-graph-investment-container">
-      <ReactApexChart options={ options } series={ series } type="area" height={ 350 } width={ 1000 }/>
+      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
     </div>
   )
 }
