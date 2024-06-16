@@ -15,10 +15,10 @@ export const Summary = ({ financeItemInfo }) => {
 
   return (
     <div className="summary-container">
-      <h5>{`End balance $${investmentInfo.endBalance}`}</h5>
-      <h5>{`Starting amount $${investmentInfo.startingAmount}`}</h5>
-      <h5>{`Total contribution $${investmentInfo.totalContribution}`}</h5>
-      <h5>{`Total interest $${investmentInfo.totalInterest}`}</h5>
+      <h5>{`End balance $${investmentInfo.endBalance.toFixed(2)}`}</h5>
+      <h5>{`Starting amount $${investmentInfo.startingAmount.toFixed(2)}`}</h5>
+      <h5>{`Total contribution $${investmentInfo.totalContribution.toFixed(2)}`}</h5>
+      <h5>{`Total interest $${investmentInfo.totalInterest.toFixed(2)}`}</h5>
     </div>
   );
 };
