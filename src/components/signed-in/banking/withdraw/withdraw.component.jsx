@@ -27,13 +27,14 @@ const Withdraw = ({ financeItemInfo }) => {
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
+    setAddedToExpensesChecked(defaultFormFields.addToExpenses)
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    withdrawFromBankingAccount(financeItemInfo, formFields.amount, formFields.reason);
-
+     
+    withdrawFromBankingAccount(financeItemInfo, formFields.amount, formFields.reason, formFields.addToExpenses);
+     
     addExpense({
       expenseFor: formFields.reason ? formFields.reason : BANKING_EXPENSE_CATEGORIES.withdrawal,
       expenseCost: formFields.amount,
