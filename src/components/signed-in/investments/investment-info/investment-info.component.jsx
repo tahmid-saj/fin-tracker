@@ -18,9 +18,9 @@ const InvestmentInfo = ({ financeItemInfo }) => {
     <div className="investment-info-container">
       <h5>{`Investment name ${investmentInfo.investmentName}`}</h5>
       <h5>{`Investment type ${investmentInfo.investmentType}`}</h5>
-      <h5>{`Return rate ${investmentInfo.returnRate}%`}</h5>
+      <h5>{`Return rate ${investmentInfo.returnRate.toFixed(2)}%`}</h5>
       <h5>{`Compounded ${investmentInfo.compounded}`}</h5>
-      <h5>{`Additional contribution of $${investmentInfo.additionalContribution}`}</h5>
+      <h5>{`Additional contribution of $${investmentInfo.additionalContribution.toFixed(2)}`}</h5>
       <h5>{`at the ${investmentInfo.contributionAt} of each ${investmentInfo.contributionInterval}`}</h5>
       <h6>{`Start date - ${investmentInfo.startDate}`}</h6>
       <h6>{`End date - ${endDate}`}</h6>

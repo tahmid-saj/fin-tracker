@@ -147,6 +147,15 @@ export const InvestmentsContext = createContext({
   //     endBalance: 1000,
   //     totalContribution: 600,
   //     totalInterest: 200
+
+     //  investments: [
+     //   {
+     //     currentDate: ,
+     //     contribution: ,
+     //     interestAccumulated: ,
+     //     endingBalance: ,
+     //   }
+     //  ]
   //   }
   // ]
 

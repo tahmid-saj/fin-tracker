@@ -1,3 +1,4 @@
+import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnInvalidExpenseForAndCategory, errorOnInvalidExpenseCost,
   errorOnStartDateBeforeEndDate
  } from "../errors/expenses.error"
@@ -7,14 +8,14 @@ import { errorOnInvalidExpenseForAndCategory, errorOnInvalidExpenseCost,
 // TODO: include underscores to be approved
 export const validateAddExpense = (expense) => {
   // validating if expenseFor and expenseCategory are valid
-  if ((expense.expenseFor && !(/^[A-Za-z0-9]*$/.test(String(expense.expenseFor)))) || 
-    (expense.expenseCategory && !(/^[A-Za-z0-9]*$/.test(String(expense.expenseCategory))))) {
+  if ((expense.expenseFor && !(REGEX_PATTERNS.names.test(String(expense.expenseFor)))) || 
+    (expense.expenseCategory && !(REGEX_PATTERNS.names.test(String(expense.expenseCategory))))) {
     errorOnInvalidExpenseForAndCategory()
     return true;
   }
 
   // validating if expenseCost is valid
-  if (!(/^[0-9]*$/.test(String(expense.expenseCost))) || Number(expense.expenseCost) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(expense.expenseCost))) || Number(expense.expenseCost) < 0) {
     errorOnInvalidExpenseCost()
     return true
   }
@@ -24,8 +25,8 @@ export const validateAddExpense = (expense) => {
 
 export const validateFilterExpenses = (filterConditions) => {
   // validating if expenseFor and expenseCategory are valid
-  if ((filterConditions.expenseFor && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.expenseFor)))) || 
-    (filterConditions.expenseCategory && !(/^[A-Za-z0-9]*$/.test(String(filterConditions.expenseCategory))))) {
+  if ((filterConditions.expenseFor && !(REGEX_PATTERNS.names.test(String(filterConditions.expenseFor)))) || 
+    (filterConditions.expenseCategory && !(REGEX_PATTERNS.names.test(String(filterConditions.expenseCategory))))) {
     errorOnInvalidExpenseForAndCategory()
     return true
   }
