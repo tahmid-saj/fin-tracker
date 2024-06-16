@@ -86,7 +86,10 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
       }
 
       if (transactionInfo.type === TRANSACTION_TYPES.withdrawal) {
-        reqJSONBody.addToExpenses = transactionInfo.addToExpenses
+        reqJSONBody = {
+          ...reqJSONBody,
+          addToExpenses: transactionInfo.addToExpenses  
+        }
       }
 
       const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`, {
