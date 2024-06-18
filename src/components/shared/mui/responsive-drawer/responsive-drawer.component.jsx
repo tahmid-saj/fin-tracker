@@ -212,7 +212,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
 
-          <div className='fin-planner-title'>
+          <div className='finance-planner-title'>
             <Typography variant="h6" noWrap component="div">
               Finance Planner
             </Typography>
