@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
 
 export const MortgageCalculatorResultContainer = styled.div`
   display: flex;
   justify-content: center;
-  background-color: rgba(215, 246, 215, 0.724);
-  box-shadow: 4px 4px rgba(144, 238, 144, 0.559);
+  background-color: ${COLOR_CODES.general["0"]};
+  box-shadow: 4px 4px ${COLOR_CODES.general["0"]};
   border-radius: 1.5rem;
 `
 

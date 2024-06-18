@@ -205,3 +205,28 @@ export const NAV_LINKS = {
     ]
   }
 }
+
+export const COLOR_CODES = {
+  card: {
+    infoCard: "#DCF2F1"
+  },
+  paper: {
+    formPaper: "#DDE6ED",
+    infoPaper: "#9DB2BF"
+  },
+  scrollbar: {
+    scroll: "#666666",
+    background: "white"
+  },
+  general: {
+    "0": "#DCF2F1",
+    "1": "#7FC7D9",
+    "2": "#365486",
+    "3": "#0F1035",
+    "4": "#DDE6ED",
+    "5": "#9DB2BF",
+    "6": "#526D82",
+    "7": "#27374D",
+  },
+  background: "#27374D"
+}

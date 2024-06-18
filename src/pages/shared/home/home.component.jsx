@@ -8,11 +8,12 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
 
-import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
+import { COLOR_CODES, NAV_LINKS } from "../../../utils/constants/shared.constants.js";
 
 const cardStyles = {
   width: 450,
-  height: 400,
+  height: 500,
+  backgroundColor: COLOR_CODES.general["0"]
 }
 
 
@@ -24,49 +25,49 @@ const Home = () => {
     chatbot: {
       header: "Chatbot",
       description: "Provide your financial concerns and ask for suggestions from our chatbot",
-      imageUrl: "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/334804806/original/793cad2ae511c4c9b30c1d5e8206b8eb8ab21087/create-a-ai-chat-bot-embedded-website-for-you.png",
+      imageUrl: "https://media.licdn.com/dms/image/D4D12AQESxyAG3GNCQQ/article-cover_image-shrink_720_1280/0/1688674501094?e=2147483647&v=beta&t=TbnHoFrlrAZCHk6Qfm6lfBD9qNSgJ0IyOFdKa32mBWE",
       path: currentUser ? NAV_LINKS.paths.signedIn.chatbot : NAV_LINKS.paths.signedOut.chatbot
     },
     storage: {
       header: "Storage",
       description: "Upon signing up and logging into your account, we will store your data and provide specific advices for you",
-      imageUrl: "https://media.istockphoto.com/id/1352564117/vector/database-sql-structured-query-language-people-team-discuss-coding-for-storing-data-in-server.jpg?s=612x612&w=0&k=20&c=eRlvikJYlY8tJ8pVxgZFUv5GLgQbTy_rq18jKLZxq8A=",
+      imageUrl: "https://media.istockphoto.com/id/1470864494/vector/computer-cloud-database-sharing-file-storage-and-search-business-technology-services-and.jpg?b=1&s=612x612&w=0&k=20&c=F4P8bKXbSsoZpCF4JahdPLz4OV7imHxMvgfDew4y9J8=",
       path: currentUser ? NAV_LINKS.paths.signedIn.dashboard : NAV_LINKS.paths.signedOut.auth
     },
     market: {
       header: "Market",
       description: "Get current and historical market data on stocks, indices, crypto and foreign exchange",
-      imageUrl: "https://static.vecteezy.com/system/resources/previews/014/563/665/original/investment-forecast-or-prediction-vision-to-see-investing-opportunity-future-profit-from-stock-and-crypto-trading-concept-flat-modern-illustration-vector.jpg",
+      imageUrl: "https://researchinandout.com/wp-content/uploads/2022/07/q1nta_3000_6242261-2-1024x683.jpg",
       path: currentUser ? NAV_LINKS.paths.signedIn.marketData : NAV_LINKS.paths.signedOut.marketData
     },
     expenses: {
       header: "Expenses",
       description: "Track your everyday expenses to meet your financial goals and have a clear picture on spending",
-      imageUrl: "https://happay.com/blog/wp-content/uploads/sites/12/2022/08/non-operating-expenses.png",
+      imageUrl: "https://img.freepik.com/free-vector/hand-drawn-credit-assessment-concept_23-2149167956.jpg",
       path: currentUser ? NAV_LINKS.paths.signedIn.expenses : NAV_LINKS.paths.signedOut.expenses
     },
     banking: {
       header: "Banking",
       description: "Track your banking deposits, withdrawals, transfers and get insights on how to better manage accounts",
-      imageUrl: "https://happay.com/blog/wp-content/uploads/sites/12/2022/09/baas-banking-as-a-service-.png",
+      imageUrl: "https://finflux.co/blog/wp-content/uploads/2023/06/282ed4b32c73225e1bded4921c035021.png",
       path: currentUser ? NAV_LINKS.paths.signedIn.banking : NAV_LINKS.paths.signedOut.banking
     },
     investment: {
       header: "Investment",
       description: "Track your investments and receive suggestions on possible investment opportunities or downfalls",
-      imageUrl: "https://segurosypensionesparatodos.fundacionmapfre.org/media/inversion/como-es-mejor-invertir-1194x535-1.jpg",
+      imageUrl: "https://static.vecteezy.com/system/resources/previews/013/134/694/non_2x/business-man-investing-investment-on-index-stock-growing-wealth-with-compound-interest-earning-or-profit-concept-success-man-investor-ride-the-upright-index-graph-make-money-coins-grow-up-goal-vector.jpg",
       path: currentUser ? NAV_LINKS.paths.signedIn.investments : NAV_LINKS.paths.signedOut.investments
     },
     savings: {
       header: "Savings",
       description: "Estimate your saving goals, and manage savings from one place",
-      imageUrl: "https://media.istockphoto.com/id/1297385692/vector/banker-taking-clients-money-for-saving.jpg?s=612x612&w=0&k=20&c=qRmb_2QDb-JfJio9PFZsOwf7pspUwdWWoG9teZ8k6CQ=",
+      imageUrl: "https://www.investmentexecutive.com/wp-content/uploads/sites/3/2019/02/savings-800x600_Piggy-bank-money-flat-icon-illustration_26012543.jpg",
       path: currentUser ? NAV_LINKS.paths.signedIn.savings : NAV_LINKS.paths.signedOut.savings
     },
     insurance: {
       header: "Insurance",
       description: "Keep track of all your insurance payments over different time periods in one place",
-      imageUrl: "https://media.istockphoto.com/id/1388146104/vector/health-insurance-contract-vector-illustration-of-insurance-concept.jpg?s=612x612&w=0&k=20&c=gjFpcqbtdWV5PXzj9ZLANekZ17ul6kFTqluOQvN82pI=",
+      imageUrl: "https://media.istockphoto.com/id/1226668909/vector/dental-insurance-vector-illustration-health-insurance-healthcare-claim-form-coverage-medical.jpg?s=612x612&w=0&k=20&c=HlFtvu6SKQX-b_uhtqi0oGTy9Ol8UzzwRuDifyFJkNU=",
       path: currentUser ? NAV_LINKS.paths.signedIn.insurance : NAV_LINKS.paths.signedOut.insurance
     },
     tools: {

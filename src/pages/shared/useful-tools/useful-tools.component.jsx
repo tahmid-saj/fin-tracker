@@ -7,21 +7,26 @@ import MortgageCalculator from "../../../components/shared/useful-tools/mortgage
 import "./useful-tools.component.jsx"
 import { AccordionTransition } from "../../../components/shared/mui/accordion/accordion.component.jsx"
 import { Typography } from "@mui/material"
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
+
+const accordionStyles = {
+  backgroundColor: COLOR_CODES.general["6"]
+}
 
 const UsefulTools = () => {
   return (
     <UsefulToolsContainer>
       <Typography variant="h6" sx={{ display: "flex", justifyContent: "center" }}>Useful Tools</Typography>
 
-      <AccordionTransition header={ "Mortgage calculator" }>
+      <AccordionTransition header={ "Mortgage calculator" } styles={ accordionStyles }>
         <MortgageCalculator></MortgageCalculator>
       </AccordionTransition>
       
-      <AccordionTransition header={ "Currency converter" }>
+      <AccordionTransition header={ "Currency converter" } styles={ accordionStyles }>
         <CurrencyConverter></CurrencyConverter>
       </AccordionTransition>
       
-      <AccordionTransition header={ "Exchange rate" }>
+      <AccordionTransition header={ "Exchange rate" } styles={ accordionStyles }>
         <ExchangeRate></ExchangeRate>
       </AccordionTransition>
     </UsefulToolsContainer>
