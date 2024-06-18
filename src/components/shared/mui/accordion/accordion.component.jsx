@@ -19,7 +19,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // }));
 
 
-export function AccordionTransition({ header, children }) {
+export function AccordionTransition({ styles, header, children }) {
   const [expanded, setExpanded] = useState(true);
   // const classes = useStyles();
 
@@ -41,6 +41,7 @@ export function AccordionTransition({ header, children }) {
           marginBottom: "0.75%",
           '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
           '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
+          ...styles
         }}
       >
         <AccordionSummary
