@@ -41,6 +41,18 @@ const removeExpenseHelper = (expenses, expenseId) => {
   return expenses.filter(exp => exp.expenseId !== expenseId)
 }
 
+export const selectScheduledExpensesHelper = (expenses, expensesDate) => {
+  console.log(expensesDate)
+
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.expensesDate === expensesDate
+  })
+
+  if (!filteredExpenses) return null
+
+  return filteredExpenses
+}
+
 // actions
 
 export const addExpense = (expenses, expense, expensesTagLimit) => {
@@ -78,4 +90,12 @@ export const setExpensesView = (expensesView) => {
 
 export const setExpensesSummary = (expensesSummary) => {
   return createAction(EXPENSES_ACTION_TYPES.SET_EXPENSES_SUMMARY, expensesSummary)
+}
+
+export const selectScheduledExpenses = (expensesDate) => {
+  return createAction(EXPENSES_ACTION_TYPES.SET_SELECTED_EXPENSES_DATE, expensesDate)
+}
+
+export const setScheduledExpensesView = (scheduledExpensesView) => {
+  return createAction(EXPENSES_ACTION_TYPES.SET_SCHEDULED_EXPENSES_VIEW, scheduledExpensesView)
 }

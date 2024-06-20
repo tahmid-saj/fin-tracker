@@ -63,6 +63,18 @@ const setDefaultExpensesSummaryValuesHelper = () => {
   return DEFAULT_EXPENSES_SUMMARY
 }
 
+const selectScheduledExpensesHelper = (expenses, expensesDate) => {
+  console.log(expensesDate)
+
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.expensesDate === expensesDate
+  })
+
+  if (!filteredExpenses) return null
+
+  return filteredExpenses
+}
+
 // initial state
 export const ExpensesContext = createContext({
   expenses: [],
@@ -86,12 +98,20 @@ export const ExpensesContext = createContext({
   //   expensesEndDate: "",
   // }
 
+  // selectedExpensesDate is the selected date from the calendar component
+  selectedExpensesDate: null,
+
   // expensesView is the filtered version of expenses 
   expensesView: [],
+
+  // scheduledExpensesView is the selected selectedExpensesDate info from the calendar component
+  scheduledExpensesView: null,
 
   addExpense: () => {},
   filterExpenses: () => {},
   removeExpense: () => {},
+
+  selectScheduledExpenses: () => {},
 
   expensesSummary: {},
   // expensesSummary structure:
@@ -113,6 +133,8 @@ export const ExpensesProvider = ({ children }) => {
   const [expenses, setExpenses] = useState([])
   const [expenseLength, setExpenseLength] = useState(0)
   const [filterConditions, setFilterConditions] = useState(null)
+  const [selectedExpensesDate, setSelectedExpensesDate] = useState(null)
+  const [scheduledExpensesView, setScheduledExpensesView] = useState(null)
   const [expensesView, setExpensesView] = useState(expenses)
   const [expensesSummary, setExpensesSummary] = useState({})
 
@@ -190,6 +212,15 @@ export const ExpensesProvider = ({ children }) => {
     fetchExpensesData()
   }, [currentUser])
 
+  // update scheduledExpensesView when expenses or selectedExpensesDate change
+  useEffect(() => {
+    if (selectedExpensesDate) {
+      setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate))
+    } else {
+      setScheduledExpensesView(null)
+    }
+  }, [expenses, selectedExpensesDate])
+
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure expenseIds are not duplicate via validations
   const addExpense = (expense) => {
@@ -242,9 +273,15 @@ export const ExpensesProvider = ({ children }) => {
     })
   }
 
-  const value = { expenses, expensesView, filterConditions,
+  const selectScheduledExpenses = (expensesDate) => {
+    setSelectedExpensesDate(expensesDate)
+    setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expensesDate))
+  }
+
+  const value = { expenses, expensesView, filterConditions, scheduledExpensesView,
                   addExpense, filterExpenses, removeExpense, clearExpensesFilter, expensesSummary, 
-                  setDefaultExpensesValues, setDefaultExpensesSummaryValues, updateExpensesAndSummary }
+                  setDefaultExpensesValues, setDefaultExpensesSummaryValues, updateExpensesAndSummary,
+                  selectScheduledExpenses }
   
   return (
     <ExpensesContext.Provider

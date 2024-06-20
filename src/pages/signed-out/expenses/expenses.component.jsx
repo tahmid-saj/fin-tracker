@@ -5,15 +5,18 @@ import ExpensesTable from "../../../components/signed-out/expenses/expenses-tabl
 import ExpensesSummary from "../../../components/signed-out/expenses/expenses-summary/expenses-summary.component"
 import "./expenses.styles.scss"
 import { useEffect, Fragment } from "react"
-// import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context"
+import { Divider } from "@mui/material"
 
 import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses, selectExpensesView, 
-  selectExpensesTagLimit, selectFilterConditions
+  selectExpensesTagLimit, selectFilterConditions, selectSelectedExpensesDate
 } from "../../../store/signed-out/expenses/expenses.selector"
 import { setExpensesSummary, setExpensesTagLimit, setExpensesView, 
-  filterExpensesHelper 
+  filterExpensesHelper, selectScheduledExpensesHelper, setScheduledExpensesView
 } from "../../../store/signed-out/expenses/expenses.action"
+
+import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component"
+import ScheduleDayInfo from "../../../../expenses.page"
 
 const Expenses = () => {
   // const { expenses, expensesView } = useContext(ExpensesContext)
@@ -21,6 +24,7 @@ const Expenses = () => {
   const expensesView = useSelector(selectExpensesView)
   const expensesTagLimit = useSelector(selectExpensesTagLimit)
   const filterConditions = useSelector(selectFilterConditions)
+  const selectedExpensesDate = useSelector(selectSelectedExpensesDate)
   const dispatch = useDispatch()
 
   // update expensesSummary
@@ -80,8 +84,27 @@ const Expenses = () => {
     }
   }, [expenses, filterConditions, dispatch])
 
+  // update scheduledExpensesView when expenses or selectedExpensesDate change
+  useEffect(() => {
+    if (selectedExpensesDate) {
+        dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+    } else {
+        dispatch(setScheduledExpensesView(null))
+    }
+  }, [expenses, selectedExpensesDate, dispatch])
+
   return (
     <div className="expenses-container">
+      <ScheduleCalendar></ScheduleCalendar>
+      {
+      selectedExpensesDate ?
+      <ScheduleDayInfo></ScheduleDayInfo> : null
+      }
+
+      <br/>
+      <Divider/>
+      <br/>
+
       <div className="expenses-add-filter-container">
         <AddExpense></AddExpense>
         <ExpensesFilter></ExpensesFilter>
