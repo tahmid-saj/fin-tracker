@@ -6,12 +6,25 @@ import ExpensesSummary from "../../../components/signed-in/expenses/expenses-sum
 import "./expenses.styles.scss"
 import { useContext, Fragment } from "react"
 import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context"
+import ScheduleCalendar from "../../../components/signed-in/expenses/schedule/schedule-calendar/schedule-calendar.component"
+import ScheduleDayInfo from "../../../components/signed-in/expenses/schedule/schedule-day-info/schedule-day-info.component"
+import { Divider } from "@mui/material"
 
 const Expenses = () => {
-  const { expenses, expensesView } = useContext(ExpensesContext)
+  const { expenses, expensesView, selectedExpensesDate } = useContext(ExpensesContext)
 
   return (
     <div className="expenses-container">
+      <ScheduleCalendar></ScheduleCalendar>
+      {
+      selectedExpensesDate ?
+      <ScheduleDayInfo></ScheduleDayInfo> : null
+      }
+
+      <br/>
+      <Divider/>
+      <br/>
+
       <div className="expenses-add-filter-container">
         <AddExpense></AddExpense>
         <ExpensesFilter></ExpensesFilter>

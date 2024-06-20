@@ -17,6 +17,16 @@ export const selectFilterConditions = createSelector(
   (expenses) => expenses.filterConditions
 )
 
+export const selectSelectedExpensesDate = createSelector(
+  [selectExpensesReducer],
+  (expenses) => expenses.selectedExpensesDate
+)
+
+export const selectScheduledExpensesView = createSelector(
+  [selectExpensesReducer],
+  (expenses) => expenses.scheduledExpensesView
+)
+
 export const selectExpensesView = createSelector(
   [selectExpensesReducer],
   (expenses) => expenses.expensesView

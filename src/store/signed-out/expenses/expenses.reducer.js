@@ -4,6 +4,8 @@ export const EXPENSES_INITIAL_STATE = {
   expenses: [],
   expensesTagLimit: 0,
   filterConditions: null,
+  selectedExpensesDate: null,
+  scheduledExpensesView: null,
   expensesView: [],
   expensesSummary: {}
 }
@@ -26,6 +28,16 @@ export const expensesReducer = (state=EXPENSES_INITIAL_STATE, action={}) => {
       return {
         ...state,
         filterConditions: payload
+      }
+    case EXPENSES_ACTION_TYPES.SET_SELECTED_EXPENSES_DATE:
+      return {
+        ...state,
+        selectedExpensesDate: payload
+      }
+    case EXPENSES_ACTION_TYPES.SET_SCHEDULED_EXPENSES_VIEW:
+      return {
+        ...state,
+        scheduledExpensesView: payload
       }
     case EXPENSES_ACTION_TYPES.SET_EXPENSES_VIEW:
       return {
