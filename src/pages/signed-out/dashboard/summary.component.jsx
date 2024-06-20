@@ -15,12 +15,16 @@ import InsurancesSummary from "../../../components/signed-out/summary/insurance/
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector";
-import { selectExpenses, selectExpensesSummary } from "../../../store/signed-out/expenses/expenses.selector";
+import { selectExpenses, selectExpensesSummary, selectSelectedExpensesDate } from "../../../store/signed-out/expenses/expenses.selector";
 import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector";
 import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector";
 import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector";
 import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector";  
 import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action";
+import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../../store/signed-out/expenses/expenses.action";
+
+import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector";
+import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action";
 
 const Summary = () => {
   // const { summaries } = useContext(DashboardContext);
@@ -43,6 +47,11 @@ const Summary = () => {
   const savingsAccountsSummary = useSelector(selectSavingsAccountsSummary)
   const insurancesSummary = useSelector(selectInsurancesSummary)
 
+  const selectedExpensesDate = useSelector(selectSelectedExpensesDate)
+
+  const insurancePayments = useSelector(selectInsurancePayments)
+  const selectedInsurancePaymentsDate = useSelector(selectSelectedInsurancePaymentsDate)
+
   useEffect(() => {
     // updating summaries
     dispatch(setSummaries({
@@ -64,6 +73,24 @@ const Summary = () => {
       insurances: insurances
     }))
   }, [expenses, bankingAccounts, investments, savingsAccounts, insurances, dispatch]);
+
+  // update scheduledExpensesView when expenses or selectedExpensesDate change
+  useEffect(() => {
+    if (selectedExpensesDate) {
+      dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+    } else {
+      dispatch(setScheduledExpensesView(null))
+    }
+  }, [expenses, selectedExpensesDate, dispatch])
+
+  // update scheduledInsurancePaymentsView when insurances or selectedInsurancePaymentsDate change
+  useEffect(() => {
+    if (selectedInsurancePaymentsDate) {
+      dispatch(setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate)))
+    } else {
+      dispatch(setScheduledInsurancePaymentsView(null))
+    }
+  }, [insurancePayments, selectedInsurancePaymentsDate, dispatch])
 
   return (
     <Fragment>
