@@ -322,7 +322,8 @@ export const InsuranceProvider = ({ children }) => {
     setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, insuranceDate))
   }
 
-  const value = { insurances, insurancesView, filterConditions, scheduledInsurancePaymentsView,
+  const value = { insurances, insurancePayments, insurancesView, insurancePaymentsView, filterConditions, 
+    selectedInsurancePaymentsDate, scheduledInsurancePaymentsView,
     addInsurance, filterInsurances, removeInsurance, clearInsuranceFilter,
     insurancesSummary, selectScheduledInsurancePayments }
   

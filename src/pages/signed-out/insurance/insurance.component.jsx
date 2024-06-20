@@ -17,12 +17,19 @@ import { setInsurancesSummary, setInsurancesView, setInsurancePaymentsView,
 
 import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants"
 
+import { selectSelectedInsurancePaymentsDate, selectScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.selector"
+import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action"
+import ScheduleCalendar from "../../../components/signed-out/insurance/schedule/schedule-calendar/schedule-calendar.component"
+import ScheduleDayInfo from "../../../components/signed-out/insurance/schedule/schedule-day-info/schedule-day-info.component"
+
 const Insurance = () => {
   const insurances = useSelector(selectInsurances)
   const insurancePayments = useSelector(selectInsurancePayments)
   const insurancesView = useSelector(selectInsurancesView)
   const insurancePaymentsView = useSelector(selectInsurancePaymentsView)
   const filterConditions = useSelector(selectFilterConditions)
+  const selectedInsurancePaymentsDate = useSelector(selectSelectedInsurancePaymentsDate)
+  const scheduledInsurancePaymentsView = useSelector(selectScheduledInsurancePaymentsView)
   const dispatch = useDispatch()
 
   // update insurancesSummary and insurancePayments
@@ -158,10 +165,31 @@ const Insurance = () => {
       dispatch(setInsurancesView(insurances))
       dispatch(setInsurancePaymentsView(insurancePayments))
     }
-  }, [insurances, insurancePayments, filterConditions, dispatch])  
+  }, [insurances, insurancePayments, filterConditions, dispatch])
+
+  // update scheduledInsurancePaymentsView when insurances or selectedInsurancePaymentsDate change
+  useEffect(() => {
+    if (selectedInsurancePaymentsDate) {
+      dispatch(setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate)))
+    } else {
+      dispatch(setScheduledInsurancePaymentsView(null))
+    }
+  }, [insurancePayments, selectedInsurancePaymentsDate, dispatch])
+
+  console.log(selectedInsurancePaymentsDate, scheduledInsurancePaymentsView)
 
   return (
     <div className="insurance-container">
+      <ScheduleCalendar></ScheduleCalendar>
+      {
+        selectedInsurancePaymentsDate && scheduledInsurancePaymentsView ?
+        <ScheduleDayInfo></ScheduleDayInfo> : null
+      }
+
+      <br/>
+      <Divider/>
+      <br/>
+
       {
         insurances && insurances.length ?
         <Fragment>
