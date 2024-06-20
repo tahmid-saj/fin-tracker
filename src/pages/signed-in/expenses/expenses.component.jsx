@@ -11,14 +11,16 @@ import ScheduleDayInfo from "../../../components/signed-in/expenses/schedule/sch
 import { Divider } from "@mui/material"
 
 const Expenses = () => {
-  const { expenses, expensesView, selectedExpensesDate } = useContext(ExpensesContext)
+  const { expenses, expensesView, selectedExpensesDate, scheduledExpensesView } = useContext(ExpensesContext)
+
+  console.log(selectedExpensesDate, scheduledExpensesView)
 
   return (
     <div className="expenses-container">
       <ScheduleCalendar></ScheduleCalendar>
       {
-      selectedExpensesDate ?
-      <ScheduleDayInfo></ScheduleDayInfo> : null
+        scheduledExpensesView ?
+        <ScheduleDayInfo></ScheduleDayInfo> : null
       }
 
       <br/>
