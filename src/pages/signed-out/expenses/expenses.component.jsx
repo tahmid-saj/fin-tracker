@@ -9,14 +9,15 @@ import { Divider } from "@mui/material"
 
 import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses, selectExpensesView, 
-  selectExpensesTagLimit, selectFilterConditions, selectSelectedExpensesDate
+  selectExpensesTagLimit, selectFilterConditions, selectSelectedExpensesDate,
+  selectScheduledExpensesView
 } from "../../../store/signed-out/expenses/expenses.selector"
 import { setExpensesSummary, setExpensesTagLimit, setExpensesView, 
   filterExpensesHelper, selectScheduledExpensesHelper, setScheduledExpensesView
 } from "../../../store/signed-out/expenses/expenses.action"
 
 import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "../../../../expenses.page"
+import ScheduleDayInfo from "../../../components/signed-out/expenses/schedule/schedule-day-info/schedule-day-info.component"
 
 const Expenses = () => {
   // const { expenses, expensesView } = useContext(ExpensesContext)
@@ -25,6 +26,7 @@ const Expenses = () => {
   const expensesTagLimit = useSelector(selectExpensesTagLimit)
   const filterConditions = useSelector(selectFilterConditions)
   const selectedExpensesDate = useSelector(selectSelectedExpensesDate)
+  const scheduledExpensesView = useSelector(selectScheduledExpensesView)
   const dispatch = useDispatch()
 
   // update expensesSummary
@@ -87,9 +89,9 @@ const Expenses = () => {
   // update scheduledExpensesView when expenses or selectedExpensesDate change
   useEffect(() => {
     if (selectedExpensesDate) {
-        dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+      dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
     } else {
-        dispatch(setScheduledExpensesView(null))
+      dispatch(setScheduledExpensesView(null))
     }
   }, [expenses, selectedExpensesDate, dispatch])
 
@@ -97,8 +99,8 @@ const Expenses = () => {
     <div className="expenses-container">
       <ScheduleCalendar></ScheduleCalendar>
       {
-      selectedExpensesDate ?
-      <ScheduleDayInfo></ScheduleDayInfo> : null
+      selectedExpensesDate && scheduledExpensesView ?
+        <ScheduleDayInfo></ScheduleDayInfo> : null
       }
 
       <br/>

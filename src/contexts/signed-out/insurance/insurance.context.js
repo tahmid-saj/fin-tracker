@@ -66,6 +66,16 @@ const removeInsuranceHelper = (insurances, insuranceFor) => {
   return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
 }
 
+const selectScheduledInsurancePaymentsHelper = (insurancePayments, insuranceDate) => {
+  const filteredInsurancePayments = insurancePayments.filter((insurancePayment) => {
+    return insurancePayment.insuranceDate === insuranceDate
+  })
+
+  if (!filteredInsurancePayments) return null
+
+  return filteredInsurancePayments
+}
+
 // initial state
 export const InsuranceContext = createContext({
   insurances: [],
@@ -106,15 +116,23 @@ export const InsuranceContext = createContext({
   //   insuranceEndDate: ""
   // }
 
+  // selectedInsurancePaymentsDate is the selected date from the calendar component
+  selectedInsurancePaymentsDate: null,
+
   // insurancesView is the filtered version of insurances
   insurancesView: [],
 
   // insurancePaymentsView is the filtered version of insurancePayments
   insurancePaymentsView: [],
 
+  // scheduledInsurancePaymentsView is the selected selectedInsurancePaymentsDate info from the calendar component
+  scheduledInsurancePaymentsView: null,
+
   addInsurance: () => {},
   filterInsurance: () => {},
   removeInsurance: () => {},
+
+  selectScheduledInsurancePayments: () => {},
 
   insurancesSummary: {}
   // insurances structure:
@@ -131,6 +149,8 @@ export const InsuranceProvider = ({ children }) => {
   const [insurances, setInsurances] = useState([])
   const [insurancePayments, setInsurancePayments] = useState([])
   const [filterConditions, setFilterConditions] = useState(null)
+  const [selectedInsurancePaymentsDate, setSelectedInsurancePaymentsDate] = useState(null)
+  const [scheduledInsurancePaymentsView, setScheduledInsurancePaymentsView] = useState(null)
   const [insurancesView, setInsurancesView] = useState(insurances)
   const [insurancePaymentsView, setInsurancePaymentsView] = useState(insurancePayments)
   const [insurancesSummary, setInsurancesSummary] = useState({})
@@ -258,6 +278,15 @@ export const InsuranceProvider = ({ children }) => {
     }
   }, [insurances, insurancePayments, filterConditions])
 
+  // update scheduledInsurancePaymentsView when insurancePayments or selectedInsurancePaymentsDate change
+  useEffect(() => {
+    if (selectedInsurancePaymentsDate) {
+      setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate))
+    } else {
+      setScheduledInsurancePaymentsView(null)
+    }
+  }, [insurancePayments, selectedInsurancePaymentsDate])
+
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure insuranceIds are not duplicate via validations
   const addInsurance = (insurance) => {
@@ -288,9 +317,14 @@ export const InsuranceProvider = ({ children }) => {
     setInsurancePaymentsView(insurancePayments)
   }
 
-  const value = { insurances, insurancesView, filterConditions,
+  const selectScheduledInsurancePayments = (insuranceDate) => {
+    setSelectedInsurancePaymentsDate(insuranceDate)
+    setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, insuranceDate))
+  }
+
+  const value = { insurances, insurancesView, filterConditions, scheduledInsurancePaymentsView,
     addInsurance, filterInsurances, removeInsurance, clearInsuranceFilter,
-    insurancesSummary }
+    insurancesSummary, selectScheduledInsurancePayments }
   
   return (
     <InsuranceContext.Provider

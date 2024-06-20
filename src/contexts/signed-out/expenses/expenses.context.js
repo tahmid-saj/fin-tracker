@@ -39,11 +39,12 @@ const removeExpenseHelper = (expenses, expenseId) => {
   return expenses.filter(exp => exp.expenseId !== expenseId)
 }
 
-const selectScheduledExpensesHelper = (expenses, expensesDate) => {
-  console.log(expensesDate)
+const selectScheduledExpensesHelper = (expenses, expenseDate) => {
+  console.log(expenseDate)
+  console.log(expenses)
 
   const filteredExpenses = expenses.filter((expense) => {
-    return expense.expensesDate === expensesDate
+    return expense.expenseDate === expenseDate
   })
 
   if (!filteredExpenses) return null
@@ -208,9 +209,9 @@ export const ExpensesProvider = ({ children }) => {
     setExpensesView(expenses)
   }
 
-  const selectScheduledExpenses = (expensesDate) => {
-    setSelectedExpensesDate(expensesDate)
-    setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expensesDate))
+  const selectScheduledExpenses = (expenseDate) => {
+    setSelectedExpensesDate(expenseDate)
+    setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expenseDate))
   }
 
   const value = { expenses, expensesView, filterConditions, scheduledExpensesView,

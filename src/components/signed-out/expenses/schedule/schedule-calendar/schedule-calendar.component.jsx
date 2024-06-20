@@ -61,10 +61,10 @@ const ScheduleCalendar = () => {
   }
 
   return (
-    <div className="expenses-schedule-calendar-container" style={{ backgroundColor: COLOR_CODES.general["0"] }}>
+    <div className="expenses-schedule-calendar-container" style={{ backgroundColor: COLOR_CODES.general["5"] }}>
       <Typography sx={{ display: "flex", marginLeft: "1%" }} 
         variant="h6">{`Expenses calendar`}</Typography>
-      <Calendar bordered renderCell={ renderCell } onSelect={ onSelectDate } style={{ backgroundColor: COLOR_CODES.general["0"] }}/>
+      <Calendar bordered renderCell={ renderCell } onSelect={ onSelectDate } style={{ backgroundColor: COLOR_CODES.general["5"] }}/>
     </div>
   )
 }
