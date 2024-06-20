@@ -1,9 +1,9 @@
 import "./schedule-day-info.styles.scss"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../shared/mui/paper/paper.component"
-import { COLOR_CODES } from "../../../../../utils/constants/shared.constants"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context"
+import SimplePaper from "../../../../../shared/mui/paper/paper.component"
+import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants"
+import { InsuranceContext } from "../../../../../../contexts/signed-in/insurance/insurance.context"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
