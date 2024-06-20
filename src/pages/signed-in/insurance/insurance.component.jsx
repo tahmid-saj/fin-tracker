@@ -5,15 +5,31 @@ import InsurancePieChart from "../../../components/signed-in/insurance/insurance
 import InsuranceSummary from "../../../components/signed-in/insurance/insurance-summary/insurance-summary.component"
 import InsuranceTable from "../../../components/signed-in/insurance/insurance-table/insurance-table.component"
 import "./insurance.styles.scss"
+import ScheduleCalendar from "../../../components/signed-in/insurance/schedule/schedule-calendar/schedule-calendar.component"
+import ScheduleDayInfo from "../../../components/signed-in/insurance/schedule/schedule-day-info/schedule-day-info.component"
 
 import { useEffect, Fragment, useContext } from "react"
 import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context"
 
 const Insurance = () => {
-  const { insurances, insurancesView, insurancePaymentsView } = useContext(InsuranceContext)
+  const { insurances, insurancesView, insurancePaymentsView, 
+    selectedInsurancePaymentsDate, scheduledInsurancePaymentsView
+  } = useContext(InsuranceContext)
+
+  console.log(selectedInsurancePaymentsDate, scheduledInsurancePaymentsView)
 
   return (
     <div className="insurance-container">
+      <ScheduleCalendar></ScheduleCalendar>
+      {
+        selectedInsurancePaymentsDate && scheduledInsurancePaymentsView ?
+        <ScheduleDayInfo></ScheduleDayInfo> : null
+      }
+
+      <br/>
+      <Divider/>
+      <br/>
+
       {
         insurances && insurances.length ?
         <Fragment>

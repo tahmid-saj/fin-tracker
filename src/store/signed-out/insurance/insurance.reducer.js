@@ -4,6 +4,8 @@ export const INSURANCE_INITIAL_STATE = {
   insurances: [],
   insurancePayments: [],
   filterConditions: null,
+  selectedInsurancePaymentsDate: null,
+  scheduledInsurancePaymentsView: null,
   insurancesView: [],
   insurancePaymentsView: [],
   insurancesSummary: {}
@@ -27,6 +29,16 @@ export const insuranceReducer = (state=INSURANCE_INITIAL_STATE, action={}) => {
       return {
         ...state,
         filterConditions: payload
+      }
+    case INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE:
+      return {
+        ...state,
+        selectedInsurancePaymentsDate: payload
+      }
+    case INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW:
+      return {
+        ...state,
+        scheduledInsurancePaymentsView: payload
       }
     case INSURANCE_ACTION_TYPES.SET_INSURANCES_VIEW:
       return {

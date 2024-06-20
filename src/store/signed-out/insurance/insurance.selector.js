@@ -17,6 +17,16 @@ export const selectFilterConditions = createSelector(
   (insurance) => insurance.filterConditions
 )
 
+export const selectSelectedInsurancePaymentsDate = createSelector(
+  [selectInsuranceReducer],
+  (insurance) => insurance.selectedInsurancePaymentsDate
+)
+
+export const selectScheduledInsurancePaymentsView = createSelector(
+  [selectInsuranceReducer],
+  (insurance) => insurance.scheduledInsurancePaymentsView
+)
+
 export const selectInsurancesView = createSelector(
   [selectInsuranceReducer],
   (insurance) => insurance.insurancesView

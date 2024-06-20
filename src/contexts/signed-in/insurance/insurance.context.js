@@ -338,9 +338,9 @@ export const InsuranceProvider = ({ children }) => {
   // update scheduledInsurancePaymentsView when insurancePayments or selectedInsurancePaymentsDate change
   useEffect(() => {
     if (selectedInsurancePaymentsDate) {
-        setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate))
+      setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate))
     } else {
-        setScheduledInsurancePaymentsView(null)
+      setScheduledInsurancePaymentsView(null)
     }
   }, [insurancePayments, selectedInsurancePaymentsDate])
 
@@ -399,7 +399,8 @@ export const InsuranceProvider = ({ children }) => {
     setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, insuranceDate))
   }
 
-  const value = { insurances, insurancesView, insurancePaymentsView, filterConditions, scheduledInsurancePaymentsView,
+  const value = { insurances, insurancePayments, insurancesView, insurancePaymentsView, filterConditions, 
+    selectedInsurancePaymentsDate, scheduledInsurancePaymentsView,
     addInsurance, filterInsurances, removeInsurance, clearInsuranceFilter,
     insurancesSummary, setDefaultInsurancesValues, setDefaultInsurancesSummaryValues, updateInsurancesAndSummary,
     selectScheduledInsurancePayments }

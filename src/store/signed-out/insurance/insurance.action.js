@@ -72,6 +72,16 @@ const removeInsuranceHelper = (insurances, insuranceFor) => {
   return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
 }
 
+export const selectScheduledInsurancePaymentsHelper = (insurancePayments, insuranceDate) => {
+  const filteredInsurancePayments = insurancePayments.filter((insurancePayment) => {
+    return insurancePayment.insuranceDate === insuranceDate
+  })
+
+  if (!filteredInsurancePayments) return null
+
+  return filteredInsurancePayments
+}
+
 // actions
 
 export const addInsurance = (insurances, insurance) => {
@@ -114,4 +124,12 @@ export const setInsurancePaymentsView = (insurancePaymentsView) => {
 
 export const setInsurancesSummary = (insurancesSummary) => {
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES_SUMMARY, insurancesSummary)
+}
+
+export const selectScheduledInsurancePayments = (insuranceDate) => {
+  return createAction(INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, insuranceDate)
+}
+
+export const setScheduledInsurancePaymentsView = (scheduledInsurancePaymentsView) => {
+  return createAction(INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, scheduledInsurancePaymentsView)
 }
