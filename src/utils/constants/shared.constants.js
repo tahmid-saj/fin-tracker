@@ -230,3 +230,47 @@ export const COLOR_CODES = {
   },
   background: "#27374D"
 }
+
+export const COMMON_SPACING = {
+  screenWidthOnDrawerClose: 500,
+  navBarWidth: 225,
+  navBarMargin: 230,
+  hiddenAppBarMarginTop: 60,
+  pageContent: {
+    margin: {
+      top: "0%",
+      right: "2%",
+      bottom: "2%",
+      left: "2%"
+    }
+  },
+  calendarDayInfo: {
+    width: 375,
+    height: 600
+  },
+  summaryInfoCard: {
+    width: 375
+  },
+  filter: {
+    width: 375
+  },
+  pieChart: {
+    width: 375,
+    height: 375
+  },
+  barChart: {
+    width: "100%",
+    height: 400
+  },
+  lineChart: {
+    width: "100%",
+    height: 400
+  },
+  table: {
+    width: "100%",
+    height: 400
+  },
+  filterTable: {
+    height: 650
+  }
+}

@@ -2,13 +2,14 @@ import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
 import "./navigation.styles.jsx";
-import { OutletContainer } from "./navigation.styles.jsx";
+import { DrawerContainer } from "./navigation.styles.jsx";
 import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component";
 import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
 import ResponsiveDrawer from "../../../components/shared/mui/responsive-drawer/responsive-drawer.component.jsx";
+import HiddenDrawer from "../../../components/shared/mui/hidden-drawer/hidden-drawer.component.jsx";
 
 // TODO: put navigation paths in constants
 
@@ -40,7 +41,10 @@ const Navigation = () => {
         {/* <AboutLinks></AboutLinks> */}
       {/* </MiniDrawer> */}
 
-      <ResponsiveDrawer></ResponsiveDrawer>
+      {/* <ResponsiveDrawer></ResponsiveDrawer> */}
+      <DrawerContainer>
+        <HiddenDrawer></HiddenDrawer>
+      </DrawerContainer>
 
       {/* <NavigationContainer>
         <Link className="logo" to="/"
@@ -149,9 +153,7 @@ const Navigation = () => {
         </NavLinks>
       </NavigationContainer> */}
 
-      <OutletContainer>
-        <Outlet/>
-      </OutletContainer>
+      <Outlet/>
     </Fragment>
 
   );
