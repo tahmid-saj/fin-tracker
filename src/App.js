@@ -47,7 +47,6 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={ <Navigation/> }>
-        {/* shared */}
         <Route index element={ <HomeRoute/> }/>
         <Route path="useful-tools" element={ <UsefulToolsRoute/> }></Route>
 

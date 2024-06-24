@@ -1,0 +1,15 @@
+ion-icon {
+  font-size: 23px;
+}
+
+.finance-planner-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.finance-planner-app-bar {
+  cursor: pointer;
+  z-index: 9999;
+  overflow: "hidden";
+}
