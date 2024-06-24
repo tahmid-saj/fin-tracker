@@ -9,5 +9,5 @@ export const CurrencyConverterResultContainer = styled.div`
   box-shadow: 4px 4px ${COLOR_CODES.general["0"]};
   border-radius: 1.5rem;
   padding: 2%;
-  margin-top: 4%;
+  margin-top: 6%;
 `

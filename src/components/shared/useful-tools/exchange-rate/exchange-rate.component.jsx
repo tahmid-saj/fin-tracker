@@ -8,10 +8,17 @@ import ExchangeRateResult from "./exchange-rate-result.component"
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
 import { Typography } from "@mui/material"
 import { ButtonsContainer } from "../../button/button.styles.jsx"
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../mui/paper/paper.component.jsx"
 
 const defaultFormFields = {
   fromCurrency: "",
   toCurrency: ""
+}
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["2"],
+  width: "auto"
 }
 
 const ExchangeRate = () => {
@@ -37,24 +44,32 @@ const ExchangeRate = () => {
 
   return (
     <ExchangeRateContainer>
-      <form onSubmit={ handleSubmit }>
-        <Typography sx={{ paddingBottom: "2%" }} variant="h6">Find the exchange rate</Typography>
+      <SimplePaper styles={ paperStyles }>
+        <form onSubmit={ handleSubmit }>
+          <Typography sx={{ paddingBottom: "2%", color: COLOR_CODES.general["0"] }} variant="h6">Find the exchange rate</Typography>
 
-        <FormInput label="From (currency)" type="text" required onChange={ handleChange }
-                      name="fromCurrency" value={ formFields.fromCurrency }/>
-        <FormInput label="To (currency)" type="text" required onChange={ handleChange }
-            name="toCurrency" value={ formFields.toCurrency }/>
-        
-        <ButtonsContainer>
-          <Button type="submit">Find</Button>
-          <Button type="button" onClick={ resetFormFields }>Clear</Button>
-        </ButtonsContainer>
-      </form>
+          <FormInput label="From (currency)" type="text" required onChange={ handleChange }
+                        name="fromCurrency" value={ formFields.fromCurrency }/>
+          <FormInput label="To (currency)" type="text" required onChange={ handleChange }
+              name="toCurrency" value={ formFields.toCurrency }/>
+          
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Find</Button>
+                  <Button type="button" onClick={ resetFormFields }>Clear</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
 
-      {
-        exchangeRateResult &&
-        <ExchangeRateResult></ExchangeRateResult>
-      }
+        {
+          exchangeRateResult &&
+          <ExchangeRateResult></ExchangeRateResult>
+        }
+      </SimplePaper>
     </ExchangeRateContainer>
   )
 }
