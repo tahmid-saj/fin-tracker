@@ -5,6 +5,6 @@ export const CardMediaContainer = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${COLOR_CODES.general["1"]};
+    background-color: ${COLOR_CODES.general["4"]};
   }
 `

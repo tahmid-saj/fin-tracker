@@ -13,33 +13,23 @@ export default function MediaCard({ styles, header, imageUrl, imageTitle, path, 
   const navigate = useNavigate()
 
   return (
-      <Card sx={{ margin: "1%", ...styles }} onClick={ () => navigate(path) }>
-        <CardMediaContainer>
-          <CardMedia
-            // sx={{ height: styles.height }}
-            // src={ "https://buffer.com/library/content/images/2023/10/free-images.jpg" }
-            title={`${imageTitle}`}
-          />
-          <img src={`${imageUrl}`} alt={ `${imageTitle}` } width={ styles.width } height={ styles.height * 0.66 } objectFit={ "contain" }/>
-
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              { header }
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              { content }
-            </Typography>
-          </CardContent>
-
-          <CardActions>
-            {/* <Button size="small">Share</Button> */}
-            <Button size="small">
-              <Link to={ path }>
-                Learn More
-              </Link>
-            </Button>
-          </CardActions>
-        </CardMediaContainer>
-      </Card>
+    <Card sx={{ ...styles }} onClick={ () => navigate(path) }>
+      <CardMedia
+          // sx={{ height: styles.height }}
+          // src={ "https://buffer.com/library/content/images/2023/10/free-images.jpg" }
+          title={`${imageTitle}`}
+        />
+        <img src={`${imageUrl}`} alt={ `${imageTitle}` } width={ styles.width } height={ styles.height * 0.67 } objectFit={ "contain" }/>
+      <CardMediaContainer>
+        <CardContent sx={{ height: styles.height }}>
+          <Typography gutterBottom variant="h5" component="div">
+            { header }
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            { content }
+          </Typography>
+        </CardContent>
+      </CardMediaContainer>
+    </Card>
   );
 }

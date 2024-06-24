@@ -1,8 +1,7 @@
 import styled from "styled-components"
 
 export const HomeContainer = styled.div`
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
-  margin: 3%;
 `

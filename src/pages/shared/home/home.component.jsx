@@ -11,11 +11,11 @@ import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
 import { COLOR_CODES, NAV_LINKS } from "../../../utils/constants/shared.constants.js";
 
 const cardStyles = {
-  width: 450,
-  height: 500,
-  backgroundColor: COLOR_CODES.general["0"]
+  width: 360,
+  height: 450,
+  backgroundColor: COLOR_CODES.general["1"],
+  marginBottom: "6%"
 }
-
 
 const Home = () => {
   // const { currentUser } = useContext(UserContext)
@@ -79,40 +79,56 @@ const Home = () => {
   }
 
   return (
-    <Fragment>
+    <div className="container">
       <HomeContainer>
-        <MediaCard styles={ cardStyles } header={ homeCardContent.chatbot.header } imageUrl={ homeCardContent.chatbot.imageUrl } 
-          imageTitle={ homeCardContent.chatbot.header } path={ homeCardContent.chatbot.path } content={ homeCardContent.chatbot.description }></MediaCard>
+        <div className="row justify-content-center align-items-center">
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.chatbot.header } imageUrl={ homeCardContent.chatbot.imageUrl } 
+            imageTitle={ homeCardContent.chatbot.header } path={ homeCardContent.chatbot.path } content={ homeCardContent.chatbot.description }></MediaCard>
+          </div>
 
-        <MediaCard styles={ cardStyles } header={ homeCardContent.storage.header } imageUrl={ homeCardContent.storage.imageUrl } 
-          imageTitle={ homeCardContent.storage.header } path={ homeCardContent.storage.path } content={ homeCardContent.storage.description }></MediaCard>
-        
-        <MediaCard styles={ cardStyles } header={ homeCardContent.market.header } imageUrl={ homeCardContent.market.imageUrl } 
-          imageTitle={ homeCardContent.market.header } path={ homeCardContent.market.path } content={ homeCardContent.market.description }></MediaCard>
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.storage.header } imageUrl={ homeCardContent.storage.imageUrl } 
+            imageTitle={ homeCardContent.storage.header } path={ homeCardContent.storage.path } content={ homeCardContent.storage.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.market.header } imageUrl={ homeCardContent.market.imageUrl } 
+            imageTitle={ homeCardContent.market.header } path={ homeCardContent.market.path } content={ homeCardContent.market.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.expenses.header } imageUrl={ homeCardContent.expenses.imageUrl } 
+            imageTitle={ homeCardContent.expenses.header } path={ homeCardContent.expenses.path } content={ homeCardContent.expenses.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.banking.header } imageUrl={ homeCardContent.banking.imageUrl } 
+            imageTitle={ homeCardContent.banking.header } path={ homeCardContent.banking.path } content={ homeCardContent.banking.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.investment.header } imageUrl={ homeCardContent.investment.imageUrl } 
+            imageTitle={ homeCardContent.investment.header } path={ homeCardContent.investment.path } content={ homeCardContent.investment.description }></MediaCard>  
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.savings.header } imageUrl={ homeCardContent.savings.imageUrl } 
+            imageTitle={ homeCardContent.savings.header } path={ homeCardContent.savings.path } content={ homeCardContent.savings.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.insurance.header } imageUrl={ homeCardContent.insurance.imageUrl } 
+            imageTitle={ homeCardContent.insurance.header } path={ homeCardContent.insurance.path } content={ homeCardContent.insurance.description }></MediaCard>
+          </div>
+
+          <div className="col-sm-12 col-md-6 col-lg-4">
+            <MediaCard styles={ cardStyles } header={ homeCardContent.tools.header } imageUrl={ homeCardContent.tools.imageUrl } 
+            imageTitle={ homeCardContent.tools.header } path={ homeCardContent.tools.path } content={ homeCardContent.tools.description }></MediaCard>
+          </div>
+        </div>      
       </HomeContainer>
-
-      <HomeContainer>
-        <MediaCard styles={ cardStyles } header={ homeCardContent.expenses.header } imageUrl={ homeCardContent.expenses.imageUrl } 
-          imageTitle={ homeCardContent.expenses.header } path={ homeCardContent.expenses.path } content={ homeCardContent.expenses.description }></MediaCard>
-
-        <MediaCard styles={ cardStyles } header={ homeCardContent.banking.header } imageUrl={ homeCardContent.banking.imageUrl } 
-          imageTitle={ homeCardContent.banking.header } path={ homeCardContent.banking.path } content={ homeCardContent.banking.description }></MediaCard>
-        
-        <MediaCard styles={ cardStyles } header={ homeCardContent.investment.header } imageUrl={ homeCardContent.investment.imageUrl } 
-          imageTitle={ homeCardContent.investment.header } path={ homeCardContent.investment.path } content={ homeCardContent.investment.description }></MediaCard>        
-      </HomeContainer>
-
-      <HomeContainer>
-        <MediaCard styles={ cardStyles } header={ homeCardContent.savings.header } imageUrl={ homeCardContent.savings.imageUrl } 
-          imageTitle={ homeCardContent.savings.header } path={ homeCardContent.savings.path } content={ homeCardContent.savings.description }></MediaCard>
-
-        <MediaCard styles={ cardStyles } header={ homeCardContent.insurance.header } imageUrl={ homeCardContent.insurance.imageUrl } 
-          imageTitle={ homeCardContent.insurance.header } path={ homeCardContent.insurance.path } content={ homeCardContent.insurance.description }></MediaCard>
-        
-        <MediaCard styles={ cardStyles } header={ homeCardContent.tools.header } imageUrl={ homeCardContent.tools.imageUrl } 
-          imageTitle={ homeCardContent.tools.header } path={ homeCardContent.tools.path } content={ homeCardContent.tools.description }></MediaCard>
-      </HomeContainer>
-    </Fragment>
+    </div>
   );
 };
 

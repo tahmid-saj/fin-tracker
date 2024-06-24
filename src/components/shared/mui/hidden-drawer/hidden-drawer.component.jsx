@@ -166,11 +166,11 @@ export default function HiddenDrawer() {
   return (
     <div className="finance-planner-app-bar">
       <Button sx={{ position: "fixed", width: "100%", justifyContent: "left", top: "0", zIndex: "9999", overflow: "hidden",
-        backgroundColor: COLOR_CODES.general["9"] }}
+        backgroundColor: COLOR_CODES.general["3"] }}
         onClick={toggleDrawer(true)}>
         <div className='finance-planner-title'>
           <MenuIcon/>
-          <Typography sx={{ marginLeft: "10px", color: COLOR_CODES.general["0"], textTransform: "capitalize" }} 
+          <Typography sx={{ marginLeft: "10px", color: COLOR_CODES.general["4"], textTransform: "capitalize" }} 
             variant="h6">
             Finance Planner
           </Typography>
