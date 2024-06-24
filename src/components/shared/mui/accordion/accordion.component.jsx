@@ -5,6 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Fade from '@mui/material/Fade';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { COLOR_CODES } from '../../../../utils/constants/shared.constants';
 // import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles((theme) => ({
@@ -49,7 +50,7 @@ export function AccordionTransition({ styles, header, children }) {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Typography paragraph>{ header }</Typography>
+          <Typography sx={{ color: COLOR_CODES.general["4"] }} paragraph>{ header }</Typography>
         </AccordionSummary>
         <AccordionDetails>
           { children }

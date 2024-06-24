@@ -7,6 +7,7 @@ export const MortgageCalculatorResultContainer = styled.div`
   background-color: ${COLOR_CODES.general["0"]};
   box-shadow: 4px 4px ${COLOR_CODES.general["0"]};
   border-radius: 1.5rem;
+  margin-top: 4%;
 `
 
 export const MortgageResult = styled.div`

@@ -16,7 +16,7 @@ const accordionStyles = {
 const UsefulTools = () => {
   return (
     <UsefulToolsContainer>
-      <Typography variant="h6" sx={{ display: "flex", justifyContent: "center" }}>Useful Tools</Typography>
+      <Typography variant="h6" sx={{ display: "flex", justifyContent: "center", color: COLOR_CODES.general["0"] }}>Useful Tools</Typography>
 
       <AccordionTransition header={ "Mortgage calculator" } styles={ accordionStyles }>
         <MortgageCalculator></MortgageCalculator>
