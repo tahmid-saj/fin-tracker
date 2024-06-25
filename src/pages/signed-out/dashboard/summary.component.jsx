@@ -38,6 +38,13 @@ import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 
 import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
 import { Typography } from "@mui/material";
+import SimplePaper from "../../../components/shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../utils/constants/shared.constants.js";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["1"],
+  width: COMMON_SPACING.summaryInfoCard.width
+}
 
 const Summary = () => {
   // const { summaries } = useContext(DashboardContext);
@@ -152,9 +159,11 @@ const Summary = () => {
       children: (
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
-            <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</Typography>
-            <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</Typography>
-            <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</Typography>
+            <SimplePaper styles={ paperStyles }>
+              <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</Typography>
+              <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</Typography>
+              <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</Typography>
+            </SimplePaper>
           </FinanceItemsSummaryInfo>
           <BankingSummary/>
         </FinanceItemsSummary>
