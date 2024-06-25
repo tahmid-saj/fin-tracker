@@ -3,15 +3,15 @@ import { useContext } from "react"
 // import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
 import { selectExpensesSummary } from "../../../../../store/signed-out/expenses/expenses.selector"
+import { Typography } from "@mui/material"
 
 const ExpensesSummaryInfo = () => {
   // const { expensesSummary } = useContext(ExpensesContext)
   const expensesSummary = useSelector(selectExpensesSummary)
 
   return (
-    <div className="expenses-summary-info-container">
-      <h3>{ `Total spend past month - $${expensesSummary.pastMonthAllExpensesCost}` }</h3>
-    </div>
+    <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "2%" }} 
+      variant="h6">{ `Total spending past month - $${expensesSummary.pastMonthAllExpensesCost}` }</Typography>
   )
 }
 
