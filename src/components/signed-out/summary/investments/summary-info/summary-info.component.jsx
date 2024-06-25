@@ -12,10 +12,10 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const SummaryInfo = ({ financeItemInfo }) => {
   return (
     <InfoContainer>
-      <Typography variant="h6">{`Current balance : `}{`$${financeItemInfo.currentBalance.toFixed(2)}`}</Typography>
+      <Typography variant="h6">{`Ending balance : `}{`$${financeItemInfo.endBalance.toFixed(2)}`}</Typography>
       <Typography variant="body1">{`As of ${currentDate}`}</Typography>
-      <Typography variant="body1">{`IN : $${financeItemInfo.totalIn.toFixed(2)}`}</Typography>
-      <Typography variant="body1">{`OUT : $${financeItemInfo.totalOut.toFixed(2)}`}</Typography>
+      <Typography variant="body1">{`Total contribution : $${financeItemInfo.totalContribution.toFixed(2)}`}</Typography>
+      <Typography variant="body1">{`Total interest : $${financeItemInfo.totalInterest.toFixed(2)}`}</Typography>
     </InfoContainer>
   )
 }
