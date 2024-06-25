@@ -10,7 +10,7 @@ const ExpensesSummaryInfo = () => {
   const expensesSummary = useSelector(selectExpensesSummary)
 
   return (
-    <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "2%" }} 
+    <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} 
       variant="h6">{ `Total spending past month - $${expensesSummary.pastMonthAllExpensesCost}` }</Typography>
   )
 }

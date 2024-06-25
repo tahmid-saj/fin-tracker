@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants";
 
-export const ExpensesScheduleDayInfo = styled.div`
+export const InsurancesScheduleDayInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

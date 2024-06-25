@@ -210,11 +210,11 @@ const Summary = () => {
     tabList.push({
       value: "insurance",
       icon: <SafetyCheckIcon/>,
-      label: "Insurances"
+      label: "Insurance"
     })
 
     panelList.push({
-      value: "insurances",
+      value: "insurance",
       children: (
         <FinanceItemsSummary>
           <InsurancesSummary></InsurancesSummary> 
