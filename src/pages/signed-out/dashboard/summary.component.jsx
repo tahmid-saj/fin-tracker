@@ -147,7 +147,7 @@ const Summary = () => {
     })
   }
 
-  if (bankingAccounts.length !== 0) {
+  if (bankingAccounts.length !== 0 && summaries.bankingSummary !== null && summaries.bankingSummary !== undefined && Object.keys(summaries.bankingSummary).length) {
     tabList.push({
       value: "banking",
       icon: <AccountBalanceIcon/>,
@@ -160,9 +160,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</Typography>
-              <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</Typography>
-              <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</Typography>
+              <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <BankingSummary/>
@@ -171,7 +171,7 @@ const Summary = () => {
     })
   }
 
-  if (investments.length !== 0) {
+  if (investments.length !== 0 && summaries.investmentsSummary !== null && summaries.investmentsSummary !== undefined && Object.keys(summaries.investmentsSummary).length) {
     tabList.push({
       value: "investments",
       icon: <PaymentIcon/>,
@@ -183,9 +183,11 @@ const Summary = () => {
       children: (
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
-            <Typography variant="body1">{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance}`}</Typography>
-            <Typography variant="body1">{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution}`}</Typography>
-            <Typography variant="body1">{`Total Interest - $${summaries.investmentsSummary.totalAllInterest}`}</Typography>
+            <SimplePaper styles={ paperStyles }>
+              <Typography variant="body1">{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries.investmentsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+            </SimplePaper>
           </FinanceItemsSummaryInfo>
           <InvestmentsSummary/>
         </FinanceItemsSummary>
@@ -193,7 +195,7 @@ const Summary = () => {
     })
   }
 
-  if (savingsAccounts.length !== 0) {
+  if (savingsAccounts.length !== 0 && summaries.savingsAccountsSummary !== null && summaries.savingsAccountsSummary !== undefined && Object.keys(summaries.savingsAccountsSummary).length) {
     tabList.push({
       value: "savings",
       icon: <SavingsIcon/>,
