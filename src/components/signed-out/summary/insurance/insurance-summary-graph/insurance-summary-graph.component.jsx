@@ -1,9 +1,11 @@
-import "./insurance-summary-graph.styles.scss"
+import "./insurance-summary-graph.styles.jsx"
+import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles.jsx"
 import ReactApexChart from "react-apexcharts"
 
 import { Fragment } from "react"
 import { useSelector } from "react-redux"
 import { selectInsurancesSummary } from "../../../../../store/signed-out/insurance/insurance.selector"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants"
 
 const InsurancesSummaryGraph = () => {
   const insurancesSummary = useSelector(selectInsurancesSummary)
@@ -29,15 +31,12 @@ const InsurancesSummaryGraph = () => {
   const options = {
     chart: {
       type: 'donut',
-      height: 600,
+      height: COMMON_SPACING.pieChart.height,
     },
     labels: [ ...insuranceCategoryPayments.keys() ],
     responsive: [{
       breakpoint: 50,
       options: {
-        chart: {
-          height: 600
-        },
         legend: {
           position: 'bottom'
         }
@@ -46,9 +45,10 @@ const InsurancesSummaryGraph = () => {
   }
 
   return (
-    <div className="insurances-summary-graph-container">
-      <ReactApexChart options={ options } series={ series } type="donut" height={ 400 } width={ 450 }/>
-    </div>
+    <InsuranceSummaryGraphContainer>
+      <ReactApexChart options={ options } series={ series } type="donut" 
+        height={ COMMON_SPACING.pieChart.height } width={ COMMON_SPACING.pieChart.width }/>
+    </InsuranceSummaryGraphContainer>
   )
 }
 
