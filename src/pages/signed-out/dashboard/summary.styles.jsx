@@ -9,7 +9,7 @@ export const FinanceItemsSummary = styled.div`
 `
 
 export const FinanceItemsSummaryInfo = styled.div`
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
 `
