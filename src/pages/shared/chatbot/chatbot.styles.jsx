@@ -4,7 +4,7 @@ export const ChatBotContainer = styled.div`
   display: block;
   justify-content: center;
   align-items: center;
-  padding: 2% 20% 2% 20%;
+  padding: 2% 2% 2% 2%;
 `
 
 export const ChatBotInputMessage = styled.form`

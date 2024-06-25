@@ -1,4 +1,7 @@
-import "./summary.styles.scss";
+import "./summary.styles.jsx";
+import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
+} from "./summary.styles.jsx";
+
 import React, { useEffect, Fragment } from "react";
 import ChatBot from "../../shared/chatbot/chatbot.component";
 import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component";
@@ -25,6 +28,16 @@ import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../.
 
 import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector";
 import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action";
+
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import PaidIcon from '@mui/icons-material/Paid'
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
+import PaymentIcon from '@mui/icons-material/Payment';
+import SavingsIcon from '@mui/icons-material/Savings';
+import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
+
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
+import { Typography } from "@mui/material";
 
 const Summary = () => {
   // const { summaries } = useContext(DashboardContext);
@@ -92,78 +105,202 @@ const Summary = () => {
     }
   }, [insurancePayments, selectedInsurancePaymentsDate, dispatch])
 
+  let tabList = [{
+    value: "chatbot",
+    icon: <SmartToyIcon/>,
+    label: "Chatbot"
+  }]
+  let panelList = [{
+    value: "chatbot",
+    children: <ChatBot/>
+  }]
+
+  if (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) {
+    return (
+      <DashboardContainer>
+        <ItemTabs tabList={ tabList } panelList={ panelList }></ItemTabs>
+      </DashboardContainer>
+    )
+  }
+
+  if (expenses.length !== 0) {
+    tabList.push({
+      value: "expenses",
+      icon: <PaidIcon/>,
+      label: "Expenses"
+    })
+
+    panelList.push({
+      value: "expenses",
+      children: (
+        <FinanceItemsSummary>
+          <ExpensesSummary></ExpensesSummary> 
+        </FinanceItemsSummary>
+      )
+    })
+  }
+
+  if (bankingAccounts.length !== 0) {
+    tabList.push({
+      value: "banking",
+      icon: <AccountBalanceIcon/>,
+      label: "Banking"
+    })
+
+    panelList.push({
+      value: "banking",
+      children: (
+        <FinanceItemsSummary>
+          <FinanceItemsSummaryInfo>
+            <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</Typography>
+            <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</Typography>
+            <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</Typography>
+          </FinanceItemsSummaryInfo>
+          <BankingSummary/>
+        </FinanceItemsSummary>
+      )
+    })
+  }
+
+  if (investments.length !== 0) {
+    tabList.push({
+      value: "investments",
+      icon: <PaymentIcon/>,
+      label: "Investments"
+    })
+
+    panelList.push({
+      value: "investments",
+      children: (
+        <FinanceItemsSummary>
+          <FinanceItemsSummaryInfo>
+            <Typography variant="body1">{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance}`}</Typography>
+            <Typography variant="body1">{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution}`}</Typography>
+            <Typography variant="body1">{`Total Interest - $${summaries.investmentsSummary.totalAllInterest}`}</Typography>
+          </FinanceItemsSummaryInfo>
+          <InvestmentsSummary/>
+        </FinanceItemsSummary>
+      )
+    })
+  }
+
+  if (savingsAccounts.length !== 0) {
+    tabList.push({
+      value: "savings",
+      icon: <SavingsIcon/>,
+      label: "Savings"
+    })
+
+    panelList.push({
+      value: "savings",
+      children: (
+        <FinanceItemsSummary>
+          <FinanceItemsSummaryInfo>
+            <Typography variant="body1">{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance}`}</Typography>
+            <Typography variant="body1">{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution}`}</Typography>
+            <Typography variant="body1">{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest}`}</Typography>
+          </FinanceItemsSummaryInfo>
+          <SavingsSummary/>
+        </FinanceItemsSummary>
+      )
+    })
+  }
+
+  if (insurances.length !== 0) {
+    tabList.push({
+      value: "insurance",
+      icon: <SafetyCheckIcon/>,
+      label: "Insurances"
+    })
+
+    panelList.push({
+      value: "insurances",
+      children: (
+        <FinanceItemsSummary>
+          <InsurancesSummary></InsurancesSummary> 
+        </FinanceItemsSummary>
+      )
+    })
+  }
+
   return (
-    <Fragment>
-      <ChatBot></ChatBot>
-      {
-        (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) ? 
-        <div className="empty-dashboard-container">
-          <h2>Nothing yet in the dashboard, track some finance to get started!</h2>
-        </div>
-        :
-        <div className="accounts-summary-dashboard-container">
-          {
-            expenses.length !== 0 ? 
-            <Fragment>
-              <ExpensesSummary></ExpensesSummary> 
-            </Fragment>
-            : null
-          }
+    <DashboardContainer>
+      <ItemTabs tabList={ tabList } panelList={ panelList }></ItemTabs>
+    </DashboardContainer>
+  )
 
-          {
-            insurances.length !== 0 ? 
-            <Fragment>
-              <InsurancesSummary></InsurancesSummary> 
-            </Fragment>
-            : null
-          }
+  // return (
+  //   <Fragment>
+  //     <ChatBot></ChatBot>
+  //     {
+  //       (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) ? 
+  //       <div className="empty-dashboard-container">
+  //         <h2>Nothing yet in the dashboard, track some finance to get started!</h2>
+  //       </div>
+  //       :
+  //       <div className="accounts-summary-dashboard-container">
+  //         {
+  //           expenses.length !== 0 ? 
+  //           <Fragment>
+  //             <ExpensesSummary></ExpensesSummary> 
+  //           </Fragment>
+  //           : null
+  //         }
+
+  //         {
+  //           insurances.length !== 0 ? 
+  //           <Fragment>
+  //             <InsurancesSummary></InsurancesSummary> 
+  //           </Fragment>
+  //           : null
+  //         }
           
-          {/* <h1>Summary</h1> */}
+  //         {/* <h1>Summary</h1> */}
 
-          <div className="summary-dashboard-container">
-            {
-              bankingAccounts.length !== 0 && 
-              <div className="summary-dashboard-banking-container">
-                <h4>{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</h4>
-                <h4>{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</h4>
-                <h4>{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</h4>
-              </div>
-            }
-            {
-              investments.length !== 0 &&
-              <div className="summary-dashboard-investments-container">
-                <h4>{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance}`}</h4>
-                <h4>{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution}`}</h4>
-                <h4>{`Total Interest - $${summaries.investmentsSummary.totalAllInterest}`}</h4>
-              </div>
-            }
-            {
-              savingsAccounts.length !== 0 &&
-              <div className="summary-dashboard-savings-container">
-                <h4>{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance}`}</h4>
-                <h4>{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution}`}</h4>
-                <h4>{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest}`}</h4>
-              </div>
-            }
-          </div>
+  //         <div className="summary-dashboard-container">
+  //           {
+  //             bankingAccounts.length !== 0 && 
+  //             <div className="summary-dashboard-banking-container">
+  //               <h4>{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance}`}</h4>
+  //               <h4>{`Total In - $${summaries.bankingSummary.totalAllBankingIn}`}</h4>
+  //               <h4>{`Total Out - $${summaries.bankingSummary.totalAllBankingOut}`}</h4>
+  //             </div>
+  //           }
+  //           {
+  //             investments.length !== 0 &&
+  //             <div className="summary-dashboard-investments-container">
+  //               <h4>{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance}`}</h4>
+  //               <h4>{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution}`}</h4>
+  //               <h4>{`Total Interest - $${summaries.investmentsSummary.totalAllInterest}`}</h4>
+  //             </div>
+  //           }
+  //           {
+  //             savingsAccounts.length !== 0 &&
+  //             <div className="summary-dashboard-savings-container">
+  //               <h4>{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance}`}</h4>
+  //               <h4>{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution}`}</h4>
+  //               <h4>{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest}`}</h4>
+  //             </div>
+  //           }
+  //         </div>
 
-          <div className="dashboard-accounts-summary-container">
+  //         <div className="dashboard-accounts-summary-container">
             
-            {
-              bankingAccounts.length !== 0 && <BankingSummary></BankingSummary>
-            }
-            {
-              investments.length !== 0 && <InvestmentsSummary></InvestmentsSummary>
-            }
-            {
-              savingsAccounts.length !== 0 && <SavingsSummary></SavingsSummary>
-            }
-          </div>
+  //           {
+  //             bankingAccounts.length !== 0 && <BankingSummary></BankingSummary>
+  //           }
+  //           {
+  //             investments.length !== 0 && <InvestmentsSummary></InvestmentsSummary>
+  //           }
+  //           {
+  //             savingsAccounts.length !== 0 && <SavingsSummary></SavingsSummary>
+  //           }
+  //         </div>
             
-        </div>
-      }
-    </Fragment>
-  );
+  //       </div>
+  //     }
+  //   </Fragment>
+  // );
 };
 
 export default Summary;
