@@ -27,7 +27,7 @@ const ExpensesSummary = () => {
     <ExpensesSummaryDashboardContainer>
       <ScheduleCalendar></ScheduleCalendar>
       {
-        selectedExpensesDate && scheduledExpensesView ?
+        scheduledExpensesView ?
         <ScheduleDayInfo></ScheduleDayInfo> : null
       }
 

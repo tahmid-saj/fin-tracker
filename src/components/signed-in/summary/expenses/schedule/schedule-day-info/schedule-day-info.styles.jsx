@@ -3,7 +3,7 @@ import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants"
 
 export const ExpensesScheduleDayInfo = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   /* padding: 2% 2% 2% 2%; */
   padding: 2% 2% 0.5% 2%;
 
