@@ -3,18 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { transferToBankingAccount } from "../../../../store/signed-out/banking/banking.action"
 
-import "./transfer-money.styles.scss";
+import "./transfer-money.styles.jsx";
+import { TransferMoneyContainer } from "./transfer-money.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
+import { Typography } from "@mui/material";
 
-// import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
 
 const defaultFormFields = {
   transferTo: "",
   amount: "",
   reason: "",
 };
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.bankingActions.transfer,
+  width: COMMON_SPACING.bankingActions.width
+}
 
 const TransferMoney = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -30,7 +38,7 @@ const TransferMoney = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(transferToBankingAccount(bankingAccounts, financeItemInfo, formFields.transferTo, formFields.amount, formFields.reason))
+    dispatch(transferToBankingAccount(bankingAccounts, financeItemInfo.name, formFields.transferTo, formFields.amount, formFields.reason))
 
     resetFormFields();
   };
@@ -42,24 +50,32 @@ const TransferMoney = ({ financeItemInfo }) => {
   };
 
   return (
-    <div className="transfer-money-container">
-      <h3>Transfer Money</h3>
+    <TransferMoneyContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="body1">Transfer Money</Typography>
 
-      <form onSubmit={ handleSubmit }>
-        <FormInput label="Transfer to" type="text" required onChange={ handleChange }
-                          name="transferTo" value={ formFields.transferTo }></FormInput>
+        <form onSubmit={ handleSubmit }>
+          <FormInput label="Transfer to" type="text" required onChange={ handleChange }
+                            name="transferTo" value={ formFields.transferTo }></FormInput>
 
-        <FormInput label="Amount" type="text" required onChange={ handleChange }
-                          name="amount" value={ formFields.amount }></FormInput>
+          <FormInput label="Amount" type="text" required onChange={ handleChange }
+                            name="amount" value={ formFields.amount }></FormInput>
 
-        <FormInput label="For" type="text" onChange={ handleChange }
-                          name="reason" value={ formFields.reason }></FormInput>
-        
-        <div className="buttons-container">
-          <Button type="submit">Transfer</Button>
-        </div>
-      </form>
-    </div>
+          <FormInput label="For" type="text" onChange={ handleChange }
+                            name="reason" value={ formFields.reason }></FormInput>
+          
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Transfer</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </SimplePaper>
+    </TransferMoneyContainer>
   );
 };
 

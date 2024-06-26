@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
+import "./bank-accounts.styles.jsx";
+import { BankAccountsContainer } from "./bank-accounts.styles.jsx";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import BankAccountForm from "../bank-account-form/bank-account-form.component";
 
-import "./bank-accounts.styles.scss";
-
-import CreateAccount from "../create-account/create-account.component";
-
-const BankAccounts = ({ label }) => {
+const BankAccounts = () => {
+  const bankingAccounts = useSelector(selectBankingAccounts)
 
   return (
-    <div>
-      <CreateAccount label={ label }></CreateAccount>
-    </div>
+    <BankAccountsContainer>
+      {
+        bankingAccounts.map((account, index) => {
+          return (
+            <BankAccountForm key={ index } financeItemInfo={ account }></BankAccountForm>
+          )
+        })
+      }
+    </BankAccountsContainer>
   );
 };
 

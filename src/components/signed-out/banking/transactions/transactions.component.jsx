@@ -1,7 +1,8 @@
 import { useContext } from "react";
 
 import Transaction from "../transaction/transaction.component";
-import "./transactions.styles.scss";
+import "./transactions.styles.jsx";
+import { TransactionsContainer } from "./transactions.styles.jsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useSelector } from "react-redux";
@@ -16,24 +17,21 @@ let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const Transactions = ({ financeItemInfo }) => {
   const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const bankingAccount = bankingAccounts.find(account => account.name === financeItemInfo);
+  const bankingAccount = bankingAccounts.find(account => account.name === financeItemInfo.name);
   const transactions = bankingAccount.transactions;
 
   return (
-    <div className="transactions-container">
-
-      <div className="transactions-scroll-container">
-        {
-          transactions.map(({ amount, type, reason, addToExpenses }, index) => {
-              return bankingAccounts.length !== 0 && transactions.length !== 0 &&
-              <Transaction key={ index } date={ currentDate } 
-                            amount={ amount } type={ type } reason={ reason }
-                            addToExpenses={ addToExpenses }
-                            ></Transaction>
-          })
-        }
-      </div>
-    </div>
+    <TransactionsContainer>
+      {
+        transactions.map(({ amount, type, reason, addToExpenses }, index) => {
+            return bankingAccounts.length !== 0 && transactions.length !== 0 &&
+            <Transaction key={ index } date={ currentDate } 
+                          amount={ amount } type={ type } reason={ reason }
+                          addToExpenses={ addToExpenses }
+                          ></Transaction>
+        })
+      }
+    </TransactionsContainer>
   );
 };
 
