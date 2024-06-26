@@ -207,9 +207,11 @@ const Summary = () => {
       children: (
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
-            <Typography variant="body1">{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance}`}</Typography>
-            <Typography variant="body1">{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution}`}</Typography>
-            <Typography variant="body1">{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest}`}</Typography>
+            <SimplePaper styles={ paperStyles }>
+              <Typography variant="body1">{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+            </SimplePaper>
           </FinanceItemsSummaryInfo>
           <SavingsSummary/>
         </FinanceItemsSummary>

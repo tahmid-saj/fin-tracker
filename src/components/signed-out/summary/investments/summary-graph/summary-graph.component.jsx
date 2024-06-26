@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../../../store/signed-out/investments/investments.selector";
 import { getInvestmentInfo } from "../../../../../store/signed-out/investments/investments.action";
 
-import { TRANSACTION_TYPES } from "../../../../../utils/constants/banking.constants";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
 

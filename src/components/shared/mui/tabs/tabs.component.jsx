@@ -21,7 +21,7 @@ export default function ItemTabs({ outerBoxStyles, innerBoxStyles, tabList, pane
         <Box sx={{ borderBottom: 1, borderColor: 'divider', 
           display: "flex", justifyContent: "center", alignItems: "center", ...innerBoxStyles }}>
           <Tabs value={ value } onChange={ handleChange }
-          textColor="primary" indicatorColor="primary" aria-label="item tabs">
+          textColor="primary" indicatorColor="primary" variant="scrollable" aria-label="item tabs">
             {
               tabList.map((tab) => {
                 return (
