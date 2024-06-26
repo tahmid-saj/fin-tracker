@@ -67,7 +67,7 @@ const ExpensesTable = () => {
 
   return (
     <div className="container">
-    <SimplePaper styles={ paperStyles }>
+      <SimplePaper styles={ paperStyles }>
         <ExpensesTableContainer>
           <div className="ag-theme-quartz-dark"
           style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
@@ -83,8 +83,8 @@ const ExpensesTable = () => {
             </div>
           </div>
         </div>
-    </SimplePaper>
-      </div>
+      </SimplePaper>
+    </div>
   )
 }
 

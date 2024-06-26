@@ -1,24 +1,35 @@
-import "./expenses-summary.styles.scss"
+import "./expenses-summary.styles.jsx"
+import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.jsx"
 import { useContext } from "react"
 import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
+import { Typography } from "@mui/material"
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["1"],
+  width: COMMON_SPACING.summaryInfoCard.width
+}
 
 const ExpensesSummary = () => {
-  const { expensesView, filterConditions, expensesSummary } = useContext(ExpensesContext)
+  const { expensesView, expensesSummary } = useContext(ExpensesContext)
 
   const allExpensesCategories = new Set()
-  const filteredSpend = expensesView.reduce((spend, expense) => {
+  const _ = expensesView.reduce((spend, expense) => {
     allExpensesCategories.add(expense.expenseCategory)
     return spend + expense.expenseCost
   }, 0)
 
   return (
-    <div className="expenses-summary-container">
-      <h3>{ `Total spend: ${expensesSummary.currentAllExpensesCost}` }</h3>
-      <h3>{ `Filtered spend: ${filteredSpend}` }</h3>
-      <h3>{ `Filterd dates: ${filterConditions !== null && filterConditions.expensesStartDate !== '' ? filterConditions.expensesStartDate : ''} 
-        - ${filterConditions !== null && filterConditions.expensesEndDate !== '' ? filterConditions.expensesEndDate : 'Today'}` }</h3>
-      <h3>{ `All categories: ${expensesSummary.currentAllExpensesCategories ? [ ...allExpensesCategories.keys() ] : ''}` }</h3>
-    </div>
+    <ExpensesSummaryInfoContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">{ `Total spend: $${expensesSummary.currentAllExpensesCost}` }</Typography>
+        {/* <Typography variant="h6">{ `Filtered spend: ${filteredSpend}` }</Typography>
+        <Typography variant="h6">{ `Filterd dates: ${filterConditions !== null && filterConditions.expensesStartDate !== '' ? filterConditions.expensesStartDate : ''} 
+          - ${filterConditions !== null && filterConditions.expensesEndDate !== '' ? filterConditions.expensesEndDate : 'Today'}` }</Typography> */}
+        <Typography variant="body2">{ `All categories: ${expensesSummary.currentAllExpensesCategories ? [ ...allExpensesCategories.keys() ] : ''}` }</Typography>
+      </SimplePaper>
+    </ExpensesSummaryInfoContainer>
   )
 }
 
