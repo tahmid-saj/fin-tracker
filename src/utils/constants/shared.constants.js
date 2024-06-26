@@ -254,6 +254,9 @@ export const COMMON_SPACING = {
   filter: {
     width: 375
   },
+  addForm: {
+    width: 375
+  },
   pieChart: {
     width: 375,
     height: 375
@@ -272,5 +275,8 @@ export const COMMON_SPACING = {
   },
   filterTable: {
     height: 650
+  },
+  tablePaper: {
+    height: 500
   }
 }

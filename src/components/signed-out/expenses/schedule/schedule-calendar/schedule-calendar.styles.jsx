@@ -18,6 +18,6 @@ export const ExpensesCalendarContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1%;
-  margin: 1% 1% 0% 1%;
-  background-color: ${COLOR_CODES.general["0"]};
+  margin: 2% 1% 0% 1%;
+  background-color: ${COLOR_CODES.general["5"]};
 `

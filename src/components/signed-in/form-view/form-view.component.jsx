@@ -13,7 +13,7 @@ import ExpensesForm from "../expenses/expenses-form/expenses-form.component";
 
 const FormView = ({ financeItemLabel, financeItemInfo}) => {
   return (
-    <div className="form-view-container">
+    <div>
       { financeItemLabel === FINANCE_ITEM_TYPES.expenses &&
         <ExpensesForm></ExpensesForm> }
 
