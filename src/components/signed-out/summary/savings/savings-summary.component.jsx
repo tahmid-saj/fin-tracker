@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
-import "./savings-summary.styles.scss";
+import "./savings-summary.styles.jsx";
+import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.jsx";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
@@ -11,25 +12,27 @@ import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savi
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphSavingsAccount from "../../savings/summary-graph/summary-graph.component";
 
+import FinanceSummary from "./summary-graph/finance-summary.component.jsx";
+import { Typography } from "@mui/material";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
+
 const SavingsSummary = () => {
   // const { savingsAccounts } = useContext(SavingsContext);
   const savingsAccounts = useSelector(selectSavingsAccounts)
 
   return (
-    <div className="savings-summary-container">
-      <h2 style={{color: "black"}}><strong>Savings</strong></h2>
+    <SavingsSummaryContainer>
+      <Typography sx={{ display: "flex", justifyContent: "center", color: COLOR_CODES.general["0"] }} variant="h6">Savings Accounts</Typography>
         {
-          savingsAccounts.map((account, index) => {
+          savingsAccounts.map((savingsAccount, index) => {
             return (
-              <div className="savings-summary-graph-container" key={ index }>
-                <FinanceTrackerItemSummary financeTrackerItemInfo={ account }
-                                                financeItemType={ FINANCE_ITEM_TYPES.savings }></FinanceTrackerItemSummary>
-                <SummaryGraphSavingsAccount financeItemInfo={ account }></SummaryGraphSavingsAccount>
-              </div>
+              <SavingsAccountSummaryContainer key={ index }>
+                <FinanceSummary financeItemInfo={ savingsAccount }></FinanceSummary>
+              </SavingsAccountSummaryContainer>
             )
           })
         }
-    </div>
+    </SavingsSummaryContainer>
   );
 };
 
