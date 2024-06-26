@@ -1,4 +1,5 @@
-import "./insurance-table.styles.scss"
+import "./insurance-table.styles.jsx"
+import { InsuranceTableContainer } from "./insurance-table.styles.jsx";
 
 import { useState, useContext, useCallback, useRef } from "react";
 
@@ -9,6 +10,13 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 import Button from "../../../shared/button/button.component";
 
 import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context";
+
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["6"],
+}
 
 const InsuranceTable = () => {
   const { insurancesView, removeInsurance, clearInsuranceFilter } = useContext(InsuranceContext)
@@ -53,14 +61,24 @@ const InsuranceTable = () => {
     }
 
   return (
-    <div className="ag-theme-quartz-dark insurances-table" // applying the grid theme
-      style={{ height: 500, width: '100%' }} // the grid will fill the size of the parent container
-      >
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
-      <div className="remove-insurance-selected-button buttons-container">
-        <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
-        <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
-      </div>
+    <div className="container">
+      <SimplePaper styles={ paperStyles }>
+        <InsuranceTableContainer>
+          <div className="ag-theme-quartz-dark"
+            style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+            <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
+          </div>
+        </InsuranceTableContainer>
+
+        <div className="row">
+          <div className="col-12">
+            <div className="btn-group flex-wrap">
+              <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
+              <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
+            </div>
+          </div>
+        </div>
+      </SimplePaper>
     </div>
   )
 }
