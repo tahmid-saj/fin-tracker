@@ -9,13 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { createBankingAccount } from "../../../../store/signed-out/banking/banking.action";
 
-import "./create-account.styles.scss";
+import "./create-account.styles.jsx";
+import { CreateAccountContainer } from "./create-account.styles.jsx";
 
 const defaultFormFields = {
   bankAccountName: ""
 };
 
-const CreateAccount = ({ label }) => {
+const CreateAccount = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   // const { bankingAccounts, createBankingAccount } = useContext(BankingContext);
   const bankingAccounts = useSelector(selectBankingAccounts)
@@ -45,20 +46,21 @@ const CreateAccount = ({ label }) => {
   };
 
   return (
-    <div>
-      <FinanceTrackerItems label={ label }></FinanceTrackerItems>
+    <CreateAccountContainer onSubmit={ (e) => handleSubmit(e) }>
+      <div className="container">
+      <FormInput label="Account name" type="text" required
+                onChange={ (e) => handleChange(e) }
+                name="bankAccountName" value={ formFields.bankAccountName }></FormInput>
 
-      <form onSubmit={ (e) => handleSubmit(e) } className="create-account-container">
-        <FormInput label="Account name" type="text" required
-                  onChange={ (e) => handleChange(e) }
-                  name="bankAccountName" value={ formFields.bankAccountName }></FormInput>
-
-        <div className="buttons-container">
-          <Button type="submit">Create Account</Button>
+        <div className="row">
+          <div className="col-12">
+            <div className="btn-group flex-wrap">
+              <Button type="submit">Create Account</Button>
+            </div>
+          </div>
         </div>
-
-      </form>
-    </div>
+      </div>
+    </CreateAccountContainer>
   );
 };
 
