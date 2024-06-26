@@ -1,8 +1,17 @@
-import "./insurance-pie-chart.styles.scss"
+import "./insurance-pie-chart.styles.jsx"
+import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.jsx"
 import ReactApexChart from "react-apexcharts"
 
 import { useSelector } from "react-redux"
 import { selectInsurancePaymentsView } from "../../../../store/signed-out/insurance/insurance.selector"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { Typography } from "@mui/material"
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["1"],
+  width: COMMON_SPACING.pieChart.width,
+}
 
 const InsurancePieChart = () => {
   const insurancePaymentsView = useSelector(selectInsurancePaymentsView)
@@ -21,15 +30,11 @@ const InsurancePieChart = () => {
   const options = {
     chart: {
       type: 'donut',
-      height: 600,
     },
     labels: [ ...insuranceCategoryPayments.keys() ],
     responsive: [{
       breakpoint: 50,
       options: {
-        chart: {
-          height: 600
-        },
         legend: {
           position: 'bottom'
         }
@@ -38,9 +43,13 @@ const InsurancePieChart = () => {
   }
 
   return (
-    <div className="insurance-pie-chart">
-      <ReactApexChart options={ options } series={ series } type="donut" height={ 600 } width={ 650 }/>
-    </div>
+    <InsuranceGraphContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} variant="h6">Filtered categories</Typography>
+        <ReactApexChart options={ options } series={ series } type="donut" 
+          height={ COMMON_SPACING.pieChart.height } width={ COMMON_SPACING.pieChart.width }/>
+      </SimplePaper>
+    </InsuranceGraphContainer>
   )
 }
 

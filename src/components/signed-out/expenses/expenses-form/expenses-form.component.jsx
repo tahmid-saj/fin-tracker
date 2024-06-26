@@ -21,7 +21,6 @@ const defaultFormFields = {
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
-  width: COMMON_SPACING.addForm.width
 }
 
 const ExpensesForm = () => {
@@ -78,7 +77,8 @@ const ExpensesForm = () => {
               <div className="row">
                 <div className="col-12">
                   <div className="btn-group flex-wrap">
-                    <Button type="submit">Add Expense</Button>
+                    <Button type="submit">Add</Button>
+                    <Button type="button" onClick={ resetFormFields }>Clear</Button>
                   </div>
                 </div>
               </div>

@@ -30,7 +30,7 @@ export const ExpensesFilterInfo = () => {
   return (
     <SimplePaper styles={ paperStyles }>
       <ExpensesFilterInfoContainer>
-        <Typography variant="h6">{ `Filtered spend: $${filteredSpend}` }</Typography>
+        <Typography variant="h6">{ `Filtered spend: $${filteredSpend.toFixed(2)}` }</Typography>
         <Typography variant="body1">{ `Filtered dates: ${filterConditions !== null && filterConditions.expensesStartDate !== '' ? filterConditions.expensesStartDate : ''} 
           - ${filterConditions !== null && filterConditions.expensesEndDate !== '' ? filterConditions.expensesEndDate : 'Today'}` }</Typography>
       </ExpensesFilterInfoContainer>
