@@ -1,16 +1,25 @@
 import { useState, useContext } from "react";
 
-import "./deposit.styles.scss";
+import "./deposit.styles.jsx";
+import { DepositContainer } from "./deposit.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 
 import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { Typography } from "@mui/material";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
 
 const defaultFormFields = {
   amount: "",
   reason: "",
 };
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.bankingActions.deposit,
+  width: COMMON_SPACING.bankingActions.width
+}
 
 const Deposit = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -24,7 +33,7 @@ const Deposit = ({ financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    depositToBankingAccount(financeItemInfo, formFields.amount, formFields.reason);
+    depositToBankingAccount(financeItemInfo.name, formFields.amount, formFields.reason);
 
     resetFormFields();
   };
@@ -36,21 +45,29 @@ const Deposit = ({ financeItemInfo }) => {
   };
 
   return (
-    <div className="deposit-container">
-      <h3>Deposit</h3>
+    <DepositContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="body1">Deposit</Typography>
 
-      <form onSubmit={ handleSubmit }>
-        <FormInput label="Amount" type="text" required onChange={ handleChange }
-                          name="amount" value={ formFields.amount }></FormInput>
+        <form onSubmit={ handleSubmit }>
+          <FormInput label="Amount" type="text" required onChange={ handleChange }
+                            name="amount" value={ formFields.amount }></FormInput>
 
-        <FormInput label="For" type="text" onChange={ handleChange }
-                          name="reason" value={ formFields.reason }></FormInput>
-        
-        <div className="buttons-container">
-          <Button type="submit">Deposit</Button>
-        </div>
-      </form>
-    </div>
+          <FormInput label="For" type="text" onChange={ handleChange }
+                            name="reason" value={ formFields.reason }></FormInput>
+          
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Deposit</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </SimplePaper>
+    </DepositContainer>
   );
 };
 

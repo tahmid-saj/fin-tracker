@@ -25,7 +25,7 @@ const TransactionInfo = ({ date, amount, type, reason, addToExpenses = false }) 
         (type === TRANSACTION_TYPES.withdrawalTransfer) && 
         <Typography variant="body1">{`TRANSFER - WITHDRAWAL on ${date}`}</Typography>
       }
-      <Typography variant="body2">{`$${amount}`}</Typography>
+      <Typography variant="body2">{`$${amount.toFixed(2)}`}</Typography>
 
       {
         (reason !== undefined && reason !== null && reason !== "") &&

@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 
-import "./close-account.styless.scss";
+import "./close-account.styles.jsx";
+import { CloseAccountContainer } from "./close-account.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -8,10 +9,18 @@ import Button from "../../../shared/button/button.component";
 import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
 
 import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
+import { Typography } from "@mui/material";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
 
 const defaultFormFields = {
   confirmDelete: ""
 };
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.bankingActions.close,
+  width: COMMON_SPACING.bankingActions.width
+}
 
 const CloseAccount = ({ financeItemInfo }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -27,7 +36,7 @@ const CloseAccount = ({ financeItemInfo }) => {
     console.log(formFields.confirmDelete);
 
     if (formFields.confirmDelete === PERMANENTLY_DELETE) {
-      closeBankingAccount(financeItemInfo);
+      closeBankingAccount(financeItemInfo.name);
     } else {
       return;
     }
@@ -42,19 +51,27 @@ const CloseAccount = ({ financeItemInfo }) => {
   };
 
   return (
-    <div className="close-account-container">
-      <h3>Close Account</h3>
-      <h6>Enter 'permanently delete'</h6>
+    <CloseAccountContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="body1">Close Account</Typography>
+        <Typography variant="subtitle2">Enter 'permanently delete'</Typography>
 
-      <form onSubmit={ handleSubmit }>
-        <FormInput type="text" required onChange={ handleChange }
-                          name="confirmDelete" value={ formFields.confirmDelete }></FormInput>
-        
-        <div className="buttons-container">
-          <Button type="submit">Close</Button>
-        </div>
-      </form>
-    </div>
+        <form onSubmit={ handleSubmit }>
+          <FormInput type="text" required onChange={ handleChange }
+                            name="confirmDelete" value={ formFields.confirmDelete }></FormInput>
+
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Close</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </SimplePaper>
+    </CloseAccountContainer>
   );
 };
 

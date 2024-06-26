@@ -28,10 +28,10 @@ const Summary = ({ financeItemInfo }) => {
   return (
     <BankAccountSummary>
       <SimplePaper styles={ paperStyles }>
-        <Typography variant="h6">{`Current balance   `}{`$${bankingAccount.currentBalance}`}</Typography>
+        <Typography variant="h6">{`Current balance   `}{`$${bankingAccount.currentBalance.toFixed(2)}`}</Typography>
         <Typography variant="body1">{`As of ${currentDate}`}</Typography>
-        <Typography variant="body1">{`IN : $${bankingAccount.totalIn}`}</Typography>
-        <Typography variant="body1">{`OUT : $${bankingAccount.totalOut}`}</Typography>
+        <Typography variant="body1">{`IN : $${bankingAccount.totalIn.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`OUT : $${bankingAccount.totalOut.toFixed(2)}`}</Typography>
       </SimplePaper>
     </BankAccountSummary>
   );
