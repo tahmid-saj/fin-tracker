@@ -28,7 +28,7 @@ const ExpensesSummary = () => {
   return (
     <ExpensesSummaryInfoContainer>
       <SimplePaper styles={ paperStyles }>
-        <Typography variant="h6">{ `Total spend: ${expensesSummary.currentAllExpensesCost}` }</Typography>
+        <Typography variant="h6">{ `Total spend: $${expensesSummary.currentAllExpensesCost}` }</Typography>
         {/* <Typography variant="h6">{ `Filtered spend: ${filteredSpend}` }</Typography>
         <Typography variant="h6">{ `Filterd dates: ${filterConditions !== null && filterConditions.expensesStartDate !== '' ? filterConditions.expensesStartDate : ''} 
           - ${filterConditions !== null && filterConditions.expensesEndDate !== '' ? filterConditions.expensesEndDate : 'Today'}` }</Typography> */}

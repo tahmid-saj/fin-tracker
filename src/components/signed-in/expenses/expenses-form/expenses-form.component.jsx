@@ -1,14 +1,23 @@
 import { useContext, useState } from "react"
-import "./expenses-form.styles.scss"
+import "./expenses-form.styles.jsx"
+import { AddExpenseContainer, AddExpenseFormContainer } from "./expenses-form.styles.jsx"
 import FormInput from "../../../shared/form-input/form-input.component"
 import Button from "../../../shared/button/button.component"
 import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
+import { Typography } from "@mui/material"
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
 
 const defaultFormFields = {
   expenseFor: "",
   expenseCost: "",
   expenseDate: "",
   expenseCategory: ""
+}
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  width: COMMON_SPACING.addForm.width
 }
 
 const ExpensesForm = () => {
@@ -39,30 +48,38 @@ const ExpensesForm = () => {
   }
 
   return (
-    <div className="expenses-form-container">
-      <div className="add-expense-container">
-        <h3>Add Expense</h3>
+    <AddExpenseContainer>
+      <AddExpenseFormContainer>
+        <SimplePaper styles={ paperStyles }>
+          <Typography variant="h6">Add Expense</Typography>
 
-        <form class="add-expense-form-container" onSubmit={ (e) => handleSubmit(e) }>
-          <FormInput label="Expense for" type="text" required onChange={ handleChange }
-                    name="expenseFor" value={ formFields.expenseFor }></FormInput>
-          
-          <FormInput label="Cost" type="text" required onChange={ handleChange }
-                    name="expenseCost" value={ formFields.expenseCost }></FormInput>
-          
-          <h5>Date</h5>
-          <FormInput type="date" required onChange={ handleChange }
-                    name="expenseDate" value={ formFields.expenseDate }></FormInput>
-          
-          <FormInput label="Category" type="text" required onChange={ handleChange }
-                    name="expenseCategory" value={ formFields.expenseCategory }></FormInput>
-          
-          <div className="buttons-container">
-            <Button type="submit">Add Expense</Button>
-          </div>
-        </form>
-      </div>
-    </div>
+          <form onSubmit={ (e) => handleSubmit(e) }>
+            <FormInput label="Expense for" type="text" required onChange={ handleChange }
+                      name="expenseFor" value={ formFields.expenseFor }></FormInput>
+            
+            <FormInput label="Cost" type="text" required onChange={ handleChange }
+                      name="expenseCost" value={ formFields.expenseCost }></FormInput>
+            
+            <Typography paragraph>Date</Typography>
+            <FormInput type="date" required onChange={ handleChange }
+                      name="expenseDate" value={ formFields.expenseDate }></FormInput>
+            
+            <FormInput label="Category" type="text" required onChange={ handleChange }
+                      name="expenseCategory" value={ formFields.expenseCategory }></FormInput>
+            
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="btn-group flex-wrap">
+                    <Button type="submit">Add Expense</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </SimplePaper>
+      </AddExpenseFormContainer>
+    </AddExpenseContainer>
   )
 }
 
