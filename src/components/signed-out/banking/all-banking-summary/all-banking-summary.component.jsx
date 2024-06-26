@@ -20,9 +20,9 @@ const AllBankingSummary = () => {
   return (
     <AllBankingSummaryContainer>
       <SimplePaper styles={ paperStyles }>
-        <Typography variant="h6">{`Total Banking Balance - $${bankingSummary.currentAllBankingBalance}`}</Typography>
-        <Typography variant="body1">{`Total In - $${bankingSummary.totalAllBankingIn}`}</Typography>
-        <Typography variant="body1">{`Total Out - $${bankingSummary.totalAllBankingOut}`}</Typography>
+        <Typography variant="h6">{`Total Banking Balance - $${bankingSummary.currentAllBankingBalance.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`Total In - $${bankingSummary.totalAllBankingIn.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`Total Out - $${bankingSummary.totalAllBankingOut.toFixed(2)}`}</Typography>
       </SimplePaper>
     </AllBankingSummaryContainer>
   )

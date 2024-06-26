@@ -1,15 +1,25 @@
 import React, { useContext } from "react";
 
-import "./bank-accounts.styles.scss";
+import "./bank-accounts.styles.jsx";
+import { BankAccountsContainer } from "./bank-accounts.styles.jsx";
 
 import CreateAccount from "../create-account/create-account.component";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import BankAccountForm from "../bank-account-form/bank-account-form.component";
 
-const BankAccounts = ({ label }) => {
+const BankAccounts = () => {
+  const { bankingAccounts } = useContext(BankingContext)
 
   return (
-    <div>
-      <CreateAccount label={ label }></CreateAccount>
-    </div>
+    <BankAccountsContainer>
+      {
+        bankingAccounts.map((account, index) => {
+          return (
+            <BankAccountForm key={ index } financeItemInfo={ account }></BankAccountForm>
+          )
+        })
+      }
+    </BankAccountsContainer>
   );
 };
 
