@@ -228,7 +228,13 @@ export const COLOR_CODES = {
     "6": "#526D82",
     "7": "#27374D",
   },
-  background: "#27374D"
+  background: "#27374D",
+  bankingActions: {
+    deposit: "#98D8AA",
+    withdraw: "#F6D186",
+    transfer: "#F6D186",
+    close: "#E99497"
+  }
 }
 
 export const COMMON_SPACING = {
@@ -278,5 +284,8 @@ export const COMMON_SPACING = {
   },
   tablePaper: {
     height: 500
+  },
+  bankingActions: {
+    width: 300
   }
 }
