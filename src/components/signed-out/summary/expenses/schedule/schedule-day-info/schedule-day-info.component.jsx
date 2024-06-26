@@ -9,7 +9,7 @@ import { selectScheduledExpensesView } from "../../../../../../store/signed-out/
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
-  width: COMMON_SPACING.calendarDayInfo.width
+  width: COMMON_SPACING.calendarDayInfo.width,
 }
 
 const ScheduleDayInfo = () => {

@@ -1,7 +1,9 @@
-import "./expenses-summary-graph.styles.scss"
+import "./expenses-summary-graph.styles.jsx"
+import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.jsx"
 import { Fragment, useContext } from "react"
 import ReactApexChart from "react-apexcharts"
 import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.js"
 
 const ExpensesSummaryGraph = () => {
   const { expensesSummary } = useContext(ExpensesContext)
@@ -26,15 +28,12 @@ const ExpensesSummaryGraph = () => {
   const options = {
     chart: {
       type: 'donut',
-      height: 600,
+      height: COMMON_SPACING.pieChart.height,
     },
     labels: [ ...expensesCategoryCosts.keys() ],
     responsive: [{
       breakpoint: 50,
       options: {
-        chart: {
-          height: 600
-        },
         legend: {
           position: 'bottom'
         }
@@ -43,9 +42,10 @@ const ExpensesSummaryGraph = () => {
   }
 
   return (
-    <div className="expenses-summary-graph-container">
-      <ReactApexChart options={ options } series={ series } type="donut" height={ 400 } width={ 450 }/>
-    </div>
+    <ExpensesSummaryGraphContainer>
+      <ReactApexChart options={ options } series={ series } type="donut" 
+        height={ COMMON_SPACING.pieChart.height } width={ COMMON_SPACING.pieChart.width }/>
+    </ExpensesSummaryGraphContainer>
   )
 }
 

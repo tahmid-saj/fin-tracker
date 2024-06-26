@@ -1,6 +1,7 @@
 import React, { useContext, Fragment } from "react";
 
-import "./investments-summary.styles.scss";
+import "./investments-summary.styles.jsx";
+import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.jsx"
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
@@ -8,25 +9,30 @@ import { InvestmentsContext } from "../../../../contexts/signed-in/investments/i
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component";
+import FinanceSummary from "./summary-graph/finance-summary.component.jsx";
+import { Typography } from "@mui/material";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
 
 const InvestmentsSummary = () => {
   const { investments } = useContext(InvestmentsContext);
 
   return (
-    <div className="investments-summary-container">
-      <h2 style={{color: "black"}}><strong>Investments</strong></h2>
+    <InvestmentsSummaryContainer>
+      <Typography sx={{ display: "flex", justifyContent: "center", color: COLOR_CODES.general["0"] }} variant="h6">Investments</Typography>
         {
           investments.map((investment, index) => {
             return (
-              <div className="investments-summary-graph-container" key={ index }>
-                <FinanceTrackerItemSummary financeTrackerItemInfo={ investment }
+              <InvestmentSummaryContainer key={ index }>
+                {/* <FinanceTrackerItemSummary financeTrackerItemInfo={ investment }
                                                 financeItemType={ FINANCE_ITEM_TYPES.investments }></FinanceTrackerItemSummary>
-                <SummaryGraphInvestment financeItemInfo={ investment }></SummaryGraphInvestment>
-              </div>
+                <SummaryGraphInvestment financeItemInfo={ investment }></SummaryGraphInvestment> */}
+
+                <FinanceSummary financeItemInfo={ investment }></FinanceSummary>
+              </InvestmentSummaryContainer>
             )
           })
         }
-    </div>
+    </InvestmentsSummaryContainer>
   );
 };
 
