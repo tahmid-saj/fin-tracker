@@ -70,7 +70,7 @@ const ExpensesTable = () => {
       <SimplePaper styles={ paperStyles }>
         <ExpensesTableContainer>
           <div className="ag-theme-quartz-dark"
-          style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+            style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
             <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
           </div>
         </ExpensesTableContainer>

@@ -1,5 +1,5 @@
-import "./insurance-table.styles.scss"
-
+import "./insurance-table.styles.jsx"
+import { InsuranceTableContainer } from "./insurance-table.styles.jsx";
 import { useState, useContext, useCallback, useRef } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
@@ -12,6 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectInsurances, selectInsurancesView } from "../../../../store/signed-out/insurance/insurance.selector";
 import { removeInsurance, clearInsuranceFilter } from "../../../../store/signed-out/insurance/insurance.action";
 import { alertAddedToExpenses, alertRemovedFromExpenses } from "../../../../utils/alerts/insurance.alerts";
+
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["6"],
+}
 
 const InsuranceTable = () => {
   const dispatch = useDispatch()
@@ -83,16 +90,24 @@ const InsuranceTable = () => {
   }, []);
 
   return (
-    <div className="ag-theme-quartz-dark insurances-table" // applying the grid theme
-      style={{ height: 500, width: '100%' }} // the grid will fill the size of the parent container
-      >
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }
-        // onRowSelected={ onRowSelected } onRowDataUpdated={ onDataRendered }
-      />
-      <div className="remove-insurance-selected-button buttons-container">
-        <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
-        <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
-      </div>
+    <div className="container">
+      <SimplePaper styles={ paperStyles }>
+        <InsuranceTableContainer>
+          <div className="ag-theme-quartz-dark"
+            style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+            <AgGridReact rowData={ rowData } columnDefs={ columnDefs } ref={ gridRef } rowSelection={ "multiple" }/>
+          </div>
+        </InsuranceTableContainer>
+
+        <div className="row">
+          <div className="col-12">
+            <div className="btn-group flex-wrap">
+              <Button onClick={ (e) => onRemoveSelected(e) }>Remove Selected</Button>
+              <Button type="button" onClick={ handleClearFilter }>Clear Filter</Button>
+            </div>
+          </div>
+        </div>
+      </SimplePaper>
     </div>
   )
 }
