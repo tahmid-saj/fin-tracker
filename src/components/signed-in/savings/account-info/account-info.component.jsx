@@ -1,10 +1,19 @@
 import { useContext } from "react";
 
-import "./account-info.styles.scss";
+import "./account-info.styles.jsx";
+import { AccountInfoContainer } from "./account-info.styles.jsx";
 
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
+import { Typography, Divider } from "@mui/material";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  width: COMMON_SPACING.financeItemInfo.width
+}
 
 const AccountInfo = ({ financeItemInfo }) => {
   const { getSavingsAccountInfo } = useContext(SavingsContext);
@@ -29,14 +38,27 @@ const AccountInfo = ({ financeItemInfo }) => {
   }
 
   return (
-    <div className="account-info-container">
-      <h5>{`${savingsAccountInfo.savingsAccountName}`}</h5>
-      <p>{`Monthly contribution of $${Number(savingsAccountInfo.monthlyContribution).toFixed(2)}`}</p> 
-      <p>{`a period of ${Number(savingsAccountInfo.contributionPeriod).toFixed(2)} ${savingsAccountInfo.contributionInterval}`}</p>
-      <p>{`APY ${Number(savingsAccountInfo.apy).toFixed(2)}%`}</p>
-      <p>{`Start date - ${savingsAccountInfo.startDate}`}</p>
-      <p>{`End date - ${endDate}`}</p>
-    </div>
+    <AccountInfoContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">{`${savingsAccountInfo.savingsAccountName}`}</Typography>
+
+        <br/>
+        <Divider/>
+        <br/>
+
+
+        <Typography variant="body1">{`Monthly contribution of $${Number(savingsAccountInfo.monthlyContribution).toFixed(2)}`}</Typography> 
+        <Typography variant="body1">{`a period of ${Number(savingsAccountInfo.contributionPeriod).toFixed(2)} ${savingsAccountInfo.contributionInterval}`}</Typography>
+        <Typography variant="body1">{`APY ${Number(savingsAccountInfo.apy).toFixed(2)}%`}</Typography>
+        
+        <br/>
+        <Divider/>
+        <br/>
+
+        <Typography variant="body1">{`Start date - ${year}-${month < 10 ? '0' : ''}${month}-${day}`}</Typography>
+        <Typography variant="body1">{`End date - ${endDate}`}</Typography>
+      </SimplePaper>
+    </AccountInfoContainer>
   );
 };
 

@@ -1,8 +1,17 @@
 import { useContext } from "react";
 
-import "./summary.styles.scss";
+import "./summary.styles.jsx";
+import { SummaryContainer } from "./summary.styles.jsx";
 
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+import { Typography, Divider } from "@mui/material";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  width: COMMON_SPACING.financeItemInfo.width
+}
 
 export const Summary = ({ financeItemInfo }) => {
   
@@ -11,13 +20,20 @@ export const Summary = ({ financeItemInfo }) => {
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
 
   return (
-    <div className="summary-container">
-      <p>{`Total savings $${Number(savingsAccountInfo.totalSavings).toFixed(2)}`}</p>
-      <p>{`Initial deposit $${Number(savingsAccountInfo.initialDeposit).toFixed(2)}`}</p>
-      <p>{`Total contribution $${Number(savingsAccountInfo.totalContribution).toFixed(2)}`}</p>
-      <p>{`Total interest $${Number(savingsAccountInfo.totalInterest).toFixed(2)}`}</p>
-    </div>
+    <SummaryContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">{`Total savings $${Number(savingsAccountInfo.totalSavings).toFixed(2)}`}</Typography>
+
+        <br/>
+        <Divider/>
+        <br/>
+
+        <Typography variant="body1">{`Initial deposit $${Number(savingsAccountInfo.initialDeposit).toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`Total contribution $${Number(savingsAccountInfo.totalContribution).toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`Total interest $${Number(savingsAccountInfo.totalInterest).toFixed(2)}`}</Typography>
+      </SimplePaper>
+    </SummaryContainer>
   );
 };
 
-// export default Summary;
+export default Summary;

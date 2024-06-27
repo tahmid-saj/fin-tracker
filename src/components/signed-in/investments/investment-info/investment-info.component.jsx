@@ -42,7 +42,7 @@ const InvestmentInfo = ({ financeItemInfo }) => {
         <Divider/>
         <br/>
 
-        <Typography variant="body1">{`Start date - ${investmentInfo.startDate}`}</Typography>
+        <Typography variant="body1">{`Start date - ${year}-${month < 10 ? '0' : ''}${month}-${day}`}</Typography>
         <Typography variant="body1">{`End date - ${endDate}`}</Typography>
       </SimplePaper>
     </InvestmentInfoContainer>

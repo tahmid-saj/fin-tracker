@@ -1,10 +1,20 @@
-import "./summary-table-savings-account.styles.scss"
+import "./summary-table-savings-account.styles.jsx"
+import { SummaryTableSavingsContainer } from "./summary-table-savings-account.styles.jsx";
 import { useState, useContext, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  display: "block",
+  justifyContent: "center"
+}
 
 const SummaryTableSavingsAccount = ({ financeItemInfo }) => {
   const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
@@ -29,11 +39,14 @@ const SummaryTableSavingsAccount = ({ financeItemInfo }) => {
   ])
 
   return (
-    <div className="ag-theme-quartz-dark expenses-table-container summary-table-savings-container" // applying the grid theme
-      style={{ height: 650, width: '100%' }} // the grid will fill the size of the parent container
-      >
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
-    </div>
+    <SimplePaper styles={ paperStyles }>
+      <SummaryTableSavingsContainer>
+        <div className="ag-theme-quartz-dark"
+          style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+          <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
+        </div>
+      </SummaryTableSavingsContainer>
+    </SimplePaper>
   )
 }
 

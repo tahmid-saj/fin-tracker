@@ -7,7 +7,7 @@ import InvestmentInfo from "../investments/investment-info/investment-info.compo
 import InvestmentSummary from "../investments/summary/summary.component";
 
 import AccountInfo from "../savings/account-info/account-info.component";
-import { Summary as SavingsSummary} from "../savings/summary/summary.component";
+import SavingsSummary from "../savings/summary/summary.component";
 
 const FinanceTrackerItemInfo = ({ label, financeItemInfo }) => {
   return (

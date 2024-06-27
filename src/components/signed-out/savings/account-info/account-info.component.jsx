@@ -59,7 +59,7 @@ const AccountInfo = ({ financeItemInfo }) => {
         <Divider/>
         <br/>
 
-        <Typography variant="body1">{`Start date - ${savingsAccountInfo.startDate}`}</Typography>
+        <Typography variant="body1">{`Start date - ${year}-${month < 10 ? '0' : ''}${month}-${day}`}</Typography>
         <Typography variant="body1">{`End date - ${endDate}`}</Typography>
       </SimplePaper>
     </AccountInfoContainer>
