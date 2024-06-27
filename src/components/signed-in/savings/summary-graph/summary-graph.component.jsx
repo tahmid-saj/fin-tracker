@@ -1,9 +1,17 @@
 import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
-import "./summary-graph.styles.scss";
+import "./summary-graph.styles.jsx";
+import { SummaryGraphSavingsContainer } from "./summary-graph.styles.jsx";
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
+
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"]
+}
 
 const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
   const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
@@ -32,7 +40,6 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
   const options = {
     chart: {
       type: 'area',
-      height: 1000,
       zoom: {
         enabled: true
       }
@@ -64,9 +71,12 @@ const SummaryGraphSavingsAccount = ({ financeItemInfo }) => {
   };
 
   return (
-    <div className="summary-graph-savings-container">
-      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </div>
+    <SummaryGraphSavingsContainer>
+      <SimplePaper styles={ paperStyles }>
+        <ReactApexChart options={ options } series={ series } type="area" 
+          height={ COMMON_SPACING.lineChart.height } width={ COMMON_SPACING.lineChart.width }/>
+      </SimplePaper>
+    </SummaryGraphSavingsContainer>
   )
 }
 
