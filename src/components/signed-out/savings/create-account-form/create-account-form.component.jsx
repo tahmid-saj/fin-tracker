@@ -1,7 +1,7 @@
 import { useState, Component, useContext } from "react";
 
 import "./create-account-form.styles.jsx";
-import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.jsx";
+import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
@@ -72,7 +72,7 @@ const CreateAccountForm = ({ label }) => {
 
   // render() {
     return (
-      <UpdateSavingsAccountContainer>
+      <CreateSavingsAccountContainer>
         <SimplePaper styles={ paperStyles }>
           <Typography variant="h6">Track savings</Typography>
 
@@ -115,7 +115,7 @@ const CreateAccountForm = ({ label }) => {
             </div>
           </form>
         </SimplePaper>
-      </UpdateSavingsAccountContainer>
+      </CreateSavingsAccountContainer>
     )
 }
 
