@@ -7,6 +7,14 @@ import ReactApexChart from "react-apexcharts"
 // import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
 import { useSelector } from "react-redux";
 import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  display: "block",
+  justifyContent: "center"
+}
 
 const SavingsGoalGraph = () => {
   // const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
@@ -21,10 +29,6 @@ const SavingsGoalGraph = () => {
   })
 
   const series = [
-    // {
-    //   name: "Balance",
-    //   data: monthlySavingsGoalsBalance
-    // },
     {
       name: "Total Interest Earned",
       data: monthlySavingsGoalsTotalInterestEarned
@@ -34,7 +38,6 @@ const SavingsGoalGraph = () => {
   const options = {
     chart: {
       type: 'area',
-      height: 500,
       zoom: {
         enabled: true
       }
@@ -66,9 +69,12 @@ const SavingsGoalGraph = () => {
   };
 
   return (
-    <SavingsGoalGraphChart>
-      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </SavingsGoalGraphChart>
+    <SimplePaper styles={ paperStyles }>
+      <SavingsGoalGraphChart>
+          <ReactApexChart options={ options } series={ series } type="area" 
+            height={ COMMON_SPACING.lineChart.height } width={ COMMON_SPACING.lineChart.width }/>
+      </SavingsGoalGraphChart>
+    </SimplePaper>
   )
 }
 

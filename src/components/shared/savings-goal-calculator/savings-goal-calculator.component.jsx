@@ -18,6 +18,8 @@ import SavingsGoalGraph from "./savings-goal-calculator-result/savings-goal-grap
 import SavingsGoalTable from "./savings-goal-calculator-result/savings-goal-table.component"
 import { SAVINGS_GOAL_COMPOUNDED } from "../../../utils/constants/savings.constants"
 import { Divider, Typography } from "@mui/material"
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
+import SimplePaper from "../mui/paper/paper.component.jsx"
 
 const defaultFormFields = {
   savingsGoal: "",
@@ -26,6 +28,10 @@ const defaultFormFields = {
   compounded: SAVINGS_GOAL_COMPOUNDED.daily,
   amountFirstDeposit: "",
   dateFirstDeposit: ""
+}
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["6"]
 }
 
 const SavingsGoalCalculator = () => {
@@ -61,35 +67,43 @@ const SavingsGoalCalculator = () => {
   return (
     <Fragment>
       <SavingsGoalCalculatorContainer>
-        <SavingsGoalCalculatorForm onSubmit={ handleSubmit }>
-          <Typography variant="h6" sx={{ paddingBottom: "2%" }}>Calculate a savings goal</Typography>
+        <SimplePaper styles={ paperStyles }>
+          <SavingsGoalCalculatorForm onSubmit={ handleSubmit }>
+            <Typography variant="h6" sx={{ paddingBottom: "2%" }}>Calculate a savings goal</Typography>
 
-          <FormInput label="Savings goal" type="text" required onChange={ handleChange }
-                      name="savingsGoal" value={ formFields.savingsGoal }/>
-          <FormInput label="Years to reach goal" type="text" required onChange={ handleChange }
-                      name="yearsToReachGoal" value={ formFields.yearsToReachGoal }/>
-          <FormInput label="Interest rate per year" type="text" required onChange={ handleChange }
-                      name="interestRatePerYear" value={ formFields.interestRatePerYear }/>
+            <FormInput label="Savings goal" type="text" required onChange={ handleChange }
+                        name="savingsGoal" value={ formFields.savingsGoal }/>
+            <FormInput label="Years to reach goal" type="text" required onChange={ handleChange }
+                        name="yearsToReachGoal" value={ formFields.yearsToReachGoal }/>
+            <FormInput label="Interest rate per year" type="text" required onChange={ handleChange }
+                        name="interestRatePerYear" value={ formFields.interestRatePerYear }/>
 
-          <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Compounded</Typography>
-          <DropButton required name="compounded" id="compounded" 
-                  onChange={ handleChange } value={ formFields.compounded }>
-            <option value={ SAVINGS_GOAL_COMPOUNDED.daily }>Daily</option>
-            <option value={ SAVINGS_GOAL_COMPOUNDED.monthly }>Monthly</option>
-          </DropButton>
+            <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Compounded</Typography>
+            <DropButton required name="compounded" id="compounded" 
+                    onChange={ handleChange } value={ formFields.compounded }>
+              <option value={ SAVINGS_GOAL_COMPOUNDED.daily }>Daily</option>
+              <option value={ SAVINGS_GOAL_COMPOUNDED.monthly }>Monthly</option>
+            </DropButton>
 
-          <FormInput label="Amount of first deposit" type="text" required onChange={ handleChange }
-                      name="amountFirstDeposit" value={ formFields.amountFirstDeposit }/>
+            <FormInput label="Amount of first deposit" type="text" required onChange={ handleChange }
+                        name="amountFirstDeposit" value={ formFields.amountFirstDeposit }/>
 
-          <Typography sx={{ marginTop: "2%" }} variant="subtitle2">Date of first deposit</Typography>
-          <FormInput type="date" onChange={ (e) => handleChange(e) } required
-                      name="dateFirstDeposit" value={ formFields.dateFirstDeposit }></FormInput>
-          
-          <ButtonsContainer>
-            <Button type="submit">Calculate</Button>
-            <Button type="button" onClick={ resetFormFields }>Clear</Button>
-          </ButtonsContainer>
-        </SavingsGoalCalculatorForm>
+            <Typography sx={{ marginTop: "2%" }} variant="subtitle2">Date of first deposit</Typography>
+            <FormInput type="date" onChange={ (e) => handleChange(e) } required
+                        name="dateFirstDeposit" value={ formFields.dateFirstDeposit }></FormInput>
+            
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="btn-group flex-wrap">
+                    <Button type="submit">Calculate</Button>
+                    <Button type="button" onClick={ resetFormFields }>Clear</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SavingsGoalCalculatorForm>
+        </SimplePaper>
       </SavingsGoalCalculatorContainer>
 
       <Divider/>
@@ -115,6 +129,7 @@ const SavingsGoalCalculator = () => {
           <SavingsGoalTable></SavingsGoalTable>
         }
       </SavingsGoalTableContainer>
+
     </Fragment>
   )
 }

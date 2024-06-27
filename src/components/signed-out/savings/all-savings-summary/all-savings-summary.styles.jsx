@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-export const SavingsGoalTableGrid = styled.div`
-  display: block;
+export const AllSavingsSummaryContainer = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2%;
 `
