@@ -21,14 +21,14 @@ export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
   const bankingAccountExists = bankingAccounts.find(account => account.name === name)
 
   const handleDisplayFinanceTrackerItemForm = (event) => {
-    console.log(label, name);
+    
 
     activeFormView = {
       label: label,
       name: name
     };
 
-    console.log(activeFormView);
+    
   }
 
   return (

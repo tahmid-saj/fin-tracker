@@ -55,7 +55,7 @@ const ExpensesTable = () => {
     }
     // const res = gridRef.current.api.applyTransaction({ remove: selectedData });
     // removeExpense(selectedData)
-    console.log(selectedData[0])
+    
     dispatch(removeExpense(expenses, selectedData[0].Tag))
   }
 

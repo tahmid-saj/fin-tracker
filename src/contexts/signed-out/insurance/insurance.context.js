@@ -201,7 +201,7 @@ export const InsuranceProvider = ({ children }) => {
 
       const startDate = new Date(insurance.insuranceFirstPaymentDate)
       const endDate = new Date(insurance.insuranceEndDate)
-      console.log(insuranceIntervalDaysMultiplier, startDate, endDate)
+      
 
       for (let paymentDate = startDate; 
         paymentDate <= endDate; 
@@ -242,7 +242,7 @@ export const InsuranceProvider = ({ children }) => {
     past30Days.subtractDays(30)
     today = today.toISOString().split('T')[0]
     past30Days = past30Days.toISOString().split('T')[0]
-    console.log(past30Days)
+    
 
     let newCurrentAllInsurancesCategories = new Set()
     let newPastMonthAllInsurancesPayment = 0.0

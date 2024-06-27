@@ -9,7 +9,7 @@ import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants"
 const InsurancesSummaryGraph = () => {
   const { insurancesSummary } = useContext(InsuranceContext)
   const { pastMonthInsurances } = insurancesSummary
-  console.log(insurancesSummary)
+  
 
   let insuranceCategoryPayments = new Map()
   const categoryCosts = pastMonthInsurances.map((insurance) => {
@@ -25,7 +25,7 @@ const InsurancesSummaryGraph = () => {
   }
 
   const series = [ ...insuranceCategoryPayments.values() ]
-  console.log(series)
+  
 
   const options = {
     chart: {

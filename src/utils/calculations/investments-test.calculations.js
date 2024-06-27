@@ -108,4 +108,4 @@ let contributionFrequency = "monthly";
 let contributionTiming = "beginning";
 
 let result = calculateInvestment(principal, years, apy, compoundFrequency, contribution, contributionFrequency, contributionTiming);
-console.log(result);
+

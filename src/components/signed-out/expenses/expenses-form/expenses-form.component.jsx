@@ -45,7 +45,7 @@ const ExpensesForm = () => {
 
     if (formFields.expenseFor === "" || formFields.expenseCost === "" || formFields.expenseDate === "" || formFields.expenseCategory === "" ||
       !formFields.expenseFor || !formFields.expenseCost || !formFields.expenseDate || !formFields.expenseCategory) {
-        console.log("please fill out all info")
+        
         return
     }
     

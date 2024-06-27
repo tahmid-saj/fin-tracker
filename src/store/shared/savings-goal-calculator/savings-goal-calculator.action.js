@@ -9,7 +9,6 @@ import { SAVINGS_GOAL_CALCULATOR_ACTION_TYPES } from "./savings-goal-calculator.
 // helper functions
 const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
   if (validateSavingsGoalInput(savingsGoalInput)) {
-    console.log("invalid savings goal input")
     return savingsGoalResult
   }
 

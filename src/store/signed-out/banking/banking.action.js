@@ -11,8 +11,6 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
-  console.log(`Creating ${bankingAccountName}`);
-
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
   { 
@@ -76,8 +74,6 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
 const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
-
-  // console.log(bankingAccountTransferToName, transferAmount);
 
   // update bankingAccountTransferFromName and bankingAccountTransferToName in bankingAccounts
   const updatedBankingAccounts = bankingAccounts.map((account) => {

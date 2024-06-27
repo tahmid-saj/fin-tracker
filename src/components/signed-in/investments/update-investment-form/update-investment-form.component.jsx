@@ -45,7 +45,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(event.target.value);
+    
   };
 
   const handleChange = (event) => {
@@ -67,7 +67,7 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
       formFields.contributionAt === "" || !formFields.contributionAt ||
       formFields.contributionInterval === "" || !formFields.contributionInterval) {
   
-      console.log("pleaee fill out all info");
+      
       return;
     }
 

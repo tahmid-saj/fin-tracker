@@ -22,7 +22,7 @@ const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, u
    
   postBankingAccountCreate(userId, email, bankingAccountName);
   
-  console.log(`Creating ${bankingAccountName}`);
+  
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -110,7 +110,7 @@ const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTra
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
-  // console.log(bankingAccountTransferToName, transferAmount);
+  // 
 
   const transactionInfo = {
     name: bankingAccountTransferFromName,
@@ -235,7 +235,7 @@ export const BankingProvider = ({ children }) => {
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
 
-    console.log(bankingAccounts);
+    
 
     setBankingSummary({ 
       currentAllBankingBalance: bankingSummary.newAllBankingBalance, 
@@ -258,7 +258,7 @@ export const BankingProvider = ({ children }) => {
           setBankingSummary(bankingSummary);
         }
 
-        console.log(currentUser.uid, currentUser.email);
+        
       } else if (!currentUser) {
         setDefaultBankingAccountsValues();
         setDefaultBankingSummaryValues();

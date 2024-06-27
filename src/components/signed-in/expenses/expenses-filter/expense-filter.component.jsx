@@ -42,7 +42,7 @@ const ExpensesFilter = () => {
 
     if (formFields.expenseFor === "" && formFields.expenseCategory === "" && formFields.expensesStartDate === "" && formFields.expensesEndDate === "" &&
       !formFields.expenseFor && !formFields.expenseCategory && !formFields.expensesStartDate && !formFields.expensesEndDate) {
-        console.log("please fill out all info")
+        
         return
     }
 

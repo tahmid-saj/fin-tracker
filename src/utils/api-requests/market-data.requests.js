@@ -4,7 +4,7 @@ import { errorOnGetStocksMarketData, errorOnGetIndicesMarketData,
 // stocks
 export async function getStocksMarketData(marketDataQuery) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_STOCKS}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_STOCKS}`, {
       method: "POST",
       headers: {
@@ -16,7 +16,7 @@ export async function getStocksMarketData(marketDataQuery) {
     
     return resMarketData.queryResults
   } catch (error) {
-    console.log(error)
+    
     errorOnGetStocksMarketData()
   }
 }
@@ -24,7 +24,7 @@ export async function getStocksMarketData(marketDataQuery) {
 // indices
 export async function getIndicesMarketData(marketDataQuery) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_INDICES}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_INDICES}`, {
       method: "POST",
       headers: {
@@ -36,7 +36,7 @@ export async function getIndicesMarketData(marketDataQuery) {
     
     return resMarketData.queryResults
   } catch (error) {
-    console.log(error)
+    
     errorOnGetIndicesMarketData()
   }
 }
@@ -44,7 +44,7 @@ export async function getIndicesMarketData(marketDataQuery) {
 // crypto
 export async function getCryptoMarketData(marketDataQuery) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_CRYPTO}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_CRYPTO}`, {
       method: "POST",
       headers: {
@@ -56,7 +56,7 @@ export async function getCryptoMarketData(marketDataQuery) {
     
     return resMarketData.queryResults
   } catch (error) {
-    console.log(error)
+    
     errorOnGetCryptoMarketData()
   }
 }
@@ -64,7 +64,7 @@ export async function getCryptoMarketData(marketDataQuery) {
 // forex
 export async function getForexMarketData(marketDataQuery) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_FOREX}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_FOREX}`, {
       method: "POST",
       headers: {
@@ -76,7 +76,7 @@ export async function getForexMarketData(marketDataQuery) {
     
     return resMarketData.queryResults
   } catch (error) {
-    console.log(error)
+    
     errorOnGetForexMarketData()
   }
 }

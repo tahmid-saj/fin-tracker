@@ -38,7 +38,7 @@ const CloseAccount = ({ financeItemInfo }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formFields.confirmDelete);
+    
 
     if (formFields.confirmDelete === PERMANENTLY_DELETE) {
       dispatch(closeBankingAccount(bankingAccounts, financeItemInfo.name))

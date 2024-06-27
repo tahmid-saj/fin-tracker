@@ -18,7 +18,7 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
 
-  console.log(`Creating ${investment.investmentName}`);
+  
 
   // TODO: need a calculation function to update endBalance, totalContribution and totalInterest
   const investmentCalculation = calculateInvestment(investment);
@@ -199,7 +199,7 @@ export const InvestmentsProvider = ({ children }) => {
       return allInterest + totalInterest;
     }, 0);
 
-    console.log(investments);
+    
 
     setInvestmentsSummary({ 
       currentAllInvestmentsBalance: newAllInvestmentsBalance, 

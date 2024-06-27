@@ -35,7 +35,7 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
 
   const { investments: investmentsSchedule } = investmentInfo
 
-  console.log(investmentsSchedule)
+  
 
   let investmentTimes = []
   let monthlyInvestmentTotalInterestEarned = []

@@ -7,32 +7,32 @@ import { errorOnGetSavingsAccountsData, errorOnGetSavingsAccountsSummaryData,
 // getting savings accounts and summary data on sign in
 export const getSavingsAccountsData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
 
     return response.json();
   } catch (error) {
     errorOnGetSavingsAccountsData();
-    console.log(error);
+    
   }
 };
 
 export const getSavingsAccountsSummaryData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS_SUMMARY}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS_SUMMARY}/${userId}/${email}`);
 
     return response.json();
   } catch (error) {
     errorOnGetSavingsAccountsSummaryData();
-    console.log(error);
+    
   }
 };
 
 // saving accounts operations
 export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'POST',
       headers: {
@@ -44,13 +44,13 @@ export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo
     return response.status;
   } catch (error) {
     errorOnPostSavingsAccountCreate();
-    console.log(error);
+    
   }
 };
 
 export const putSavingsAccountData = async (userId, email, savingsAccountInfo) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'PUT',
       headers: {
@@ -62,13 +62,13 @@ export const putSavingsAccountData = async (userId, email, savingsAccountInfo) =
     return response.status;
   } catch (error) {
     errorOnPutSavingsAccountData();
-    console.log(error);
+    
   }
 };
 
 export const deleteSavingsAccount = async (userId, email, closingSavingsAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'DELETE',
       headers: {
@@ -80,14 +80,14 @@ export const deleteSavingsAccount = async (userId, email, closingSavingsAccountN
     return response.statusCode;
   } catch (error) {
     errorOnSavingsAccountInvestment();
-    console.log(error);
+    
   }
 };
 
 // updating savings accounts and summary data on sign out
 export const putSavingsAccountsData = async (userId, email, savingsAccounts) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: "PUT",
       headers: {
@@ -100,14 +100,14 @@ export const putSavingsAccountsData = async (userId, email, savingsAccounts) => 
 
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnPutSavingsAccountsData();
   }
 };
 
 export const putSavingsAccountsSummaryData = async (userId, email, savingsAccountsSummary) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
       method: 'PUT',
       headers: {
@@ -120,7 +120,7 @@ export const putSavingsAccountsSummaryData = async (userId, email, savingsAccoun
 
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnPutSavingsAccountsSummaryData();
   }
 };

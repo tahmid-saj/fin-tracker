@@ -27,7 +27,7 @@ const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
 }
 
 const filterExpensesHelper = (expenses, filterConditions) => {
-  console.log(filterConditions)
+  
 
   let filteredExpenses = []
   expenses.map((expense) => {
@@ -64,8 +64,8 @@ const setDefaultExpensesSummaryValuesHelper = () => {
 }
 
 const selectScheduledExpensesHelper = (expenses, expenseDate) => {
-  console.log(expenseDate)
-  console.log(expenses)
+  
+  
 
   const filteredExpenses = expenses.filter((expense) => {
     return expense.expenseDate === expenseDate
@@ -150,7 +150,7 @@ export const ExpensesProvider = ({ children }) => {
     let past30Days = new Date()
     let today = new Date()
     past30Days.subtractDays(30)
-    console.log(past30Days)
+    
 
     let newAllExpensesCategories = []
     let newPastMonthExpenses = []
@@ -230,18 +230,18 @@ export const ExpensesProvider = ({ children }) => {
     } else {
       setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1, currentUser.uid, currentUser.email))
       // setExpenseLength(expenseLength + 1)
-      console.log("created")
+      
     }
   }
 
   const filterExpenses = (filterConditions) => {
     if (validateFilterExpenses(filterConditions)) {
-      console.log("invalid")
+      
       return
     } else {
       setFilterConditions(filterConditions)
       setExpensesView(filterExpensesHelper(expenses, filterConditions))
-      console.log("set")
+      
     }
   }
 

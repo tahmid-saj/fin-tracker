@@ -34,7 +34,7 @@ const CreateAccount = () => {
 
     resetFormFields();
 
-    console.log(bankingAccounts);
+    
   };
     
   const handleChange = (event) => {

@@ -113,7 +113,7 @@ const calculateSchedule = (investment) => {
     })
   }
 
-  console.log(schedule)
+  
 
   return {
     schedule: schedule,

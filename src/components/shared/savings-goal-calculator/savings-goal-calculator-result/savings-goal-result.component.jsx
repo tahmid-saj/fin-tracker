@@ -17,7 +17,7 @@ const SavingsGoalResult = () => {
   // const { savingsGoalResult } = useContext(SavingsGoalCalculatorContext)
   const savingsGoalResult = useSelector(selectSavingsGoalResult)
 
-  console.log(savingsGoalResult)
+  
 
   return (
     <SavingsGoalInfo>

@@ -13,7 +13,7 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
-  console.log(`Creating ${bankingAccountName}`);
+  
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -79,7 +79,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
-  // console.log(bankingAccountTransferToName, transferAmount);
+  // 
 
   // update bankingAccountTransferFromName and bankingAccountTransferToName in bankingAccounts
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -178,7 +178,7 @@ export const BankingProvider = ({ children }) => {
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
 
-    console.log(bankingAccounts);
+    
 
     setBankingSummary({ 
       currentAllBankingBalance: bankingSummary.newAllBankingBalance, 

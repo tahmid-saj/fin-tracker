@@ -15,7 +15,7 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const { scheduledExpensesView } = useContext(ExpensesContext)
 
-  console.log(scheduledExpensesView)
+  
 
   if (!scheduledExpensesView.length) return <Fragment/>
 

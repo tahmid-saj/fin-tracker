@@ -9,24 +9,24 @@ import { TRANSACTION_TYPES } from "../constants/banking.constants";
 // getting banking accounts and summary data on sign in
 export const getBankingAccountsData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
 
     return response.json();
   } catch (error) {
-    console.log(error);
+    
     errorOnGetBankingAccountsData();
   }
 };
 
 export const getBankingSummaryData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`);
 
     return response.json();
   } catch (error) {
-    console.log(error);
+    
     errorOnGetBankingSummaryData();
   }
 };
@@ -34,7 +34,7 @@ export const getBankingSummaryData = async (userId, email) => {
 // banking operations
 export const postBankingAccountCreate = async (userId, email, bankingAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
       method: 'POST',
       headers: {
@@ -45,7 +45,7 @@ export const postBankingAccountCreate = async (userId, email, bankingAccountName
   
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnBankingAccountCreate();
   }
 };
@@ -53,7 +53,7 @@ export const postBankingAccountCreate = async (userId, email, bankingAccountName
 export const postBankingAccountTransaction = async (userId, email, transactionInfo) => {
   if (transactionInfo.type === TRANSACTION_TYPES.transfer) {
     try {
-      console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`);
+      
       
       const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`, {
         method: 'POST',
@@ -71,12 +71,12 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
 
       return response.status;
     } catch (error) {
-      console.log(error);
+      
       errorOnBankingAccountTransaction();
     }
   } else if (transactionInfo.type === TRANSACTION_TYPES.deposit || transactionInfo.type === TRANSACTION_TYPES.withdrawal) {
     try {
-      console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}/${process.env.REACT_APP_API_URL_POST_BANKING_ACCOUNT_TRANSACTION}`);
+      
       
       let reqJSONBody = {
         bankingAccountName: transactionInfo.name,
@@ -102,7 +102,7 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
   
       return response.status;
     } catch (error) {
-      console.log(error);
+      
       errorOnBankingAccountTransaction();
     }
   }
@@ -110,7 +110,7 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
 
 export const deleteBankingAccount = async (userId, email, bankingAccountName) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`)
+    
   
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
       method: 'DELETE',
@@ -122,7 +122,7 @@ export const deleteBankingAccount = async (userId, email, bankingAccountName) =>
 
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnBankingAccountClose();
   }
 };
@@ -130,7 +130,7 @@ export const deleteBankingAccount = async (userId, email, bankingAccountName) =>
 // updating banking accounts and summary data on sign out
 export const putBankingAccountsData = async (userId, email, bankingAccounts) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
+    
 
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
       method: 'PUT',
@@ -144,14 +144,14 @@ export const putBankingAccountsData = async (userId, email, bankingAccounts) => 
 
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnPutBankingAccountsData();
   }
 };
 
 export const putBankingSummaryData = async (userId, email, bankingSummary) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`);
+    
 
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`, {
       method: 'PUT',
@@ -165,7 +165,7 @@ export const putBankingSummaryData = async (userId, email, bankingSummary) => {
 
     return response.status;
   } catch (error) {
-    console.log(error);
+    
     errorOnPutBankingSummaryData();
   }
 }

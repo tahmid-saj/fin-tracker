@@ -42,7 +42,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(event.target.value);
+    
   };
 
   const handleChange = (event) => {
@@ -62,7 +62,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
       formFields.contributionInterval === "" || !formFields.contributionInterval ||
       formFields.apy === "" || !formFields.apy) {
 
-      console.log('please enter all fields');
+      
 
       return;
     }
