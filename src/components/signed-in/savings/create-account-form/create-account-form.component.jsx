@@ -48,7 +48,7 @@ const CreateAccountForm = ({ label }) => {
       formFields.contributionInterval === "" || !formFields.contributionInterval ||
       formFields.apy === "" || !formFields.apy) {
 
-      console.log('please enter all fields');
+      
 
       return;
     }
@@ -56,7 +56,7 @@ const CreateAccountForm = ({ label }) => {
     createSavingsAccount(formFields);
     resetFormFields();
 
-    console.log(event.target.value);
+    
   };
 
   const handleChange = (event) => {

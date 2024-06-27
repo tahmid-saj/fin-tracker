@@ -64,7 +64,7 @@ export const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAcc
 // savings goal
 
 export const validateSavingsGoalInput = (savingsGoalInput) => {
-  console.log(savingsGoalInput)
+  
 
   // number
   if (!(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput.savingsGoal))) || Number(savingsGoalInput.savingsGoal) < 0 ||

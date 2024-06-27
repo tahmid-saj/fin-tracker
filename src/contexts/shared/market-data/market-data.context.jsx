@@ -57,7 +57,7 @@ export const MarketDataProvider = ({ children }) => {
   const [marketData, setMarketData] = useState(DEFAULT_MARKET_DATA)
 
   useEffect(() => {
-    console.log(marketData)
+    
   }, [marketData])
 
   const searchMarketData = async (marketDataQuery) => {
@@ -66,7 +66,7 @@ export const MarketDataProvider = ({ children }) => {
       ...marketDataQuery,
       queryResults: resMarketData
     })
-    console.log(resMarketData)
+    
   } 
   
   const value = { marketData, setMarketData, searchMarketData }

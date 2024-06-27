@@ -39,7 +39,7 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
       label: label,
       financeItemInfo: financeItemInfo,
     }
-    console.log(activeFormView);
+    
   };
 
   return (

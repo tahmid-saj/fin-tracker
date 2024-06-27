@@ -56,7 +56,7 @@ const ScheduleCalendar = () => {
 
   const onSelectDate = (date) => {
     const selectedDate = date.toISOString().split('T')[0]
-    console.log(selectedDate)
+    
     selectScheduledExpenses(selectedDate)
   }
 

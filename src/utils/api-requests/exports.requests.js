@@ -7,7 +7,7 @@ export function postExportsToEmail(email) {
 
   } catch (error) {
     errorOnExportsToEmail()
-    console.log(error)
+    
   }
 }
 
@@ -17,7 +17,7 @@ export function postExportsToPdf() {
 
   } catch (error) {
     errorOnExportsToPdf()
-    console.log(error)
+    
   }
 }
 
@@ -27,6 +27,6 @@ export function postExportsToTxt() {
 
   } catch (error) {
     errorOnExportsToTxt()
-    console.log(error)
+    
   }
 }

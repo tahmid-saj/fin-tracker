@@ -15,7 +15,7 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const scheduledExpensesView = useSelector(selectScheduledExpensesView)
 
-  console.log(scheduledExpensesView)
+  
 
   if (!scheduledExpensesView.length) return <Fragment/>
 

@@ -46,8 +46,8 @@ export const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTr
   // validating bankingAccountTransferToName exists in bankingAccounts
   if (!bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))) {
     errorOnBankingAccountDoesNotExist();
-    console.log(bankingAccounts);
-    console.log(bankingAccountTransferToName);
+    
+    
     return true;
   };
 

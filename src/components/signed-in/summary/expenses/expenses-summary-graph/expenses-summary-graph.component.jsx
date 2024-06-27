@@ -23,7 +23,7 @@ const ExpensesSummaryGraph = () => {
   }
   
   const series = [ ...expensesCategoryCosts.values() ]
-  console.log(series)
+  
 
   const options = {
     chart: {

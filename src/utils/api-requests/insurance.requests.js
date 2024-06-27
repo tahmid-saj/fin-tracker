@@ -8,24 +8,24 @@ import { errorOnGetInsurancesData, errorOnGetInsurancesSummaryData,
 // getting insurances and summary data on sign in
 export const getInsurancesData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
 
     return response.json()
   } catch (error) {
-    console.log(error)
+    
     errorOnGetInsurancesData()
   }
 }
 
 export const getInsurancesSummaryData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`)
 
     return response.json()
   } catch (error) {
-    console.log(error)
+    
     errorOnGetInsurancesSummaryData()
   }
 }
@@ -33,7 +33,7 @@ export const getInsurancesSummaryData = async (userId, email) => {
 // insurances operations
 export const postInsuranceCreate = async (userId, email, insurance, insuranceFor) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
       method: 'POST',
       headers: {
@@ -50,14 +50,14 @@ export const postInsuranceCreate = async (userId, email, insurance, insuranceFor
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnInsuranceCreate()
   }
 }
 
 export const deleteInsurance = async (userId, email, insuranceFor) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
       method: "DELETE",
       headers: {
@@ -68,7 +68,7 @@ export const deleteInsurance = async (userId, email, insuranceFor) => {
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnInsuranceRemove()
   }
 }
@@ -76,7 +76,7 @@ export const deleteInsurance = async (userId, email, insuranceFor) => {
 // updating insurances and summary data on sign out
 export const putInsurancesData = async (userId, email, insurances) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
       method: "PUT",
       headers: {
@@ -89,14 +89,14 @@ export const putInsurancesData = async (userId, email, insurances) => {
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnPutInsurancesData()
   }
 }
 
 export const putInsurancesSummaryData = async (userId, email, insurancesSummary) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`, {
       method: "PUT",
       headers: {
@@ -109,7 +109,7 @@ export const putInsurancesSummaryData = async (userId, email, insurancesSummary)
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnPutInsuranceSummaryData()
   }
 }

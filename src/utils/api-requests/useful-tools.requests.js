@@ -3,7 +3,7 @@ import { errorOnMortgageResult, errorOnCurrencyResult } from "../errors/useful-t
 // mortgage calculator
 export async function getMortgageResult(mortgageInput) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_MORTGAGE_CALCULATOR}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_MORTGAGE_CALCULATOR}`, {
       method: "POST",
       headers: {
@@ -15,7 +15,7 @@ export async function getMortgageResult(mortgageInput) {
 
     return resMortgageCalculation.mortgageCalculation
   } catch (error) {
-    console.log(error)
+    
     errorOnMortgageResult()
   }
 }
@@ -24,7 +24,7 @@ export async function getMortgageResult(mortgageInput) {
 // exchange rate
 export async function getExchangeRate(currencyInput) {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_EXCHANGE_RATE}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_USEFUL_TOOLS}${process.env.REACT_APP_API_URL_USEFUL_TOOLS_EXCHANGE_RATE}`, {
       method: "POST",
       headers: {
@@ -36,7 +36,7 @@ export async function getExchangeRate(currencyInput) {
 
     return resExchangeRate
   } catch (error) {
-    console.log(error)
+    
     errorOnCurrencyResult()
   }
 }

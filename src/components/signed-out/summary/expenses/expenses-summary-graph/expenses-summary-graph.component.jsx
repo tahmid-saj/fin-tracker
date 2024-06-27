@@ -12,7 +12,7 @@ const ExpensesSummaryGraph = () => {
   const expensesSummary = useSelector(selectExpensesSummary)
   const { pastMonthExpenses } = expensesSummary
 
-  console.log(expensesSummary)
+  
 
   let expensesCategoryCosts = new Map()
   const categoryCosts = pastMonthExpenses.map((expense) => {
@@ -28,7 +28,7 @@ const ExpensesSummaryGraph = () => {
   }
   
   const series = [ ...expensesCategoryCosts.values() ]
-  console.log(series)
+  
 
   const options = {
     chart: {

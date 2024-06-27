@@ -18,7 +18,7 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
   // validating if savingsAccount exists in savingsAccounts
   if (validateSavingsAccountCreation(savingsAccounts, savingsAccount)) return savingsAccounts;
 
-  console.log(savingsAccount.savingsAccountName);
+  
   // TODO: need a helper function to update totalSavings, totalContribution, totalInterest
 
   const calculation = calculateSavings({
@@ -214,7 +214,7 @@ export const SavingsProvider = ({ children }) => {
       return allInterest + totalInterest;
     }, 0);
 
-    console.log(savingsAccounts);
+    
 
     setSavingsAccountsSummary({
       currentAllSavingsAccountsBalance: newAllSavingsAccountsBalance,

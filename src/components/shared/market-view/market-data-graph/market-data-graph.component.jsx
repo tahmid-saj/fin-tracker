@@ -21,7 +21,7 @@ const MarketDataGraph = () => {
   )
 
   const { queryResults } = marketData
-  console.log(marketData)
+  
   
   // if (!queryResults) return (
   //   <Fragment></Fragment>

@@ -41,7 +41,7 @@ export const FilterInsuranceForm = () => {
       (!formFields.insuranceInterval || formFields.insuranceInterval === "") &&
       (!formFields.insuranceStartDate || formFields.insuranceStartDate === "") &&
       (!formFields.insuranceEndDate || formFields.insuranceEndDate === "")) {
-      console.log("please fill out all info")
+      
       return
     }
 

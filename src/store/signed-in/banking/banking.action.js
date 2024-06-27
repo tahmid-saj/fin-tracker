@@ -97,7 +97,6 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
-  // console.log(bankingAccountTransferToName, transferAmount);
 
   // const transactionInfo = {
   //   name: bankingAccountTransferFromName,

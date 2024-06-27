@@ -5,7 +5,7 @@ import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../uti
 // helper functions
 const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
   if (validateSavingsGoalInput(savingsGoalInput)) {
-    console.log("invalid savings goal input")
+    
     return savingsGoalResult
   }
 

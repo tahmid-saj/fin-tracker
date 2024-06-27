@@ -49,7 +49,7 @@ const MarketDataSearch = () => {
     formFields.marketDataStartDate === "" || !formFields.marketDataStartDate ||
     formFields.marketDataEndDate === "" || !formFields.marketDataEndDate) {
 
-      console.log("please fill out all info")
+      
       return
     }
 
@@ -62,7 +62,7 @@ const MarketDataSearch = () => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
-    console.log(formFields)
+    
   }
 
   return (

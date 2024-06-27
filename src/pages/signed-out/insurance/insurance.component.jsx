@@ -151,13 +151,6 @@ const Insurance = () => {
       return allInsurancePlanned + insurance.insurancePayment
     }, 0)
 
-    console.log({
-      currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
-      currentAllInsurancesCategories: newCurrentAllInsurancesCategories,
-      pastMonthAllInsurancesPayment: newPastMonthAllInsurancesPayment,
-      pastMonthInsurances: newPastMonthInsurances
-    })
-
     dispatch(setInsurancesSummary({
       currentTotalInsurancePlanned: newCurrentTotalInsurancePlanned,
       currentAllInsurancesCategories: newCurrentAllInsurancesCategories,

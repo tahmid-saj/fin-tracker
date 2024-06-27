@@ -50,7 +50,7 @@ const InsuranceTable = () => {
         return
       }
 
-      console.log(selectedData[0])
+      
       removeInsurance(selectedData[0].For)
     }
   

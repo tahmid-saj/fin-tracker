@@ -16,7 +16,7 @@ export const getChatBotResponse = async (messageInput) => {
     const { message } = await response.json()
     return message
   } catch (error) {
-    console.log("Error getting chatbot response")
+    
     errorOnGetChatBotResponse()
   }
 }

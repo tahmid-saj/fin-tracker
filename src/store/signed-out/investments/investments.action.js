@@ -9,11 +9,9 @@ const createInvestmentHelper = (investments, investment) => {
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
 
-  console.log(`Creating ${investment.investmentName}`);
   // TODO: need a helper function to update endBalance, totalContribution and totalInterest
 
   const investmentCalculation = calculateInvestment(investment)
-  console.log(investmentCalculation)
 
   // add investment to investments
   return [ ...investments,

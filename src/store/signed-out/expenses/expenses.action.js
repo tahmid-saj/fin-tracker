@@ -16,9 +16,7 @@ const addExpenseHelper = (expenses, expense, expenseId) => {
   ]
 }
 
-export const filterExpensesHelper = (expenses, filterConditions) => {
-  console.log(filterConditions)
-
+export const filterExpensesHelper = (expenses, filterConditions) => {  
   let filteredExpenses = []
   expenses.map((expense) => {
     if (filterConditions.expenseFor === "" || (expense.expenseFor.toLowerCase().includes(filterConditions.expenseFor.toLowerCase()))) {
@@ -42,8 +40,6 @@ const removeExpenseHelper = (expenses, expenseId) => {
 }
 
 export const selectScheduledExpensesHelper = (expenses, expenseDate) => {
-  console.log(expenseDate)
-  console.log(expenses)
 
   const filteredExpenses = expenses.filter((expense) => {
     return expense.expenseDate === expenseDate

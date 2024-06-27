@@ -71,14 +71,14 @@ const CreateInvestmentForm = ({ label }) => {
       formFields.additionalContribution === "" || !formFields.additionalContribution || formFields.contributionAt === "" || !formFields.contributionAt ||
       formFields.contributionInterval === "" || !formFields.contributionInterval) {
 
-      console.log("pleaee fill out all info");
+      
       return;
     }
 
     dispatch(createInvestment(investments, formFields))
     resetFormFields();
 
-    console.log(event.target.value);
+    
   };
 
   const handleChange = (event) => {

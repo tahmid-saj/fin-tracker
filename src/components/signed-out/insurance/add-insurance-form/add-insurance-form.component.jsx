@@ -46,7 +46,7 @@ const AddInsuranceForm = () => {
       !formFields.insurancePayment || formFields.insurancePayment === "" ||
       !formFields.insuranceInterval || formFields.insuranceInterval === "" ||
       !formFields.insuranceFirstPaymentDate || formFields.insuranceFirstPaymentDate === "") {
-      console.log("please fill out all info")
+      
       return
     }
 

@@ -8,24 +8,24 @@ import { errorOnGetExpensesData, errorOnGetExpensesSummaryData,
 // getting expenses and summary data on sign in
 export const getExpensesData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
 
     return response.json()
   } catch (error) {
-    console.log(error)
+    
     errorOnGetExpensesData()
   }
 }
 
 export const getExpensesSummaryData = async (userId, email) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`)
 
     return response.json()
   } catch (error) {
-    console.log(error)
+    
     errorOnGetExpensesSummaryData()
   }
 }
@@ -33,7 +33,7 @@ export const getExpensesSummaryData = async (userId, email) => {
 // expenses operations
 export const postExpenseCreate = async (userId, email, expense, expenseId) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
       method: 'POST',
       headers: {
@@ -50,14 +50,14 @@ export const postExpenseCreate = async (userId, email, expense, expenseId) => {
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnExpenseCreate()
   }
 }
 
 export const deleteExpense = async (userId, email, expenseId) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
       method: "DELETE",
       headers: {
@@ -68,7 +68,7 @@ export const deleteExpense = async (userId, email, expenseId) => {
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnExpenseRemove()
   }
 }
@@ -76,7 +76,7 @@ export const deleteExpense = async (userId, email, expenseId) => {
 // updating expenses and summary data on sign out
 export const putExpensesData = async (userId, email, expenses) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
       method: "PUT",
       headers: {
@@ -89,14 +89,14 @@ export const putExpensesData = async (userId, email, expenses) => {
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnPutExpensesData()
   }
 }
 
 export const putExpensesSummaryData = async (userId, email, expensesSummary) => {
   try {
-    console.log(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`)
+    
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`, {
       method: "PUT",
       headers: {
@@ -109,7 +109,7 @@ export const putExpensesSummaryData = async (userId, email, expensesSummary) => 
 
     return response.status
   } catch (error) {
-    console.log(error)
+    
     errorOnPutExpensesSummaryData()
   }
 }

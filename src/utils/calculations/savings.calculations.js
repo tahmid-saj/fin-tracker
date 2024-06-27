@@ -71,7 +71,7 @@ export const calculateSavings = (savingsAccount) => {
 
     const compoundedInterestResult = calculateCompoundedInterestA(compoundedInterestInput, savingsAccount.monthlyContribution)
 
-    console.log(compoundedInterestResult)
+    
 
     totalInterest += compoundedInterestResult.interestEarned
     compoundedInterestInput.P = compoundedInterestResult.balance
@@ -97,7 +97,7 @@ export const calculateSavings = (savingsAccount) => {
 
 // savings goal
 export const calculateSavingsGoal = (savingsGoalInput) => {
-  console.log(savingsGoalInput)
+  
 
   let compoundedInterestInput = {
     A: savingsGoalInput.savingsGoal,
@@ -109,7 +109,7 @@ export const calculateSavingsGoal = (savingsGoalInput) => {
 
   if (savingsGoalInput.compounded === SAVINGS_GOAL_COMPOUNDED.daily) {
     compoundedInterestInput.n = 365
-    console.log(compoundedInterestInput)
+    
     const dailyDeposit = calculateCompoundedInterestPMT(compoundedInterestInput)
 
     return {
@@ -120,7 +120,7 @@ export const calculateSavingsGoal = (savingsGoalInput) => {
     }
   } else if (savingsGoalInput.compounded === SAVINGS_GOAL_COMPOUNDED.monthly) {
     compoundedInterestInput.n = 12
-    console.log(compoundedInterestInput)
+    
     const PMT = calculateCompoundedInterestPMT(compoundedInterestInput)
 
     return {

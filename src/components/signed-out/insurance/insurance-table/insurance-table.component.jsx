@@ -59,7 +59,7 @@ const InsuranceTable = () => {
       return
     }
 
-    console.log(selectedData[0])
+    
     dispatch(removeInsurance(insurances, selectedData[0].For))
   }
 
