@@ -1,11 +1,19 @@
 import React, { useState, Component, useContext } from "react";
 
-import "./create-investment-form.styles.scss";
+import "./create-investment-form.styles.jsx";
+import { CreateInvestmentContainer, CreateInvestmentFormContainer,
+  ContributionInputContainer
+} from "./create-investment-form.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
 
 import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { Typography } from "@mui/material";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import Button from "../../../shared/button/button.component.jsx";
 
 const defaultFormFields = {
   investmentName: "",
@@ -34,6 +42,10 @@ const defaultInvestmentsInfo = [
     contributionInterval: ""
   }
 ]
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+}
 
 const CreateInvestmentForm = ({ label }) => {
 
@@ -71,13 +83,13 @@ const CreateInvestmentForm = ({ label }) => {
   };
 
   return (
-    <div className="investment-form-container">
-      <InvestmentSavingsTrackerItems label={ label }></InvestmentSavingsTrackerItems>
+    <CreateInvestmentContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">Create Investment</Typography>
 
-        <div className="update-investment-container">
-          <h3>Create Investment</h3>
-
-          <form onSubmit={ handleSubmit }>
+        <form onSubmit={ handleSubmit }>
+          <div className="container">
+          <CreateInvestmentFormContainer>
             <FormInput label="Investment name" type="text" required onChange={ handleChange }
                             name="investmentName" value={ formFields.investmentName }></FormInput>
           
@@ -87,7 +99,7 @@ const CreateInvestmentForm = ({ label }) => {
             <FormInput label="Starting amount" type="text" required onChange={ handleChange }
                               name="startingAmount" value={ formFields.startingAmount }></FormInput>
 
-            <h5>Start date</h5>
+            <Typography paragraph>Start date</Typography>
 
             <FormInput type="date" required name="startDate" value={ formFields.startDate } 
                         onChange={ handleChange }></FormInput>
@@ -98,11 +110,9 @@ const CreateInvestmentForm = ({ label }) => {
             <FormInput label="Return rate (%)" type="text" required onChange={ handleChange }
                               name="returnRate" value={ formFields.returnRate }></FormInput>
 
-            <label className="compoundedDropdown" htmlFor="compounded">Compounded</label>
-
-            <select className="dropButton" name="compounded" id="compounded" 
+            <Typography sx={{ display: "inline-block", position: "relative" }} paragraph>Compounded</Typography>
+            <DropButton required className="dropButton" name="compounded" id="compounded" 
                     onChange={ handleChange } value={ formFields.compounded }>
-
               <option value="Annually">Annually</option>
               <option value="Semiannually">Semiannually</option>
               <option value="Quarterly">Quarterly</option>
@@ -110,34 +120,47 @@ const CreateInvestmentForm = ({ label }) => {
               <option value="Biweekly">Biweekly</option>
               <option value="Weekly">Weekly</option>
               <option value="Daily">Daily</option>
-            </select>
+            </DropButton>
 
             <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
                           name="additionalContribution" value={ formFields.additionalContribution }></FormInput>
 
-            <label className="contributionAtDropdown" htmlFor="contributionAt">Contribution at the</label>
-            <select className="dropButton" name="contributionAt" id="contributionAt" 
-                    onChange={ handleChange } value={ formFields.contributionAt }>
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <ContributionInputContainer>
+                    <Typography sx={{ marginLeft: "2%" }} paragraph>Contribution at the</Typography>
+                    <DropButton required className="dropButton" name="contributionAt" id="contributionAt" 
+                            onChange={ handleChange } value={ formFields.contributionAt }>
+                      <option value="Beginning">Beginning</option>
+                      <option value="End">End</option>
+                    </DropButton>
+                  </ContributionInputContainer>
 
-              <option value="Beginning">Beginning</option>
-              <option value="End">End</option>
-            </select>
-
-            <label className="contributionIntervalDropdown" htmlFor="contributionInterval">of each</label>
-            <select className="dropButton" name="contributionInterval" id="contributionInterval" 
-                    onChange={ handleChange } value={ formFields.contributionInterval }>
-
-              <option value="Month">Month</option>
-              <option value="Year">Year</option>
-            </select>
-
-            <div className="buttons-container">
-              <button className="investment-button-create" type="submit">Create</button>
+                  <ContributionInputContainer>
+                    <Typography sx={{ marginLeft: "2%" }} paragraph>of each</Typography>
+                    <DropButton className="dropButton" name="contributionInterval" id="contributionInterval" 
+                            onChange={ handleChange } value={ formFields.contributionInterval }>
+                      <option value="Month">Month</option>
+                      <option value="Year">Year</option>
+                    </DropButton>
+                  </ContributionInputContainer>
+                </div>
+              </div>
             </div>
+          </CreateInvestmentFormContainer>
 
-          </form>
-        </div>
-    </div>
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Create</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </SimplePaper>
+    </CreateInvestmentContainer>
   )
 };
 

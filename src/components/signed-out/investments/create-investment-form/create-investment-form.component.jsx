@@ -153,9 +153,6 @@ const CreateInvestmentForm = ({ label }) => {
                 </div>
               </div>
             </div>
-
-
-
           </CreateInvestmentFormContainer>
 
             <div className="row">
