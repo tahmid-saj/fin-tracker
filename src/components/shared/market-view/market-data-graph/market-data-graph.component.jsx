@@ -7,6 +7,12 @@ import { Fragment, useContext } from "react";
 
 import { MARKET_DATA_INTERVALS } from "../../../../utils/constants/market-data.constants";
 import { Divider } from "@mui/material";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+}
 
 const MarketDataGraph = () => {
   const { marketData } = useContext(MarketDataContext)
@@ -35,7 +41,6 @@ const MarketDataGraph = () => {
   const options = {
     chart: {
       type: 'area',
-      height: 500,
       zoom: {
         enabled: true
       }
@@ -68,9 +73,12 @@ const MarketDataGraph = () => {
   };
 
   return (
-    <MarketDataGraphContainer>
-      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </MarketDataGraphContainer>
+    <SimplePaper styles={ paperStyles }>
+      <MarketDataGraphContainer>
+        <ReactApexChart options={ options } series={ series } type="area" 
+          height={ COMMON_SPACING.lineChart.height } width={ COMMON_SPACING.lineChart.width }/>
+      </MarketDataGraphContainer>
+    </SimplePaper>
   )
 }
 

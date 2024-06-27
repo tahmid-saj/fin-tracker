@@ -1,4 +1,5 @@
-import "./summary-table-investments.styles.scss"
+import "./summary-table-investments.styles.jsx"
+import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.jsx";
 import { useState, useContext, useRef } from "react"
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
@@ -8,6 +9,14 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  display: "block",
+  justifyContent: "center"
+}
 
 const SummaryTableInvestments = ({ financeItemInfo }) => {
   const investments = useSelector(selectInvestments)
@@ -32,11 +41,14 @@ const SummaryTableInvestments = ({ financeItemInfo }) => {
   ])
 
   return (
-    <div className="ag-theme-quartz-dark expenses-table-container summary-table-investments-container" // applying the grid theme
-      style={{ height: 650, width: '100%' }} // the grid will fill the size of the parent container
-      >
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
-    </div>
+    <SimplePaper styles={ paperStyles }>
+      <SummaryTableInvestmentsContainer>
+        <div className="ag-theme-quartz-dark"
+          style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+          <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
+        </div>
+      </SummaryTableInvestmentsContainer>
+    </SimplePaper>
   )
 }
 

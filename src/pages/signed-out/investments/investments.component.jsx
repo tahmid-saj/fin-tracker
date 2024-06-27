@@ -1,6 +1,7 @@
 import React, { Component, useContext, useEffect } from "react";
 
-import "./investments.styles.scss";
+import "./investments.styles.jsx";
+import { InvestmentsContainer } from "./investments.styles.jsx";
 import MarketView from "../../shared/market-view/market-view.component";
 import CreateInvestmentForm from "../../../components/signed-out/investments/create-investment-form/create-investment-form.component";
 import AllInvestmentsSummary from "../../../components/signed-out/investments/all-investments-summary/all-investments-summary.component";
@@ -11,6 +12,13 @@ import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { useDispatch, useSelector } from "react-redux";
 import { selectInvestments } from "../../../store/signed-out/investments/investments.selector";
 import { setInvestmentsSummary } from "../../../store/signed-out/investments/investments.action";
+
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import PaymentIcon from '@mui/icons-material/Payment';
+import AddIcon from '@mui/icons-material/Add';
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx";
+import InvestmentsList from "../../../components/signed-out/investments/investments/investments.component.jsx";
 
 const Investments = () => {
   // const { investments } = useContext(InvestmentsContext);
@@ -39,22 +47,70 @@ const Investments = () => {
     }))
   }, [investments, dispatch]);
 
+  let tabList = [{
+    value: "market-data",
+    icon: <ShowChartIcon/>,
+    label: "Market Data"
+  }]
+  let panelList = [{
+    value: "market-data",
+    children: <MarketView/>
+  }]
+
+  if (investments && investments.length !== 0) {
+    tabList.push({
+      value: "summary",
+      icon: <SummarizeIcon/>,
+      label: "Summary"
+    })
+    tabList.push({
+      value: "investments",
+      icon: <PaymentIcon/>,
+      label: "Investments"
+    })
+
+    panelList.push({
+      value: "summary",
+      children: <AllInvestmentsSummary/>
+    })
+    panelList.push({
+      value: "investments",
+      children: <InvestmentsList/>
+    })
+  }
+
+  tabList.push({
+    value: "add-investment",
+    icon: <AddIcon/>,
+    label: "Add Investment"
+  })
+  panelList.push({
+    value: "add-investment",
+    children: <CreateInvestmentForm/>
+  })
+
   return (
-    <div className="investments-container">
-      <MarketView></MarketView>
+    <InvestmentsContainer>
+      <ItemTabs tabList={ tabList } panelList={ panelList }></ItemTabs>
+    </InvestmentsContainer>
+  )
 
-      {
-        investments.length !== 0 && <AllInvestmentsSummary></AllInvestmentsSummary>
-      }
+  // return (
+  //   <div className="investments-container">
+  //     <MarketView></MarketView>
 
-      <div className="investments-form-summary-container">
-        <CreateInvestmentForm label={ FINANCE_ITEM_TYPES.investments }></CreateInvestmentForm>
+  //     {
+  //       investments.length !== 0 && <AllInvestmentsSummary></AllInvestmentsSummary>
+  //     }
 
-        <div className="investment-info-summary">
-        </div>
-      </div>
-    </div>
-  );
+  //     <div className="investments-form-summary-container">
+  //       <CreateInvestmentForm label={ FINANCE_ITEM_TYPES.investments }></CreateInvestmentForm>
+
+  //       <div className="investment-info-summary">
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default Investments;
