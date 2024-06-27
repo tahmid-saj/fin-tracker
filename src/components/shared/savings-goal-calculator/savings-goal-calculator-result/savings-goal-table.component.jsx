@@ -11,6 +11,14 @@ import { useSelector } from "react-redux";
 import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
 
 import { Typography } from "@mui/material";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  display: "block",
+  justifyContent: "center"
+}
 
 const SavingsGoalTable = () => {
   // const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
@@ -36,12 +44,15 @@ const SavingsGoalTable = () => {
   ])
 
   return (
-    <SavingsGoalTableGrid className="ag-theme-quartz-dark" // applying the grid theme
-      style={{ height: 650, width: '90%' }} // the grid will fill the size of the parent container
-      >
-      <Typography variant="subtitle1" sx={{ color: "black" }}>Savings Goal Summary</Typography>
-      <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
-    </SavingsGoalTableGrid>
+    <SavingsGoalTableGrid>
+    <SimplePaper styles={ paperStyles }>
+        <Typography variant="subtitle1" sx={{ color: "black" }}>Savings Goal Summary</Typography>
+          <div className="ag-theme-quartz-dark"
+          style={{ height: COMMON_SPACING.table.height, width: COMMON_SPACING.table.width }}>
+          <AgGridReact rowData={ rowData } columnDefs={ columnDefs } rowSelection={ "multiple" }/>
+        </div>
+    </SimplePaper>
+      </SavingsGoalTableGrid>
   )
 }
 
