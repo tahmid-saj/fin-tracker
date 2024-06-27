@@ -12,19 +12,15 @@ const MarketView = () => {
   const { marketData } = useContext(MarketDataContext)
 
   return (
-    <Fragment>
-      <MarketViewContainer>
-        <MarketDataSearch></MarketDataSearch>
-      </MarketViewContainer>
+    <MarketViewContainer>
+      <MarketDataSearch></MarketDataSearch>
 
       <Divider/>
 
-      <MarketViewContainer>
-        {
-          marketData !== DEFAULT_MARKET_DATA && marketData.queryResults !== undefined && <MarketDataGraph></MarketDataGraph>
-        }
-      </MarketViewContainer>
-    </Fragment>
+      {
+        marketData !== DEFAULT_MARKET_DATA && marketData.queryResults !== undefined && <MarketDataGraph></MarketDataGraph>
+      }
+    </MarketViewContainer>
   )
 }
 

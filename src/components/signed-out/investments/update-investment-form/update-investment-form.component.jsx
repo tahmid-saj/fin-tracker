@@ -1,15 +1,21 @@
 import React, { useState, Component, useContext } from "react";
 
-import "./update-investment-form.styles.scss";
+import "./update-investment-form.styles.jsx";
+import { UpdateInvestmentContainer, UpdateInvestmentFormContainer,
+  ContributionInputContainer } from "./update-investment-form.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants";
-
+import Button from "../../../shared/button/button.component.jsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { updateInvestment, closeInvestment } from "../../../../store/signed-out/investments/investments.action";
+import { Typography } from "@mui/material";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
 
 const defaultFormFields = {
   investmentName: "",
@@ -22,6 +28,10 @@ const defaultFormFields = {
   additionalContribution: "",
   contributionAt: "",
   contributionInterval: ""
+}
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"]
 }
 
 const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
@@ -83,91 +93,105 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
   };
 
   return (
-    <div className="investment-form-container">
-      
-      <div className="update-investment-container">
+    <UpdateInvestmentContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">Create Investment</Typography>
 
-        <h3>Update Investment</h3>
-
-        <form>
-          <FormInput label="Investment name" type="text" required onChange={ handleChange }
+        <form onSubmit={ handleUpdate }>
+          <div className="container">
+          <UpdateInvestmentFormContainer>
+            <FormInput label="Investment name" type="text" required onChange={ handleChange }
                             name="investmentName" value={ formFields.investmentName }></FormInput>
           
-          <FormInput label="Investment type" type="text" required onChange={ handleChange }
-                            name="investmentType" value={ formFields.investmentType }></FormInput>
-          
-          <FormInput label="Starting amount" type="text" required onChange={ handleChange }
-                            name="startingAmount" value={ formFields.startingAmount }></FormInput>
+            <FormInput label="Investment type" type="text" required onChange={ handleChange }
+                              name="investmentType" value={ formFields.investmentType }></FormInput>
+            
+            <FormInput label="Starting amount" type="text" required onChange={ handleChange }
+                              name="startingAmount" value={ formFields.startingAmount }></FormInput>
 
-          <h5>Start date</h5>
-          <FormInput type="date" required name="startDate" value={ formFields.startDate }
-                    onChange={ handleChange }></FormInput>
-          
-          <FormInput label="After how many years?" type="text" required onChange={ handleChange }
-                            name="afterYears" value={ formFields.afterYears }></FormInput>
-          
-          <FormInput label="Return rate (%)" type="text" required onChange={ handleChange }
-                            name="returnRate" value={ formFields.returnRate }></FormInput>
-          
-          <label className="compoundedDropdown" htmlFor="compounded">Compounded</label>
+            <Typography paragraph>Start date</Typography>
 
-          <select className="dropButton" name="compounded" id="compounded" 
-                  onChange={ handleChange } value={ formFields.compounded }>
+            <FormInput type="date" required name="startDate" value={ formFields.startDate } 
+                        onChange={ handleChange }></FormInput>
+            
+            <FormInput label="After how many years?" type="text" required onChange={ handleChange }
+                              name="afterYears" value={ formFields.afterYears }></FormInput>
+            
+            <FormInput label="Return rate (%)" type="text" required onChange={ handleChange }
+                              name="returnRate" value={ formFields.returnRate }></FormInput>
 
-            <option value="Annually">Annually</option>
-            <option value="Semiannually">Semiannually</option>
-            <option value="Quarterly">Quarterly</option>
-            <option value="Monthly">Monthly</option>
-            <option value="Biweekly">Biweekly</option>
-            <option value="Weekly">Weekly</option>
-            <option value="Daily">Daily</option>
-          </select>
+            <Typography sx={{ display: "inline-block", position: "relative" }} paragraph>Compounded</Typography>
+            <DropButton required className="dropButton" name="compounded" id="compounded" 
+                    onChange={ handleChange } value={ formFields.compounded }>
+              <option value="Annually">Annually</option>
+              <option value="Semiannually">Semiannually</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Biweekly">Biweekly</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Daily">Daily</option>
+            </DropButton>
 
-          <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
-                            name="additionalContribution" value={ formFields.additionalContribution }></FormInput>
+            <FormInput label="Additional contribution" type="text" required onChange={ handleChange }
+                          name="additionalContribution" value={ formFields.additionalContribution }></FormInput>
 
-          <label className="contributionAtDropdown" htmlFor="contributionAt">Contribution at the</label>
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <ContributionInputContainer>
+                    <Typography sx={{ marginLeft: "2%" }} paragraph>Contribution at the</Typography>
+                    <DropButton required className="dropButton" name="contributionAt" id="contributionAt" 
+                            onChange={ handleChange } value={ formFields.contributionAt }>
+                      <option value="Beginning">Beginning</option>
+                      <option value="End">End</option>
+                    </DropButton>
+                  </ContributionInputContainer>
 
-          <select className="dropButton" name="contributionAt" id="contributionAt" 
-                  onChange={ handleChange } value={ formFields.contributionAt }>
+                  <ContributionInputContainer>
+                    <Typography sx={{ marginLeft: "2%" }} paragraph>of each</Typography>
+                    <DropButton className="dropButton" name="contributionInterval" id="contributionInterval" 
+                            onChange={ handleChange } value={ formFields.contributionInterval }>
+                      <option value="Month">Month</option>
+                      <option value="Year">Year</option>
+                    </DropButton>
+                  </ContributionInputContainer>
+                </div>
+              </div>
+            </div>
 
-            <option value="Beginning">Beginning</option>
-            <option value="End">End</option>
-          </select>
 
-          <label className="contributionIntervalDropdown" htmlFor="contributionInterval">of each</label>
 
-          <select className="dropButton" name="contributionInterval" id="contributionInterval" 
-                  onChange={ handleChange } value={ formFields.contributionInterval }>
+          </UpdateInvestmentFormContainer>
 
-            <option value="Month">Month</option>
-            <option value="Year">Year</option>
-          </select>
-          
-          <div className="buttons-container">
-            <button className="investment-button-update" type="button"
-                    onClick={ handleUpdate }>Update</button>
-
-            <button className="investment-button-close" type="button"
-                    onClick={ handleClose }>Close</button>
+            <div className="row">
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="submit">Update</Button>
+                  <Button type="button" onClick={ handleClose }>Close Investment</Button>
+                </div>
+              </div>
+            </div>
           </div>
 
           {
             showConfirmClose === true &&
-            <div className="buttons-container">
-              <h3>Sure you want to close the investment?</h3>
-
-              <button className="investment-confirm-close-button" type="button"
-                      onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.yes) }>Yes</button>
-              
-              <button className="investment-confirm-close-button" type="button"
-                      onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.no) }>No</button>
+            <div className="row">
+              <div className="col-12">
+                <Typography sx={{ marginTop: "4%" }} paragraph>Sure you want to close the investment?</Typography>
+              </div>
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button type="button" 
+                    onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.yes) }>Yes</Button>
+                  <Button type="button"
+                    onClick={ (event) => handleConfirmClose(event, INVESTMENT_CONFIRM_CLOSE.no) }>No</Button>
+                </div>
+              </div>
             </div>
           }
         </form>
-      </div>
-
-    </div>
+      </SimplePaper>
+    </UpdateInvestmentContainer>
   );
 }
 

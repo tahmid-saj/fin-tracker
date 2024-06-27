@@ -287,5 +287,8 @@ export const COMMON_SPACING = {
   },
   bankingActions: {
     width: 300
+  },
+  financeItemInfo: {
+    width: 300
   }
 }
