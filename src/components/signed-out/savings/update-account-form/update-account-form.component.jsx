@@ -1,6 +1,7 @@
 import { useState, Component, useContext } from "react";
 
-import "./update-account-form.styles.scss";
+import "./update-account-form.styles.jsx";
+import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.jsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
@@ -10,6 +11,11 @@ import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savi
 import { updateSavingsAccount, closeSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
 
 import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
+import { Typography } from "@mui/material";
+import Button from "../../../shared/button/button.component.jsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -19,6 +25,10 @@ const defaultFormFields = {
   contributionPeriod: "",
   contributionInterval: "Months",
   apy: ""
+}
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
 }
 
 const UpdateAccountForm = ({ label, financeItemInfo }) => {
@@ -81,59 +91,68 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
   };
 
   return (
-    <div className="update-savings-account-container">
-      <h3>Update savings</h3>
+    <UpdateSavingsAccountContainer>
+    <SimplePaper styles={ paperStyles }>
+      <Typography variant="h6">Track savings</Typography>
 
-      <form className="update-savings-account-form-container">
-        <FormInput label="Savings account name" type="text" required onChange={ handleChange }
-                          name="savingsAccountName" value={ formFields.savingsAccountName }></FormInput>
-        
-        <FormInput label="Initial deposit" type="text" required onChange={ handleChange }
-                          name="initialDeposit" value={ formFields.initialDeposit }></FormInput>
+      <form onSubmit={ handleSubmit }>
+        <div className="container">
+          <FormInput label="Savings account name" type="text" required onChange={ handleChange }
+                            name="savingsAccountName" value={ formFields.savingsAccountName }></FormInput>
+          
+          <FormInput label="Initial deposit" type="text" required onChange={ handleChange }
+                            name="initialDeposit" value={ formFields.initialDeposit }></FormInput>
 
-        <h5>Start date</h5>
-        <FormInput type="date" required name="startDate" value={ formFields.startDate }
-                          onChange={ handleChange }></FormInput>
-        
-        <FormInput label="Monthly contribution" type="text" required onChange={ handleChange }
-                          name="monthlyContribution" value={ formFields.monthlyContribution }></FormInput>
-        
-        <div className="contribution-interval-container">
-          <FormInput label="Over a period of" type="text" required onChange={ handleChange }
-                            name="contributionPeriod" value={ formFields.contributionPeriod }></FormInput>
+          <Typography paragraph>Start date</Typography>
+          <FormInput type="date" required name="startDate" value={ formFields.startDate }
+                      onChange={ handleChange }></FormInput>
+          
+          <FormInput label="Monthly contribution" type="text" required onChange={ handleChange }
+                            name="monthlyContribution" value={ formFields.monthlyContribution }></FormInput>
+          
+          <ContributionInputContainer>
+            <FormInput label="Over a period of" type="text" required onChange={ handleChange }
+                              name="contributionPeriod" value={ formFields.contributionPeriod }></FormInput>
 
-          <select className="dropButton" name="contributionInterval" id="contributionInterval" 
-                  onChange={ handleChange } value={ formFields.contributionInterval }>
+            <DropButton required className="dropButton" name="contributionInterval" id="contributionInterval" 
+                    onChange={ handleChange } value={ formFields.contributionInterval }>
+              <option value="Months">Months</option>
+              <option value="Years">Years</option>
+            </DropButton>
+          </ContributionInputContainer>
 
-            <option value="Months">Months</option>
-            <option value="Years">Years</option>
-          </select>
-        </div>
+          <FormInput label="APY" type="text" required onChange={ handleChange }
+                            name="apy" value={ formFields.apy }></FormInput>
 
-        <FormInput label="APY" type="text" required onChange={ handleChange }
-                          name="apy" value={ formFields.apy }></FormInput>
-        
-        <div className="buttons-container">
-          <button className="saving-button-update" type="button"
-                  onClick={ handleUpdate }>Update</button>
-
-          <button className="saving-button-close" type="button"
-                  onClick={ handleClose }>Close</button>
-        </div>
-
-        {
-          showConfirmClose === true &&
-          <div className="buttons-container">
-            <h3>Sure you want to close the savings account?</h3>
-
-            <button className="saving-button-confirm-close" type="button"
-                    onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.yes) }>Yes</button>
-            <button className="saving-button-confirm-close" type="button"
-                    onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.no) }>No</button>
+          <div className="row">
+            <div className="col-12">
+              <div className="btn-group flex-wrap">
+                <Button type="submit">Update</Button>
+                <Button type="button" onClick={ handleClose }>Close Account</Button>
+              </div>
+            </div>
           </div>
-        }
+
+          {
+            showConfirmClose === true &&
+            <div className="row">
+              <div className="col-12">
+                <Typography sx={{ marginTop: "4%" }} paragraph>Sure you want to close the savings account?</Typography>
+              </div>
+              <div className="col-12">
+                <div className="btn-group flex-wrap">
+                  <Button className="saving-button-confirm-close" type="button"
+                        onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.yes) }>Yes</Button>
+                  <Button className="saving-button-confirm-close" type="button"
+                          onClick={ (event) => handleConfirmClose(event, SAVINGS_CONFIRM_CLOSE.no) }>No</Button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
       </form>
-    </div>
+    </SimplePaper>
+  </UpdateSavingsAccountContainer>
   );
 }
 

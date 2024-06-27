@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreateSavingsAccountContainer = styled.div`
+export const UpdateSavingsAccountContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

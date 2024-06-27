@@ -4,10 +4,10 @@ import "./finance-tracker-item-info.styles.scss";
 
 // TODO: need to move FinanceTrackerItemInfo from shared to signed-in and signed-out folders
 import InvestmentInfo from "../investments/investment-info/investment-info.component";
-import { Summary as InvestmentSummary} from "../investments/summary/summary.component";
+import InvestmentSummary from "../investments/summary/summary.component";
 
 import AccountInfo from "../savings/account-info/account-info.component";
-import { Summary as SavingsSummary} from "../savings/summary/summary.component";
+import SavingsSummary from "../savings/summary/summary.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
