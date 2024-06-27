@@ -159,8 +159,6 @@ const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
               </div>
             </div>
 
-
-
           </UpdateInvestmentFormContainer>
 
             <div className="row">

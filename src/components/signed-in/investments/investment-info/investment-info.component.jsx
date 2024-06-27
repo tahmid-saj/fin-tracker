@@ -1,8 +1,17 @@
 import { useContext } from "react";
 
-import "./investment-info.styles.scss";
+import "./investment-info.styles.jsx";
+import { InvestmentInfoContainer } from "./investment-info.styles.jsx";
 
 import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
+import { Divider, Typography } from "@mui/material";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"],
+  width: COMMON_SPACING.financeItemInfo.width
+}
 
 const InvestmentInfo = ({ financeItemInfo }) => {
   const { getInvestmentInfo } = useContext(InvestmentsContext);
@@ -15,16 +24,28 @@ const InvestmentInfo = ({ financeItemInfo }) => {
   const endDate = `${Number(year) + Number(investmentInfo.afterYears)}-${month}-${day}`;
 
   return (
-    <div className="investment-info-container">
-      <h5>{`Investment name ${investmentInfo.investmentName}`}</h5>
-      <h5>{`Investment type ${investmentInfo.investmentType}`}</h5>
-      <h5>{`Return rate ${investmentInfo.returnRate.toFixed(2)}%`}</h5>
-      <h5>{`Compounded ${investmentInfo.compounded}`}</h5>
-      <h5>{`Additional contribution of $${investmentInfo.additionalContribution.toFixed(2)}`}</h5>
-      <h5>{`at the ${investmentInfo.contributionAt} of each ${investmentInfo.contributionInterval}`}</h5>
-      <h6>{`Start date - ${investmentInfo.startDate}`}</h6>
-      <h6>{`End date - ${endDate}`}</h6>
-    </div>
+    <InvestmentInfoContainer>
+      <SimplePaper styles={ paperStyles }>
+        <Typography variant="h6">{`Investment name - ${investmentInfo.investmentName}`}</Typography>
+        <Typography variant="body1">{`Investment type - ${investmentInfo.investmentType}`}</Typography>
+        <Typography variant="body1">{`Return rate ${investmentInfo.returnRate.toFixed(2)}%`}</Typography>
+
+        <br/>
+        <Divider/>
+        <br/>
+
+        <Typography variant="subtitle2">{`Compounded ${investmentInfo.compounded}`}</Typography>
+        <Typography variant="body1">{`Additional contribution of $${investmentInfo.additionalContribution.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`at the ${investmentInfo.contributionAt} of each ${investmentInfo.contributionInterval}`}</Typography>
+        
+        <br/>
+        <Divider/>
+        <br/>
+
+        <Typography variant="body1">{`Start date - ${investmentInfo.startDate}`}</Typography>
+        <Typography variant="body1">{`End date - ${endDate}`}</Typography>
+      </SimplePaper>
+    </InvestmentInfoContainer>
   );
 };
 

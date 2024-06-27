@@ -3,9 +3,16 @@ import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 
-import "./summary-graph.styles.scss";
+import "./summary-graph.styles.jsx";
+import { SummaryGraphInvestmentContainer } from "./summary-graph.styles.jsx";
 
 import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+
+const paperStyles = {
+  backgroundColor: COLOR_CODES.general["5"]
+}
 
 const SummaryGraphInvestment = ({ financeItemInfo }) => {
   const { investments, getInvestmentInfo } = useContext(InvestmentsContext);
@@ -48,7 +55,6 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
   const options = {
     chart: {
       type: 'area',
-      height: 1000,
       zoom: {
         enabled: true
       }
@@ -80,9 +86,12 @@ const SummaryGraphInvestment = ({ financeItemInfo }) => {
   };
     
   return (
-    <div className="summary-graph-investment-container">
-      <ReactApexChart options={ options } series={ series } type="area" height={ 500 } width={ "100%" }/>
-    </div>
+    <SummaryGraphInvestmentContainer>
+      <SimplePaper styles={ paperStyles }>
+        <ReactApexChart options={ options } series={ series } type="area" 
+          height={ COMMON_SPACING.lineChart.height } width={ COMMON_SPACING.lineChart.width }/>
+      </SimplePaper>
+    </SummaryGraphInvestmentContainer>
   )
 }
 
