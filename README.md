@@ -83,7 +83,7 @@ REACT_APP_FIREBASE_APP_ID=""
 * OpenAI: Services chatbot requests
 * polygon.io: Provides market data for requests from the __Finance Planner API__
 * External APIs: There are several other external APIs providing financial calculations, tools, country specific financial data, etc.
-6. __Databases__: A MongoDB cluster and collections are created, and a connection is established with the __Finance Planner and Finance Predict APIs__. A Redis cluster is also created for storing cached data. Additionally Cloud Firestore and AWS RDS are both initialized for storing authentication and finance prediction data respectively.
+6. __Databases__: A MongoDB cluster and collections are created, and a connection is established with the __Finance Planner and Finance Predict APIs__. A Redis cluster is also created for storing cached data. Additionally Cloud Firestore and AWS RDS are both initialized for storing authentication and ML model training data respectively.
 7. __Data engineering__: The set up for the development environment for the data engineering tool can be found [here](https://github.com/tahmid-saj/etl-elt-api).
 8. __Machine learning__: The set up for the development environment for the ML job scheduler can be found [here](https://github.com/tahmid-saj/ml-job-scheduler).
 9. __AWS__: Setting up the AWS services is an optional step as this is on a development environment. However, the same services could be used to create the tools mentioned in the high level view.
