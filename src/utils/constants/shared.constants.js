@@ -124,7 +124,7 @@ export const NAV_LINKS = {
       },
       {
         header: "Medium",
-        url: "http://tahmidsajin.com/"
+        url: "https://medium.com/@tahmid.saj/designing-a-finance-planner-application-58d3ad928d62"
       },
       {
         header: "LinkedIn",
