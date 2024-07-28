@@ -29,7 +29,7 @@ export const NAV_LINKS = {
     exports: "Exports",
     signedOut: "Sign In / Register",
     signedIn: "Sign Out",
-    website: "tahmidsajin.com",
+    website: "tahmidsajin.io",
     github: "GitHub",
     medium: "Medium",
     linkedin: "LinkedIn"
@@ -115,8 +115,8 @@ export const NAV_LINKS = {
     ],
     section3: [
       {
-        header: "tahmidsajin.com",
-        url: "http://tahmidsajin.com/"
+        header: "tahmidsajin.io",
+        url: "http://tahmidsajin.io/"
       },
       {
         header: "GitHub",
@@ -187,8 +187,8 @@ export const NAV_LINKS = {
     ],
     section3: [
       {
-        header: "tahmidsajin.com",
-        url: "http://tahmidsajin.com/"
+        header: "tahmidsajin.io",
+        url: "http://tahmidsajin.io/"
       },
       {
         header: "GitHub",
