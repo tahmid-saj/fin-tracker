@@ -15,6 +15,8 @@ import { getBankingAccountsData, getBankingSummaryData,
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
+import { useQuery } from "@apollo/client";
+
 // helper functions
 
 const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
@@ -235,8 +237,6 @@ export const BankingProvider = ({ children }) => {
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
 
-    
-
     setBankingSummary({ 
       currentAllBankingBalance: bankingSummary.newAllBankingBalance, 
       totalAllBankingIn: bankingSummary.newAllBankingIn, 
@@ -258,7 +258,6 @@ export const BankingProvider = ({ children }) => {
           setBankingSummary(bankingSummary);
         }
 
-        
       } else if (!currentUser) {
         setDefaultBankingAccountsValues();
         setDefaultBankingSummaryValues();

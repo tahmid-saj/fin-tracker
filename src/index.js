@@ -30,49 +30,58 @@ import { Provider } from 'react-redux';
 import { persistor, store } from "./store/store"
 import { PersistGate } from 'redux-persist/integration/react';
 
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+// const client = new ApolloClient({
+//   uri: "http://localhost:8000/graphql",
+//   cache: new InMemoryCache()
+// })
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={ store }>
-      {/* <PersistGate loading={ null } persistor={ persistor }> */}
-        <BrowserRouter>
-          {/* <UserProvider> */}
-            <UsefulToolsProvider>
-              {/* <SavingsGoalCalculatorProvider> */}
-                  {/* <ExpensesProvider> */}
-                    {/* <BankingProvider> */}
-                      {/* <InvestmentsProvider> */}
-                        <MarketDataProvider>
-                          {/* <SavingsProvider> */}
-                            {/* <DashboardProvider> */}
-                              <ExpensesProviderSignedIn>
-                                <BankingProviderSignedIn>
-                                  <InvestmentsProviderSignedIn>
-                                    <SavingsProviderSignedIn>
-                                      <InsuranceProviderSignedIn>
-                                        <DashboardProviderSignedIn>
-                                          <ExportsProvider>
-                                            <ChatBotProvider>
-                                              <App />
-                                            </ChatBotProvider>
-                                          </ExportsProvider>
-                                        </DashboardProviderSignedIn>
-                                      </InsuranceProviderSignedIn>
-                                    </SavingsProviderSignedIn>
-                                  </InvestmentsProviderSignedIn>
-                                </BankingProviderSignedIn>
-                              </ExpensesProviderSignedIn>
-                            {/* </DashboardProvider> */}
-                          {/* </SavingsProvider> */}
-                        </MarketDataProvider>
-                      {/* </InvestmentsProvider> */}
-                    {/* </BankingProvider> */}
-                  {/* </ExpensesProvider> */}
-              {/* </SavingsGoalCalculatorProvider> */}
-            </UsefulToolsProvider>
-          {/* </UserProvider> */}
-        </BrowserRouter>
-      {/* </PersistGate> */}
+      {/* <ApolloProvider client={ client }> */}
+        {/* <PersistGate loading={ null } persistor={ persistor }> */}
+          <BrowserRouter>
+            {/* <UserProvider> */}
+              <UsefulToolsProvider>
+                {/* <SavingsGoalCalculatorProvider> */}
+                    {/* <ExpensesProvider> */}
+                      {/* <BankingProvider> */}
+                        {/* <InvestmentsProvider> */}
+                          <MarketDataProvider>
+                            {/* <SavingsProvider> */}
+                              {/* <DashboardProvider> */}
+                                <ExpensesProviderSignedIn>
+                                  <BankingProviderSignedIn>
+                                    <InvestmentsProviderSignedIn>
+                                      <SavingsProviderSignedIn>
+                                        <InsuranceProviderSignedIn>
+                                          <DashboardProviderSignedIn>
+                                            <ExportsProvider>
+                                              <ChatBotProvider>
+                                                <App />
+                                              </ChatBotProvider>
+                                            </ExportsProvider>
+                                          </DashboardProviderSignedIn>
+                                        </InsuranceProviderSignedIn>
+                                      </SavingsProviderSignedIn>
+                                    </InvestmentsProviderSignedIn>
+                                  </BankingProviderSignedIn>
+                                </ExpensesProviderSignedIn>
+                              {/* </DashboardProvider> */}
+                            {/* </SavingsProvider> */}
+                          </MarketDataProvider>
+                        {/* </InvestmentsProvider> */}
+                      {/* </BankingProvider> */}
+                    {/* </ExpensesProvider> */}
+                {/* </SavingsGoalCalculatorProvider> */}
+              </UsefulToolsProvider>
+            {/* </UserProvider> */}
+          </BrowserRouter>
+        {/* </PersistGate> */}
+      {/* </ApolloProvider> */}
     </Provider>
   </React.StrictMode>
 );
