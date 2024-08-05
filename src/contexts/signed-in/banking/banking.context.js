@@ -15,8 +15,6 @@ import { getBankingAccountsData, getBankingSummaryData,
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
 
-import { useQuery } from "@apollo/client";
-
 // helper functions
 
 const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {

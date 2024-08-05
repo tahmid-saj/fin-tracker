@@ -2,9 +2,18 @@ import { gql } from "@apollo/client";
 
 // graphql banking queries
 export const BANKING_ACCOUNTS_BY_USER = gql`
-  query BankingAccountsByUser {
-    bankingAccountsByUser(userId: "PjsZaVEVAsbet4R4QPUTGgqlKCs1", email: "tim@gmail.com") {
+  query BankingAccountsByUser($userId: String!, $email: String!) {
+    bankingAccountsByUser(userId: $userId, email: $email) {
+      name
       currentBalance
+      totalIn
+      totalOut
+      transactions {
+        amount
+        type
+        reason
+        addToExpenses
+      }
     }
   }
 `
