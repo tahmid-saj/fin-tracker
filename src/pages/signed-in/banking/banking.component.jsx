@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useEffect } from "react";
 
 import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component";
 
