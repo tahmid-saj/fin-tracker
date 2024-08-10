@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ExpensesState } from "./expenses.reducer";
 
-export const EXPENSES_INITIAL_STATE = {
+export const EXPENSES_INITIAL_STATE: ExpensesState = {
   expenses: [],
   expensesTagLimit: 0,
   filterConditions: null,
+  selectedExpensesDate: null,
+  scheduledExpensesView: null,
   expensesView: [],
   expensesSummary: {}
 }
