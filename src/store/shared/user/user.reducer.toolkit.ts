@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserState } from "./user.reducer";
 
-const INITIAL_STATE = {
-  currentUser: null
+const INITIAL_STATE: UserState = {
+  currentUser: null,
+  isLoading: false,
+  error: null
 }
 
 export const userSlice = createSlice({
