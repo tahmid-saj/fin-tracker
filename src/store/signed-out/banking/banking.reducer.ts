@@ -3,8 +3,8 @@ import { BANKING_ACTION_TYPES, BankingAccount, BankingSummary } from "./banking.
 import { closeBankingAccount, createBankingAccount, depositToBankingAccount, setBankingSummary, transferToBankingAccount, withdrawFromBankingAccount } from "./banking.action";
 
 export type BankingState = {
-  readonly bankingAccounts: BankingAccount[];
-  readonly bankingSummary: BankingSummary;
+  readonly bankingAccounts: BankingAccount[] | null | undefined;
+  readonly bankingSummary: BankingSummary | null | undefined;
 }
 
 export const BANKING_INITIAL_STATE: BankingState = {
