@@ -77,7 +77,7 @@ export const calculateSavings = (savingsAccount) => {
     compoundedInterestInput.P = compoundedInterestResult.balance
 
     resSavings.push({
-      currentDate: currentDate,
+      currentDate: String(currentDate),
       interestEarned: compoundedInterestResult.interestEarned,
       totalInterestEarned: totalInterest,
       // balance: monthIndex === (savingsGoalResult.yearsToReachGoal) * 12 ? savingsGoalResult.savingsGoal : compoundedInterestResult.balance
@@ -158,7 +158,7 @@ export const calculateSavingsGoalSchedule = (savingsGoalResult) => {
     compoundedInterestInput.P = compoundedInterestResult.balance
 
     res.push({
-      currentDate: currentDate,
+      currentDate: String(currentDate),
       monthlyDeposit: savingsGoalResult.monthlyDepositRequired,
       interestEarned: compoundedInterestResult.interestEarned,
       totalInterestEarned: totalInterest,

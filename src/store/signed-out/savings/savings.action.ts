@@ -1,11 +1,16 @@
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
 import { calculateSavings } from "../../../utils/calculations/savings.calculations";
-import { createAction } from "../../../utils/reducer/reducer.utils";
-import { SAVINGS_ACTION_TYPES } from "./savings.types";
+import { ActionWithPayload, createAction, withMatcher } from "../../../utils/reducer/reducer.utils";
+import { SAVINGS_ACTION_TYPES, SavingsAccount, SavingsAccountsSummary } from "./savings.types";
+
+export type CreateSavingsAccount = ActionWithPayload<SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, SavingsAccount[]>
+export type UpdateSavingsAccount = ActionWithPayload<SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, SavingsAccount[]>
+export type CloseSavingsAccount = ActionWithPayload<SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, SavingsAccount[]>
+export type SetSavingsAccountsSummary = ActionWithPayload<SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS_SUMMARY, SavingsAccountsSummary>
 
 // helper functions
 
-const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
+const createSavingsAccountHelper = (savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount): SavingsAccount[] => {
   // validating if savingsAccount exists in savingsAccounts
   if (validateSavingsAccountCreation(savingsAccounts, savingsAccount)) return savingsAccounts;
 
@@ -39,7 +44,7 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
     }];
 };
 
-const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount) => {
+const updateSavingsAccountHelper = (savingsAccounts: SavingsAccount[], originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount): SavingsAccount[] => {
   // validate if the fields in updatedSavingsAccount are valid and the is not already another savingsAccount with the same name
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
@@ -74,37 +79,38 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   return updatedSavingsAccounts;
 };
 
-const closeSavingsAccountHelper = (savingsAccounts, closingSavingsAccountName) => {
+const closeSavingsAccountHelper = (savingsAccounts: SavingsAccount[], closingSavingsAccountName: string): SavingsAccount[] => {
   // return savingsAccounts without the closingSavingsAccountName
   return savingsAccounts.filter(account => account.savingsAccountName !== closingSavingsAccountName);
 };
 
-const getSavingsAccountInfoHelper = (savingsAccounts, savingsAccountName) => {
+const getSavingsAccountInfoHelper = (savingsAccounts: SavingsAccount[], savingsAccountName: string): SavingsAccount | null | undefined => {
   // return the account with the given savingsAccountName
   return savingsAccounts.find(account => String(account.savingsAccountName) === String(savingsAccountName));
 };
 
 // actions
 
-export const createSavingsAccount = (savingsAccounts, savingsAccount) => {
+export const createSavingsAccount = withMatcher((savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount): CreateSavingsAccount => {
   const newSavingsAccounts = createSavingsAccountHelper(savingsAccounts, savingsAccount)
   return createAction(SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, newSavingsAccounts)
-};
+})
 
-export const updateSavingsAccount = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount) => {
+export const updateSavingsAccount = withMatcher((savingsAccounts: SavingsAccount[], originalSavingsAccountName: string, 
+  updatedSavingsAccount: SavingsAccount): UpdateSavingsAccount => {
   const newSavingsAccounts = updateSavingsAccountHelper(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)
   return createAction(SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, newSavingsAccounts)
-};
+})
 
-export const closeSavingsAccount = (savingsAccounts, closingSavingsAccountName) => {
+export const closeSavingsAccount = withMatcher((savingsAccounts: SavingsAccount[], closingSavingsAccountName: string): CloseSavingsAccount => {
   const newSavingsAccounts = closeSavingsAccountHelper(savingsAccounts, closingSavingsAccountName)
   return createAction(SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS, newSavingsAccounts)
-};
+})
 
-export const getSavingsAccountInfo = (savingsAccounts, savingsAccountName) => {
+export const getSavingsAccountInfo = (savingsAccounts: SavingsAccount[], savingsAccountName: string): SavingsAccount | null | undefined => {
   return getSavingsAccountInfoHelper(savingsAccounts, savingsAccountName);
 };
 
-export const setSavingsAccountsSummary = (savingsAccountsSummary) => {
+export const setSavingsAccountsSummary = withMatcher((savingsAccountsSummary: SavingsAccountsSummary): SetSavingsAccountsSummary => {
   return createAction(SAVINGS_ACTION_TYPES.SET_SAVINGS_ACCOUNTS_SUMMARY, savingsAccountsSummary)
-}
+})
