@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { BankingState } from "./banking.reducer"; 
 
-export const BANKING_INITIAL_STATE = {
+export const BANKING_INITIAL_STATE: BankingState = {
   bankingAccounts: [],
   bankingSummary: {}
 }
