@@ -3,11 +3,23 @@ import { calculateSavingsGoal as _calculateSavingsGoal,
   calculateSavingsGoalSchedule as _calculateSavingsGoalSchedule
 } from "../../../utils/calculations/savings.calculations";
 
-import { createAction } from "../../../utils/reducer/reducer.utils";
-import { SAVINGS_GOAL_CALCULATOR_ACTION_TYPES } from "./savings-goal-calculator.types";
+import { ActionWithPayload, createAction, withMatcher } from "../../../utils/reducer/reducer.utils";
+import { SAVINGS_GOAL_CALCULATOR_ACTION_TYPES, SavingsGoalResult, SavingsGoalScheduleResult } from "./savings-goal-calculator.types";
+
+export type CalculateSavingsGoal = ActionWithPayload<SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_RESULT, SavingsGoalResult>
+export type CalculateSavingsGoalSchedule = ActionWithPayload<SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_SCHEDULE_RESULT, SavingsGoalScheduleResult[]>
+
+type SavingsGoalInput = {
+  savingsGoal: number;
+  yearsToReachGoal: number;
+  interestRatePerYear: number;
+  compounded: string;
+  amountFirstDeposit: number;
+  dateFirstDeposit: string;
+}
 
 // helper functions
-const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
+const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult, savingsGoalInput: SavingsGoalInput): SavingsGoalResult => {
   if (validateSavingsGoalInput(savingsGoalInput)) {
     return savingsGoalResult
   }
@@ -22,18 +34,18 @@ const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
   })
 }
 
-const calculateSavingsGoalScheduleHelper = (savingsGoalResult) => {
+const calculateSavingsGoalScheduleHelper = (savingsGoalResult: SavingsGoalResult): SavingsGoalScheduleResult[] => {
   return _calculateSavingsGoalSchedule(savingsGoalResult)
 }
 
 // action
 
-export const calculateSavingsGoal = (savingsGoalResult, savingsGoalInput) => {
+export const calculateSavingsGoal = withMatcher((savingsGoalResult: SavingsGoalResult, savingsGoalInput: SavingsGoalInput): CalculateSavingsGoal => {
   const newSavingsGoalResult = calculateSavingsGoalHelper(savingsGoalResult, savingsGoalInput)
   return createAction(SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_RESULT, newSavingsGoalResult)
-}
+})
 
-export const calculateSavingsGoalSchedule = (savingsGoalResult) => {
+export const calculateSavingsGoalSchedule = withMatcher((savingsGoalResult: SavingsGoalResult): CalculateSavingsGoalSchedule => {
   const newSavingsGoalScheduleResult = calculateSavingsGoalScheduleHelper(savingsGoalResult)
   return createAction(SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_SCHEDULE_RESULT, newSavingsGoalScheduleResult)
-}
+})

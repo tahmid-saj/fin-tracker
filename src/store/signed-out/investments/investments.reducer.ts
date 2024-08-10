@@ -4,8 +4,8 @@ import { Investment, InvestmentsSummary } from "./investments.types"
 import { closeInvestment, updateInvestment, createInvestment, setInvestmentsSummary } from "./investments.action";
 
 export type InvestmentsState = {
-  readonly investments: Investment[];
-  readonly investmentsSummary: InvestmentsSummary;
+  readonly investments: Investment[] | null | undefined;
+  readonly investmentsSummary: InvestmentsSummary | null | undefined;
 }
 
 export const INVESTMENTS_INITIAL_STATE: InvestmentsState = {

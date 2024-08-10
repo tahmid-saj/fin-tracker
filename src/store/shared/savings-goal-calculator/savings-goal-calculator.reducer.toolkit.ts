@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SavingsGoalState } from "./savings-goal-calculator.reducer";
 
-export const SAVINGS_GOAL_CALCULATOR_INITIAL_STATE = {
+export const SAVINGS_GOAL_CALCULATOR_INITIAL_STATE: SavingsGoalState = {
   savingsGoalResult: undefined,
   savingsGoalScheduleResult: undefined
 }
