@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
 import { SavingsGoalState } from "./savings-goal-calculator.reducer";
+import { RootState } from "../../store";
 
-const selectSavingsGoalCalculatorReducer = (state): SavingsGoalState => state.savingsGoalCalculator
+const selectSavingsGoalCalculatorReducer = (state: RootState): SavingsGoalState => state.savingsGoalCalculator
 
 export const selectSavingsGoalResult = createSelector(
   [selectSavingsGoalCalculatorReducer],
