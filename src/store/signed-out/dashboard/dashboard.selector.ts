@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
 import { DashboardState } from "./dashboard.reducer";
+import { RootState } from "../../store";
 
-const selectDashboardReducer = (state): DashboardState => state.dashboard
+const selectDashboardReducer = (state: RootState): DashboardState => state.dashboard
 
 export const selectSummaries = createSelector(
   [selectDashboardReducer],

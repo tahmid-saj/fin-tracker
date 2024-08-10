@@ -1,8 +1,8 @@
-import { all, call } from "redux-saga/effects"
+import { all, call } from "typed-redux-saga"
 import { userSagas } from "./shared/user/user.saga"
 
 export function* rootSaga() {
-  yield all([
+  yield* all([
     call(userSagas),
   ])
 }
