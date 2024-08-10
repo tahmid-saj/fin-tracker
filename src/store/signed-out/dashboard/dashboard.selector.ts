@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { DashboardState } from "./dashboard.reducer";
 
-const selectDashboardReducer = (state) => state.dashboard
+const selectDashboardReducer = (state): DashboardState => state.dashboard
 
 export const selectSummaries = createSelector(
   [selectDashboardReducer],

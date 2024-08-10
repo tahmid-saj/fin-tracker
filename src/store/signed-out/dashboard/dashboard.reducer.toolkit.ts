@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { DashboardState } from "./dashboard.reducer";
 
-export const DASHBOARD_INITIAL_STATE = {
+export const DASHBOARD_INITIAL_STATE: DashboardState = {
   summaries: {},
   userSummary: {}
 }
