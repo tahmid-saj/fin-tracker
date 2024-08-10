@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SavingsState } from "./savings.reducer";
 
-export const SAVINGS_INITIAL_STATE = {
+export const SAVINGS_INITIAL_STATE: SavingsState = {
   savingsAccounts: [],
   savingsAccountsSummary: {}
 }
