@@ -3,12 +3,23 @@ import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../
 import { validateAddInsurance, validateFilterInsurances, 
   validateRemoveInsurance 
 } from "../../../utils/validations/insurance.validation";
-import { createAction } from "../../../utils/reducer/reducer.utils";
-import { INSURANCE_ACTION_TYPES } from "./insurance.types";
+import { ActionWithPayload, createAction, withMatcher } from "../../../utils/reducer/reducer.utils";
+import { FilterConditions, Insurance, INSURANCE_ACTION_TYPES, InsurancePayment, InsurancesSummary } from "./insurance.types";
+
+export type AddInsurance = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCES, Insurance[]>
+export type FilterInsurances = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_FILTER_CONDITIONS, FilterConditions | null>
+export type RemoveInsurance = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCES, Insurance[]>
+export type ClearInsuranceFilter = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_FILTER_CONDITIONS, null>
+export type SetInsurancesView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCES_VIEW, Insurance[]>
+export type SetInsurancePayments = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCE_PAYMENTS, InsurancePayment[]>
+export type SetInsurancePaymentsView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCE_PAYMENTS_VIEW, InsurancePayment[]>
+export type SetInsurancesSummary = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCES_SUMMARY, InsurancesSummary>
+export type SelectScheduledInsurancePayments = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, string>
+export type SetScheduledInsurancePaymentsView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, InsurancePayment[]>
 
 // helper functions
 
-const addInsuranceHelper = (insurances, insurance) => {
+const addInsuranceHelper = (insurances: Insurance[], insurance: Insurance): Insurance[] => {
   return [ ...insurances,
     {
       insuranceFor: String(insurance.insuranceFor),
@@ -20,7 +31,7 @@ const addInsuranceHelper = (insurances, insurance) => {
   ]
 }
 
-const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
+const checkDateRangeFilterOverlap = (filterConditions: FilterConditions, insurance: Insurance): boolean => {
   if (filterConditions.insuranceStartDate === "" || ((filterConditions.insuranceStartDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceStartDate <= insurance.insuranceEndDate) 
       || (filterConditions.insuranceEndDate === "" && filterConditions.insuranceStartDate <= insurance.insuranceFirstPaymentDate))) {
     if (filterConditions.insuranceEndDate === "" || ((filterConditions.insuranceEndDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceEndDate <= insurance.insuranceEndDate)
@@ -32,8 +43,8 @@ const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
   return false
 }
 
-export const filterInsurancesHelper = (insurances, filterConditions) => {
-  let filteredInsurances = []
+export const filterInsurancesHelper = (insurances: Insurance[], filterConditions: FilterConditions): Insurance[] => {
+  let filteredInsurances: Insurance[] = []
 
   insurances.map((insurance) => {
     if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
@@ -48,8 +59,8 @@ export const filterInsurancesHelper = (insurances, filterConditions) => {
   return filteredInsurances
 }
 
-export const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
-  let filteredInsurancePayments = []
+export const filterInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], filterConditions: FilterConditions): InsurancePayment[] => {
+  let filteredInsurancePayments: InsurancePayment[] = []
 
   insurancePayments.map((insurancePayment) => {
     if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
@@ -66,13 +77,13 @@ export const filterInsurancePaymentsHelper = (insurancePayments, filterCondition
   return filteredInsurancePayments
 }
 
-const removeInsuranceHelper = (insurances, insuranceFor) => {
+const removeInsuranceHelper = (insurances: Insurance[], insuranceFor: string): Insurance[] => {
   if (validateRemoveInsurance(insuranceFor)) return insurances
 
   return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
 }
 
-export const selectScheduledInsurancePaymentsHelper = (insurancePayments, insuranceDate) => {
+export const selectScheduledInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], insuranceDate: string): InsurancePayment[] | null => {
   const filteredInsurancePayments = insurancePayments.filter((insurancePayment) => {
     return insurancePayment.insuranceDate === insuranceDate
   })
@@ -84,52 +95,52 @@ export const selectScheduledInsurancePaymentsHelper = (insurancePayments, insura
 
 // actions
 
-export const addInsurance = (insurances, insurance) => {
+export const addInsurance = withMatcher((insurances: Insurance[], insurance: Insurance): AddInsurance => {
   if (validateAddInsurance(insurances, insurance)) {
-    return
+    return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES, insurances)
   } else {
     const newInsurances = addInsuranceHelper(insurances, insurance)
     return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES, newInsurances)
   }
-}
+})
 
-export const filterInsurances = (filterConditions) => {
+export const filterInsurances = withMatcher((filterConditions: FilterConditions): FilterInsurances => {
   if (validateFilterInsurances(filterConditions)) {
-    return
+    return createAction(INSURANCE_ACTION_TYPES.SET_FILTER_CONDITIONS, null)
   } else {
     return createAction(INSURANCE_ACTION_TYPES.SET_FILTER_CONDITIONS, filterConditions)
   }
-}
+})
 
-export const removeInsurance = (insurances, insuranceFor) => {
+export const removeInsurance = withMatcher((insurances: Insurance[], insuranceFor: string): RemoveInsurance => {
   const newInsurances = removeInsuranceHelper(insurances, insuranceFor)
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES, newInsurances)
-}
+})
 
-export const clearInsuranceFilter = () => {
+export const clearInsuranceFilter = withMatcher((): ClearInsuranceFilter => {
   return createAction(INSURANCE_ACTION_TYPES.SET_FILTER_CONDITIONS, null)
-}
+})
 
-export const setInsurancesView = (insurancesView) => {
+export const setInsurancesView = withMatcher((insurancesView: Insurance[]): SetInsurancesView => {
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES_VIEW, insurancesView)
-}
+})
 
-export const setInsurancePayments = (insurancePayments) => {
+export const setInsurancePayments = withMatcher((insurancePayments: InsurancePayment[]): SetInsurancePayments => {
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCE_PAYMENTS, insurancePayments)
-}
+})
 
-export const setInsurancePaymentsView = (insurancePaymentsView) => {
+export const setInsurancePaymentsView = withMatcher((insurancePaymentsView: InsurancePayment[]) => {
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCE_PAYMENTS_VIEW, insurancePaymentsView)
-}
+})
 
-export const setInsurancesSummary = (insurancesSummary) => {
+export const setInsurancesSummary = withMatcher((insurancesSummary: InsurancesSummary): SetInsurancesSummary => {
   return createAction(INSURANCE_ACTION_TYPES.SET_INSURANCES_SUMMARY, insurancesSummary)
-}
+})
 
-export const selectScheduledInsurancePayments = (insuranceDate) => {
+export const selectScheduledInsurancePayments = withMatcher((insuranceDate: string): SelectScheduledInsurancePayments => {
   return createAction(INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, insuranceDate)
-}
+})
 
-export const setScheduledInsurancePaymentsView = (scheduledInsurancePaymentsView) => {
+export const setScheduledInsurancePaymentsView = withMatcher((scheduledInsurancePaymentsView: InsurancePayment[]):SetScheduledInsurancePaymentsView => {
   return createAction(INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, scheduledInsurancePaymentsView)
-}
+})

@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { InsuranceState } from "./insurance.reducer";
 
-const selectInsuranceReducer = state => state.insurance
+const selectInsuranceReducer = (state): InsuranceState => state.insurance
 
 export const selectInsurances = createSelector(
   [selectInsuranceReducer],
