@@ -1,4 +1,4 @@
-import { createAction } from "../../../utils/reducer/reducer.utils";
+import { ActionWithPayload, createAction, withMatcher } from "../../../utils/reducer/reducer.utils";
 import { BANKING_ACTION_TYPES } from "./banking.types";
 
 import { validateBankingAccountCreation,
@@ -8,12 +8,12 @@ import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
 import { Action } from "redux";
 import { BankingAccount, Transaction, BankingSummary } from "./banking.types";
 
-export type CreateBankingAccount = Action<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS>
-export type DepositToBankingAccount = Action<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS>
-export type WithdrawFromBankingAccount = Action<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS>
-export type TransferToBankingAccount = Action<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS>
-export type CloseBankingAccount = Action<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS>
-export type SetBankingSummary = Action<BANKING_ACTION_TYPES.SET_BANKING_SUMMARY>
+export type CreateBankingAccount = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, BankingAccount[]>
+export type DepositToBankingAccount = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, BankingAccount[]>
+export type WithdrawFromBankingAccount = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, BankingAccount[]>
+export type TransferToBankingAccount = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, BankingAccount[]>
+export type CloseBankingAccount = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, BankingAccount[]>
+export type SetBankingSummary = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_SUMMARY, BankingSummary>
 
 // helper functions
 
@@ -133,35 +133,35 @@ const closeBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAcc
 
 // actions
 
-export const createBankingAccount = (bankingAccounts: BankingAccount[], bankingAccountName: string): CreateBankingAccount => {
+export const createBankingAccount = withMatcher((bankingAccounts: BankingAccount[], bankingAccountName: string): CreateBankingAccount => {
   const newBankingAccounts = createBankingAccountHelper(bankingAccounts, bankingAccountName)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
-};
+})
 
-export const depositToBankingAccount = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+export const depositToBankingAccount = withMatcher((bankingAccounts: BankingAccount[], bankingAccountName: string, 
   depositAmount: number, depositReason: string): DepositToBankingAccount => {
   const newBankingAccounts = depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
-};
+})
 
-export const withdrawFromBankingAccount = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+export const withdrawFromBankingAccount = withMatcher((bankingAccounts: BankingAccount[], bankingAccountName: string, 
   withdrawAmount: number, withdrawReason: string, addToExpenses: boolean): WithdrawFromBankingAccount => {
   const newBankingAccounts = withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
-};
+})
 
-export const transferToBankingAccount = (bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, 
+export const transferToBankingAccount = withMatcher((bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, 
   bankingAccountTransferToName: string, transferAmount: number, transferReason: string): TransferToBankingAccount => {
   const newBankingAccounts = transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
                                                     bankingAccountTransferToName, transferAmount, transferReason)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
-};
+})
 
-export const closeBankingAccount = (bankingAccounts: BankingAccount[], bankingAccountName: string): CloseBankingAccount => {
+export const closeBankingAccount = withMatcher((bankingAccounts: BankingAccount[], bankingAccountName: string): CloseBankingAccount => {
   const newBankingAccounts = closeBankingAccountHelper(bankingAccounts, bankingAccountName)
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS, newBankingAccounts)
-};
+})
 
-export const setBankingSummary = (bankingSummary: BankingSummary): SetBankingSummary => {
+export const setBankingSummary = withMatcher((bankingSummary: BankingSummary): SetBankingSummary => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_SUMMARY, bankingSummary)
-}
+})
