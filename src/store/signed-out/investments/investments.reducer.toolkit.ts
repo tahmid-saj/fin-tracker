@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { InvestmentsState } from "./investments.reducer"
 
-export const INVESTMENTS_INITIAL_STATE = {
+export const INVESTMENTS_INITIAL_STATE: InvestmentsState = {
   investments: [],
   investmentsSummary: {}
 }

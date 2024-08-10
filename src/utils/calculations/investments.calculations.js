@@ -106,7 +106,7 @@ const calculateSchedule = (investment) => {
     }
 
     schedule.push({
-      currentDate: currentDate,
+      currentDate: String(currentDate),
       contribution: currentContribution,
       interestAccumulated: interestAccumulated,
       endingBalance: futureValue
