@@ -1,6 +1,8 @@
+import { Middleware } from "redux"
+
 // redux middlewares
 
-export const loggerMiddleware = (store) => (next) => (action) => {
+export const loggerMiddleware: Middleware<{}> = (store) => (next) => (action: any) => {
   if (!action.type) {
     return next(action)
   }
