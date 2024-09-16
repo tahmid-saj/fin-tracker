@@ -1,8 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
+import { Expense, FilterConditions, ExpensesSummary } from "./expenses.tyles"
+
 // helper functions
-const addExpenseHelper = (expenses, expense, expenseId) => {
+const addExpenseHelper = (expenses: Expense[], expense: Expense, expenseId: number): Expense[] => {
   return [ ...expenses,
     {
       expenseFor: String(expense.expenseFor),
@@ -14,10 +16,9 @@ const addExpenseHelper = (expenses, expense, expenseId) => {
   ]
 }
 
-const filterExpensesHelper = (expenses, filterConditions) => {
-  
+const filterExpensesHelper = (expenses: Expense[], filterConditions: FilterConditions): Expense[] => {
 
-  let filteredExpenses = []
+  let filteredExpenses: Expense[] = []
   expenses.map((expense) => {
     if (filterConditions.expenseFor === "" || (expense.expenseFor.toLowerCase().includes(filterConditions.expenseFor.toLowerCase()))) {
       if (filterConditions.expenseCategory === "" || (expense.expenseCategory.toLowerCase().includes(filterConditions.expenseCategory.toLowerCase()))) {
@@ -33,15 +34,13 @@ const filterExpensesHelper = (expenses, filterConditions) => {
   return filteredExpenses
 }
 
-const removeExpenseHelper = (expenses, expenseId) => {
+const removeExpenseHelper = (expenses: Expense[], expenseId: number): Expense[] => {
   if (validateRemoveExpense(expenseId)) return expenses
 
   return expenses.filter(exp => exp.expenseId !== expenseId)
 }
 
-const selectScheduledExpensesHelper = (expenses, expenseDate) => {
-  
-  
+const selectScheduledExpensesHelper = (expenses: Expense[], expenseDate: string): Expense[] | null => {
 
   const filteredExpenses = expenses.filter((expense) => {
     return expense.expenseDate === expenseDate
@@ -102,14 +101,14 @@ export const ExpensesContext = createContext({
 })
 
 // context component
-export const ExpensesProvider = ({ children }) => {
-  const [expenses, setExpenses] = useState([])
-  const [expenseLength, setExpenseLength] = useState(0)
-  const [filterConditions, setFilterConditions] = useState(null)
-  const [selectedExpensesDate, setSelectedExpensesDate] = useState(null)
-  const [scheduledExpensesView, setScheduledExpensesView] = useState(null)
-  const [expensesView, setExpensesView] = useState(expenses)
-  const [expensesSummary, setExpensesSummary] = useState({})
+export const ExpensesProvider = ({ children: ReactNode }) => {
+  const [expenses, setExpenses] = useState<Expense[] | []>([])
+  const [expenseLength, setExpenseLength] = useState<number>(0)
+  const [filterConditions, setFilterConditions] = useState<FilterConditions | null>(null)
+  const [selectedExpensesDate, setSelectedExpensesDate] = useState<string | null>(null)
+  const [scheduledExpensesView, setScheduledExpensesView] = useState<Expense[] | null>(null)
+  const [expensesView, setExpensesView] = useState<Expense[] | null>(expenses)
+  const [expensesSummary, setExpensesSummary] = useState<ExpensesSummary | {}>({})
 
   // update expensesSummary
   useEffect(() => {
@@ -134,9 +133,9 @@ export const ExpensesProvider = ({ children }) => {
     past30Days.subtractDays(30)
     
 
-    let newAllExpensesCategories = []
-    let newPastMonthExpenses = []
-    let newPast30DaysAllExpensesCost = 0
+    let newAllExpensesCategories: string[] = []
+    let newPastMonthExpenses: Expense[] = []
+    let newPast30DaysAllExpensesCost: number = 0
 
     const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
       newAllExpensesCategories.push(expense.expenseCategory)
@@ -179,7 +178,7 @@ export const ExpensesProvider = ({ children }) => {
 
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure expenseIds are not duplicate via validations
-  const addExpense = (expense) => {
+  const addExpense = (expense: Expense) => {
     if (validateAddExpense(expense)) {
       return
     } else {
@@ -189,7 +188,7 @@ export const ExpensesProvider = ({ children }) => {
     }
   }
 
-  const filterExpenses = (filterConditions) => {
+  const filterExpenses = (filterConditions: FilterConditions) => {
     if (validateFilterExpenses(filterConditions)) {
       
       return
@@ -200,7 +199,7 @@ export const ExpensesProvider = ({ children }) => {
     }
   }
 
-  const removeExpense = (expenseId) => {
+  const removeExpense = (expenseId: number) => {
     setExpenses(removeExpenseHelper(expenses, expenseId))
   }
 
@@ -209,7 +208,7 @@ export const ExpensesProvider = ({ children }) => {
     setExpensesView(expenses)
   }
 
-  const selectScheduledExpenses = (expenseDate) => {
+  const selectScheduledExpenses = (expenseDate: string) => {
     setSelectedExpensesDate(expenseDate)
     setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expenseDate))
   }

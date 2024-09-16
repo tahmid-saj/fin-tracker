@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, Component, ReactNode } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -7,13 +7,12 @@ from "../../../utils/validations/banking.validation";
 import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
 
 import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
+import { BankingAccount, Transaction, BankingSummary } from "../../../store/signed-out/banking/banking.types";
 
 // helper functions
 
-const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const createBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
-
-  
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
@@ -26,7 +25,8 @@ const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   }]
 };
 
-const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depositAmount, depositReason) => {
+const depositToBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  depositAmount: number, depositReason: string): BankingAccount[] => {
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
 
   // update currentBalance, totalIn and transactions in bankingAccounts for bankingAccountName
@@ -37,7 +37,7 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
         currentBalance: account.currentBalance + Number(depositAmount), 
         totalIn: account.totalIn + Number(depositAmount),
         transactions: [ 
-          ...account.transactions, 
+          ...account.transactions as Transaction[], 
           {
             amount: Number(depositAmount),
             type: TRANSACTION_TYPES.deposit, 
@@ -50,8 +50,9 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
-  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount, addToExpenses)) return bankingAccounts;
+const withdrawFromBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  withdrawAmount: number, withdrawReason: string, addToExpenses: boolean): BankingAccount[] => {
+  if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
   const updatedBankingAccounts = bankingAccounts.map((account) => {
@@ -61,7 +62,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
         currentBalance: account.currentBalance - Number(withdrawAmount),
         totalOut: account.totalOut + Number(withdrawAmount),
         transactions: [ 
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
@@ -75,7 +76,8 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
   return updatedBankingAccounts;
 };
 
-const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
+const transferToBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, 
+  bankingAccountTransferToName: string, transferAmount: number, transferReason: string): BankingAccount[] => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
@@ -89,7 +91,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
         currentBalance: account.currentBalance - Number(transferAmount),
         totalOut: account.totalOut + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.withdrawalTransfer,
@@ -105,7 +107,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
         currentBalance: account.currentBalance + Number(transferAmount),
         totalIn: account.totalIn + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.depositTransfer,
@@ -120,7 +122,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   return updatedBankingAccounts;
 };
 
-const closeBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const closeBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   // return bankingAccounts without the bankingAccountName
   return bankingAccounts.filter(account => account.name !== bankingAccountName);
 };
@@ -171,9 +173,9 @@ export const BankingContext = createContext({
 });
 
 // context component
-export const BankingProvider = ({ children }) => {
-  const [bankingAccounts, setBankingAccounts] = useState([]);
-  const [bankingSummary, setBankingSummary] = useState({});
+export const BankingProvider = ({ children: ReactNode }) => {
+  const [bankingAccounts, setBankingAccounts] = useState<BankingAccount[] | []>([]);
+  const [bankingSummary, setBankingSummary] = useState<BankingSummary | {}>({});
 
   useEffect(() => {
     const bankingSummary = calculateBankingSummary(bankingAccounts);
@@ -186,24 +188,25 @@ export const BankingProvider = ({ children }) => {
       totalAllBankingOut: bankingSummary.newAllBankingOut });
   }, [bankingAccounts]);
 
-  const createBankingAccount = (bankingAccountName) => {
+  const createBankingAccount = (bankingAccountName: string) => {
     setBankingAccounts(createBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
-  const depositToBankingAccount = (bankingAccountName, depositAmount, depositReason) => {
+  const depositToBankingAccount = (bankingAccountName: string, depositAmount: number, depositReason: string) => {
     setBankingAccounts(depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason));
   };
 
-  const withdrawFromBankingAccount = (bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
+  const withdrawFromBankingAccount = (bankingAccountName: string, withdrawAmount: number, withdrawReason: string, addToExpenses: boolean) => {
     setBankingAccounts(withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses));
   };
 
-  const transferToBankingAccount = (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
+  const transferToBankingAccount = (bankingAccountTransferFromName: string, bankingAccountTransferToName: string, 
+    transferAmount: number, transferReason: string) => {
     setBankingAccounts(transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
                                                       bankingAccountTransferToName, transferAmount, transferReason));
   };
 
-  const closeBankingAccount = (bankingAccountName) => {
+  const closeBankingAccount = (bankingAccountName: string) => {
     setBankingAccounts(closeBankingAccountHelper(bankingAccounts, bankingAccountName));
   };
 
