@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
-import { Expense, FilterConditions, ExpensesSummary } from "./expenses.tyles"
+import { Expense, FilterConditions, ExpensesSummary } from "./expenses.types"
 
 // helper functions
 const addExpenseHelper = (expenses: Expense[], expense: Expense, expenseId: number): Expense[] => {

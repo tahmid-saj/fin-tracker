@@ -1,14 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 import { validateMortgageInput, validateCurrencyConverterInput, validateExchangeRateInput } from "../../../utils/validations/useful-tools.validation";
 import { getMortgageResult, getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
 
+import { MortgageCalculatorResult, MonthlyPayment, AnnualPayment, CurrencyConverterResult, ExchangeRateResult,
+  MortgageInput, CurrencyConversionInput, ExchangeRateInput
+} from "./useful-tools.types"
+
 // helper functions
-const calculateMortgageHelper = async (mortgageInput) => {
+const calculateMortgageHelper = async (mortgageInput: MortgageInput): Promise<MortgageCalculatorResult> => {
   const resMortgageResult = await getMortgageResult(mortgageInput)
   return resMortgageResult
 }
 
-const convertCurrencyHelper = async (currencyInput) => {
+const convertCurrencyHelper = async (currencyInput: CurrencyConversionInput): Promise<CurrencyConverterResult> => {
   const resConvertCurrencyResult = await getExchangeRate(currencyInput)
   return {
     fromCurrency: resConvertCurrencyResult.fromCurrency,
@@ -18,7 +22,7 @@ const convertCurrencyHelper = async (currencyInput) => {
   }
 }
 
-const findExchangeRateHelper = async (currencyInput) => {
+const findExchangeRateHelper = async (currencyInput: ExchangeRateInput): Promise<ExchangeRateResult> => {
   const resExchangeRate = await getExchangeRate(currencyInput)
   return resExchangeRate
 }
@@ -71,12 +75,12 @@ export const UsefulToolsContext = createContext({
 })
 
 // useful tools provider
-export const UsefulToolsProvider = ({ children }) => {
-  const [mortgageCalculatorResult, setMortgageCalculatorResult] = useState(undefined)
-  const [currencyConverterResult, setCurrencyConverterResult] = useState(undefined)
-  const [exchangeRateResult, setExchangeRateResult] = useState(undefined)
+export const UsefulToolsProvider = ({ children: ReactNode }) => {
+  const [mortgageCalculatorResult, setMortgageCalculatorResult] = useState<MortgageCalculatorResult | undefined>(undefined)
+  const [currencyConverterResult, setCurrencyConverterResult] = useState<CurrencyConverterResult | undefined>(undefined)
+  const [exchangeRateResult, setExchangeRateResult] = useState<ExchangeRateResult | undefined>(undefined)
 
-  const calculateMortgage = async (mortgageInput) => {
+  const calculateMortgage = async (mortgageInput: MortgageInput) => {
     if (validateMortgageInput(mortgageInput)) {
       return mortgageCalculatorResult
     } else {
@@ -85,7 +89,7 @@ export const UsefulToolsProvider = ({ children }) => {
     }
   }
 
-  const convertCurrency = async (currencyInput) => {
+  const convertCurrency = async (currencyInput: CurrencyConversionInput) => {
     if (validateCurrencyConverterInput(currencyInput)) {
       return currencyConverterResult
     } else {
@@ -94,7 +98,7 @@ export const UsefulToolsProvider = ({ children }) => {
     }
   }
 
-  const findExchangeRate = async (currencyInput) => {
+  const findExchangeRate = async (currencyInput: ExchangeRateInput) => {
     if (validateExchangeRateInput(currencyInput)) {
       return exchangeRateResult
     } else {

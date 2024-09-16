@@ -1,11 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
 import { calculateSavings } from "../../../utils/calculations/savings.calculations";
+import { SavingsAccount, SavingsCalculationRecord, SavingsAccountsSummary } from "./savings.types"
 
 // helper functions
 
-const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
+const createSavingsAccountHelper = (savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount): SavingsAccount[] => {
   // validating if savingsAccount exists in savingsAccounts
   if (validateSavingsAccountCreation(savingsAccounts, savingsAccount)) return savingsAccounts;
 
@@ -40,7 +41,8 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount) => {
     }];
 };
 
-const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount) => {
+const updateSavingsAccountHelper = (savingsAccounts: SavingsAccount[], originalSavingsAccountName: string, 
+  updatedSavingsAccount: SavingsAccount): SavingsAccount[] => {
   // validate if the fields in updatedSavingsAccount are valid and the is not already another savingsAccount with the same name
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
@@ -75,12 +77,12 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   return updatedSavingsAccounts;
 };
 
-const closeSavingsAccountHelper = (savingsAccounts, closingSavingsAccountName) => {
+const closeSavingsAccountHelper = (savingsAccounts: SavingsAccount[], closingSavingsAccountName: string): SavingsAccount[] => {
   // return savingsAccounts without the closingSavingsAccountName
   return savingsAccounts.filter(account => account.savingsAccountName !== closingSavingsAccountName);
 };
 
-const getSavingsAccountInfoHelper = (savingsAccounts, savingsAccountName) => {
+const getSavingsAccountInfoHelper = (savingsAccounts: SavingsAccount[], savingsAccountName: string): SavingsAccount | undefined => {
   // return the account with the given savingsAccountName
   return savingsAccounts.find(account => String(account.savingsAccountName) === String(savingsAccountName));
 };
@@ -130,9 +132,9 @@ export const SavingsContext = createContext({
 });
 
 // context component
-export const SavingsProvider = ({ children }) => {
-  const [savingsAccounts, setSavingsAccounts] = useState([]);
-  const [savingsAccountsSummary, setSavingsAccountsSummary] = useState({});
+export const SavingsProvider = ({ children: ReactNode }) => {
+  const [savingsAccounts, setSavingsAccounts] = useState<SavingsAccount[] | []>([]);
+  const [savingsAccountsSummary, setSavingsAccountsSummary] = useState<SavingsAccountsSummary | {}>({});
 
   useEffect(() => {
     const newAllSavingsAccountsBalance = savingsAccounts.reduce((allSavingsAccountsBalance, { totalSavings }) => {
@@ -156,19 +158,19 @@ export const SavingsProvider = ({ children }) => {
     });
   }, [savingsAccounts]);
 
-  const createSavingsAccount = (savingsAccount) => {
+  const createSavingsAccount = (savingsAccount: SavingsAccount) => {
     setSavingsAccounts(createSavingsAccountHelper(savingsAccounts, savingsAccount));
   };
 
-  const updateSavingsAccount = (originalSavingsAccountName, updatedSavingsAccount) => {
+  const updateSavingsAccount = (originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount) => {
     setSavingsAccounts(updateSavingsAccountHelper(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount));
   };
 
-  const closeSavingsAccount = (closingSavingsAccountName) => {
+  const closeSavingsAccount = (closingSavingsAccountName: string) => {
     setSavingsAccounts(closeSavingsAccountHelper(savingsAccounts, closingSavingsAccountName));
   };
 
-  const getSavingsAccountInfo = (savingsAccountName) => {
+  const getSavingsAccountInfo = (savingsAccountName: string) => {
     return getSavingsAccountInfoHelper(savingsAccounts, savingsAccountName);
   };
 

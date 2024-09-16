@@ -1,11 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestment } from "../../../utils/calculations/investments.calculations";
+import { Investment, InvestmentCalculationRecord, InvestmentsSummary } from "./investments.types"
 
 // helper functions
 
-const createInvestmentHelper = (investments, investment) => {
+const createInvestmentHelper = (investments: Investment[], investment: Investment): Investment[] => {
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
 
@@ -36,7 +37,8 @@ const createInvestmentHelper = (investments, investment) => {
     }];
 };
 
-const updateInvestmentHelper = (investments, originalInvestmentName, updatedInvestment) => {
+const updateInvestmentHelper = (investments: Investment[], originalInvestmentName: string, 
+  updatedInvestment: Investment): Investment[] => {
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
 
@@ -64,12 +66,12 @@ const updateInvestmentHelper = (investments, originalInvestmentName, updatedInve
   return updatedInvestments;
 };
 
-const closeInvestmentHelper = (investments, closingInvestmentName) => {
+const closeInvestmentHelper = (investments: Investment[], closingInvestmentName: string): Investment[] => {
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
 };
 
-const getInvestmentInfoHelper = (investments, investmentName) => {
+const getInvestmentInfoHelper = (investments: Investment[], investmentName: string): Investment | undefined => {
   // return the investment with the given investmentName
   return investments.find(investment => String(investment.investmentName) === String(investmentName));
 };
@@ -122,9 +124,9 @@ export const InvestmentsContext = createContext({
 });
 
 // context component
-export const InvestmentsProvider = ({ children }) => {
-  const [investments, setInvestments] = useState([]);
-  const [investmentsSummary, setInvestmentsSummary] = useState({});
+export const InvestmentsProvider = ({ children: ReactNode }) => {
+  const [investments, setInvestments] = useState<Investment[] | []>([]);
+  const [investmentsSummary, setInvestmentsSummary] = useState<InvestmentsSummary | {}>({});
 
   useEffect(() => {
     const newAllInvestmentsBalance = investments.reduce((allInvestmentsBalance, { endBalance }) => {
@@ -148,19 +150,19 @@ export const InvestmentsProvider = ({ children }) => {
     });
   }, [investments]);
 
-  const createInvestment = (investment) => {
+  const createInvestment = (investment: Investment) => {
     setInvestments(createInvestmentHelper(investments, investment));
   };
 
-  const updateInvestment = (originalInvestmentName, updatedInvestment) => {
+  const updateInvestment = (originalInvestmentName: string, updatedInvestment: Investment) => {
     setInvestments(updateInvestmentHelper(investments, originalInvestmentName, updatedInvestment));
   };
 
-  const closeInvestment = (closingInvestmentName) => {
+  const closeInvestment = (closingInvestmentName: string) => {
     setInvestments(closeInvestmentHelper(investments, closingInvestmentName));
   };
 
-  const getInvestmentInfo = (investmentName) => {
+  const getInvestmentInfo = (investmentName: string) => {
     return getInvestmentInfoHelper(investments, investmentName);
   };
 

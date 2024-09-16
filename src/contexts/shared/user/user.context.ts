@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 
 import { onAuthStateChangedListener,
         signOutUser,
@@ -10,8 +10,8 @@ export const UserContext = createContext({
   setCurrentUser: () => null
 });
 
-export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+export const UserProvider = ({ children: ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const value = { currentUser, setCurrentUser };
 
   // signOutUser();

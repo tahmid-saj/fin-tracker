@@ -1,9 +1,9 @@
-import { useState, createContext } from "react";
+import { useState, createContext, ReactNode } from "react";
 import { validateChatBotMessageInput } from "../../../utils/validations/chatbot.validation";
 import { getChatBotResponse } from "../../../utils/api-requests/chatbot.requests";
 
 // helper functions
-const getChatbotResponseHelper = async (chatbotResponse, messageInput) => {
+const getChatbotResponseHelper = async (chatbotResponse: string, messageInput: string): Promise<string> => {
   if (validateChatBotMessageInput(messageInput)) return chatbotResponse
 
   const res = await getChatBotResponse(messageInput)
@@ -17,10 +17,10 @@ export const ChatBotContext = createContext({
 })
 
 // chatbot provider
-export const ChatBotProvider = ({ children }) => {
-  const [chatbotResponse, setChatBotResponse] = useState("")
+export const ChatBotProvider = ({ children: ReactNode }) => {
+  const [chatbotResponse, setChatBotResponse] = useState<string>("")
 
-  const getChatbotResponse = async (messageInput) => {
+  const getChatbotResponse = async (messageInput: string) => {
     const resChatBot = await getChatbotResponseHelper(chatbotResponse, messageInput)
     setChatBotResponse(resChatBot)
   }
