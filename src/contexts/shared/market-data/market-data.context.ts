@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode } from "react";
 
 import { validateMarketDataQuery } from "../../../utils/validations/market-data.validation";
 import { DEFAULT_MARKET_DATA, MARKET_DATA_TYPES } from "../../../utils/constants/market-data.constants";
@@ -6,9 +6,11 @@ import { DEFAULT_MARKET_DATA, MARKET_DATA_TYPES } from "../../../utils/constants
 import { getStocksMarketData, getIndicesMarketData,
   getCryptoMarketData, getForexMarketData
  } from "../../../utils/api-requests/market-data.requests";
+ 
+import { MarketDataQuery, MarketDataQueryResult, MarketData } from "./market-data.types"
 
 // helper functions
-const searchMarketDataHelper = async (marketDataQuery) => {
+const searchMarketDataHelper = async (marketDataQuery: MarketDataQuery): Promise<MarketDataQueryResult[] | undefined> => {
   if (validateMarketDataQuery(marketDataQuery)) return DEFAULT_MARKET_DATA
 
   // api request
@@ -53,18 +55,18 @@ export const MarketDataContext = createContext({
 })
 
 // context component
-export const MarketDataProvider = ({ children }) => {
-  const [marketData, setMarketData] = useState(DEFAULT_MARKET_DATA)
+export const MarketDataProvider = ({ children: ReactNode }) => {
+  const [marketData, setMarketData] = useState<MarketData | undefined>(DEFAULT_MARKET_DATA)
 
   useEffect(() => {
     
   }, [marketData])
 
-  const searchMarketData = async (marketDataQuery) => {
+  const searchMarketData = async (marketDataQuery: MarketDataQuery) => {
     const resMarketData = await searchMarketDataHelper(marketDataQuery)
     setMarketData({
       ...marketDataQuery,
-      queryResults: resMarketData
+      queryResults: resMarketData as MarketDataQueryResult[]
     })
     
   } 

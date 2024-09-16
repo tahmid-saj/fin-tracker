@@ -1,9 +1,11 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation.js"
-import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations";
+import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations.js";
+
+import { SavingsGoalResult, SavingsGoalScheduleResult, SavingsGoalInput } from "./savings-goal-calculator.types"
 
 // helper functions
-const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
+const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult | undefined, savingsGoalInput: SavingsGoalInput): SavingsGoalResult | undefined => {
   if (validateSavingsGoalInput(savingsGoalInput)) {
     
     return savingsGoalResult
@@ -19,7 +21,7 @@ const calculateSavingsGoalHelper = (savingsGoalResult, savingsGoalInput) => {
   })
 }
 
-const calculateSavingsGoalScheduleHelper = (savingsGoalResult) => {
+const calculateSavingsGoalScheduleHelper = (savingsGoalResult: SavingsGoalResult | undefined): SavingsGoalScheduleResult[] | undefined => {
   return calculateSavingsGoalSchedule(savingsGoalResult)
 }
 
@@ -56,9 +58,9 @@ export const SavingsGoalCalculatorContext = createContext({
 })
 
 // savings goal calculator provider
-export const SavingsGoalCalculatorProvider = ({ children }) => {
-  const [savingsGoalResult, setSavingsGoalResult] = useState(undefined)
-  const [savingsGoalScheduleResult, setSavingsGoalScheduleResult] = useState(undefined)
+export const SavingsGoalCalculatorProvider = ({ children: ReactNode }) => {
+  const [savingsGoalResult, setSavingsGoalResult] = useState<SavingsGoalResult | undefined>(undefined)
+  const [savingsGoalScheduleResult, setSavingsGoalScheduleResult] = useState<SavingsGoalScheduleResult[] | undefined>(undefined)
 
   useEffect(() => {
     if (savingsGoalResult !== undefined) {
@@ -66,11 +68,11 @@ export const SavingsGoalCalculatorProvider = ({ children }) => {
     }
   }, [savingsGoalResult])
 
-  const calculateSavingsGoal = (savingsGoalInput) => {
+  const calculateSavingsGoal = (savingsGoalInput: SavingsGoalInput) => {
     setSavingsGoalResult(calculateSavingsGoalHelper(savingsGoalResult, savingsGoalInput))
   }
 
-  const calculateSavingsGoalSchedule = (savingsGoalResult) => {
+  const calculateSavingsGoalSchedule = (savingsGoalResult: SavingsGoalResult) => {
     setSavingsGoalScheduleResult(calculateSavingsGoalScheduleHelper(savingsGoalResult))
   }
 

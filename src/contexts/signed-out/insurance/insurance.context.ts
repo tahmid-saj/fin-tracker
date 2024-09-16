@@ -1,8 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants";
 import { validateAddInsurance, validateFilterInsurances, validateRemoveInsurance } from "../../../utils/validations/insurance.validation";
 
-const addInsuranceHelper = (insurances, insurance) => {
+import { Insurance, InsurancePayment, FilterConditions, InsurancesSummary } from "./insurance.types"
+
+const addInsuranceHelper = (insurances: Insurance[], insurance: Insurance): Insurance[] => {
   return [ ...insurances,
     {
       insuranceFor: String(insurance.insuranceFor),
@@ -14,7 +16,7 @@ const addInsuranceHelper = (insurances, insurance) => {
   ]
 }
 
-const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
+const checkDateRangeFilterOverlap = (filterConditions: FilterConditions, insurance: Insurance): boolean => {
   if (filterConditions.insuranceStartDate === "" || ((filterConditions.insuranceStartDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceStartDate <= insurance.insuranceEndDate) 
       || (filterConditions.insuranceEndDate === "" && filterConditions.insuranceStartDate <= insurance.insuranceFirstPaymentDate))) {
     if (filterConditions.insuranceEndDate === "" || ((filterConditions.insuranceEndDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceEndDate <= insurance.insuranceEndDate)
@@ -26,8 +28,8 @@ const checkDateRangeFilterOverlap = (filterConditions, insurance) => {
   return false
 }
 
-const filterInsurancesHelper = (insurances, filterConditions) => {
-  let filteredInsurances = []
+const filterInsurancesHelper = (insurances: Insurance[], filterConditions: FilterConditions): Insurance[] => {
+  let filteredInsurances: Insurance[] = []
 
   insurances.map((insurance) => {
     if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
@@ -42,8 +44,8 @@ const filterInsurancesHelper = (insurances, filterConditions) => {
   return filteredInsurances
 }
  
-const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
-  let filteredInsurancePayments = []
+const filterInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], filterConditions: FilterConditions): InsurancePayment[] => {
+  let filteredInsurancePayments: InsurancePayment[] = []
 
   insurancePayments.map((insurancePayment) => {
     if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
@@ -60,13 +62,13 @@ const filterInsurancePaymentsHelper = (insurancePayments, filterConditions) => {
   return filteredInsurancePayments
 }
 
-const removeInsuranceHelper = (insurances, insuranceFor) => {
+const removeInsuranceHelper = (insurances: Insurance[], insuranceFor: string): Insurance[] => {
   if (validateRemoveInsurance(insuranceFor)) return insurances
 
   return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
 }
 
-const selectScheduledInsurancePaymentsHelper = (insurancePayments, insuranceDate) => {
+const selectScheduledInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], insuranceDate: string): InsurancePayment[] | null => {
   const filteredInsurancePayments = insurancePayments.filter((insurancePayment) => {
     return insurancePayment.insuranceDate === insuranceDate
   })
@@ -145,15 +147,15 @@ export const InsuranceContext = createContext({
 })
 
 // context component
-export const InsuranceProvider = ({ children }) => {
-  const [insurances, setInsurances] = useState([])
-  const [insurancePayments, setInsurancePayments] = useState([])
-  const [filterConditions, setFilterConditions] = useState(null)
-  const [selectedInsurancePaymentsDate, setSelectedInsurancePaymentsDate] = useState(null)
-  const [scheduledInsurancePaymentsView, setScheduledInsurancePaymentsView] = useState(null)
-  const [insurancesView, setInsurancesView] = useState(insurances)
-  const [insurancePaymentsView, setInsurancePaymentsView] = useState(insurancePayments)
-  const [insurancesSummary, setInsurancesSummary] = useState({})
+export const InsuranceProvider = ({ children: ReactNode }) => {
+  const [insurances, setInsurances] = useState<Insurance[] | []>([])
+  const [insurancePayments, setInsurancePayments] = useState<InsurancePayment[] | []>([])
+  const [filterConditions, setFilterConditions] = useState<FilterConditions | null>(null)
+  const [selectedInsurancePaymentsDate, setSelectedInsurancePaymentsDate] = useState<string | null>(null)
+  const [scheduledInsurancePaymentsView, setScheduledInsurancePaymentsView] = useState<InsurancePayment[] | null>(null)
+  const [insurancesView, setInsurancesView] = useState<Insurance[]>(insurances)
+  const [insurancePaymentsView, setInsurancePaymentsView] = useState<InsurancePayment[]>(insurancePayments)
+  const [insurancesSummary, setInsurancesSummary] = useState<InsurancesSummary | {}>({})
 
   // update insurancesSummary and insurancePayments
   useEffect(() => {
@@ -165,7 +167,7 @@ export const InsuranceProvider = ({ children }) => {
     })
 
     // update insurancePayments
-    let newInsurancePayments = []
+    let newInsurancePayments: InsurancePayment[] = []
     let newCurrentTotalInsurancePlanned = 0.0
     
     insurances.map((insurance) => {
@@ -246,7 +248,7 @@ export const InsuranceProvider = ({ children }) => {
 
     let newCurrentAllInsurancesCategories = new Set()
     let newPastMonthAllInsurancesPayment = 0.0
-    let newPastMonthInsurances = []
+    let newPastMonthInsurances: InsurancePayment[] = []
 
     const newCurrentTotalInsurancePlanned = insurancePayments.reduce((allInsurancePlanned, insurance) => {
       newCurrentAllInsurancesCategories.add(String(insurance.insuranceFor))
@@ -289,7 +291,7 @@ export const InsuranceProvider = ({ children }) => {
 
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure insuranceIds are not duplicate via validations
-  const addInsurance = (insurance) => {
+  const addInsurance = (insurance: Insurance) => {
     if (validateAddInsurance(insurances, insurance)) {
       return
     } else {
@@ -297,7 +299,7 @@ export const InsuranceProvider = ({ children }) => {
     }
   }
 
-  const filterInsurances = (filterConditions) => {
+  const filterInsurances = (filterConditions: FilterConditions) => {
     if (validateFilterInsurances(filterConditions)) {
       return
     } else {
@@ -307,7 +309,7 @@ export const InsuranceProvider = ({ children }) => {
     }
   }
 
-  const removeInsurance = (insuranceFor) => {
+  const removeInsurance = (insuranceFor: string) => {
     setInsurances(removeInsuranceHelper(insurances, insuranceFor))
   }
 
@@ -317,7 +319,7 @@ export const InsuranceProvider = ({ children }) => {
     setInsurancePaymentsView(insurancePayments)
   }
 
-  const selectScheduledInsurancePayments = (insuranceDate) => {
+  const selectScheduledInsurancePayments = (insuranceDate: string) => {
     setSelectedInsurancePaymentsDate(insuranceDate)
     setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, insuranceDate))
   }
