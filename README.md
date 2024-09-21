@@ -86,40 +86,40 @@ The structure of the codebase is as follows:
                         └── tabs.styles.scss
                 └── 📁savings-goal-calculator
                     └── 📁savings-goal-calculator-result
-                        └── savings-goal-graph.component.jsx
-                        └── savings-goal-graph.styles.jsx
+                        └── savings-goal-graph.component.tsx
                         └── savings-goal-graph.styles.scss
-                        └── savings-goal-result.component.jsx
-                        └── savings-goal-result.styles.jsx
+                        └── savings-goal-graph.styles.tsx
+                        └── savings-goal-result.component.tsx
                         └── savings-goal-result.styles.scss
-                        └── savings-goal-table.component.jsx
-                        └── savings-goal-table.styles.jsx
+                        └── savings-goal-result.styles.tsx
+                        └── savings-goal-table.component.tsx
                         └── savings-goal-table.styles.scss
-                    └── savings-goal-calculator.component.jsx
-                    └── savings-goal-calculator.styles.jsx
+                        └── savings-goal-table.styles.tsx
+                    └── savings-goal-calculator.component.tsx
                     └── savings-goal-calculator.styles.scss
+                    └── savings-goal-calculator.styles.tsx
                 └── 📁useful-tools
                     └── 📁currency-converter
-                        └── currency-converter-result.component.jsx
-                        └── currency-converter-result.styles.jsx
+                        └── currency-converter-result.component.tsx
                         └── currency-converter-result.styles.scss
-                        └── currency-converter.component.jsx
-                        └── currency-converter.styles.jsx
+                        └── currency-converter-result.styles.tsx
+                        └── currency-converter.component.tsx
                         └── currency-converter.styles.scss
+                        └── currency-converter.styles.tsx
                     └── 📁exchange-rate
-                        └── exchange-rate-result.component.jsx
-                        └── exchange-rate-result.styles.jsx
+                        └── exchange-rate-result.component.tsx
                         └── exchange-rate-result.styles.scss
-                        └── exchange-rate.component.jsx
-                        └── exchange-rate.styles.jsx
+                        └── exchange-rate-result.styles.tsx
+                        └── exchange-rate.component.tsx
                         └── exchange-rate.styles.scss
+                        └── exchange-rate.styles.tsx
                     └── 📁mortgage-calculator
-                        └── mortgage-calculator-result.component.jsx
-                        └── mortgage-calculator-result.styles.jsx
+                        └── mortgage-calculator-result.component.tsx
                         └── mortgage-calculator-result.styles.scss
-                        └── mortgage-calculator.component.jsx
-                        └── mortgage-calculator.styles.jsx
+                        └── mortgage-calculator-result.styles.tsx
+                        └── mortgage-calculator.component.tsx
                         └── mortgage-calculator.styles.scss
+                        └── mortgage-calculator.styles.tsx
             └── 📁signed-in
                 └── 📁banking
                     └── 📁action-list
@@ -1070,7 +1070,6 @@ The structure of the codebase is as follows:
     └── .env
     └── .gitignore
     └── Dockerfile
-    └── output.txt
     └── package-lock.json
     └── package.json
     └── README.md
