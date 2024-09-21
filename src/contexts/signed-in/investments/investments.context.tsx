@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, FC } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestment } from "../../../utils/calculations/investments.calculations";
@@ -11,10 +11,12 @@ import { getInvestmentsData, getInvestmentsSummaryData,
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+import { Investment, InvestmentContextType, InvestmentProviderProps, InvestmentsSummary } from "./investments.types";
 
 // helper functions
 
-const createInvestmentHelper = async (investments, investment, userId, email) => {
+const createInvestmentHelper = async (investments: Investment[], investment: Investment, 
+  userId: string | null | undefined, email: string | null | undefined): Promise<Investment[]> => {
   // validating if investment exists in investments
   if (validateInvestmentCreation(investments, investment)) return investments;
 
@@ -58,7 +60,8 @@ const createInvestmentHelper = async (investments, investment, userId, email) =>
   ];
 };
 
-const updateInvestmentHelper = async (investments, originalInvestmentName, updatedInvestment, userId, email) => {
+const updateInvestmentHelper = async (investments: Investment[], originalInvestmentName: string, updatedInvestment: Investment, 
+  userId: string | null | undefined, email: string | null | undefined): Promise<Investment[]> => {
   // validate if the fields in updatedInvestment are valid and the is not already another investment with the same name
   if (validateInvestmentUpdate(investments, originalInvestmentName, updatedInvestment)) return investments;
   
@@ -104,14 +107,15 @@ const updateInvestmentHelper = async (investments, originalInvestmentName, updat
 };
 
 
-const closeInvestmentHelper = async (investments, closingInvestmentName, userId, email) => {
+const closeInvestmentHelper = async (investments: Investment[], closingInvestmentName: string, 
+  userId: string | null | undefined, email: string | null | undefined): Promise<Investment[]> => {
   deleteInvestment(userId, email, closingInvestmentName);
 
   // return investments without the closingInvestmentName
   return investments.filter(investment => investment.investmentName !== closingInvestmentName);
 };
 
-const getInvestmentInfoHelper = (investments, investmentName) => {
+const getInvestmentInfoHelper = (investments: Investment[], investmentName: string): Investment | undefined => {
   // return the investment with the given investmentName
   return investments.find(investment => String(investment.investmentName) === String(investmentName));
 };
@@ -127,7 +131,7 @@ const setDefaultInvestmentsSummaryValuesHelper = () => {
 };
 
 // initial state
-export const InvestmentsContext = createContext({
+export const InvestmentsContext = createContext<InvestmentContextType>({
   investments: [],
   // investments structure:
   // [
@@ -179,9 +183,9 @@ export const InvestmentsContext = createContext({
 });
 
 // context component
-export const InvestmentsProvider = ({ children }) => {
-  const [investments, setInvestments] = useState([]);
-  const [investmentsSummary, setInvestmentsSummary] = useState({});
+export const InvestmentsProvider: FC<InvestmentProviderProps> = ({ children }) => {
+  const [investments, setInvestments] = useState<Investment[] | []>([]);
+  const [investmentsSummary, setInvestmentsSummary] = useState<InvestmentsSummary>({});
 
   const currentUser = useSelector(selectCurrentUser)
 
@@ -198,8 +202,6 @@ export const InvestmentsProvider = ({ children }) => {
     const newAllInterest = investments.reduce((allInterest, { totalInterest }) => {
       return allInterest + totalInterest;
     }, 0);
-
-    
 
     setInvestmentsSummary({ 
       currentAllInvestmentsBalance: newAllInvestmentsBalance, 
@@ -231,26 +233,32 @@ export const InvestmentsProvider = ({ children }) => {
     fetchInvestmentsData();
   }, [currentUser])
 
-  const createInvestment = async (investment) => {
-    const res = await createInvestmentHelper(investments, investment, currentUser.uid, currentUser.email);
-
-    setInvestments(res);
+  const createInvestment = async (investment: Investment) => {
+    if (currentUser) {
+      const res = await createInvestmentHelper(investments, investment, currentUser.uid, currentUser.email);
+  
+      setInvestments(res);
+    }
   };
 
-  const updateInvestment = async (originalInvestmentName, updatedInvestment) => {
-    const res = await updateInvestmentHelper(investments, originalInvestmentName, updatedInvestment, 
-      currentUser.uid, currentUser.email);
-
-    setInvestments(res);
+  const updateInvestment = async (originalInvestmentName: string, updatedInvestment: Investment) => {
+    if (currentUser) {
+      const res = await updateInvestmentHelper(investments, originalInvestmentName, updatedInvestment, 
+        currentUser.uid, currentUser.email);
+  
+      setInvestments(res);
+    }
   };
 
-  const closeInvestment = async (closingInvestmentName) => {
-    const res = await closeInvestmentHelper(investments, closingInvestmentName, currentUser.uid, currentUser.email);
-
-    setInvestments(res);
+  const closeInvestment = async (closingInvestmentName: string) => {
+    if (currentUser) {
+      const res = await closeInvestmentHelper(investments, closingInvestmentName, currentUser.uid, currentUser.email);
+  
+      setInvestments(res);
+    }
   };
 
-  const getInvestmentInfo = (investmentName) => {
+  const getInvestmentInfo = (investmentName: string) => {
     return getInvestmentInfoHelper(investments, investmentName);
   };
 
@@ -266,8 +274,10 @@ export const InvestmentsProvider = ({ children }) => {
 
   // update investments and summary on sign out
   const updateInvestmentsAndSummary = () => {
-    putInvestmentsData(currentUser.uid, currentUser.email, investments);
-    putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
+    if (currentUser) {
+      putInvestmentsData(currentUser.uid, currentUser.email, investments);
+      putInvestmentsSummaryData(currentUser.uid, currentUser.email, investmentsSummary);
+    }
   };
 
   const value = { investments, createInvestment, updateInvestment, 
