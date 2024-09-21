@@ -1,4 +1,7 @@
+import { ReactNode } from "react";
+
 // savings types
+
 export type SavingsAccount = {
   savingsAccountName: string;
   initialDeposit: number;
@@ -13,6 +16,21 @@ export type SavingsAccount = {
   totalInterest: number;
 
   savings: SavingsCalculationRecord[];
+}
+
+export interface SavingsContextType {
+  savingsAccounts: SavingsAccount[];
+
+  createSavingsAccount: (savingsAccount: SavingsAccount) => void;
+  updateSavingsAccount: (originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount) => void;
+  closeSavingsAccount: (closingSavingsAccountName: string) => void;
+  getSavingsAccountInfo: (savingsAccountName: string) => void;
+
+  savingsAccountsSummary: SavingsAccountsSummary;
+}
+
+export interface SavingsProviderProps {
+  children: ReactNode;
 }
 
 export type SavingsCalculationRecord = {
