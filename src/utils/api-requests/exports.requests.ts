@@ -2,7 +2,7 @@ import { errorOnExportsToEmail, errorOnExportsToPdf, errorOnExportsToTxt } from 
 // exports api requests
 
 // export to email
-export function postExportsToEmail(email) {
+export function postExportsToEmail(email: string | null | undefined) {
   try {
 
   } catch (error) {

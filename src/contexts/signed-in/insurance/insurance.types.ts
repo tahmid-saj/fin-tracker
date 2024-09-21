@@ -43,10 +43,10 @@ export type InsurancePayment = {
 }
 
 export type FilterConditions = {
-  insuranceFor: string;
-  insuranceInterval: string;
-  insuranceStartDate: string;
-  insuranceEndDate: string;
+  insuranceFor?: string;
+  insuranceInterval?: string;
+  insuranceStartDate?: string;
+  insuranceEndDate?: string;
 }
 
 export type InsurancesSummary = {

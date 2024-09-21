@@ -1,3 +1,4 @@
+import { Insurance, InsurancesSummary } from "../../contexts/signed-in/insurance/insurance.types";
 import { errorOnGetInsurancesData, errorOnGetInsurancesSummaryData,
   errorOnInsuranceCreate, errorOnInsuranceRemove,
   errorOnPutInsurancesData, errorOnPutInsuranceSummaryData
@@ -6,7 +7,7 @@ import { errorOnGetInsurancesData, errorOnGetInsurancesSummaryData,
 // insurances api requests
 
 // getting insurances and summary data on sign in
-export const getInsurancesData = async (userId, email) => {
+export const getInsurancesData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`)
@@ -18,7 +19,7 @@ export const getInsurancesData = async (userId, email) => {
   }
 }
 
-export const getInsurancesSummaryData = async (userId, email) => {
+export const getInsurancesSummaryData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`)
@@ -31,7 +32,8 @@ export const getInsurancesSummaryData = async (userId, email) => {
 }
 
 // insurances operations
-export const postInsuranceCreate = async (userId, email, insurance, insuranceFor) => {
+export const postInsuranceCreate = async (userId: string | null | undefined, email: string | null | undefined, 
+  insurance: Insurance, insuranceFor: string): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
@@ -55,7 +57,8 @@ export const postInsuranceCreate = async (userId, email, insurance, insuranceFor
   }
 }
 
-export const deleteInsurance = async (userId, email, insuranceFor) => {
+export const deleteInsurance = async (userId: string | null | undefined, email: string | null | undefined, 
+  insuranceFor: string): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
@@ -74,7 +77,8 @@ export const deleteInsurance = async (userId, email, insuranceFor) => {
 }
 
 // updating insurances and summary data on sign out
-export const putInsurancesData = async (userId, email, insurances) => {
+export const putInsurancesData = async (userId: string | null | undefined, email: string | null | undefined, 
+  insurances: Insurance[]): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES}/${userId}/${email}`, {
@@ -94,7 +98,8 @@ export const putInsurancesData = async (userId, email, insurances) => {
   }
 }
 
-export const putInsurancesSummaryData = async (userId, email, insurancesSummary) => {
+export const putInsurancesSummaryData = async (userId: string | null | undefined, email: string | null | undefined, 
+  insurancesSummary: InsurancesSummary): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INSURANCES_SUMMARY}/${userId}/${email}`, {
