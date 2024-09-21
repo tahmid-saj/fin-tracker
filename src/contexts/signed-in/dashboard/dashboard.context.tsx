@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, FC } from "react";
 
 import { ExpensesContext } from "../expenses/expenses.context";
 import { BankingContext } from "../banking/banking.context";
@@ -8,8 +8,9 @@ import { InsuranceContext } from "../insurance/insurance.context";
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+import { DashboardContextType, DashboardProviderProps, Summaries, UserSummary } from "./dashboard.types";
 
-export const DashboardContext = createContext({
+export const DashboardContext = createContext<DashboardContextType>({
   summaries: {},
   // summaries structure:
   // {
@@ -29,9 +30,9 @@ export const DashboardContext = createContext({
   // }
 });
 
-export const DashboardProvider = ({ children }) => {
-  const [summaries, setSummaries] = useState({});
-  const [userSummary, setUserSummary] = useState({});
+export const DashboardProvider: FC<DashboardProviderProps> = ({ children }) => {
+  const [summaries, setSummaries] = useState<Summaries | {}>({});
+  const [userSummary, setUserSummary] = useState<UserSummary | {}>({});
 
   const value = { summaries, userSummary }
   
