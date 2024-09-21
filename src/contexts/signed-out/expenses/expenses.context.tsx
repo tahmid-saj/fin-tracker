@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode, FC } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
-import { Expense, FilterConditions, ExpensesSummary } from "./expenses.types"
+import { ExpensesContextType, ExpensesProviderProps, Expense, FilterConditions, ExpensesSummary } from "./expenses.types"
 
 // helper functions
 const addExpenseHelper = (expenses: Expense[], expense: Expense, expenseId: number): Expense[] => {
@@ -52,7 +52,7 @@ const selectScheduledExpensesHelper = (expenses: Expense[], expenseDate: string)
 }
 
 // initial state
-export const ExpensesContext = createContext({
+export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
   // expenses structure:
   // [
@@ -65,7 +65,7 @@ export const ExpensesContext = createContext({
   //   }
   // ]
   expenseLength: 0,
-  filterConditions: {},
+  filterConditions: {} as FilterConditions,
   // filterConditions structure
   // {
   //   expenseFor: "",
@@ -101,7 +101,7 @@ export const ExpensesContext = createContext({
 })
 
 // context component
-export const ExpensesProvider = ({ children: ReactNode }) => {
+export const ExpensesProvider: FC<ExpensesProviderProps> = ({ children }) => {
   const [expenses, setExpenses] = useState<Expense[] | []>([])
   const [expenseLength, setExpenseLength] = useState<number>(0)
   const [filterConditions, setFilterConditions] = useState<FilterConditions | null>(null)
@@ -124,14 +124,20 @@ export const ExpensesProvider = ({ children: ReactNode }) => {
     // })
     
     // past 30 days of expenses
-    Date.prototype.subtractDays = function (d) {
-      this.setDate(this.getDate() - d);
-      return this;
-    }
-    let past30Days = new Date()
-    let today = new Date()
-    past30Days.subtractDays(30)
-    
+    // Date.prototype.subtractDays = function (d: number) {
+    //   this.setDate(this.getDate() - d);
+    //   return this;
+    // }
+
+    // Helper function to subtract days
+    const subtractDays = (date: Date, days: number): Date => {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result;
+    };
+
+    const past30Days = subtractDays(new Date(), 30);
+    const today = new Date();
 
     let newAllExpensesCategories: string[] = []
     let newPastMonthExpenses: Expense[] = []
@@ -140,7 +146,7 @@ export const ExpensesProvider = ({ children: ReactNode }) => {
     const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
       newAllExpensesCategories.push(expense.expenseCategory)
       
-      if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
+      if (Date.parse(expense.expenseDate) >= past30Days.getTime() && Date.parse(expense.expenseDate) <= today.getTime()) {
         newPast30DaysAllExpensesCost += expense.expenseCost
         newPastMonthExpenses.push(expense)
       }
@@ -213,7 +219,7 @@ export const ExpensesProvider = ({ children: ReactNode }) => {
     setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expenseDate))
   }
 
-  const value = { expenses, expensesView, filterConditions, scheduledExpensesView,
+  const value = { expenses, expensesView, expenseLength, selectedExpensesDate, filterConditions, scheduledExpensesView,
                   addExpense, filterExpenses, removeExpense, clearExpensesFilter, 
                   expensesSummary, selectScheduledExpenses }
   
