@@ -275,9 +275,7 @@ export const ExpensesProvider: FC<ExpensesProviderProps> = ({ children }) => {
       putExpensesData(currentUser.uid, currentUser.email, expenses)
   
       // TODO: double check summary portion
-      putExpensesSummaryData(currentUser.uid, currentUser.email, {
-        currentAllExpensesCost: expensesSummary && expensesSummary.currentAllExpensesCost
-      })
+      putExpensesSummaryData(currentUser.uid, currentUser.email, expensesSummary)
     }
   }
 

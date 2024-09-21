@@ -3,10 +3,12 @@ import { errorOnGetExpensesData, errorOnGetExpensesSummaryData,
   errorOnPutExpensesData, errorOnPutExpensesSummaryData
  } from "../errors/expenses.error"
 
+import { Expense, ExpensesSummary } from "../../contexts/signed-in/expenses/expenses.types"
+
 // expenses api requests
 
 // getting expenses and summary data on sign in
-export const getExpensesData = async (userId, email) => {
+export const getExpensesData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`)
@@ -18,7 +20,7 @@ export const getExpensesData = async (userId, email) => {
   }
 }
 
-export const getExpensesSummaryData = async (userId, email) => {
+export const getExpensesSummaryData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`)
@@ -31,7 +33,7 @@ export const getExpensesSummaryData = async (userId, email) => {
 }
 
 // expenses operations
-export const postExpenseCreate = async (userId, email, expense, expenseId) => {
+export const postExpenseCreate = async (userId: string | null | undefined, email: string | null | undefined, expense: Expense, expenseId: number): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
@@ -55,7 +57,7 @@ export const postExpenseCreate = async (userId, email, expense, expenseId) => {
   }
 }
 
-export const deleteExpense = async (userId, email, expenseId) => {
+export const deleteExpense = async (userId: string | null | undefined, email: string | null | undefined, expenseId: number): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
@@ -74,7 +76,7 @@ export const deleteExpense = async (userId, email, expenseId) => {
 }
 
 // updating expenses and summary data on sign out
-export const putExpensesData = async (userId, email, expenses) => {
+export const putExpensesData = async (userId: string | null | undefined, email: string | null | undefined, expenses: Expense[]): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES}/${userId}/${email}`, {
@@ -94,7 +96,7 @@ export const putExpensesData = async (userId, email, expenses) => {
   }
 }
 
-export const putExpensesSummaryData = async (userId, email, expensesSummary) => {
+export const putExpensesSummaryData = async (userId: string | null | undefined, email: string | null | undefined, expensesSummary: ExpensesSummary | null): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_EXPENSES_SUMMARY}/${userId}/${email}`, {
