@@ -8,7 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-export default function ItemTabs({ outerBoxStyles, innerBoxStyles, tabList, panelList }) {
+export default function ItemTabs({ outerBoxStyles={}, innerBoxStyles={}, tabList, panelList }) {
   const [value, setValue] = useState(tabList[0].value);
 
   const handleChange = (event, newValue) => {
