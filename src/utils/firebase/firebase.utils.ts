@@ -127,7 +127,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      errorOnCreatingUser(error);
+      errorOnCreatingUser(error as Error);
     }
   }
 
