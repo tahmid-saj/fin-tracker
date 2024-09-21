@@ -8,7 +8,8 @@ import ReactApexChart from "react-apexcharts"
 import { useSelector } from "react-redux";
 import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../mui/paper/paper.component.jsx";
+import SimplePaper from "../../mui/paper/paper.component.js";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
@@ -20,22 +21,22 @@ const SavingsGoalGraph = () => {
   // const { savingsGoalScheduleResult } = useContext(SavingsGoalCalculatorContext)
   const savingsGoalScheduleResult = useSelector(selectSavingsGoalScheduleResult)
 
-  let monthlySavingsGoalsTimes = []
-  let monthlySavingsGoalsTotalInterestEarned = []
-  const monthlySavingsGoalsBalance = savingsGoalScheduleResult.map((savingsGoal) => {
+  let monthlySavingsGoalsTimes: string[] = []
+  let monthlySavingsGoalsTotalInterestEarned: number[] = []
+  const monthlySavingsGoalsBalance = savingsGoalScheduleResult?.map((savingsGoal) => {
     monthlySavingsGoalsTimes.push(savingsGoal.currentDate)
-    monthlySavingsGoalsTotalInterestEarned.push(Number(savingsGoal.totalInterestEarned).toFixed(2))
+    monthlySavingsGoalsTotalInterestEarned.push(Number(savingsGoal.totalInterestEarned.toFixed(2)))
     return savingsGoal.balance.toFixed(2)
   })
 
-  const series = [
+  const series: ApexAxisChartSeries = [
     {
       name: "Total Interest Earned",
       data: monthlySavingsGoalsTotalInterestEarned
     }
   ]
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'area',
       zoom: {
@@ -55,7 +56,7 @@ const SavingsGoalGraph = () => {
     },
     labels: monthlySavingsGoalsTimes,
     xaxis: {
-      type: 'string',
+      type: 'category',
       labels: {
         show: false
       }
