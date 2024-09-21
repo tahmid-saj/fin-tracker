@@ -1,11 +1,12 @@
+import { Investment, InvestmentInfo, InvestmentsSummary } from "../../contexts/signed-in/investments/investments.types";
 import { errorOnGetInvestmentsData, errorOnGetInvestmentsSummaryData,
   errorOnPostInvestmentCreate, errorOnPutInvestmentData, errorOnDeleteInvestment,
-  errorOnPutInvestmentsData, errorOnPutInvestmentsSummaryData } from "../../utils/errors/investments.errors";
+  errorOnPutInvestmentsData, errorOnPutInvestmentsSummaryData } from "../errors/investments.errors";
 
 // investments api requests
 
 // getting investments and summary data on sign in
-export const getInvestmentsData = async (userId, email) => {
+export const getInvestmentsData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`);
@@ -17,7 +18,7 @@ export const getInvestmentsData = async (userId, email) => {
   }
 };
 
-export const getInvestmentsSummaryData = async (userId, email) => {
+export const getInvestmentsSummaryData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS_SUMMARY}/${userId}/${email}`);
@@ -30,7 +31,8 @@ export const getInvestmentsSummaryData = async (userId, email) => {
 };
 
 // investment operations
-export const postInvestmentCreate = async (userId, email, investmentInfo) => {
+export const postInvestmentCreate = async (userId: string | null | undefined, email: string | null | undefined, 
+  investmentInfo: Investment): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
@@ -48,7 +50,8 @@ export const postInvestmentCreate = async (userId, email, investmentInfo) => {
   }
 };
 
-export const putInvestmentData = async (userId, email, investmentInfo) => {
+export const putInvestmentData = async (userId: string | null | undefined, email: string | null | undefined, 
+  investmentInfo: InvestmentInfo): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
@@ -66,7 +69,8 @@ export const putInvestmentData = async (userId, email, investmentInfo) => {
   }
 };
 
-export const deleteInvestment = async (userId, email, closingInvestmentName) => {
+export const deleteInvestment = async (userId: string | null | undefined, email: string | null | undefined, 
+  closingInvestmentName: string): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
@@ -85,7 +89,8 @@ export const deleteInvestment = async (userId, email, closingInvestmentName) => 
 };
 
 // updating investments and summary data on sign out
-export const putInvestmentsData = async (userId, email, investments) => {
+export const putInvestmentsData = async (userId: string | null | undefined, email: string | null | undefined, 
+  investments: Investment[]): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
@@ -105,7 +110,8 @@ export const putInvestmentsData = async (userId, email, investments) => {
   }
 };
 
-export const putInvestmentsSummaryData = async (userId, email, investmentsSummary) => {
+export const putInvestmentsSummaryData = async (userId: string | null | undefined, email: string | null | undefined, 
+  investmentsSummary: InvestmentsSummary): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS_SUMMARY}/${userId}/${email}`, {
