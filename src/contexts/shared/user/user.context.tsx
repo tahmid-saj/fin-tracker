@@ -1,16 +1,16 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState, FC } from "react";
 
 import { onAuthStateChangedListener,
         signOutUser,
         createUserDocumentFromAuth } from "../../../utils/firebase/firebase.utils";
+import { UserContextType, UserProviderProps } from "./user.types";
 
 // actual value to be accessed
-export const UserContext = createContext({
+export const UserContext = createContext<UserContextType>({
   currentUser: null,
-  setCurrentUser: () => null
 });
 
-export const UserProvider = ({ children: ReactNode }) => {
+export const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const value = { currentUser, setCurrentUser };
 
