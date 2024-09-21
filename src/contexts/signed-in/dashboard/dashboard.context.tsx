@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext, FC } from "react";
+import React, { createContext, useState, useEffect, useContext, FC } from "react";
 
 import { ExpensesContext } from "../expenses/expenses.context";
 import { BankingContext } from "../banking/banking.context";

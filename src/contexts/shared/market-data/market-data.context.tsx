@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, FC } from "react";
+import React, { createContext, useEffect, useState, FC } from "react";
 
 import { validateMarketDataQuery } from "../../../utils/validations/market-data.validation";
 import { DEFAULT_MARKET_DATA, MARKET_DATA_TYPES } from "../../../utils/constants/market-data.constants";

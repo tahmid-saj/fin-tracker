@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, FC } from "react";
+import React, { createContext, useState, useEffect, ReactNode, FC } from "react";
 import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants";
 import { validateAddInsurance, validateFilterInsurances, validateRemoveInsurance } from "../../../utils/validations/insurance.validation";
 
