@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode, FC } from "react";
 import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants";
 import { validateAddInsurance, validateFilterInsurances, validateRemoveInsurance } from "../../../utils/validations/insurance.validation";
 
-import { Insurance, InsurancePayment, FilterConditions, InsurancesSummary } from "./insurance.types"
+import { Insurance, InsurancePayment, FilterConditions, InsurancesSummary, InsuranceProviderProps, InsuranceContextType } from "./insurance.types"
 
 const addInsuranceHelper = (insurances: Insurance[], insurance: Insurance): Insurance[] => {
   return [ ...insurances,
@@ -79,7 +79,7 @@ const selectScheduledInsurancePaymentsHelper = (insurancePayments: InsurancePaym
 }
 
 // initial state
-export const InsuranceContext = createContext({
+export const InsuranceContext = createContext<InsuranceContextType>({
   insurances: [],
   // insurances structure:
   // [
@@ -131,7 +131,7 @@ export const InsuranceContext = createContext({
   scheduledInsurancePaymentsView: null,
 
   addInsurance: () => {},
-  filterInsurance: () => {},
+  filterInsurances: () => {},
   removeInsurance: () => {},
 
   selectScheduledInsurancePayments: () => {},
@@ -147,7 +147,7 @@ export const InsuranceContext = createContext({
 })
 
 // context component
-export const InsuranceProvider = ({ children: ReactNode }) => {
+export const InsuranceProvider: FC<InsuranceProviderProps> = ({ children }) => {
   const [insurances, setInsurances] = useState<Insurance[] | []>([])
   const [insurancePayments, setInsurancePayments] = useState<InsurancePayment[] | []>([])
   const [filterConditions, setFilterConditions] = useState<FilterConditions | null>(null)
@@ -196,10 +196,11 @@ export const InsuranceProvider = ({ children: ReactNode }) => {
           break
       }
       
-      Date.prototype.addDays = function (d) {
-        this.setDate(this.getDate() + d);
-        return this;
-      }
+    const addDays = (date: Date, days: number): Date => {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result;
+    };
 
       const startDate = new Date(insurance.insuranceFirstPaymentDate)
       const endDate = new Date(insurance.insuranceEndDate)
@@ -208,7 +209,7 @@ export const InsuranceProvider = ({ children: ReactNode }) => {
       for (let paymentDate = startDate; 
         paymentDate <= endDate; 
         // paymentDate.setDate(paymentDate.getDate() + insuranceIntervalDaysMultiplier)
-        paymentDate = paymentDate.addDays(insuranceIntervalDaysMultiplier)
+        paymentDate = addDays(paymentDate, insuranceIntervalDaysMultiplier as number)
       ) {
 
         newCurrentTotalInsurancePlanned += Number(insurance.insurancePayment)
@@ -234,26 +235,24 @@ export const InsuranceProvider = ({ children: ReactNode }) => {
 
   // update insurancesSummary if insurancePayments change
   useEffect(() => {
-    Date.prototype.subtractDays = function (d) {
-      this.setDate(this.getDate() - d);
-      return this;
-    }
+    // Helper function to subtract days from a Date object
+    const subtractDays = (date: Date, days: number): string => {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result.toISOString().split("T")[0]; // Return date in 'YYYY-MM-DD' format
+    };
 
-    let past30Days = new Date()
-    let today = new Date()
-    past30Days.subtractDays(30)
-    today = today.toISOString().split('T')[0]
-    past30Days = past30Days.toISOString().split('T')[0]
-    
+    const today = new Date().toISOString().split("T")[0];
+    const past30Days = subtractDays(new Date(), 30);
 
-    let newCurrentAllInsurancesCategories = new Set()
-    let newPastMonthAllInsurancesPayment = 0.0
-    let newPastMonthInsurances: InsurancePayment[] = []
+    let newCurrentAllInsurancesCategories = new Set<string>();
+    let newPastMonthAllInsurancesPayment = 0.0;
+    let newPastMonthInsurances: InsurancePayment[] = [];
 
     const newCurrentTotalInsurancePlanned = insurancePayments.reduce((allInsurancePlanned, insurance) => {
       newCurrentAllInsurancesCategories.add(String(insurance.insuranceFor))
       
-      if (Date.parse(insurance.insuranceDate) >= past30Days && Date.parse(insurance.insuranceDate) <= today) {
+      if (Date.parse(insurance.insuranceDate) >= Date.parse(past30Days) && Date.parse(insurance.insuranceDate) <= Date.parse(today)) {
         newPastMonthAllInsurancesPayment += insurance.insurancePayment
         newPastMonthInsurances.push(insurance)
       }
@@ -324,7 +323,7 @@ export const InsuranceProvider = ({ children: ReactNode }) => {
     setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, insuranceDate))
   }
 
-  const value = { insurances, insurancePayments, insurancesView, insurancePaymentsView, filterConditions, 
+  const value = { insurances, insurancePayments, insurancesView, insurancePaymentsView, filterConditions,
     selectedInsurancePaymentsDate, scheduledInsurancePaymentsView,
     addInsurance, filterInsurances, removeInsurance, clearInsuranceFilter,
     insurancesSummary, selectScheduledInsurancePayments }
