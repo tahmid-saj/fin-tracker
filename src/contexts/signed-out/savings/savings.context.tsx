@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode, FC } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
 import { calculateSavings } from "../../../utils/calculations/savings.calculations";
-import { SavingsAccount, SavingsCalculationRecord, SavingsAccountsSummary } from "./savings.types"
+import { SavingsAccount, SavingsCalculationRecord, SavingsAccountsSummary, SavingsContextType, SavingsProviderProps } from "./savings.types"
 
 // helper functions
 
@@ -88,7 +88,7 @@ const getSavingsAccountInfoHelper = (savingsAccounts: SavingsAccount[], savingsA
 };
 
 // initial state
-export const SavingsContext = createContext({
+export const SavingsContext = createContext<SavingsContextType>({
   savingsAccounts: [],
   // savingsAccounts structure
   // [
@@ -132,7 +132,7 @@ export const SavingsContext = createContext({
 });
 
 // context component
-export const SavingsProvider = ({ children: ReactNode }) => {
+export const SavingsProvider: FC<SavingsProviderProps> = ({ children }) => {
   const [savingsAccounts, setSavingsAccounts] = useState<SavingsAccount[] | []>([]);
   const [savingsAccountsSummary, setSavingsAccountsSummary] = useState<SavingsAccountsSummary | {}>({});
 
