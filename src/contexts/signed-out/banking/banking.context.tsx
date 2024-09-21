@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, Component, ReactNode } from "react";
+import { createContext, useState, useEffect, Component, ReactNode, FC } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -7,7 +7,7 @@ from "../../../utils/validations/banking.validation";
 import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
 
 import { TRANSACTION_TYPES } from "../../../utils/constants/banking.constants";
-import { BankingAccount, Transaction, BankingSummary } from "../../../store/signed-out/banking/banking.types";
+import { BankingContextType, BankingProviderProps, BankingAccount, Transaction, BankingSummary } from "./banking.types";
 
 // helper functions
 
@@ -128,7 +128,7 @@ const closeBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAcc
 };
 
 // initial state
-export const BankingContext = createContext({
+export const BankingContext = createContext<BankingContextType>({
   bankingAccounts: [],
   // bankingAccounts structure:
   // [
@@ -163,7 +163,7 @@ export const BankingContext = createContext({
   transferToBankingAccount: () => {},
   closeBankingAccount: () => {},
 
-  bankingSummary: {}
+  bankingSummary: {} as BankingSummary
   // bankingSummary structure:
   // {
   //   currentAllBankingBalance: 105,
@@ -173,7 +173,7 @@ export const BankingContext = createContext({
 });
 
 // context component
-export const BankingProvider = ({ children: ReactNode }) => {
+export const BankingProvider: FC<BankingProviderProps> = ({ children }) => {
   const [bankingAccounts, setBankingAccounts] = useState<BankingAccount[] | []>([]);
   const [bankingSummary, setBankingSummary] = useState<BankingSummary | {}>({});
 
@@ -214,9 +214,6 @@ export const BankingProvider = ({ children: ReactNode }) => {
     withdrawFromBankingAccount, transferToBankingAccount, closeBankingAccount, bankingSummary };
 
   return (
-    <BankingContext.Provider
-      value={ value }>
-      { children }
-    </BankingContext.Provider>
-  );
-};
+    <BankingContext.Provider value={ value }>{ children }</BankingContext.Provider>
+  )
+}

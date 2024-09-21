@@ -1,4 +1,20 @@
+import { ReactNode } from "react";
+
 // banking types
+export interface BankingContextType {
+  bankingAccounts: BankingAccount[];
+  createBankingAccount: (bankingAccountName: string) => void;
+  depositToBankingAccount: (bankingAccountName: string, depositAmount: number, depositReason: string) => void;
+  withdrawFromBankingAccount: (bankingAccountName: string, withdrawAmount: number, withdrawReason: string, addToExpenses: boolean) => void;
+  transferToBankingAccount: (bankingAccountTransferFromName: string, bankingAccountTransferToName: string, transferAmount: number, transferReason: string) => void;
+  closeBankingAccount: (bankingAccountName: string) => void;
+  bankingSummary: BankingSummary;
+}
+
+export interface BankingProviderProps {
+  children: ReactNode
+}
+
 export type BankingAccount = {
   name: string;
   currentBalance: number;
