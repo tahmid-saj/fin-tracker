@@ -6,7 +6,7 @@ import { calculateSavingsGoal as _calculateSavingsGoal,
 import { ActionWithPayload, createAction, withMatcher } from "../../../utils/reducer/reducer.utils";
 import { SAVINGS_GOAL_CALCULATOR_ACTION_TYPES, SavingsGoalResult, SavingsGoalScheduleResult } from "./savings-goal-calculator.types";
 
-export type CalculateSavingsGoal = ActionWithPayload<SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_RESULT, SavingsGoalResult>
+export type CalculateSavingsGoal = ActionWithPayload<SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_RESULT, SavingsGoalResult | undefined>
 export type CalculateSavingsGoalSchedule = ActionWithPayload<SAVINGS_GOAL_CALCULATOR_ACTION_TYPES.SET_SAVINGS_GOAL_SCHEDULE_RESULT, SavingsGoalScheduleResult[]>
 
 type SavingsGoalInput = {
@@ -19,7 +19,7 @@ type SavingsGoalInput = {
 }
 
 // helper functions
-const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult, savingsGoalInput: SavingsGoalInput): SavingsGoalResult => {
+const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult, savingsGoalInput: SavingsGoalInput): SavingsGoalResult | undefined => {
   if (validateSavingsGoalInput(savingsGoalInput)) {
     return savingsGoalResult
   }

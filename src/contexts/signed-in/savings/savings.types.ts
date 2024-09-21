@@ -18,6 +18,14 @@ export type SavingsAccount = {
   savings: SavingsCalculationRecord[];
 }
 
+export type SavingsAccountCalculated = {
+  totalSavings: number;
+  totalContribution: number;
+  totalInterest: number;
+
+  savings: SavingsCalculationRecord[];
+}
+
 export interface SavingsContextType {
   savingsAccounts: SavingsAccount[];
 
@@ -48,4 +56,9 @@ export type SavingsAccountsSummary = {
   currentAllSavingsAccountsBalance?: number;
   totalAllContribution?: number;
   totalAllInterest?: number;
+}
+
+export type SavingsAccountInfo = {
+  originalSavingsAccountInfo: SavingsAccount;
+  updatedSavingsAccountInfo: SavingsAccount;
 }

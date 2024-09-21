@@ -5,7 +5,7 @@ import ReactApexChart from 'react-apexcharts';
 import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context";
 import { Fragment, useContext } from "react";
 
-import { MARKET_DATA_INTERVALS } from "../../../../utils/constants/market-data.constants";
+import { MARKET_DATA_INTERVALS } from "../../../../utils/constants/market-data.constants.js";
 import { Divider } from "@mui/material";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
 import SimplePaper from "../../mui/paper/paper.component.jsx";

@@ -42,3 +42,4 @@ export type SavingsGoalScheduleResult = {
   totalInterestEarned: number,
   balance: number
 }
+

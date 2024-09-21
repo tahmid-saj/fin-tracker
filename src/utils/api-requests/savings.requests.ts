@@ -1,3 +1,4 @@
+import { SavingsAccount, SavingsAccountInfo, SavingsAccountsSummary } from "../../contexts/signed-in/savings/savings.types";
 import { errorOnGetSavingsAccountsData, errorOnGetSavingsAccountsSummaryData,
   errorOnPostSavingsAccountCreate, errorOnPutSavingsAccountData, errorOnSavingsAccountInvestment,
   errorOnPutSavingsAccountsData, errorOnPutSavingsAccountsSummaryData } from "../errors/savings.errors";
@@ -5,7 +6,7 @@ import { errorOnGetSavingsAccountsData, errorOnGetSavingsAccountsSummaryData,
 // savings accounts api requests
 
 // getting savings accounts and summary data on sign in
-export const getSavingsAccountsData = async (userId, email) => {
+export const getSavingsAccountsData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`);
@@ -17,7 +18,7 @@ export const getSavingsAccountsData = async (userId, email) => {
   }
 };
 
-export const getSavingsAccountsSummaryData = async (userId, email) => {
+export const getSavingsAccountsSummaryData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS_SUMMARY}/${userId}/${email}`);
@@ -30,7 +31,8 @@ export const getSavingsAccountsSummaryData = async (userId, email) => {
 };
 
 // saving accounts operations
-export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo) => {
+export const postSavingsAccountCreate = async (userId: string | null | undefined, email: string | null | undefined, 
+  savingsAccountInfo: SavingsAccount): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
@@ -48,7 +50,8 @@ export const postSavingsAccountCreate = async (userId, email, savingsAccountInfo
   }
 };
 
-export const putSavingsAccountData = async (userId, email, savingsAccountInfo) => {
+export const putSavingsAccountData = async (userId: string | null | undefined, email: string | null | undefined, 
+  savingsAccountInfo: SavingsAccountInfo): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
@@ -66,7 +69,8 @@ export const putSavingsAccountData = async (userId, email, savingsAccountInfo) =
   }
 };
 
-export const deleteSavingsAccount = async (userId, email, closingSavingsAccountName) => {
+export const deleteSavingsAccount = async (userId: string | null | undefined, email: string | null | undefined, 
+  closingSavingsAccountName: string): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
@@ -77,7 +81,7 @@ export const deleteSavingsAccount = async (userId, email, closingSavingsAccountN
       body: String(closingSavingsAccountName)
     });
 
-    return response.statusCode;
+    return response.status;
   } catch (error) {
     errorOnSavingsAccountInvestment();
     
@@ -85,7 +89,8 @@ export const deleteSavingsAccount = async (userId, email, closingSavingsAccountN
 };
 
 // updating savings accounts and summary data on sign out
-export const putSavingsAccountsData = async (userId, email, savingsAccounts) => {
+export const putSavingsAccountsData = async (userId: string | null | undefined, email: string | null | undefined, 
+  savingsAccounts: SavingsAccount[]): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
@@ -105,7 +110,8 @@ export const putSavingsAccountsData = async (userId, email, savingsAccounts) => 
   }
 };
 
-export const putSavingsAccountsSummaryData = async (userId, email, savingsAccountsSummary) => {
+export const putSavingsAccountsSummaryData = async (userId: string | null | undefined, email: string | null | undefined, 
+  savingsAccountsSummary: SavingsAccountsSummary): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {

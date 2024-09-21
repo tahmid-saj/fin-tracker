@@ -1,10 +1,30 @@
+import { SavingsGoalInput, SavingsGoalResult, SavingsGoalScheduleResult } from "../../contexts/shared/savings-goal-calculator/savings-goal-calculator.types";
+import { SavingsAccount } from "../../contexts/signed-in/savings/savings.types";
+import { SavingsAccountCalculated } from "../../contexts/signed-out/savings/savings.types";
 import { SAVINGS_CONTRIBUTION_INTERVALS, SAVINGS_GOAL_COMPOUNDED,
   AVERAGE_DAYS_IN_MONTH
 } from "../constants/savings.constants";
 import date from 'date-and-time'
 
+type CompoundedInterestInput = {
+  A: number;
+  P: number;
+  r: number;
+  t: number;
+  n: number;
+}
+
+type SavingsAccountCalculationInput = {
+  initialDeposit: number;
+  startDate: string;
+  monthlyContribution: number;
+  contributionPeriod: number;
+  contributionInterval: string;
+  apy: number;
+}
+
 // helper functions
-const calculateCompoundedInterestPMT = (compoundedInterestInput) => {
+const calculateCompoundedInterestPMT = (compoundedInterestInput: CompoundedInterestInput): number => {
   let res = compoundedInterestInput.A
   res -= compoundedInterestInput.P * (Math.pow(1 + (compoundedInterestInput.r / compoundedInterestInput.n), compoundedInterestInput.n * compoundedInterestInput.t))
   res /= (Math.pow(1 + (compoundedInterestInput.r / compoundedInterestInput.n), compoundedInterestInput.n * compoundedInterestInput.t) - 1) / (compoundedInterestInput.r / compoundedInterestInput.n)
@@ -12,7 +32,7 @@ const calculateCompoundedInterestPMT = (compoundedInterestInput) => {
   return res
 }
 
-const calculateCompoundedInterestA = (compoundedInterestInput, PMT) => {
+const calculateCompoundedInterestA = (compoundedInterestInput: CompoundedInterestInput, PMT: number): { interestEarned: number, balance: number } => {
   const interestEarned = compoundedInterestInput.P * Math.pow(compoundedInterestInput.r / compoundedInterestInput.n, compoundedInterestInput.n * compoundedInterestInput.t)
   const compoundedResult = compoundedInterestInput.P * Math.pow(1 + (compoundedInterestInput.r / compoundedInterestInput.n), compoundedInterestInput.n * compoundedInterestInput.t)
   const balance = compoundedResult + PMT
@@ -23,7 +43,7 @@ const calculateCompoundedInterestA = (compoundedInterestInput, PMT) => {
   }
 }
 
-const calculatePMTCompoundedInterestA = (compoundedInterestInput, PMT) => {
+const calculatePMTCompoundedInterestA = (compoundedInterestInput: CompoundedInterestInput, PMT: number): number => {
   let res = compoundedInterestInput.P
   res *= Math.pow(1 + (compoundedInterestInput.r / compoundedInterestInput.n), compoundedInterestInput.n * compoundedInterestInput.t)
   res += PMT * ((Math.pow(1 + (compoundedInterestInput.r / compoundedInterestInput.n), compoundedInterestInput.n * compoundedInterestInput.t) - 1) / (compoundedInterestInput.r / compoundedInterestInput.n))
@@ -33,13 +53,14 @@ const calculatePMTCompoundedInterestA = (compoundedInterestInput, PMT) => {
 
 // savings calculations
 
-export const calculateSavings = (savingsAccount) => {
+export const calculateSavings = (savingsAccount: SavingsAccountCalculationInput): SavingsAccountCalculated => {
   // return calculated totalSavings, totalContribution, totalInterest
 
   let resSavings = []
   const startDate = new Date(savingsAccount.startDate)
   
-  let compoundedInterestInput = {
+  let compoundedInterestInput: CompoundedInterestInput = {
+    A: 0,
     P: savingsAccount.initialDeposit,
     r: savingsAccount.apy / 100,
     t: 0,
@@ -96,7 +117,7 @@ export const calculateSavings = (savingsAccount) => {
 
 
 // savings goal
-export const calculateSavingsGoal = (savingsGoalInput) => {
+export const calculateSavingsGoal = (savingsGoalInput: SavingsGoalInput): SavingsGoalResult | undefined => {
   
 
   let compoundedInterestInput = {
@@ -132,12 +153,13 @@ export const calculateSavingsGoal = (savingsGoalInput) => {
   }
 }
 
-export const calculateSavingsGoalSchedule = (savingsGoalResult) => {
+export const calculateSavingsGoalSchedule = (savingsGoalResult: SavingsGoalResult): SavingsGoalScheduleResult[] => {
   let res = []
   let totalInterest = 0
   const startDate = new Date(savingsGoalResult.dateFirstDeposit)
 
-  let compoundedInterestInput = {
+  let compoundedInterestInput: CompoundedInterestInput = {
+    A: 0,
     P: savingsGoalResult.amountFirstDeposit,
     r: savingsGoalResult.interestRatePerYear / 100,
     t: (1 / 12),

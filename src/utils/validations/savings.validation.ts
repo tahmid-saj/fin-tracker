@@ -1,3 +1,5 @@
+import { SavingsGoalInput } from "../../contexts/shared/savings-goal-calculator/savings-goal-calculator.types";
+import { SavingsAccount } from "../../contexts/signed-in/savings/savings.types";
 import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnSavingsAccountExists, errorOnInvalidSavingsAccountName,
         errorOnInvalidSavingsAccountInputs, 
@@ -5,7 +7,7 @@ import { errorOnSavingsAccountExists, errorOnInvalidSavingsAccountName,
 
 // savings validation functions
 
-export const validateSavingsAccountCreation = (savingsAccounts, savingsAccount) => {
+export const validateSavingsAccountCreation = (savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount): boolean => {
   const savingsAccountExists = savingsAccounts.find((account) => account.savingsAccountName === savingsAccount.savingsAccountName);
 
   if (savingsAccountExists) {
@@ -33,7 +35,7 @@ export const validateSavingsAccountCreation = (savingsAccounts, savingsAccount) 
   return false;
 };
 
-export const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount) => {
+export const validateSavingsAccountUpdate = (savingsAccounts: SavingsAccount[], originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount): boolean => {
   // validate fields of updatedInvestment
   
   // strings
@@ -63,7 +65,7 @@ export const validateSavingsAccountUpdate = (savingsAccounts, originalSavingsAcc
 
 // savings goal
 
-export const validateSavingsGoalInput = (savingsGoalInput) => {
+export const validateSavingsGoalInput = (savingsGoalInput: SavingsGoalInput): boolean => {
   
 
   // number
