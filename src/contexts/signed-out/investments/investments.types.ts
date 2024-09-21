@@ -1,4 +1,7 @@
+import { ReactNode } from "react";
+
 // investment types
+
 export type Investment = {
   investmentName: string;
   investmentType: string;
@@ -16,6 +19,21 @@ export type Investment = {
   totalInterest: number;
 
   investments: InvestmentCalculationRecord[];
+}
+
+export interface InvestmentContextType {
+  investments: Investment[];
+
+  createInvestment: (investment: Investment) => void;
+  updateInvestment: (originalInvestmentName: string, updatedInvestment: Investment) => void;
+  closeInvestment: (closingInvestmentName: string) => void;
+  getInvestmentInfo: (investmentName: string) => void;
+
+  investmentsSummary: InvestmentsSummary;
+}
+
+export interface InvestmentProviderProps {
+  children: ReactNode;
 }
 
 export type InvestmentCalculationRecord = {

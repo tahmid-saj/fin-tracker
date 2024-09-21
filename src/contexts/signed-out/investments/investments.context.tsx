@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode, FC } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestment } from "../../../utils/calculations/investments.calculations";
-import { Investment, InvestmentCalculationRecord, InvestmentsSummary } from "./investments.types"
+import { Investment, InvestmentCalculationRecord, InvestmentContextType, InvestmentProviderProps, InvestmentsSummary } from "./investments.types"
 
 // helper functions
 
@@ -77,7 +77,7 @@ const getInvestmentInfoHelper = (investments: Investment[], investmentName: stri
 };
 
 // initial state
-export const InvestmentsContext = createContext({
+export const InvestmentsContext = createContext<InvestmentContextType>({
   investments: [],
   // investments structure:
   // [
@@ -124,7 +124,7 @@ export const InvestmentsContext = createContext({
 });
 
 // context component
-export const InvestmentsProvider = ({ children: ReactNode }) => {
+export const InvestmentsProvider: FC<InvestmentProviderProps> = ({ children }) => {
   const [investments, setInvestments] = useState<Investment[] | []>([]);
   const [investmentsSummary, setInvestmentsSummary] = useState<InvestmentsSummary | {}>({});
 

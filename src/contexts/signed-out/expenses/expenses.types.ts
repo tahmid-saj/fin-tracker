@@ -9,10 +9,12 @@ export interface ExpensesContextType {
   selectedExpensesDate: string | null;
   expensesView: Expense[] | null;
   scheduledExpensesView: Expense[] | null;
+
   addExpense: (expense: Expense) => void;
   filterExpenses: (filterConditions: FilterConditions) => void;
   removeExpense: (expenseId: number) => void;
   selectScheduledExpenses: (expenseDate: string) => void;
+  
   expensesSummary: ExpensesSummary;
 }
 
