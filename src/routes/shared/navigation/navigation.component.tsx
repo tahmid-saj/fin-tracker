@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import "./navigation.styles.jsx";
 import { DrawerContainer } from "./navigation.styles.jsx";
-import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component";
+import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component.jsx";
 import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
 
 import { useSelector } from "react-redux";

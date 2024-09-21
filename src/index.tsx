@@ -27,7 +27,7 @@ import { DashboardProvider as DashboardProviderSignedIn } from './contexts/signe
 import { ExportsProvider } from './contexts/signed-in/exports/exports.context';
 
 import { Provider } from 'react-redux';
-import { persistor, store } from "./store/store"
+import { store } from "./store/store"
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -37,7 +37,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 //   cache: new InMemoryCache()
 // })
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <Provider store={ store }>
