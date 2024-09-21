@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode, FC } from "react";
 import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation.js"
 import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations.js";
 
-import { SavingsGoalResult, SavingsGoalScheduleResult, SavingsGoalInput } from "./savings-goal-calculator.types"
+import { SavingsGoalResult, SavingsGoalScheduleResult, SavingsGoalInput, SavingsGoalCalculatorProviderProps, SavingsGoalCalculatorContextType } from "./savings-goal-calculator.types.js"
 
 // helper functions
 const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult | undefined, savingsGoalInput: SavingsGoalInput): SavingsGoalResult | undefined => {
@@ -26,7 +26,7 @@ const calculateSavingsGoalScheduleHelper = (savingsGoalResult: SavingsGoalResult
 }
 
 // initial state
-export const SavingsGoalCalculatorContext = createContext({
+export const SavingsGoalCalculatorContext = createContext<SavingsGoalCalculatorContextType>({
   savingsGoalResult: undefined,
   // savingsGoalResult structure
   // {
@@ -58,7 +58,7 @@ export const SavingsGoalCalculatorContext = createContext({
 })
 
 // savings goal calculator provider
-export const SavingsGoalCalculatorProvider = ({ children: ReactNode }) => {
+export const SavingsGoalCalculatorProvider: FC<SavingsGoalCalculatorProviderProps> = ({ children }) => {
   const [savingsGoalResult, setSavingsGoalResult] = useState<SavingsGoalResult | undefined>(undefined)
   const [savingsGoalScheduleResult, setSavingsGoalScheduleResult] = useState<SavingsGoalScheduleResult[] | undefined>(undefined)
 
