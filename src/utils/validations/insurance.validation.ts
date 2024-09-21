@@ -1,3 +1,5 @@
+import { FilterConditions } from "../../contexts/signed-in/insurance/insurance.types"
+import { Insurance } from "../../contexts/signed-in/insurance/insurance.types"
 import { REGEX_PATTERNS } from "../constants/regex.constants"
 import { errorOnInsuranceExists, errorOnInvalidInsuranceFor,
   errorOnInvalidInsurancePayment, errorOnStartDateBeforeEndDate
@@ -5,7 +7,7 @@ import { errorOnInsuranceExists, errorOnInvalidInsuranceFor,
 
 // insurance validation functions
 
-export const validateAddInsurance = (insurances, insurance) => {
+export const validateAddInsurance = (insurances: Insurance[], insurance: Insurance): boolean => {
   // validating if insuranceFor exists in insurances
   const insuranceExists = insurances.find((ins) => ins.insuranceFor === insurance.insuranceFor)
 
@@ -29,7 +31,7 @@ export const validateAddInsurance = (insurances, insurance) => {
   return false
 }
 
-export const validateFilterInsurances = (filterConditions) => {
+export const validateFilterInsurances = (filterConditions: FilterConditions): boolean => {
   // validating if expenseFor is valid
   if (filterConditions.insuranceFor && !(REGEX_PATTERNS.names.test(String(filterConditions.insuranceFor)))) {
     errorOnInvalidInsuranceFor()
@@ -45,6 +47,6 @@ export const validateFilterInsurances = (filterConditions) => {
   return false
 }
 
-export const validateRemoveInsurance = (insuranceFor) => {
+export const validateRemoveInsurance = (insuranceFor: string): boolean => {
   return false
 }
