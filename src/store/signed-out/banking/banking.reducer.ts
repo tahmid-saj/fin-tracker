@@ -1,6 +1,8 @@
 import { AnyAction } from "redux";
 import { BANKING_ACTION_TYPES, BankingAccount, BankingSummary } from "./banking.types";
-import { closeBankingAccount, createBankingAccount, depositToBankingAccount, setBankingSummary, transferToBankingAccount, withdrawFromBankingAccount } from "./banking.action";
+import { closeBankingAccount, createBankingAccount, depositToBankingAccount, setBankingSummary, 
+  transferToBankingAccount, withdrawFromBankingAccount 
+} from "./banking.action";
 
 export type BankingState = {
   readonly bankingAccounts: BankingAccount[] | null | undefined;

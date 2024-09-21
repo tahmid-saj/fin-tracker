@@ -1,14 +1,40 @@
-import { createAction } from "../../../utils/reducer/reducer.utils";
-import { BANKING_ACTION_TYPES, BANKING_SUB_ACTION_TYPES } from "./banking.types";
+import { ActionWithPayload, createAction } from "../../../utils/reducer/reducer.utils";
+import { BANKING_ACTION_TYPES, BANKING_SUB_ACTION_TYPES, BankingAccount, BankingSummary, Transaction } from "./banking.types";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
 from "../../../utils/validations/banking.validation";
 
 import { TRANSACTION_TYPES, DEFAULT_BANKING_ACCOUNTS, DEFAULT_BANKING_SUMMARY } from "../../../utils/constants/banking.constants";
+
+export type CreateBankingAccountStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type CreateBankingAccountFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, Error>
+export type CreateBankingAccountSucess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, BankingAccount[]>
+
+export type DepositToBankingAccountStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type DepositToBankingAccountFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, Error>
+export type DepositToBankingAccountSuccess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, BankingAccount[]>
+
+export type WithdrawFromBankingAccountStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type WithdrawFromBankingAccountFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, Error>
+export type WithdrawFromBankingAccountSuccess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, BankingAccount[]>
+
+export type TransferToBankingAccountStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type TransferToBankingAccountFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, Error>
+export type TransferToBankingAccountSuccess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, BankingAccount[]>
+
+export type CloseBankingAccountStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type CloseBankingAccountFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, Error>
+export type CloseBankingAccountSuccess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, BankingAccount[]>
+
+export type SetBankingSummaryStart = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_START, BankingAccount[]>
+export type SetBankingSummaryFailed = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, Error>
+export type SetBankingSummarySuccess = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, BankingAccount[]>
+
+
 // helper functions
 
-const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const createBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
   // postBankingAccountCreate(userId, email, bankingAccountName);
@@ -24,7 +50,8 @@ const createBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
   }]
 };
 
-const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depositAmount, depositReason) => {
+const depositToBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  depositAmount: number, depositReason: string): BankingAccount[] => {
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
   
   // const transactionInfo = {
@@ -44,7 +71,7 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
         currentBalance: account.currentBalance + Number(depositAmount), 
         totalIn: account.totalIn + Number(depositAmount),
         transactions: [ 
-          ...account.transactions, 
+          ...account.transactions as Transaction[], 
           {
             amount: Number(depositAmount),
             type: TRANSACTION_TYPES.deposit, 
@@ -60,7 +87,8 @@ const depositToBankingAccountHelper = (bankingAccounts, bankingAccountName, depo
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
+const withdrawFromBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  withdrawAmount: number, withdrawReason: string): BankingAccount[] => {
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // const transactionInfo = {
@@ -79,7 +107,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
         currentBalance: account.currentBalance - Number(withdrawAmount),
         totalOut: account.totalOut + Number(withdrawAmount),
         transactions: [ 
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
@@ -92,8 +120,8 @@ const withdrawFromBankingAccountHelper = (bankingAccounts, bankingAccountName, w
   return updatedBankingAccounts;
 };
 
-const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferFromName, 
-  bankingAccountTransferToName, transferAmount, transferReason) => {
+const transferToBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, 
+  bankingAccountTransferToName: string, transferAmount: number, transferReason: string): BankingAccount[] => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
 
@@ -115,7 +143,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
         currentBalance: account.currentBalance - Number(transferAmount),
         totalOut: account.totalOut + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.withdrawalTransfer,
@@ -131,7 +159,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
         currentBalance: account.currentBalance + Number(transferAmount),
         totalIn: account.totalIn + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.depositTransfer,
@@ -147,7 +175,7 @@ const transferToBankingAccountHelper = (bankingAccounts, bankingAccountTransferF
   return updatedBankingAccounts;
 };
 
-const closeBankingAccountHelper = (bankingAccounts, bankingAccountName) => {
+const closeBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   // deleteBankingAccount(userId, email, bankingAccountName);
   
   // return bankingAccounts without the bankingAccountName
@@ -168,7 +196,7 @@ const setDefaultBankingSummaryValuesHelper = () => {
 
 // actions
 
-export const createBankingAccount = (currentUser, bankingAccounts, bankingAccountName) => {
+export const createBankingAccount = (currentUser: any, bankingAccounts: BankingAccount[], bankingAccountName: string) => {
   const newBankingAccounts = createBankingAccountHelper(bankingAccounts, bankingAccountName);
   // TODO: async functions in helper functions above will be moved to sagas
   // setBankingAccounts(res);
@@ -183,7 +211,8 @@ export const createBankingAccount = (currentUser, bankingAccounts, bankingAccoun
     })
 };
 
-export const depositToBankingAccount = (currentUser, bankingAccounts, bankingAccountName, depositAmount, depositReason) => {
+export const depositToBankingAccount = (currentUser: any, bankingAccounts: BankingAccount[], 
+  bankingAccountName: string, depositAmount: number, depositReason: string) => {
   const newBankingAccounts = depositToBankingAccountHelper(bankingAccounts, bankingAccountName, depositAmount, depositReason);
   // setBankingAccounts(res);
 
@@ -204,7 +233,8 @@ export const depositToBankingAccount = (currentUser, bankingAccounts, bankingAcc
     })
 };
 
-export const withdrawFromBankingAccount = (currentUser, bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason) => {
+export const withdrawFromBankingAccount = (currentUser: any, bankingAccounts: BankingAccount[], 
+  bankingAccountName: string, withdrawAmount: number, withdrawReason: string) => {
   const newBankingAccounts = withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason);
   // setBankingAccounts(res);
 
@@ -225,7 +255,8 @@ export const withdrawFromBankingAccount = (currentUser, bankingAccounts, banking
     })
 };
 
-export const transferToBankingAccount = (currentUser, bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
+export const transferToBankingAccount = (currentUser: any, bankingAccounts: BankingAccount[], 
+  bankingAccountTransferFromName: string, bankingAccountTransferToName: string, transferAmount: number, transferReason: string) => {
   const newBankingAccounts = transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
     bankingAccountTransferToName, transferAmount, transferReason);
   // setBankingAccounts(res);
@@ -248,7 +279,7 @@ export const transferToBankingAccount = (currentUser, bankingAccounts, bankingAc
     })
 };
 
-export const closeBankingAccount = (currentUser, bankingAccounts, bankingAccountName) => {
+export const closeBankingAccount = (currentUser: any, bankingAccounts: BankingAccount[], bankingAccountName: string) => {
   const newBankingAccounts = closeBankingAccountHelper(bankingAccounts, bankingAccountName);
   // setBankingAccounts(res);
 
@@ -275,7 +306,7 @@ export const setDefaultBankingSummaryValues = () => {
 };
 
 // update banking accounts and summary on sign out
-export const updateBankingAccountsAndSummary = (currentUser, bankingAccounts, bankingSummary) => {
+export const updateBankingAccountsAndSummary = (currentUser: any, bankingAccounts: BankingAccount[], bankingSummary: BankingSummary) => {
   // putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
   // putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
   return createAction(BANKING_ACTION_TYPES.UPDATE_BANKING_ACCOUNTS_AND_SUMMARY_START,
@@ -287,11 +318,11 @@ export const updateBankingAccountsAndSummary = (currentUser, bankingAccounts, ba
     })
 };
 
-export const setBankingAccountsSuccess = (bankingAccounts) => {
+export const setBankingAccountsSuccess = (bankingAccounts: BankingAccount[]) => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, bankingAccounts)
 }
 
-export const setBankingAccountsFailed = (error) => {
+export const setBankingAccountsFailed = (error: Error) => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_FAILED, error)
 }
 
@@ -299,14 +330,14 @@ export const updateBankingAccountsAndSummarySuccess = () => {
   return createAction(BANKING_ACTION_TYPES.UPDATE_BANKING_ACCOUNTS_AND_SUMMARY_SUCCESS)
 }
 
-export const updateBankingAccountsAndSummaryFailed = (error) => {
+export const updateBankingAccountsAndSummaryFailed = (error: Error) => {
   return createAction(BANKING_ACTION_TYPES.UPDATE_BANKING_ACCOUNTS_AND_SUMMARY_FAILED, error)
 }
 
-export const setBankingAccounts = (bankingAccounts) => {
+export const setBankingAccounts = (bankingAccounts: BankingAccount[]) => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_ACCOUNTS_SUCCESS, bankingAccounts)
 }
 
-export const setBankingSummary = (bankingSummary) => {
+export const setBankingSummary = (bankingSummary: BankingSummary) => {
   return createAction(BANKING_ACTION_TYPES.SET_BANKING_SUMMARY, bankingSummary)
 }

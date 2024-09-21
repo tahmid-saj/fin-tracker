@@ -9,9 +9,10 @@ import { setBankingAccountsSuccess, setBankingAccountsFailed,
   updateBankingAccountsAndSummarySuccess, updateBankingAccountsAndSummaryFailed 
 } from "./banking.action";
 import { BANKING_ACTION_TYPES, BANKING_SUB_ACTION_TYPES } from "./banking.types";
+import { BankingState } from "./banking.reducer";
 
 // helper functions
-export function* setBankingAccounts({ payload }) {
+export function* setBankingAccounts({ payload }: any) {
   try {
     const { bankingSubActionType, userId, email, bankingAccounts } = payload
     
@@ -30,11 +31,11 @@ export function* setBankingAccounts({ payload }) {
         yield put(setBankingAccountsSuccess(bankingAccounts))
     }
   } catch (error) {
-    yield put(setBankingAccountsFailed(error))
+    yield put(setBankingAccountsFailed(error as Error))
   }
 }
 
-export function* updateBankingAccountsAndSummary({ payload }) {
+export function* updateBankingAccountsAndSummary({ payload }: any) {
   try {
     const { userId, email, bankingAccounts, bankingSummary } = payload
 
@@ -42,7 +43,7 @@ export function* updateBankingAccountsAndSummary({ payload }) {
     yield call(putBankingSummaryData, userId, email, bankingSummary)
     yield put(updateBankingAccountsAndSummarySuccess())
   } catch (error) {
-    yield put(updateBankingAccountsAndSummaryFailed(error))
+    yield put(updateBankingAccountsAndSummaryFailed(error as Error))
   }
 }
 
