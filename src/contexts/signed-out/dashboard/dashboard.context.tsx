@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext, ReactNode } from "react";
+import { createContext, useState, useEffect, useContext, ReactNode, FC } from "react";
 
 import { ExpensesContext } from "../expenses/expenses.context";
 import { BankingContext } from "../banking/banking.context";
@@ -6,9 +6,9 @@ import { InvestmentsContext } from "../investments/investments.context";
 import { SavingsContext } from "../savings/savings.context";
 import { InsuranceContext } from "../insurance/insurance.context";
 
-import { Summaries, UserSummary } from "./dashboard.types"
+import { DashboardContextType, DashboardProviderProps, Summaries, UserSummary } from "./dashboard.types"
 
-export const DashboardContext = createContext({
+export const DashboardContext = createContext<DashboardContextType>({
   summaries: {},
   // summaries structure:
   // {
@@ -26,7 +26,7 @@ export const DashboardContext = createContext({
   // }
 });
 
-export const DashboardProvider = ({ children: ReactNode }) => {
+export const DashboardProvider: FC<DashboardProviderProps> = ({ children }) => {
   const [summaries, setSummaries] = useState<Summaries | {}>({});
   const [userSummary, setUserSummary] = useState<UserSummary | {}>({});
 
