@@ -26,7 +26,11 @@ export interface SavingsContextType {
   closeSavingsAccount: (closingSavingsAccountName: string) => void;
   getSavingsAccountInfo: (savingsAccountName: string) => void;
 
-  savingsAccountsSummary: SavingsAccountsSummary;
+  savingsAccountsSummary: SavingsAccountsSummary | {};
+
+  setDefaultSavingsAccountsValues: () => void;
+  setDefaultSavingsAccountsSummaryValues: () => void;
+  updateSavingsAccountsAndSummary: () => void;
 }
 
 export interface SavingsProviderProps {
