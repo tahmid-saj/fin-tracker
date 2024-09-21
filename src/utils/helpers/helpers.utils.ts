@@ -1,6 +1,6 @@
 // helper functions
 
-export const convertUnixMsecToDatetime = (unixMsecTimestamp) => {
+export const convertUnixMsecToDatetime = (unixMsecTimestamp: string | number | Date): Date => {
   var date = new Date(unixMsecTimestamp);
     // Hours part from the timestamp
     var hours = date.getHours();

@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode, FC } from "react";
+import React, { useState, createContext, ReactNode, FC } from "react";
 import { validateChatBotMessageInput } from "../../../utils/validations/chatbot.validation";
 import { getChatBotResponse } from "../../../utils/api-requests/chatbot.requests";
 import { ChatBotContextType, ChatBotProviderProps } from "./chatbot.types";

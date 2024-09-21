@@ -3,11 +3,12 @@ import { errorOnGetBankingAccountsData, errorOnGetBankingSummaryData,
   errorOnPutBankingAccountsData, errorOnPutBankingSummaryData } from "../errors/banking.errors";
 
 import { TRANSACTION_TYPES } from "../constants/banking.constants";
+import { BankingAccount, BankingSummary, Transaction, TransactionInfo } from "../../contexts/signed-in/banking/banking.types";
 
 // banking api requests
 
 // getting banking accounts and summary data on sign in
-export const getBankingAccountsData = async (userId: string, email: string): Promise<any> => {
+export const getBankingAccountsData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
@@ -19,7 +20,7 @@ export const getBankingAccountsData = async (userId: string, email: string): Pro
   }
 };
 
-export const getBankingSummaryData = async (userId: string, email: string): Promise<any> => {
+export const getBankingSummaryData = async (userId: string | null | undefined, email: string | null | undefined): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`);
@@ -32,7 +33,7 @@ export const getBankingSummaryData = async (userId: string, email: string): Prom
 };
 
 // banking operations
-export const postBankingAccountCreate = async (userId, email, bankingAccountName) => {
+export const postBankingAccountCreate = async (userId: string | null | undefined, email: string | null | undefined, bankingAccountName: string): Promise<number | undefined> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`, {
@@ -50,7 +51,7 @@ export const postBankingAccountCreate = async (userId, email, bankingAccountName
   }
 };
 
-export const postBankingAccountTransaction = async (userId, email, transactionInfo) => {
+export const postBankingAccountTransaction = async (userId: string | null | undefined, email: string | null | undefined, transactionInfo: TransactionInfo): Promise<number | undefined> => {
   if (transactionInfo.type === TRANSACTION_TYPES.transfer) {
     try {
       
@@ -78,7 +79,7 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
     try {
       
       
-      let reqJSONBody = {
+      let reqJSONBody: TransactionInfo = {
         bankingAccountName: transactionInfo.name,
         amount: transactionInfo.amount,
         reason: transactionInfo.reason,
@@ -108,7 +109,7 @@ export const postBankingAccountTransaction = async (userId, email, transactionIn
   }
 };
 
-export const deleteBankingAccount = async (userId, email, bankingAccountName) => {
+export const deleteBankingAccount = async (userId: string | null | undefined, email: string | null | undefined, bankingAccountName: string): Promise<number | undefined> => {
   try {
     
   
@@ -128,7 +129,7 @@ export const deleteBankingAccount = async (userId, email, bankingAccountName) =>
 };
 
 // updating banking accounts and summary data on sign out
-export const putBankingAccountsData = async (userId, email, bankingAccounts) => {
+export const putBankingAccountsData = async (userId: string | null | undefined, email: string | null | undefined, bankingAccounts: BankingAccount[]): Promise<number | undefined> => {
   try {
     
 
@@ -149,7 +150,7 @@ export const putBankingAccountsData = async (userId, email, bankingAccounts) => 
   }
 };
 
-export const putBankingSummaryData = async (userId, email, bankingSummary) => {
+export const putBankingSummaryData = async (userId: string | null | undefined, email: string | null | undefined, bankingSummary: BankingSummary): Promise<number | undefined> => {
   try {
     
 

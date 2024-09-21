@@ -41,3 +41,13 @@ export type BankingSummary = {
   totalAllBankingIn?: number;
   totalAllBankingOut?: number;
 }
+
+export type TransactionInfo = {
+  bankingAccountName?: string;
+  name?: string;
+  amount: number;
+  type: string;
+  reason?: string;
+  transferTo?: string;
+  addToExpenses?: boolean;
+}

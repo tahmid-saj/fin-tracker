@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, FC } from "react";
+import React, { createContext, useState, useEffect, FC } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -14,7 +14,7 @@ import { getBankingAccountsData, getBankingSummaryData,
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
-import { BankingAccount, BankingContextType, BankingProviderProps, BankingSummary, Transaction } from "./banking.types";
+import { BankingAccount, BankingContextType, BankingProviderProps, BankingSummary, Transaction, TransactionInfo } from "./banking.types";
 
 // helper functions
 
@@ -42,7 +42,7 @@ const depositToBankingAccountHelper = async (bankingAccounts: BankingAccount[], 
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
   
   // update currentBalance, totalIn and transactions in bankingAccounts for bankingAccountName
-  const transactionInfo = {
+  const transactionInfo: TransactionInfo = {
     name: bankingAccountName,
     amount: depositAmount,
     type: TRANSACTION_TYPES.deposit,

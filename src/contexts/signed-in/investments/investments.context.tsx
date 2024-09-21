@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, FC } from "react";
+import React, { createContext, useState, useEffect, FC } from "react";
 
 import { validateInvestmentCreation, validateInvestmentUpdate } from "../../../utils/validations/investments.validation";
 import { calculateInvestment } from "../../../utils/calculations/investments.calculations";

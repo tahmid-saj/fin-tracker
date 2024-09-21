@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, FC } from "react";
+import React, { createContext, useState, ReactNode, FC } from "react";
 import { validateMortgageInput, validateCurrencyConverterInput, validateExchangeRateInput } from "../../../utils/validations/useful-tools.validation";
 import { getMortgageResult, getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
 

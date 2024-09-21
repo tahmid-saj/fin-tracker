@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, FC } from "react";
+import React, { createContext, useState, useEffect, FC } from "react";
 import { DEFAULT_INSURANCES, DEFAULT_INSURANCES_SUMMARY,
   INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER 
 } from "../../../utils/constants/insurance.constants";

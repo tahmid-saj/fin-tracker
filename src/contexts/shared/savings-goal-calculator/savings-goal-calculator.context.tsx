@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, FC } from "react";
+import React, { createContext, useState, useEffect, ReactNode, FC } from "react";
 import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation.js"
 import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations.js";
 

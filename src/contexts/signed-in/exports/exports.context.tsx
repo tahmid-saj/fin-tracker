@@ -1,4 +1,4 @@
-import { createContext, FC } from "react";
+import React, { createContext, FC } from "react";
 import { postExportsToEmail, postExportsToPdf, postExportsToTxt } from "../../../utils/api-requests/exports.requests";
 
 import { useSelector } from "react-redux";

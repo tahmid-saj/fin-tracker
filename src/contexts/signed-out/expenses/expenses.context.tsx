@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, FC } from "react";
+import React, { createContext, useState, useEffect, FC } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
 import { ExpensesContextType, ExpensesProviderProps, Expense, FilterConditions, ExpensesSummary } from "./expenses.types"
