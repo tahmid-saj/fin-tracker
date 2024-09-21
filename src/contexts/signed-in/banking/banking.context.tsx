@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, FC } from "react";
 
 import { validateBankingAccountCreation, validateDepositAmount, 
         validateWithdrawalAmount, validateBankingAccountTransfer } 
@@ -14,10 +14,12 @@ import { getBankingAccountsData, getBankingSummaryData,
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+import { BankingAccount, BankingContextType, BankingProviderProps, BankingSummary, Transaction } from "./banking.types";
 
 // helper functions
 
-const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
+const createBankingAccountHelper = async (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  userId: string | null | undefined, email: string | null | undefined): Promise<BankingAccount[]> => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
    
   postBankingAccountCreate(userId, email, bankingAccountName);
@@ -35,7 +37,8 @@ const createBankingAccountHelper = async (bankingAccounts, bankingAccountName, u
   }]
 };
 
-const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName, depositAmount, depositReason, userId, email) => {
+const depositToBankingAccountHelper = async (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  depositAmount: number, depositReason: string, userId: string | null | undefined, email: string | null | undefined): Promise<BankingAccount[]> => {
   if (validateDepositAmount(bankingAccounts, bankingAccountName, depositAmount)) return bankingAccounts;
   
   // update currentBalance, totalIn and transactions in bankingAccounts for bankingAccountName
@@ -55,7 +58,7 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
         currentBalance: account.currentBalance + Number(depositAmount), 
         totalIn: account.totalIn + Number(depositAmount),
         transactions: [ 
-          ...account.transactions, 
+          ...account.transactions as Transaction[], 
           {
             amount: Number(depositAmount),
             type: TRANSACTION_TYPES.deposit, 
@@ -71,7 +74,8 @@ const depositToBankingAccountHelper = async (bankingAccounts, bankingAccountName
   return updatedBankingAccounts;
 };
 
-const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountName, withdrawAmount, withdrawReason, addToExpenses, userId, email) => {
+const withdrawFromBankingAccountHelper = async (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  withdrawAmount: number, withdrawReason: string, addToExpenses: boolean, userId: string | null | undefined, email: string | null | undefined): Promise<BankingAccount[]> => {
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
@@ -91,7 +95,7 @@ const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountN
         currentBalance: account.currentBalance - Number(withdrawAmount),
         totalOut: account.totalOut + Number(withdrawAmount),
         transactions: [ 
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(withdrawAmount), 
             type: TRANSACTION_TYPES.withdrawal,
@@ -105,12 +109,10 @@ const withdrawFromBankingAccountHelper = async (bankingAccounts, bankingAccountN
   return updatedBankingAccounts;
 };
 
-const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTransferFromName, 
-  bankingAccountTransferToName, transferAmount, transferReason, userId, email) => {
+const transferToBankingAccountHelper = async (bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, bankingAccountTransferToName: string, 
+  transferAmount: number, transferReason: string, userId: string | null | undefined, email: string | null | undefined): Promise<BankingAccount[]> => {
   // update currentBalance, totalOut, totalIn and transactions in bankingAccountTransferFromName and bankingAccountTransferToName
   if (validateBankingAccountTransfer(bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount)) return bankingAccounts;
-
-  // 
 
   const transactionInfo = {
     name: bankingAccountTransferFromName,
@@ -129,7 +131,7 @@ const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTra
         currentBalance: account.currentBalance - Number(transferAmount),
         totalOut: account.totalOut + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.withdrawalTransfer,
@@ -145,7 +147,7 @@ const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTra
         currentBalance: account.currentBalance + Number(transferAmount),
         totalIn: account.totalIn + Number(transferAmount),
         transactions: [
-          ...account.transactions,
+          ...account.transactions as Transaction[],
           {
             amount: Number(transferAmount),
             type: TRANSACTION_TYPES.depositTransfer,
@@ -161,7 +163,8 @@ const transferToBankingAccountHelper = async (bankingAccounts, bankingAccountTra
   return updatedBankingAccounts;
 };
 
-const closeBankingAccountHelper = async (bankingAccounts, bankingAccountName, userId, email) => {
+const closeBankingAccountHelper = async (bankingAccounts: BankingAccount[], bankingAccountName: string, 
+  userId: string | null | undefined, email: string | null | undefined): Promise<BankingAccount[]> => {
   deleteBankingAccount(userId, email, bankingAccountName);
   
   // return bankingAccounts without the bankingAccountName
@@ -181,7 +184,7 @@ const setDefaultBankingSummaryValuesHelper = () => {
 };
 
 // initial state
-export const BankingContext = createContext({
+export const BankingContext = createContext<BankingContextType>({
   bankingAccounts: [],
   // bankingAccounts structure:
   // [
@@ -220,15 +223,15 @@ export const BankingContext = createContext({
   // }
 
   // signing out
-  setDefaultBankingAccountValues: () => {},
+  setDefaultBankingAccountsValues: () => {},
   setDefaultBankingSummaryValues: () => {},
   updateBankingAccountsAndSummary: () => {},
 });
 
 // context component
-export const BankingProvider = ({ children }) => {
-  const [bankingAccounts, setBankingAccounts] = useState([]);
-  const [bankingSummary, setBankingSummary] = useState({});
+export const BankingProvider: FC<BankingProviderProps> = ({ children }) => {
+  const [bankingAccounts, setBankingAccounts] = useState<BankingAccount[] | []>([]);
+  const [bankingSummary, setBankingSummary] = useState<BankingSummary | {}>({});
 
   const currentUser = useSelector(selectCurrentUser)
 
@@ -264,37 +267,48 @@ export const BankingProvider = ({ children }) => {
     fetchBankingData();
   }, [currentUser]);
 
-  const createBankingAccount = async (bankingAccountName) => {
-    const res = await createBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
-
-    setBankingAccounts(res);
+  const createBankingAccount = async (bankingAccountName: string) => {
+    if (currentUser) {
+      const res = await createBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
+  
+      setBankingAccounts(res);
+    }
   };
 
-  const depositToBankingAccount = async (bankingAccountName, depositAmount, depositReason) => {
-    const res = await depositToBankingAccountHelper(bankingAccounts, bankingAccountName, 
-      depositAmount, depositReason, currentUser.uid, currentUser.email);
-
-    setBankingAccounts(res);
+  const depositToBankingAccount = async (bankingAccountName: string, depositAmount: number, depositReason: string) => {
+    if (currentUser) {
+      const res = await depositToBankingAccountHelper(bankingAccounts, bankingAccountName, 
+        depositAmount, depositReason, currentUser.uid, currentUser.email);
+  
+      setBankingAccounts(res);
+    }
   };
 
-  const withdrawFromBankingAccount = async (bankingAccountName, withdrawAmount, withdrawReason, addToExpenses) => {
-    const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, 
-      withdrawAmount, withdrawReason, addToExpenses, currentUser.uid, currentUser.email);
-    
-    setBankingAccounts(res);
+  const withdrawFromBankingAccount = async (bankingAccountName: string, withdrawAmount: number, withdrawReason: string, addToExpenses: boolean) => {
+    if (currentUser) {
+      const res = await withdrawFromBankingAccountHelper(bankingAccounts, bankingAccountName, 
+        withdrawAmount, withdrawReason, addToExpenses, currentUser.uid, currentUser.email);
+      
+      setBankingAccounts(res);
+    }
   };
 
-  const transferToBankingAccount = async (bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount, transferReason) => {
-    const res = await transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
-      bankingAccountTransferToName, transferAmount, transferReason, currentUser.uid, currentUser.email);
-
-    setBankingAccounts(res);
+  const transferToBankingAccount = async (bankingAccountTransferFromName: string, bankingAccountTransferToName: string, 
+    transferAmount: number, transferReason: string) => {
+    if (currentUser) {
+      const res = await transferToBankingAccountHelper(bankingAccounts, bankingAccountTransferFromName, 
+        bankingAccountTransferToName, transferAmount, transferReason, currentUser.uid, currentUser.email);
+  
+      setBankingAccounts(res);
+    }
   };
 
-  const closeBankingAccount = async (bankingAccountName) => {
-    const res = await closeBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
-
-    setBankingAccounts(res);
+  const closeBankingAccount = async (bankingAccountName: string) => {
+    if (currentUser) {
+      const res = await closeBankingAccountHelper(bankingAccounts, bankingAccountName, currentUser.uid, currentUser.email);
+  
+      setBankingAccounts(res);
+    }
   };
 
   // set default banking accounts values
@@ -309,8 +323,10 @@ export const BankingProvider = ({ children }) => {
 
   // update banking accounts and summary on sign out
   const updateBankingAccountsAndSummary = async () => {
-    putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
-    putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
+    if (currentUser) {
+      putBankingAccountsData(currentUser.uid, currentUser.email, bankingAccounts);
+      putBankingSummaryData(currentUser.uid, currentUser.email, bankingSummary);
+    }
   };
 
   const value = { bankingAccounts, createBankingAccount, depositToBankingAccount, 
