@@ -11,7 +11,7 @@ import { getInvestmentsData, getInvestmentsSummaryData,
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
-import { Investment, InvestmentContextType, InvestmentProviderProps, InvestmentsSummary } from "./investments.types";
+import { Investment, InvestmentContextType, InvestmentInfo, InvestmentProviderProps, InvestmentsSummary } from "./investments.types";
 
 // helper functions
 
@@ -72,8 +72,8 @@ const updateInvestmentHelper = async (investments: Investment[], originalInvestm
     return investment.investmentName === originalInvestmentName;
   });
 
-  const investmentInfo = {
-    originalInvestmentInfo: originalInvestment,
+  const investmentInfo: InvestmentInfo = {
+    originalInvestmentInfo: originalInvestment as Investment,
     updatedInvestmentInfo: {
       ...updatedInvestment,
 

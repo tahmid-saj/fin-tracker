@@ -1,10 +1,11 @@
+import { Investment } from "../../contexts/signed-in/investments/investments.types";
 import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnInvestmentAlreadyExists, errorOnInvalidInvestmentNameAndType,
         errorOnInvalidInvestmentInputs } from "../errors/investments.errors";
 
 // investments validation functions
 
-export const validateInvestmentCreation = (investments, investment) => {
+export const validateInvestmentCreation = (investments: Investment[], investment: Investment): boolean => {
   const investmentExists = investments.find((inv) => inv.investmentName === investment.investmentName);
 
   if (investmentExists) {
@@ -33,7 +34,7 @@ export const validateInvestmentCreation = (investments, investment) => {
   return false;
 };
 
-export const validateInvestmentUpdate = (investments, originalInvestmentName, updatedInvestment) => {
+export const validateInvestmentUpdate = (investments: Investment[], originalInvestmentName: string, updatedInvestment: Investment): boolean => {
   // validate fields of updatedInvestment
   
   // strings

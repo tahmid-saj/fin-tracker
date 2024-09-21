@@ -52,3 +52,8 @@ export type InvestmentsSummary = {
   totalAllContribution?: number;
   totalAllInterest?: number;
 }
+
+export type InvestmentInfo = {
+  originalInvestmentInfo: Investment;
+  updatedInvestmentInfo: Investment;
+}
