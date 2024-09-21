@@ -1,8 +1,14 @@
 import { BankingAccount, BankingSummary } from "../../contexts/signed-out/banking/banking.types"
 
 // banking calculations
+ 
+type CalculatedBankingSummary = {
+  newAllBankingBalance: number;
+  newAllBankingIn: number;
+  newAllBankingOut: number;
+}
 
-export const calculateBankingSummary = (bankingAccounts: BankingAccount[]) => {
+export const calculateBankingSummary = (bankingAccounts: BankingAccount[]): CalculatedBankingSummary => {
   const newAllBankingBalance = bankingAccounts.reduce((allBankingBalance, { currentBalance }) => {
     return allBankingBalance + currentBalance;
   }, 0);
