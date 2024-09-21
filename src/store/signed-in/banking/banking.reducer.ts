@@ -1,13 +1,21 @@
-import { BANKING_ACTION_TYPES } from "./banking.types";
+import { AnyAction } from "redux";
+import { BANKING_ACTION_TYPES, BankingAccount, BankingSummary } from "./banking.types";
 
-export const BANKING_INITIAL_STATE = {
+export type BankingState = {
+  readonly bankingAccounts: BankingAccount[] | null | undefined;
+  readonly bankingSummary: BankingSummary | null | undefined;
+  readonly isLoading: boolean;
+  readonly error: any;
+}
+
+export const BANKING_INITIAL_STATE: BankingState = {
   bankingAccounts: [],
   bankingSummary: {},
   isLoading: false,
   error: null
 }
 
-export const bankingReducerSignedIn = (state=BANKING_INITIAL_STATE, action={}) => {
+export const bankingReducerSignedIn = (state=BANKING_INITIAL_STATE, action: AnyAction): BankingState => {
   const { type, payload } = action
 
   switch(type) {
