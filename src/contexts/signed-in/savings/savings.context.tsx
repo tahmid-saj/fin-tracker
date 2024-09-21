@@ -11,7 +11,7 @@ import { DEFAULT_SAVINGS_ACCOUNTS, DEFAULT_SAVINGS_ACCOUNTS_SUMMARY } from "../.
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
-import { SavingsAccount, SavingsAccountsSummary, SavingsContextType, SavingsProviderProps } from "./savings.types";
+import { SavingsAccount, SavingsAccountInfo, SavingsAccountsSummary, SavingsContextType, SavingsProviderProps } from "./savings.types";
 
 // helper functions
 
@@ -89,8 +89,8 @@ const updateSavingsAccountHelper = (savingsAccounts: SavingsAccount[], originalS
     return savingsAccount.savingsAccountName === originalSavingsAccountName;
   });
 
-  const savingsAccountInfo = {
-    originalSavingsAccountInfo: originalSavingsAccount,
+  const savingsAccountInfo: SavingsAccountInfo = {
+    originalSavingsAccountInfo: originalSavingsAccount as SavingsAccount,
     updatedSavingsAccountInfo: {
       ...updatedSavingsAccount,
 

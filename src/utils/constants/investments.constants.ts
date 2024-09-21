@@ -82,8 +82,6 @@ export enum INVESTMENT_COMPOUNDING_PERIOD_MONTHS {
 //   },
 // }
 
-const AVERAGE_DAYS_IN_MONTH = 30.437; // Example value for AVERAGE_DAYS_IN_MONTH, replace with actual value if needed
-
 // Define enum for compounding types
 export enum InvestmentCompoundingType {
   Annually = "Annually",

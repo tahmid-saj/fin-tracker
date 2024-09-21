@@ -1,8 +1,9 @@
+import { MarketDataQuery } from "../../contexts/shared/market-data/market-data.types";
 import { errorOnGetStocksMarketData, errorOnGetIndicesMarketData, 
   errorOnGetCryptoMarketData, errorOnGetForexMarketData } from "../errors/market-data.errors";
 
 // stocks
-export async function getStocksMarketData(marketDataQuery) {
+export async function getStocksMarketData(marketDataQuery: MarketDataQuery): Promise<any> {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_STOCKS}`, {
@@ -22,7 +23,7 @@ export async function getStocksMarketData(marketDataQuery) {
 }
 
 // indices
-export async function getIndicesMarketData(marketDataQuery) {
+export async function getIndicesMarketData(marketDataQuery: MarketDataQuery): Promise<any> {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_INDICES}`, {
@@ -42,7 +43,7 @@ export async function getIndicesMarketData(marketDataQuery) {
 }
 
 // crypto
-export async function getCryptoMarketData(marketDataQuery) {
+export async function getCryptoMarketData(marketDataQuery: MarketDataQuery): Promise<any> {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_CRYPTO}`, {
@@ -62,7 +63,7 @@ export async function getCryptoMarketData(marketDataQuery) {
 }
 
 // forex
-export async function getForexMarketData(marketDataQuery) {
+export async function getForexMarketData(marketDataQuery: MarketDataQuery): Promise<any> {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_MARKET_DATA}${process.env.REACT_APP_API_URL_MARKET_DATA_FOREX}`, {

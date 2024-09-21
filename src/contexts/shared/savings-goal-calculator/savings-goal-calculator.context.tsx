@@ -21,7 +21,7 @@ const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult | undef
   })
 }
 
-const calculateSavingsGoalScheduleHelper = (savingsGoalResult: SavingsGoalResult | undefined): SavingsGoalScheduleResult[] | undefined => {
+const calculateSavingsGoalScheduleHelper = (savingsGoalResult: SavingsGoalResult): SavingsGoalScheduleResult[] | undefined => {
   return calculateSavingsGoalSchedule(savingsGoalResult)
 }
 
