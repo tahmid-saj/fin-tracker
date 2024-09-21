@@ -35,6 +35,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageIcon from '@mui/icons-material/Language';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ArticleIcon from '@mui/icons-material/Article';
+
 
 import { Link, useNavigate } from 'react-router-dom';
 import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expenses.context';
@@ -52,7 +54,15 @@ import { signOutStart } from "../../../../store/shared/user/user.action";
 
 const drawerWidth = 225;
 
-function ResponsiveDrawer(props) {
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * Remove this when copying and pasting into your project.
+   */
+  window?: () => Window;
+}
+
+function ResponsiveDrawer(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -172,7 +182,7 @@ function ResponsiveDrawer(props) {
                 <ListItemIcon>
                   { header === NAV_LINKS.headers.website ? <LanguageIcon/> : null }
                   { header === NAV_LINKS.headers.github ? <GitHubIcon/> : null }
-                  { header === NAV_LINKS.headers.medium ? <ion-icon name="logo-medium"></ion-icon> : null }
+                  { header === NAV_LINKS.headers.medium ? <ArticleIcon/> : null }
                   { header === NAV_LINKS.headers.linkedin ? <LinkedInIcon/> : null }
                 </ListItemIcon>
                 <ListItemText primary={ header } />

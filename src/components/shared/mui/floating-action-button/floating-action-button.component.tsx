@@ -1,10 +1,15 @@
 import "./floating-action-button.styles.scss"
-import { Fragment } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 // import NavigationIcon from '@mui/icons-material/Navigation';
 
-export default function FloatingActionButtonExtendedSize({ content, children }) {
+interface FloatingActionButtonExtendedSizeProps {
+  content: ReactNode | string;
+  children: ReactNode
+}
+
+export default function FloatingActionButtonExtendedSize({ content, children }: FloatingActionButtonExtendedSizeProps) {
   // return (
     // <Fab variant="extended" size="small" color="primary">
     //   {/* <NavigationIcon sx={{ mr: 1 }} /> */}

@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 
 export interface MarketDataContextType {
   marketData: MarketData | undefined;
+
+  searchMarketData: (marketDataQuery: MarketDataQuery) => void;
 }
 
 export interface MarketDataProviderProps {
@@ -13,7 +15,7 @@ export interface MarketDataProviderProps {
 export type MarketDataQuery = {
   marketDataType: string,
   marketDataTicker: string,
-  marketDatainterval: string,
+  marketDataInterval: string,
   marketDataStartDate: string,
   marketDataEndDate: string
 }
@@ -26,7 +28,7 @@ export type MarketDataQueryResult = {
 export type MarketData = {
   marketDataType: string,
   marketDataTicker: string,
-  marketDatainterval: string,
+  marketDataInterval: string,
   marketDataStartDate: string,
   marketDataEndDate: string,
 

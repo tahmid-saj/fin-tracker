@@ -36,7 +36,7 @@ const searchMarketDataHelper = async (marketDataQuery: MarketDataQuery): Promise
 
 // initial state
 export const MarketDataContext = createContext<MarketDataContextType>({
-  marketData: DEFAULT_MARKET_DATA
+  marketData: DEFAULT_MARKET_DATA,
   // marketData structure
   // {
   //   marketDataType: "stocks",
@@ -52,6 +52,8 @@ export const MarketDataContext = createContext<MarketDataContextType>({
   //   ]
   // }
   // 
+
+  searchMarketData: () => {}
 })
 
 // context component

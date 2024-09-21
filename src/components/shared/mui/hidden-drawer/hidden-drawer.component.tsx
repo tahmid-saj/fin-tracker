@@ -32,6 +32,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageIcon from '@mui/icons-material/Language';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ArticleIcon from '@mui/icons-material/Article';
+
 
 import { Link, useNavigate } from 'react-router-dom';
 import { ExpensesContext } from '../../../../contexts/signed-in/expenses/expenses.context';
@@ -78,7 +80,7 @@ export default function HiddenDrawer() {
     navLinksHeaders = NAV_LINKS.signedOut
   }
 
-  const toggleDrawer = (newOpen) => () => {
+  const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
@@ -151,7 +153,7 @@ export default function HiddenDrawer() {
                 <ListItemIcon>
                   { header === NAV_LINKS.headers.website ? <LanguageIcon/> : null }
                   { header === NAV_LINKS.headers.github ? <GitHubIcon/> : null }
-                  { header === NAV_LINKS.headers.medium ? <ion-icon name="logo-medium"></ion-icon> : null }
+                  { header === NAV_LINKS.headers.medium ? <ArticleIcon/> : null }
                   { header === NAV_LINKS.headers.linkedin ? <LinkedInIcon/> : null }
                 </ListItemIcon>
                 <ListItemText primary={ header } />
