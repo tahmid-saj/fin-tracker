@@ -2,7 +2,7 @@ import "./exchange-rate-result.styles.jsx"
 import { ExchangeRateResultContainer } from "./exchange-rate-result.styles.jsx"
 
 import { useContext } from "react"
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.js"
 import { Typography } from "@mui/material"
 
 const ExchangeRateResult = () => {
@@ -10,7 +10,7 @@ const ExchangeRateResult = () => {
 
   return (
     <ExchangeRateResultContainer>
-      <Typography paragraph>{`Exchange rate from ${exchangeRateResult.fromCurrency} to ${exchangeRateResult.toCurrency}: ${exchangeRateResult.exchangeRate}`}</Typography>
+      <Typography paragraph>{`Exchange rate from ${exchangeRateResult?.fromCurrency} to ${exchangeRateResult?.toCurrency}: ${exchangeRateResult?.exchangeRate}`}</Typography>
     </ExchangeRateResultContainer>
   )
 }
