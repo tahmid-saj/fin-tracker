@@ -4,7 +4,7 @@ import { getChatBotResponse } from "../../../utils/api-requests/chatbot.requests
 import { ChatBotContextType, ChatBotProviderProps } from "./chatbot.types";
 
 // helper functions
-const getChatbotResponseHelper = async (chatbotResponse: string, messageInput: string): Promise<string> => {
+const getChatbotResponseHelper = async (chatbotResponse: string, messageInput: string): Promise<string | undefined> => {
   if (validateChatBotMessageInput(messageInput)) return chatbotResponse
 
   const res = await getChatBotResponse(messageInput)
@@ -23,7 +23,9 @@ export const ChatBotProvider: FC<ChatBotProviderProps> = ({ children }) => {
 
   const getChatbotResponse = async (messageInput: string) => {
     const resChatBot = await getChatbotResponseHelper(chatbotResponse, messageInput)
-    setChatBotResponse(resChatBot)
+    if (resChatBot) {
+      setChatBotResponse(resChatBot)
+    }
   }
 
   const value = { chatbotResponse, getChatbotResponse }
