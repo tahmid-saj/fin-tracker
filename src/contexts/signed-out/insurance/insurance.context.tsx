@@ -160,7 +160,7 @@ export const InsuranceProvider: FC<InsuranceProviderProps> = ({ children }) => {
   // update insurancesSummary and insurancePayments
   useEffect(() => {
     // update insurancesSummary
-    let newAllInsurancesCategories = new Set()
+    let newAllInsurancesCategories: Set<string> = new Set()
 
     insurances.map((insurance) => {
       newAllInsurancesCategories.add(String(insurance.insuranceFor))
@@ -168,7 +168,7 @@ export const InsuranceProvider: FC<InsuranceProviderProps> = ({ children }) => {
 
     // update insurancePayments
     let newInsurancePayments: InsurancePayment[] = []
-    let newCurrentTotalInsurancePlanned = 0.0
+    let newCurrentTotalInsurancePlanned: number = 0.0
     
     insurances.map((insurance) => {
       let insuranceIntervalDaysMultiplier;
@@ -196,11 +196,11 @@ export const InsuranceProvider: FC<InsuranceProviderProps> = ({ children }) => {
           break
       }
       
-    const addDays = (date: Date, days: number): Date => {
-      const result = new Date(date);
-      result.setDate(result.getDate() - days);
-      return result;
-    };
+      const addDays = (date: Date, days: number): Date => {
+        const result = new Date(date);
+        result.setDate(result.getDate() - days);
+        return result;
+      };
 
       const startDate = new Date(insurance.insuranceFirstPaymentDate)
       const endDate = new Date(insurance.insuranceEndDate)

@@ -1,6 +1,6 @@
 import "./home.styles.jsx";
 import { HomeContainer } from "./home.styles.jsx";
-import MediaCard from "../../../components/shared/mui/media-card/media-card.component"
+import MediaCard from "../../../components/shared/mui/media-card/media-card.component.jsx"
 import { Fragment } from "react";
 
 import { useContext } from "react";

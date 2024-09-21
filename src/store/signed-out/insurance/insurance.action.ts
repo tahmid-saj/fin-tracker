@@ -141,6 +141,6 @@ export const selectScheduledInsurancePayments = withMatcher((insuranceDate: stri
   return createAction(INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, insuranceDate)
 })
 
-export const setScheduledInsurancePaymentsView = withMatcher((scheduledInsurancePaymentsView: InsurancePayment[]):SetScheduledInsurancePaymentsView => {
+export const setScheduledInsurancePaymentsView = withMatcher((scheduledInsurancePaymentsView: InsurancePayment[] | null):SetScheduledInsurancePaymentsView => {
   return createAction(INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, scheduledInsurancePaymentsView)
 })

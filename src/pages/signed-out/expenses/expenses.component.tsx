@@ -1,8 +1,8 @@
-import AddExpense from "../../../components/signed-out/expenses/add-expense/add-expense.component"
-import ExpensesFilter from "../../../components/signed-out/expenses/expenses-filter/expense-filter.component"
-import ExpensesGraph from "../../../components/signed-out/expenses/expenses-graph/expenses-graph.component"
-import ExpensesTable from "../../../components/signed-out/expenses/expenses-table/expenses-table.component"
-import ExpensesSummary from "../../../components/signed-out/expenses/expenses-summary/expenses-summary.component"
+import AddExpense from "../../../components/signed-out/expenses/add-expense/add-expense.component.jsx"
+import ExpensesFilter from "../../../components/signed-out/expenses/expenses-filter/expense-filter.component.jsx"
+import ExpensesGraph from "../../../components/signed-out/expenses/expenses-graph/expenses-graph.component.jsx"
+import ExpensesTable from "../../../components/signed-out/expenses/expenses-table/expenses-table.component.jsx"
+import ExpensesSummary from "../../../components/signed-out/expenses/expenses-summary/expenses-summary.component.jsx"
 import "./expenses.styles.jsx"
 import { ExpensesContainer, ExpensesFilterContainer } from "./expenses.styles.jsx"
 
@@ -13,13 +13,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses, selectExpensesView, 
   selectExpensesTagLimit, selectFilterConditions, selectSelectedExpensesDate,
   selectScheduledExpensesView
-} from "../../../store/signed-out/expenses/expenses.selector"
+} from "../../../store/signed-out/expenses/expenses.selector.js"
 import { setExpensesSummary, setExpensesTagLimit, setExpensesView, 
   filterExpensesHelper, selectScheduledExpensesHelper, setScheduledExpensesView
-} from "../../../store/signed-out/expenses/expenses.action"
+} from "../../../store/signed-out/expenses/expenses.action.js"
 
-import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "../../../components/signed-out/expenses/schedule/schedule-day-info/schedule-day-info.component"
+import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component.jsx"
+import ScheduleDayInfo from "../../../components/signed-out/expenses/schedule/schedule-day-info/schedule-day-info.component.jsx"
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
@@ -29,6 +29,7 @@ import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
 import { Typography } from "@mui/material";
 import { ExpensesFilterInfo } from "../../../components/signed-out/expenses/expenses-filter-info/expenses-filter-info.component.jsx"
 import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
+import { Expense } from "../../../contexts/signed-out/expenses/expenses.types.js"
 
 const Expenses = () => {
   // const { expenses, expensesView } = useContext(ExpensesContext)
@@ -54,22 +55,23 @@ const Expenses = () => {
       //   currentAllExpensesCategories: newAllExpensesCategories
       // })
       
-      Date.prototype.subtractDays = function (d) {
-        this.setDate(this.getDate() - d);
-        return this;
-      }
-      let past30Days = new Date()
-      let today = new Date()
-      past30Days.subtractDays(30)
-      console.log(past30Days)
-  
-      let newAllExpensesCategories = []
-      let newPastMonthExpenses = []
-      let newPast30DaysAllExpensesCost = 0
+    // Helper function to subtract days
+    const subtractDays = (date: Date, days: number): Date => {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result;
+    };
+
+    const past30Days = subtractDays(new Date(), 30);
+    const today = new Date();
+
+    let newAllExpensesCategories: string[] = []
+    let newPastMonthExpenses: Expense[] = []
+    let newPast30DaysAllExpensesCost: number = 0
   
       const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
         newAllExpensesCategories.push(expense.expenseCategory)
-        if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
+        if (Date.parse(expense.expenseDate) >= past30Days.getTime() && Date.parse(expense.expenseDate) <= today.getTime()) {
           newPast30DaysAllExpensesCost += expense.expenseCost
           newPastMonthExpenses.push(expense)
         }
@@ -84,23 +86,31 @@ const Expenses = () => {
         pastMonthExpenses: newPastMonthExpenses
       }))
   
-      dispatch(setExpensesTagLimit(expensesTagLimit + 1))
+      if (expensesTagLimit) {
+        dispatch(setExpensesTagLimit(expensesTagLimit + 1))
+      }
     }
   }, [expenses, dispatch])
 
   // update expensesView when expenses change
   useEffect(() => {
     if (filterConditions) {
-      dispatch(setExpensesView(filterExpensesHelper(expenses, filterConditions)))
+      if (expenses) {
+        dispatch(setExpensesView(filterExpensesHelper(expenses, filterConditions)))
+      }
     } else {
-      dispatch(setExpensesView(expenses))
+      if (expenses) {
+        dispatch(setExpensesView(expenses))
+      }
     }
   }, [expenses, filterConditions, dispatch])
 
   // update scheduledExpensesView when expenses or selectedExpensesDate change
   useEffect(() => {
     if (selectedExpensesDate) {
-      dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+      if (expenses) {
+        dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+      }
     } else {
       dispatch(setScheduledExpensesView(null))
     }

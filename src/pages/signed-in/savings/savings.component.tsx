@@ -3,13 +3,13 @@ import React, { Component, useContext } from "react";
 import "./savings.styles.jsx";
 import { SavingsContainer } from "./savings.styles.jsx";
 
-import CreateAccountForm from "../../../components/signed-in/savings/create-account-form/create-account-form.component";
+import CreateAccountForm from "../../../components/signed-in/savings/create-account-form/create-account-form.component.jsx";
 
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-import AllSavingsSummary from "../../../components/signed-in/savings/all-savings-summary/all-savings-summary.component";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.js";
+import AllSavingsSummary from "../../../components/signed-in/savings/all-savings-summary/all-savings-summary.component.jsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
+import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component.jsx";
 
 import CalculateIcon from '@mui/icons-material/Calculate';
 import SummarizeIcon from '@mui/icons-material/Summarize';

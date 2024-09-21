@@ -1,19 +1,19 @@
 import React, { Component, useContext, useEffect, Fragment } from "react";
-import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations";
+import { calculateBankingSummary } from "../../../utils/calculations/banking.calculations.js";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../store/signed-out/banking/banking.selector";
-import { setBankingSummary } from "../../../store/signed-out/banking/banking.action";
+import { selectBankingAccounts } from "../../../store/signed-out/banking/banking.selector.js";
+import { setBankingSummary } from "../../../store/signed-out/banking/banking.action.js";
 
-import BankAccounts from "../../../components/signed-out/banking/bank-accounts/bank-accounts.component";
+import BankAccounts from "../../../components/signed-out/banking/bank-accounts/bank-accounts.component.jsx";
 
 import "./banking.styles.jsx";
 import { BankingContainer } from "./banking.styles.jsx";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
-import AllBankingSummary from "../../../components/signed-out/banking/all-banking-summary/all-banking-summary.component";
+import AllBankingSummary from "../../../components/signed-out/banking/all-banking-summary/all-banking-summary.component.jsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
-import SummaryGraphBanking from "../../../components/signed-out/banking/summary-graph/summary-graph.component";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
+import SummaryGraphBanking from "../../../components/signed-out/banking/summary-graph/summary-graph.component.jsx";
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
@@ -27,15 +27,17 @@ const Banking = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const bankingSummary = calculateBankingSummary(bankingAccounts);
-
-    console.log(bankingAccounts);
-
-    dispatch(setBankingSummary({ 
-      currentAllBankingBalance: bankingSummary.newAllBankingBalance, 
-      totalAllBankingIn: bankingSummary.newAllBankingIn, 
-      totalAllBankingOut: bankingSummary.newAllBankingOut 
-    }))
+    if (bankingAccounts) {
+      const bankingSummary = calculateBankingSummary(bankingAccounts);
+  
+      console.log(bankingAccounts);
+  
+      dispatch(setBankingSummary({ 
+        currentAllBankingBalance: bankingSummary.newAllBankingBalance, 
+        totalAllBankingIn: bankingSummary.newAllBankingIn, 
+        totalAllBankingOut: bankingSummary.newAllBankingOut 
+      }))
+    }
   }, [bankingAccounts, dispatch])
 
   let tabList = []

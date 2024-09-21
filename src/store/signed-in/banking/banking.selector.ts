@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import { RootState } from "../../store";
 import { BankingState } from "./banking.reducer";
 
-const selectBankingReducer = (state: RootState): BankingState => state.bankingSignedIn
+const selectBankingReducer = (state) => state.bankingSignedIn
 
 export const selectBankingAccounts = createSelector(
   [selectBankingReducer],

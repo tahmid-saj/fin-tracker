@@ -28,7 +28,7 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
 }
 
-const CreateAccountForm = ({ label }) => {
+const CreateAccountForm = () => {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { createSavingsAccount } = useContext(SavingsContext);

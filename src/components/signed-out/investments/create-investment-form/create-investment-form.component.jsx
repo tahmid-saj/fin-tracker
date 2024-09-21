@@ -50,7 +50,7 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
 }
 
-const CreateInvestmentForm = ({ label }) => {
+const CreateInvestmentForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   // const { createInvestment } = useContext(InvestmentsContext);
 

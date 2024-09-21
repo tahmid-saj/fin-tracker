@@ -1,15 +1,15 @@
-import AddExpense from "../../../components/signed-in/expenses/add-expense/add-expense.component"
-import ExpensesFilter from "../../../components/signed-in/expenses/expenses-filter/expense-filter.component"
-import ExpensesGraph from "../../../components/signed-in/expenses/expenses-graph/expenses-graph.component"
-import ExpensesTable from "../../../components/signed-in/expenses/expenses-table/expenses-table.component"
-import ExpensesSummary from "../../../components/signed-in/expenses/expenses-summary/expenses-summary.component"
+import AddExpense from "../../../components/signed-in/expenses/add-expense/add-expense.component.jsx"
+import ExpensesFilter from "../../../components/signed-in/expenses/expenses-filter/expense-filter.component.jsx"
+import ExpensesGraph from "../../../components/signed-in/expenses/expenses-graph/expenses-graph.component.jsx"
+import ExpensesTable from "../../../components/signed-in/expenses/expenses-table/expenses-table.component.jsx"
+import ExpensesSummary from "../../../components/signed-in/expenses/expenses-summary/expenses-summary.component.jsx"
 import "./expenses.styles.jsx"
 import { ExpensesContainer, ExpensesFilterContainer } from "./expenses.styles.jsx"
 
 import { useContext, Fragment } from "react"
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context"
-import ScheduleCalendar from "../../../components/signed-in/expenses/schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "../../../components/signed-in/expenses/schedule/schedule-day-info/schedule-day-info.component"
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.js"
+import ScheduleCalendar from "../../../components/signed-in/expenses/schedule/schedule-calendar/schedule-calendar.component.jsx"
+import ScheduleDayInfo from "../../../components/signed-in/expenses/schedule/schedule-day-info/schedule-day-info.component.jsx"
 import { Divider } from "@mui/material"
 
 import SummarizeIcon from '@mui/icons-material/Summarize';

@@ -1,12 +1,12 @@
 import React, { Component, useContext, useEffect } from "react";
 
-import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component";
+import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component.jsx";
 
 import "./banking.styles.jsx";
 import { BankingContainer } from "./banking.styles.jsx";
 
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
-import AllBankingSummary from "../../../components/signed-in/banking/all-banking-summary/all-banking-summary.component";
+import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.js";
+import AllBankingSummary from "../../../components/signed-in/banking/all-banking-summary/all-banking-summary.component.jsx";
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
@@ -14,7 +14,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CreateAccount from "../../../components/signed-in/banking/create-account/create-account.component.jsx";
 import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
 
 const Banking = () => {
   const { bankingAccounts } = useContext(BankingContext);
