@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, FC } from "react";
 import { validateAddExpense, validateFilterExpenses, validateRemoveExpense } from "../../../utils/validations/expenses.validation";
 
 import { DEFAULT_EXPENSES, DEFAULT_EXPENSES_SUMMARY } from "../../../utils/constants/expenses.constants"
@@ -10,9 +10,11 @@ import { getExpensesData, getExpensesSummaryData,
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+import { Expense, ExpensesContextType, ExpensesProviderProps, ExpensesSummary, FilterConditions } from "./expenses.types";
 
 // helper functions
-const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
+const addExpenseHelper = (expenses: Expense[], expense: Expense, expenseId: number, 
+  userId: string | null | undefined, email: string | null | undefined): Expense[] => {
   postExpenseCreate(userId, email, expense, expenseId)
 
   return [ ...expenses,
@@ -26,10 +28,9 @@ const addExpenseHelper = (expenses, expense, expenseId, userId, email) => {
   ]
 }
 
-const filterExpensesHelper = (expenses, filterConditions) => {
-  
+const filterExpensesHelper = (expenses: Expense[], filterConditions: FilterConditions): Expense[] => {
 
-  let filteredExpenses = []
+  let filteredExpenses: Expense[] = []
   expenses.map((expense) => {
     if (filterConditions.expenseFor === "" || (expense.expenseFor.toLowerCase().includes(filterConditions.expenseFor.toLowerCase()))) {
       if (filterConditions.expenseCategory === "" || (expense.expenseCategory.toLowerCase().includes(filterConditions.expenseCategory.toLowerCase()))) {
@@ -45,7 +46,8 @@ const filterExpensesHelper = (expenses, filterConditions) => {
   return filteredExpenses
 }
 
-const removeExpenseHelper = (expenses, expenseId, userId, email) => {
+const removeExpenseHelper = (expenses: Expense[], expenseId: number, 
+  userId: string | null | undefined, email: string | null | undefined): Expense[] => {
   if (validateRemoveExpense(expenseId)) return expenses
   
   deleteExpense(userId, email, expenseId)
@@ -63,9 +65,7 @@ const setDefaultExpensesSummaryValuesHelper = () => {
   return DEFAULT_EXPENSES_SUMMARY
 }
 
-const selectScheduledExpensesHelper = (expenses, expenseDate) => {
-  
-  
+const selectScheduledExpensesHelper = (expenses: Expense[], expenseDate: string): Expense[] | null => {
 
   const filteredExpenses = expenses.filter((expense) => {
     return expense.expenseDate === expenseDate
@@ -77,7 +77,7 @@ const selectScheduledExpensesHelper = (expenses, expenseDate) => {
 }
 
 // initial state
-export const ExpensesContext = createContext({
+export const ExpensesContext = createContext<ExpensesContextType>({
   expenses: [],
   // expenses structure:
   // [
@@ -90,7 +90,7 @@ export const ExpensesContext = createContext({
   //   }
   // ]
   expenseLength: 0,
-  filterConditions: {},
+  filterConditions: null,
   // filterConditions structure
   // {
   //   expenseFor: "",
@@ -114,7 +114,7 @@ export const ExpensesContext = createContext({
 
   selectScheduledExpenses: () => {},
 
-  expensesSummary: {},
+  expensesSummary: null,
   // expensesSummary structure:
   // {
   //   currentAllExpensesCost: 2000,
@@ -130,51 +130,54 @@ export const ExpensesContext = createContext({
 })
 
 // context component
-export const ExpensesProvider = ({ children }) => {
-  const [expenses, setExpenses] = useState([])
-  const [expenseLength, setExpenseLength] = useState(0)
-  const [filterConditions, setFilterConditions] = useState(null)
-  const [selectedExpensesDate, setSelectedExpensesDate] = useState(null)
-  const [scheduledExpensesView, setScheduledExpensesView] = useState(null)
-  const [expensesView, setExpensesView] = useState(expenses)
-  const [expensesSummary, setExpensesSummary] = useState({})
+export const ExpensesProvider: FC<ExpensesProviderProps> = ({ children }) => {
+  const [expenses, setExpenses] = useState<Expense[] | []>([])
+  const [expenseLength, setExpenseLength] = useState<number>(0)
+  const [filterConditions, setFilterConditions] = useState<FilterConditions | null>(null)
+  const [selectedExpensesDate, setSelectedExpensesDate] = useState<string | null>(null)
+  const [scheduledExpensesView, setScheduledExpensesView] = useState<Expense[] | null>(null)
+  const [expensesView, setExpensesView] = useState<Expense[] | []>(expenses)
+  const [expensesSummary, setExpensesSummary] = useState<ExpensesSummary | null>(null)
 
   const currentUser = useSelector(selectCurrentUser)
 
   // update expensesSummary
   useEffect(() => {
-    Date.prototype.subtractDays = function (d) {
-        this.setDate(this.getDate() - d);
-        return this;
-    }
-    let past30Days = new Date()
-    let today = new Date()
-    past30Days.subtractDays(30)
-    
+    // Extend Date prototype to add a subtractDays method
+    const subtractDays = (date: Date, days: number): Date => {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result;
+    };
 
-    let newAllExpensesCategories = []
-    let newPastMonthExpenses = []
-    let newPast30DaysAllExpensesCost = 0
-
-    const newAllExpensesCost = expenses.reduce((allExpensesCost, expense) => {
-      newAllExpensesCategories.push(expense.expenseCategory)
-      if (Date.parse(expense.expenseDate) >= past30Days && Date.parse(expense.expenseDate) <= today) {
-        newPast30DaysAllExpensesCost += expense.expenseCost
-        newPastMonthExpenses.push(expense)
+    const past30Days = subtractDays(new Date(), 30);
+    const today = new Date();
+  
+    let newAllExpensesCategories: string[] = [];
+    let newPastMonthExpenses: Expense[] = [];
+    let newPast30DaysAllExpensesCost = 0;
+  
+    const newAllExpensesCost = expenses.reduce((allExpensesCost: number, expense: Expense) => {
+      newAllExpensesCategories.push(expense.expenseCategory);
+      const expenseDate = Date.parse(expense.expenseDate);
+      
+      if (expenseDate >= past30Days.getTime() && expenseDate <= today.getTime()) {
+        newPast30DaysAllExpensesCost += expense.expenseCost;
+        newPastMonthExpenses.push(expense);
       }
-
-      return allExpensesCost + expense.expenseCost
-    }, 0)
-    
+  
+      return allExpensesCost + expense.expenseCost;
+    }, 0);
+  
     setExpensesSummary({
       currentAllExpensesCost: newAllExpensesCost,
       currentAllExpensesCategories: newAllExpensesCategories,
       pastMonthAllExpensesCost: newPast30DaysAllExpensesCost,
       pastMonthExpenses: newPastMonthExpenses
-    })
-
-    setExpenseLength(expenses.length)
-  }, [expenses])
+    });
+  
+    setExpenseLength(expenses.length);
+  }, [expenses]);
 
   // update expensesView when expenses or filterConditions change
   useEffect(() => {
@@ -224,29 +227,31 @@ export const ExpensesProvider = ({ children }) => {
 
   // TODO: ensure alerts stop next lines of code from running
   // TODO: ensure expenseIds are not duplicate via validations
-  const addExpense = (expense) => {
+  const addExpense = (expense: Expense) => {
     if (validateAddExpense(expense)) {
       return
     } else {
-      setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1, currentUser.uid, currentUser.email))
-      // setExpenseLength(expenseLength + 1)
-      
+      if (currentUser) {
+        setExpenses(addExpenseHelper(expenses, expense, expenseLength + 1, currentUser.uid, currentUser.email))
+        // setExpenseLength(expenseLength + 1)
+      }
     }
   }
 
-  const filterExpenses = (filterConditions) => {
+  const filterExpenses = (filterConditions: FilterConditions) => {
     if (validateFilterExpenses(filterConditions)) {
       
       return
     } else {
       setFilterConditions(filterConditions)
       setExpensesView(filterExpensesHelper(expenses, filterConditions))
-      
     }
   }
 
-  const removeExpense = (expenseId) => {
-    setExpenses(removeExpenseHelper(expenses, expenseId, currentUser.uid, currentUser.email))
+  const removeExpense = (expenseId: number) => {
+    if (currentUser) {
+      setExpenses(removeExpenseHelper(expenses, expenseId, currentUser.uid, currentUser.email))
+    }
   }
 
   const clearExpensesFilter = () => {
@@ -266,20 +271,22 @@ export const ExpensesProvider = ({ children }) => {
 
   // update expenses and summary on sign out
   const updateExpensesAndSummary = () => {
-    putExpensesData(currentUser.uid, currentUser.email, expenses)
-
-    // TODO: double check summary portion
-    putExpensesSummaryData(currentUser.uid, currentUser.email, {
-      currentAllExpensesCost: expensesSummary.currentAllExpensesCost
-    })
+    if (currentUser) {
+      putExpensesData(currentUser.uid, currentUser.email, expenses)
+  
+      // TODO: double check summary portion
+      putExpensesSummaryData(currentUser.uid, currentUser.email, {
+        currentAllExpensesCost: expensesSummary && expensesSummary.currentAllExpensesCost
+      })
+    }
   }
 
-  const selectScheduledExpenses = (expenseDate) => {
+  const selectScheduledExpenses = (expenseDate: string) => {
     setSelectedExpensesDate(expenseDate)
     setScheduledExpensesView(selectScheduledExpensesHelper(expenses, expenseDate))
   }
 
-  const value = { expenses, expensesView, filterConditions, scheduledExpensesView,
+  const value = { expenses, expensesView, filterConditions, scheduledExpensesView, expenseLength, selectedExpensesDate,
                   addExpense, filterExpenses, removeExpense, clearExpensesFilter, expensesSummary, 
                   setDefaultExpensesValues, setDefaultExpensesSummaryValues, updateExpensesAndSummary,
                   selectScheduledExpenses }
