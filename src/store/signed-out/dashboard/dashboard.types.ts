@@ -10,17 +10,17 @@ export enum DASHBOARD_ACTION_TYPES {
 }
 
 export type Summaries = {
-  expensesSummary?: ExpensesSummary;
-  bankingSummary?: BankingSummary;
-  investmentsSummary?: InvestmentsSummary;
-  savingsAccountsSummary?: SavingsAccountsSummary;
-  insurancesSummary?: InsurancesSummary;
+  expensesSummary?: ExpensesSummary | null | undefined;
+  bankingSummary?: BankingSummary | null | undefined;
+  investmentsSummary?: InvestmentsSummary | null | undefined;
+  savingsAccountsSummary?: SavingsAccountsSummary | null | undefined;
+  insurancesSummary?: InsurancesSummary | null | undefined;
 }
 
 export type UserSummary = {
-  expenses?: Expense[];
-  bankingAccounts?: BankingAccount[];
-  investments?: Investment[];
-  savingsAccounts?: SavingsAccount[];
-  insurances?: Insurance[];
+  expenses?: Expense[]  | null | undefined;
+  bankingAccounts?: BankingAccount[]  | null | undefined;
+  investments?: Investment[]  | null | undefined;
+  savingsAccounts?: SavingsAccount[]  | null | undefined;
+  insurances?: Insurance[]  | null | undefined;
 }

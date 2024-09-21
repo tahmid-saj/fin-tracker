@@ -11,7 +11,7 @@ export type SetExpensesTagLimit = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_EX
 export type SetExpensesView = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_EXPENSES_VIEW, Expense[]>
 export type SetExpensesSummary = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_EXPENSES_SUMMARY, ExpensesSummary>
 export type SelectScheduledExpenses = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_SELECTED_EXPENSES_DATE, string>
-export type SetScheduledExpensesView = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_SCHEDULED_EXPENSES_VIEW, Expense[]>
+export type SetScheduledExpensesView = ActionWithPayload<EXPENSES_ACTION_TYPES.SET_SCHEDULED_EXPENSES_VIEW, Expense[] | null>
 
 // helper functions
 
@@ -104,6 +104,6 @@ export const selectScheduledExpenses = withMatcher((expenseDate: string): Select
   return createAction(EXPENSES_ACTION_TYPES.SET_SELECTED_EXPENSES_DATE, expenseDate)
 })
 
-export const setScheduledExpensesView = withMatcher((scheduledExpensesView: Expense[]): SetScheduledExpensesView => {
+export const setScheduledExpensesView = withMatcher((scheduledExpensesView: Expense[] | null): SetScheduledExpensesView => {
   return createAction(EXPENSES_ACTION_TYPES.SET_SCHEDULED_EXPENSES_VIEW, scheduledExpensesView)
 })

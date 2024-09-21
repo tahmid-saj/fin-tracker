@@ -3,20 +3,20 @@ import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
 } from "./summary.styles.jsx";
 
 import React, { useContext, Fragment } from "react";
-import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component";
-import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component";
-import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component";
-import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component";
-import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component"
+import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component.jsx";
+import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component.jsx";
+import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component.jsx";
+import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component.jsx";
+import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component.jsx"
 
-import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context";
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context";
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context";
-import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context";
+import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context.js";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.js";
+import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.js";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.js";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.js";
+import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.js";
 
-import ChatBot from "../../shared/chatbot/chatbot.component";
+import ChatBot from "../../shared/chatbot/chatbot.component.js";
 
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PaidIcon from '@mui/icons-material/Paid'
@@ -91,9 +91,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Banking Balance - $${summaries?.bankingSummary?.currentAllBankingBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total In - $${summaries?.bankingSummary?.totalAllBankingIn?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Out - $${summaries?.bankingSummary?.totalAllBankingOut?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <BankingSummary/>
@@ -115,9 +115,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Interest - $${summaries.investmentsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Investments Balance - $${summaries?.investmentsSummary?.currentAllInvestmentsBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries?.investmentsSummary?.totalAllContribution?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries?.investmentsSummary?.totalAllInterest?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <InvestmentsSummary/>
@@ -139,9 +139,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Savings Balance - $${summaries?.savingsAccountsSummary?.currentAllSavingsAccountsBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries?.savingsAccountsSummary?.totalAllContribution?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries?.savingsAccountsSummary?.totalAllInterest?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <SavingsSummary/>

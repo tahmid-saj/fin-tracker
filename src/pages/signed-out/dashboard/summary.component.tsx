@@ -3,12 +3,12 @@ import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
 } from "./summary.styles.jsx";
 
 import React, { useEffect, Fragment } from "react";
-import ChatBot from "../../shared/chatbot/chatbot.component";
-import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component";
-import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component";
-import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component";
-import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component";
-import InsurancesSummary from "../../../components/signed-out/summary/insurance/insurance-summary.component";
+import ChatBot from "../../shared/chatbot/chatbot.component.js";
+import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component.jsx";
+import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component.jsx";
+import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component.jsx";
+import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component.jsx";
+import InsurancesSummary from "../../../components/signed-out/summary/insurance/insurance-summary.component.jsx";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 // import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
@@ -17,17 +17,17 @@ import InsurancesSummary from "../../../components/signed-out/summary/insurance/
 // import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector";
-import { selectExpenses, selectExpensesSummary, selectSelectedExpensesDate } from "../../../store/signed-out/expenses/expenses.selector";
-import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector";
-import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector";
-import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector";
-import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector";  
-import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action";
-import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../../store/signed-out/expenses/expenses.action";
+import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector.js";
+import { selectExpenses, selectExpensesSummary, selectSelectedExpensesDate } from "../../../store/signed-out/expenses/expenses.selector.js";
+import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector.js";
+import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector.js";
+import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector.js";
+import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector.js";  
+import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action.js";
+import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../../store/signed-out/expenses/expenses.action.js";
 
-import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector";
-import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action";
+import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector.js";
+import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action.js";
 
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PaidIcon from '@mui/icons-material/Paid'
@@ -97,7 +97,9 @@ const Summary = () => {
   // update scheduledExpensesView when expenses or selectedExpensesDate change
   useEffect(() => {
     if (selectedExpensesDate) {
-      dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+      if (expenses) {
+        dispatch(setScheduledExpensesView(selectScheduledExpensesHelper(expenses, selectedExpensesDate)))
+      }
     } else {
       dispatch(setScheduledExpensesView(null))
     }
@@ -106,7 +108,9 @@ const Summary = () => {
   // update scheduledInsurancePaymentsView when insurances or selectedInsurancePaymentsDate change
   useEffect(() => {
     if (selectedInsurancePaymentsDate) {
-      dispatch(setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate)))
+      if (insurancePayments) {
+        dispatch(setScheduledInsurancePaymentsView(selectScheduledInsurancePaymentsHelper(insurancePayments, selectedInsurancePaymentsDate)))
+      }
     } else {
       dispatch(setScheduledInsurancePaymentsView(null))
     }
@@ -122,7 +126,8 @@ const Summary = () => {
     children: <ChatBot/>
   }]
 
-  if (expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) {
+  if (expenses && bankingAccounts && investments && savingsAccounts && insurances && 
+    expenses.length === 0 && bankingAccounts.length === 0 && investments.length === 0 && savingsAccounts.length === 0 && insurances.length === 0) {
     return (
       <DashboardContainer>
         <ItemTabs tabList={ tabList } panelList={ panelList }></ItemTabs>
@@ -130,7 +135,7 @@ const Summary = () => {
     )
   }
 
-  if (expenses.length !== 0) {
+  if (expenses && expenses.length !== 0) {
     tabList.push({
       value: "expenses",
       icon: <PaidIcon/>,
@@ -147,7 +152,8 @@ const Summary = () => {
     })
   }
 
-  if (bankingAccounts.length !== 0 && summaries.bankingSummary !== null && summaries.bankingSummary !== undefined && Object.keys(summaries.bankingSummary).length) {
+  if (bankingAccounts && summaries &&
+    bankingAccounts.length !== 0 && summaries.bankingSummary !== null && summaries.bankingSummary !== undefined && Object.keys(summaries.bankingSummary).length) {
     tabList.push({
       value: "banking",
       icon: <AccountBalanceIcon/>,
@@ -160,9 +166,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Banking Balance - $${summaries.bankingSummary.currentAllBankingBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total In - $${summaries.bankingSummary.totalAllBankingIn.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Out - $${summaries.bankingSummary.totalAllBankingOut.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Banking Balance - $${summaries?.bankingSummary?.currentAllBankingBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total In - $${summaries?.bankingSummary?.totalAllBankingIn?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Out - $${summaries?.bankingSummary?.totalAllBankingOut?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <BankingSummary/>
@@ -171,7 +177,8 @@ const Summary = () => {
     })
   }
 
-  if (investments.length !== 0 && summaries.investmentsSummary !== null && summaries.investmentsSummary !== undefined && Object.keys(summaries.investmentsSummary).length) {
+  if (investments && summaries && 
+    investments.length !== 0 && summaries.investmentsSummary !== null && summaries.investmentsSummary !== undefined && Object.keys(summaries.investmentsSummary).length) {
     tabList.push({
       value: "investments",
       icon: <PaymentIcon/>,
@@ -184,9 +191,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Investments Balance - $${summaries.investmentsSummary.currentAllInvestmentsBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Contribution - $${summaries.investmentsSummary.totalAllContribution.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Interest - $${summaries.investmentsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Investments Balance - $${summaries?.investmentsSummary?.currentAllInvestmentsBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries?.investmentsSummary?.totalAllContribution?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries?.investmentsSummary?.totalAllInterest?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <InvestmentsSummary/>
@@ -195,7 +202,8 @@ const Summary = () => {
     })
   }
 
-  if (savingsAccounts.length !== 0 && summaries.savingsAccountsSummary !== null && summaries.savingsAccountsSummary !== undefined && Object.keys(summaries.savingsAccountsSummary).length) {
+  if (savingsAccounts && summaries && 
+    savingsAccounts.length !== 0 && summaries.savingsAccountsSummary !== null && summaries.savingsAccountsSummary !== undefined && Object.keys(summaries.savingsAccountsSummary).length) {
     tabList.push({
       value: "savings",
       icon: <SavingsIcon/>,
@@ -208,9 +216,9 @@ const Summary = () => {
         <FinanceItemsSummary>
           <FinanceItemsSummaryInfo>
             <SimplePaper styles={ paperStyles }>
-              <Typography variant="body1">{`Total Savings Balance - $${summaries.savingsAccountsSummary.currentAllSavingsAccountsBalance.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Contribution - $${summaries.savingsAccountsSummary.totalAllContribution.toFixed(2)}`}</Typography>
-              <Typography variant="body1">{`Total Interest - $${summaries.savingsAccountsSummary.totalAllInterest.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Savings Balance - $${summaries?.savingsAccountsSummary?.currentAllSavingsAccountsBalance?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Contribution - $${summaries?.savingsAccountsSummary?.totalAllContribution?.toFixed(2)}`}</Typography>
+              <Typography variant="body1">{`Total Interest - $${summaries?.savingsAccountsSummary?.totalAllInterest?.toFixed(2)}`}</Typography>
             </SimplePaper>
           </FinanceItemsSummaryInfo>
           <SavingsSummary/>
@@ -219,7 +227,7 @@ const Summary = () => {
     })
   }
 
-  if (insurances.length !== 0) {
+  if (insurances && insurances.length !== 0) {
     tabList.push({
       value: "insurance",
       icon: <SafetyCheckIcon/>,

@@ -2,13 +2,13 @@ import React, { Component, useContext } from "react";
 
 import "./investments.styles.jsx";
 import { InvestmentsContainer } from "./investments.styles.jsx";
-import MarketView from "../../shared/market-view/market-view.component";
-import CreateInvestmentForm from "../../../components/signed-in/investments/create-investment-form/create-investment-form.component";
-import AllInvestmentsSummary from "../../../components/signed-in/investments/all-investments-summary/all-investments-summary.component";
+import MarketView from "../../shared/market-view/market-view.component.js";
+import CreateInvestmentForm from "../../../components/signed-in/investments/create-investment-form/create-investment-form.component.jsx";
+import AllInvestmentsSummary from "../../../components/signed-in/investments/all-investments-summary/all-investments-summary.component.jsx";
 
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.js";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
 
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import SummarizeIcon from '@mui/icons-material/Summarize';

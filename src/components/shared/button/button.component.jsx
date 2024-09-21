@@ -10,7 +10,7 @@ const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) => {
   }[buttonType])
 }
 
-const Button = ({ children, buttonType, ...otherProps }) => {
+const Button = ({ children, buttonType=BUTTON_TYPE_CLASSES.base, ...otherProps }) => {
   const CustomButton = getButton(buttonType)
 
   return (
