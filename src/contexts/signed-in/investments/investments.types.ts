@@ -30,6 +30,10 @@ export interface InvestmentContextType {
   getInvestmentInfo: (investmentName: string) => void;
 
   investmentsSummary: InvestmentsSummary;
+
+  setDefaultInvestmentsValues: () => void;
+  setDefaultInvestmentsSummaryValues: () => void;
+  updateInvestmentsAndSummary: () => void;
 }
 
 export interface InvestmentProviderProps {
