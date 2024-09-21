@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, FC } from "react";
 
 import { validateSavingsAccountCreation, validateSavingsAccountUpdate } from "../../../utils/validations/savings.validation";
 import { calculateSavings } from "../../../utils/calculations/savings.calculations";
@@ -11,10 +11,12 @@ import { DEFAULT_SAVINGS_ACCOUNTS, DEFAULT_SAVINGS_ACCOUNTS_SUMMARY } from "../.
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
+import { SavingsAccount, SavingsAccountsSummary, SavingsContextType, SavingsProviderProps } from "./savings.types";
 
 // helper functions
 
-const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, email) => {
+const createSavingsAccountHelper = (savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount, 
+  userId: string | null | undefined, email: string | null | undefined): SavingsAccount[] => {
   // validating if savingsAccount exists in savingsAccounts
   if (validateSavingsAccountCreation(savingsAccounts, savingsAccount)) return savingsAccounts;
 
@@ -68,7 +70,8 @@ const createSavingsAccountHelper = (savingsAccounts, savingsAccount, userId, ema
   ];
 };
 
-const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName, updatedSavingsAccount, userId, email) => {
+const updateSavingsAccountHelper = (savingsAccounts: SavingsAccount[], originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount, 
+  userId: string | null | undefined, email: string | null | undefined): SavingsAccount[] => {
   // validate if the fields in updatedSavingsAccount are valid and the is not already another savingsAccount with the same name
   if (validateSavingsAccountUpdate(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount)) return savingsAccounts;
 
@@ -122,14 +125,15 @@ const updateSavingsAccountHelper = (savingsAccounts, originalSavingsAccountName,
   return updatedSavingsAccounts;
 };
 
-const closeSavingsAccountHelper = (savingsAccounts, closingSavingsAccountName, userId, email) => {
+const closeSavingsAccountHelper = (savingsAccounts: SavingsAccount[], closingSavingsAccountName: string, 
+  userId: string | null | undefined, email: string | null | undefined): SavingsAccount[] => {
   deleteSavingsAccount(userId, email, closingSavingsAccountName);
 
   // return savingsAccounts without the closingSavingsAccountName
   return savingsAccounts.filter(account => account.savingsAccountName !== closingSavingsAccountName);
 };
 
-const getSavingsAccountInfoHelper = (savingsAccounts, savingsAccountName) => {
+const getSavingsAccountInfoHelper = (savingsAccounts: SavingsAccount[], savingsAccountName: string): SavingsAccount | undefined => {
   // return the account with the given savingsAccountName
   return savingsAccounts.find(account => String(account.savingsAccountName) === String(savingsAccountName));
 };
@@ -145,7 +149,7 @@ const setDefaultSavingsAccountsSummaryValuesHelper = () => {
 };
 
 // initial state
-export const SavingsContext = createContext({
+export const SavingsContext = createContext<SavingsContextType>({
   savingsAccounts: [],
   // savingsAccounts structure
   // [
@@ -194,9 +198,9 @@ export const SavingsContext = createContext({
 });
 
 // context component
-export const SavingsProvider = ({ children }) => {
-  const [savingsAccounts, setSavingsAccounts] = useState([]);
-  const [savingsAccountsSummary, setSavingsAccountsSummary] = useState({});
+export const SavingsProvider: FC<SavingsProviderProps> = ({ children }) => {
+  const [savingsAccounts, setSavingsAccounts] = useState<SavingsAccount[] | []>([]);
+  const [savingsAccountsSummary, setSavingsAccountsSummary] = useState<SavingsAccountsSummary | {}>({});
 
   const currentUser = useSelector(selectCurrentUser)
 
@@ -246,26 +250,32 @@ export const SavingsProvider = ({ children }) => {
     fetchSavingsAccountsData();
   }, [currentUser]);
 
-  const createSavingsAccount = async (savingsAccount) => {
-    const res = await createSavingsAccountHelper(savingsAccounts, savingsAccount, currentUser.uid, currentUser.email);
-
-    setSavingsAccounts(res);
+  const createSavingsAccount = (savingsAccount: SavingsAccount) => {
+    if (currentUser) {
+      const res = createSavingsAccountHelper(savingsAccounts, savingsAccount, currentUser.uid, currentUser.email);
+  
+      setSavingsAccounts(res);
+    }
   };
 
-  const updateSavingsAccount = async (originalSavingsAccountName, updatedSavingsAccount) => {
-    const res = await updateSavingsAccountHelper(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount,
-      currentUser.uid, currentUser.email);
-
-    setSavingsAccounts(res);
+  const updateSavingsAccount = (originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount) => {
+    if (currentUser) {
+      const res = updateSavingsAccountHelper(savingsAccounts, originalSavingsAccountName, updatedSavingsAccount,
+        currentUser.uid, currentUser.email);
+  
+      setSavingsAccounts(res);
+    }
   };
 
-  const closeSavingsAccount = async (closingSavingsAccountName) => {
-    const res = await closeSavingsAccountHelper(savingsAccounts, closingSavingsAccountName, currentUser.uid, currentUser.email);
-
-    setSavingsAccounts(res);
+  const closeSavingsAccount = (closingSavingsAccountName: string) => {
+    if (currentUser) {
+      const res = closeSavingsAccountHelper(savingsAccounts, closingSavingsAccountName, currentUser.uid, currentUser.email);
+  
+      setSavingsAccounts(res);
+    }
   };
 
-  const getSavingsAccountInfo = (savingsAccountName) => {
+  const getSavingsAccountInfo = (savingsAccountName: string) => {
     return getSavingsAccountInfoHelper(savingsAccounts, savingsAccountName);
   };
 
@@ -281,8 +291,10 @@ export const SavingsProvider = ({ children }) => {
 
   // update savings accounts and summary on sign out
   const updateSavingsAccountsAndSummary = () => {
-    putSavingsAccountsData(currentUser.uid, currentUser.email, savingsAccounts);
-    putSavingsAccountsSummaryData(currentUser.uid, currentUser.email, savingsAccountsSummary);
+    if (currentUser) {
+      putSavingsAccountsData(currentUser.uid, currentUser.email, savingsAccounts);
+      putSavingsAccountsSummaryData(currentUser.uid, currentUser.email, savingsAccountsSummary);
+    }
   };
 
   const value = { savingsAccounts, createSavingsAccount, updateSavingsAccount,
@@ -290,8 +302,7 @@ export const SavingsProvider = ({ children }) => {
                   setDefaultSavingsAccountsValues, setDefaultSavingsAccountsSummaryValues, updateSavingsAccountsAndSummary };
 
   return (
-    <SavingsContext.Provider
-      value={ value }>
+    <SavingsContext.Provider value={ value }>
       { children }
     </SavingsContext.Provider>
   )
