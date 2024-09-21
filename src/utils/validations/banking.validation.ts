@@ -2,9 +2,11 @@ import { REGEX_PATTERNS } from "../constants/regex.constants";
 import { errorOnBankingAccountExists, errorOnInvalidBankAccountName, errorOnInvalidTransactionAmount, 
          errorOnBankingAccountDoesNotExist, errorOnBankingAccountCannotBeSame, errorOnInvalidTransferAmount } from "../errors/banking.errors";
 
+import { BankingAccount, BankingSummary } from "../../contexts/signed-out/banking/banking.types";
+
 // banking validation functions
 
-export const validateBankingAccountCreation = (bankingAccounts, bankingAccountName) => {
+export const validateBankingAccountCreation = (bankingAccounts: BankingAccount[], bankingAccountName: string): boolean => {
   // validating if bankingAccountName exists in bankingAccounts
   const bankingAccountExists = bankingAccounts.find((account) => account.name === bankingAccountName);
 
@@ -22,7 +24,7 @@ export const validateBankingAccountCreation = (bankingAccounts, bankingAccountNa
   return false;
 };
 
-export const validateDepositAmount = (bankingAccounts, bankingAccountName, amount) => {
+export const validateDepositAmount = (bankingAccounts: BankingAccount[], bankingAccountName: string, amount: number): boolean => {
   if (!(REGEX_PATTERNS.floatNumbers.test(String(amount))) || Number(amount) <= 0) {
     errorOnInvalidTransactionAmount();
     return true;
@@ -31,18 +33,23 @@ export const validateDepositAmount = (bankingAccounts, bankingAccountName, amoun
   return false;
 };
 
-export const validateWithdrawalAmount = (bankingAccounts, bankingAccountName, amount) => {
-  const currentBalance = bankingAccounts.find(account => account.name === String(bankingAccountName)).currentBalance;
-
-  if (!(REGEX_PATTERNS.floatNumbers.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
-    errorOnInvalidTransactionAmount();
-    return true;
-  };
+export const validateWithdrawalAmount = (bankingAccounts: BankingAccount[] | undefined, bankingAccountName: string, amount: number): boolean => {
+  if (!bankingAccounts) {
+    return false
+  } else {
+    const currentBalance = bankingAccounts.find(account => account.name === String(bankingAccountName)).currentBalance;
+  
+    if (!(REGEX_PATTERNS.floatNumbers.test(String(amount))) || Number(amount) <= 0 || Number(amount) > currentBalance) {
+      errorOnInvalidTransactionAmount();
+      return true;
+    };
+  }
 
   return false;
 };
 
-export const validateBankingAccountTransfer = (bankingAccounts, bankingAccountTransferFromName, bankingAccountTransferToName, transferAmount) => {
+export const validateBankingAccountTransfer = (bankingAccounts: BankingAccount[], bankingAccountTransferFromName: string, 
+  bankingAccountTransferToName: string, transferAmount: number) => {
   // validating bankingAccountTransferToName exists in bankingAccounts
   if (!bankingAccounts.find(account => account.name === String(bankingAccountTransferToName))) {
     errorOnBankingAccountDoesNotExist();

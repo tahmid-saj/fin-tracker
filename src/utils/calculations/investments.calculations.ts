@@ -3,6 +3,8 @@ import { INVESTMENT_CONTRIBUTION_AT, INVESTMENT_CONTRIBUTION_INTERVALS,
 } from "../constants/investments.constants";
 import date from 'date-and-time'
 
+import { Investment } from "../../contexts/signed-out/investments/investments.types";
+
 // python code for investment calculation:
 // import pandas as pd
 
@@ -59,7 +61,7 @@ import date from 'date-and-time'
 
 // investment calculations
 
-const calculateSchedule = (investment) => {
+const calculateSchedule = (investment: Investment) => {
   // calculate schedule
   
   let compoundedInterestInput = {
@@ -123,7 +125,7 @@ const calculateSchedule = (investment) => {
   }
 }
 
-export const calculateInvestment = (investment) => {
+export const calculateInvestment = (investment: Investment) => {
   // return calculated endBalance, totalContribution, totalInterest, investments (monthly schedule table)
   const resCalculateSchedule = calculateSchedule(investment)
 

@@ -7,7 +7,7 @@ import { TRANSACTION_TYPES } from "../constants/banking.constants";
 // banking api requests
 
 // getting banking accounts and summary data on sign in
-export const getBankingAccountsData = async (userId, email) => {
+export const getBankingAccountsData = async (userId: string, email: string): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_ACCOUNTS}/${userId}/${email}`);
@@ -19,7 +19,7 @@ export const getBankingAccountsData = async (userId, email) => {
   }
 };
 
-export const getBankingSummaryData = async (userId, email) => {
+export const getBankingSummaryData = async (userId: string, email: string): Promise<any> => {
   try {
     
     const response = await fetch(`${process.env.REACT_APP_API_URL_BANKING_SUMMARY}/${userId}/${email}`);
