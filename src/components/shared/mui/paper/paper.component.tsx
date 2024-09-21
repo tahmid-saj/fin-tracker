@@ -1,7 +1,13 @@
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { ReactNode } from 'react';
 
-export default function SimplePaper({ styles, children }) {
+interface SimplePaperProps {
+  styles: object;
+  children: ReactNode
+}
+
+export default function SimplePaper({ styles, children }: SimplePaperProps) {
   return (
     <Box
       sx={{
