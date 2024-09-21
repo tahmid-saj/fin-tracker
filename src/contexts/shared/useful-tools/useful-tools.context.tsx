@@ -1,9 +1,11 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, FC } from "react";
 import { validateMortgageInput, validateCurrencyConverterInput, validateExchangeRateInput } from "../../../utils/validations/useful-tools.validation";
 import { getMortgageResult, getExchangeRate } from "../../../utils/api-requests/useful-tools.requests";
 
 import { MortgageCalculatorResult, MonthlyPayment, AnnualPayment, CurrencyConverterResult, ExchangeRateResult,
-  MortgageInput, CurrencyConversionInput, ExchangeRateInput
+  MortgageInput, CurrencyConversionInput, ExchangeRateInput,
+  UsefulToolsProviderProps,
+  UsefulToolsContextType
 } from "./useful-tools.types"
 
 // helper functions
@@ -28,7 +30,7 @@ const findExchangeRateHelper = async (currencyInput: ExchangeRateInput): Promise
 }
 
 // initial state
-export const UsefulToolsContext = createContext({
+export const UsefulToolsContext = createContext<UsefulToolsContextType>({
   // mortgage calculatoe
   mortgageCalculatorResult: undefined,
   // mortgageCalculatorResult structure
@@ -75,7 +77,7 @@ export const UsefulToolsContext = createContext({
 })
 
 // useful tools provider
-export const UsefulToolsProvider = ({ children: ReactNode }) => {
+export const UsefulToolsProvider: FC<UsefulToolsProviderProps> = ({ children }) => {
   const [mortgageCalculatorResult, setMortgageCalculatorResult] = useState<MortgageCalculatorResult | undefined>(undefined)
   const [currencyConverterResult, setCurrencyConverterResult] = useState<CurrencyConverterResult | undefined>(undefined)
   const [exchangeRateResult, setExchangeRateResult] = useState<ExchangeRateResult | undefined>(undefined)

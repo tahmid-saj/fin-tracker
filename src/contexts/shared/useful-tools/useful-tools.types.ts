@@ -1,4 +1,21 @@
+import { ReactNode } from "react";
+
 // useful-tools types
+
+export interface UsefulToolsContextType {
+  mortgageCalculatorResult: MortgageCalculatorResult | undefined;
+  currencyConverterResult: CurrencyConverterResult | undefined;
+  exchangeRateResult: ExchangeRateResult | undefined;
+
+  calculateMortgage: (mortgageInput: MortgageInput) => void;
+  convertCurrency: (currencyInput: CurrencyConversionInput) => void;
+  findExchangeRate: (currencyInput: ExchangeRateInput) => void;
+}
+
+export interface UsefulToolsProviderProps {
+  children: ReactNode
+}
+
 export type MortgageCalculatorResult = {
   monthly_payment: MonthlyPayment,
   annual_payment: AnnualPayment,
