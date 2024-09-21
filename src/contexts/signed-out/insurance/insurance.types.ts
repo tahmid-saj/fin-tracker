@@ -1,4 +1,28 @@
+import { ReactNode } from "react";
+
 // insurance types
+
+export interface InsuranceContextType {
+  insurances: Insurance[];
+  insurancePayments: InsurancePayment[];
+  filterConditions: FilterConditions | {} | null;
+  selectedInsurancePaymentsDate: string | null;
+  insurancesView: Insurance[];
+  insurancePaymentsView: InsurancePayment[];
+  scheduledInsurancePaymentsView: InsurancePayment[] | null;
+
+  addInsurance: (insurance: Insurance) => void;
+  filterInsurances: (filterConditions: FilterConditions) => void;
+  removeInsurance: (insuranceFor: string) => void;
+  selectScheduledInsurancePayments: (insuranceData: string) => void
+
+  insurancesSummary: InsurancesSummary;
+}
+
+export interface InsuranceProviderProps {
+  children: ReactNode
+}
+
 export type Insurance = {
   insuranceFor: string;
   insurancePayment: number;
