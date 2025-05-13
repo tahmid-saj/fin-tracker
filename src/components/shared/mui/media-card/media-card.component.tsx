@@ -29,7 +29,8 @@ export default function MediaCard({ styles, header, imageUrl, imageTitle, path, 
           // src={ "https://buffer.com/library/content/images/2023/10/free-images.jpg" }
           title={`${imageTitle}`}
         />
-        <img src={`${imageUrl}`} alt={ `${imageTitle}` } width={ styles.width } height={ styles.height * 0.67 } 
+        <img src={`${imageUrl}`} alt={ `${imageTitle}` } width={ styles.width } 
+          height={ styles.height * 0.67 } 
           // objectFit={ "contain" }
         />
       <CardMediaContainer>
