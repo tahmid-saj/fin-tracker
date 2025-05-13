@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import { Expense, EXPENSES_ACTION_TYPES, ExpensesSummary, FilterConditions } from "./expenses.types";
-import { addExpense, clearExpensesFilter, filterExpenses, selectScheduledExpenses, setExpensesSummary, setExpensesTagLimit, setScheduledExpensesView } from "./expenses.action";
+import { addExpense, clearExpensesFilter, filterExpenses, 
+  selectScheduledExpenses, setExpensesSummary, setExpensesTagLimit, setScheduledExpensesView } from "./expenses.action";
 
 export type ExpensesState = {
   readonly expenses: Expense[] | null | undefined;

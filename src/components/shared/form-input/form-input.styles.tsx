@@ -9,7 +9,7 @@ export const shrinkLabelStyles = css`
   color: ${mainColor};
 `;
 
-// Define an interface for the props including 'shrink'
+// Define an interface for the props including 'shrink':
 interface FormInputLabelProps {
   shrink?: boolean;
 }
