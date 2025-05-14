@@ -1,18 +1,17 @@
-import "./expenses-table.styles.tsx"
-import { ExpensesTableContainer } from "./expenses-table.styles.tsx";
+import "./expenses-table.styles.jsx"
+import { ExpensesTableContainer } from "./expenses-table.styles.jsx";
 import { useState, useContext, useCallback, useRef } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import DeleteExpense from "../delete-expense/delete-expense.component";
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context";
-import Button from "../../../shared/button/button.component";
+import Button from "../../../shared/button/button.component.tsx";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectExpenses, selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector";
-import { removeExpense, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action";
+import { selectExpenses, selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector.ts";
+import { removeExpense, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action.ts";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 

@@ -4,10 +4,11 @@ import { ExpensesGraphContainer } from "./expenses-graph.styles.tsx"
 import ReactApexChart from "react-apexcharts"
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
-import { selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector"
+import { selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector.ts"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { Typography } from "@mui/material"
+import { ApexOptions } from "apexcharts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -19,7 +20,7 @@ const ExpensesGraph = () => {
   const expensesView = useSelector(selectExpensesView)
   
   let expensesCategoryCosts = new Map()
-  const categoryCosts = expensesView.map((expense) => {
+  const categoryCosts = expensesView?.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
@@ -27,10 +28,10 @@ const ExpensesGraph = () => {
     }
   })
 
-  const series = [ ...expensesCategoryCosts.values() ]
+  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ]
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
     },
