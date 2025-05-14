@@ -1,14 +1,23 @@
-import "./summary-table-investments.styles.jsx"
-import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.jsx";
+import "./summary-table-investments.styles.js"
+import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.js";
 import { useState, useContext, useRef } from "react"
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { Investment } from "../../../../contexts/signed-in/investments/investments.types.js";
+import { ColDef } from "ag-grid-community";
+
+type InvestmentData = {
+  Date: string,
+  Interest: string,
+  Contribution: string,
+  Balance: string
+}
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
@@ -16,11 +25,11 @@ const paperStyles = {
   justifyContent: "center"
 }
 
-const SummaryTableInvestments = ({ financeItemInfo }) => {
+const SummaryTableInvestments = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
   const { getInvestmentInfo } = useContext(InvestmentsContext)
 
   const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
-  const { investments: investmentsSchedule } = investmentInfo
+  const { investments: investmentsSchedule } = investmentInfo!
 
   const rowData = investmentsSchedule.map((investmentMonth) => {
     return {
@@ -31,12 +40,12 @@ const SummaryTableInvestments = ({ financeItemInfo }) => {
     }
   })
 
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs: ColDef<InvestmentData>[] = [
     { field: "Date" },
     { field: "Interest" },
     { field: "Contribution" },
     { field: "Balance" }
-  ])
+  ]
 
   return (
     <SimplePaper styles={ paperStyles }>

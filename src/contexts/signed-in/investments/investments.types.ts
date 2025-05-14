@@ -27,7 +27,7 @@ export interface InvestmentContextType {
   createInvestment: (investment: Investment) => void;
   updateInvestment: (originalInvestmentName: string, updatedInvestment: Investment) => void;
   closeInvestment: (closingInvestmentName: string) => void;
-  getInvestmentInfo: (investmentName: string) => void;
+  getInvestmentInfo: (investmentName: string) => Investment | undefined;
 
   investmentsSummary: InvestmentsSummary;
 

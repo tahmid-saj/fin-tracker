@@ -1,19 +1,32 @@
-import React, { useState, Component, useContext } from "react";
+import React, { useState, Component, useContext, FormEvent, ChangeEvent } from "react";
 
-import "./create-investment-form.styles.jsx";
+import "./create-investment-form.styles.js";
 import { CreateInvestmentContainer, CreateInvestmentFormContainer,
   ContributionInputContainer
-} from "./create-investment-form.styles.jsx";
+} from "./create-investment-form.styles.js";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component.js";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { Typography } from "@mui/material";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.js";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
-import Button from "../../../shared/button/button.component.jsx";
+import Button from "../../../shared/button/button.component.js";
+
+type FormFields = {
+  investmentName: string,
+  investmentType: string,
+  startingAmount: string,
+  startDate: string,
+  afterYears: string,
+  returnRate: string,
+  compounded: string,
+  additionalContribution: string,
+  contributionAt: string,
+  contributionInterval: string
+}
 
 const defaultFormFields = {
   investmentName: "",
@@ -49,14 +62,14 @@ const paperStyles = {
 
 const CreateInvestmentForm = () => {
 
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { createInvestment } = useContext(InvestmentsContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (formFields.investmentName === "" || !formFields.investmentName || formFields.investmentType === "" || !formFields.investmentType ||
@@ -70,13 +83,30 @@ const CreateInvestmentForm = () => {
       return;
     }
 
-    createInvestment(formFields);
+    createInvestment({
+      investmentName: formFields.investmentName,
+      investmentType: formFields.investmentType,
+      startingAmount: Number(formFields.startingAmount),
+      startDate: formFields.startDate,
+      afterYears: Number(formFields.afterYears),
+      returnRate: Number(formFields.returnRate),
+      compounded: formFields.compounded,
+      additionalContribution: Number(formFields.additionalContribution),
+      contributionAt: formFields.contributionAt,
+      contributionInterval: formFields.contributionInterval,
+
+      endBalance: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+
+      investments: []
+    });
     resetFormFields();
 
     
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

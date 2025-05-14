@@ -258,7 +258,7 @@ export const InvestmentsProvider: FC<InvestmentProviderProps> = ({ children }) =
     }
   };
 
-  const getInvestmentInfo = (investmentName: string) => {
+  const getInvestmentInfo = (investmentName: string): Investment | undefined => {
     return getInvestmentInfoHelper(investments, investmentName);
   };
 

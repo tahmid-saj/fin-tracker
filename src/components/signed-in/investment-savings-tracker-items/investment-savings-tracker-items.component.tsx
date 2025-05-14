@@ -11,7 +11,7 @@ import { SavingsContext } from "../../../contexts/signed-in/savings/savings.cont
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
-const InvestmentSavingsTrackerItems = ({ label }) => {
+const InvestmentSavingsTrackerItems = ({ label }: { label: string }) => {
 
   const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);

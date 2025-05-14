@@ -1,4 +1,4 @@
-import React, { Fragment, useState, Component, useContext } from "react";
+import React, { Fragment, useState, Component, useContext, MouseEvent } from "react";
 
 import "./investment-savings-tracker-item.styles.scss";
 
@@ -10,12 +10,18 @@ import { SavingsContext } from "../../../contexts/signed-in/savings/savings.cont
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
+type InvestmentSavingsTrackerItemProps = {
+  label: string,
+  financeItemInfo: any,
+  otherProps?: any
+}
+
 export let activeFormView = {
   label: "",
   financeItemInfo: {}
 }
 
-export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }) => {
+export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }: InvestmentSavingsTrackerItemProps) => {
     
   const { investments } = useContext(InvestmentsContext);
   const { savingsAccounts } = useContext(SavingsContext);
@@ -28,7 +34,7 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
     financeItemExists = savingsAccounts.find(account => account.savingsAccountName === financeItemInfo.savingsAccountName)
   }
 
-  const handleDisplayFinanceTrackerItemForm = (event) => {
+  const handleDisplayFinanceTrackerItemForm = (event: MouseEvent<HTMLButtonElement>) => {
 
     activeFormView = {
       label: label,
