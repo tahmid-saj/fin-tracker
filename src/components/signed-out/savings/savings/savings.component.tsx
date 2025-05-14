@@ -2,11 +2,11 @@ import "./savings.styles.tsx"
 import { SavingsContainer, SavingsSummaryContainer } from "./savings.styles.tsx"
 import { useSelector } from "react-redux"
 import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector.ts"
-import Summary from "../summary/summary.component.tsx"
+import Summary from "../summary/summary.component.jsx"
 import AccountInfo from "../account-info/account-info.component.tsx"
-import SummaryGraphSavingsAccount from "../summary-graph/summary-graph.component.tsx"
-import SummaryTableSavingsAccount from "../summary-table-savings-account/summary-table-savings-account.component.tsx"
-import UpdateAccountForm from "../update-account-form/update-account-form.component.tsx"
+import SummaryGraphSavingsAccount from "../summary-graph/summary-graph.component.jsx"
+import SummaryTableSavingsAccount from "../summary-table-savings-account/summary-table-savings-account.component.jsx"
+import UpdateAccountForm from "../update-account-form/update-account-form.component.jsx"
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
 import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.tsx"
 
@@ -20,7 +20,7 @@ const Savings = () => {
   return (
     <SavingsContainer>
       {
-        savingsAccounts.map((savingsAccount, index) => {
+        savingsAccounts?.map((savingsAccount, index) => {
           return (
             <AccordionTransition key={ index } header={ savingsAccount.savingsAccountName }
               styles={ accordionStyles }>
