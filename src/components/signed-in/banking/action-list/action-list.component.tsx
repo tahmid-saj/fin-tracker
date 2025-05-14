@@ -1,7 +1,7 @@
-import Deposit from "../deposit/deposit.component";
-import Withdraw from "../withdraw/withdraw.component";
-import TransferMoney from "../transfer-money/transfer-money.component";
-import CloseAccount from "../close-account/close-account.component";
+import Deposit from "../deposit/deposit.component.jsx";
+import Withdraw from "../withdraw/withdraw.component.jsx";
+import TransferMoney from "../transfer-money/transfer-money.component.jsx";
+import CloseAccount from "../close-account/close-account.component.jsx";
 
 import "./action-list.styles.jsx";
 import { ActionListContainer } from "./action-list.styles.jsx";

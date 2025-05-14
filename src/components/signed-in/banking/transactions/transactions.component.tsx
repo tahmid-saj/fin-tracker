@@ -1,10 +1,11 @@
 import { useContext } from "react";
 
-import Transaction from "../transaction/transaction.component";
+import Transaction from "../transaction/transaction.component.js";
 import "./transactions.styles.jsx";
-import { TransactionsContainer } from "./transactions.styles.jsx";
+import { TransactionsContainer } from "./transactions.styles.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
@@ -12,7 +13,7 @@ let currentMonth = String(date.getMonth()+1).padStart(2,"0");
 let currentYear = date.getFullYear();
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
-const Transactions = ({ financeItemInfo }) => {
+const Transactions = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
   const bankingAccount = bankingAccounts.find(account => account.name === financeItemInfo.name);

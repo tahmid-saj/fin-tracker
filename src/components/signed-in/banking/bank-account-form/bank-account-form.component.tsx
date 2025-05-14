@@ -1,25 +1,27 @@
 import React, { useState, Fragment, useContext } from "react";
 
-import Summary from "../summary/summary.component";
-import Transactions from "../transactions/transactions.component";
-import ActionList from "../action-list/action-list.component";
-import SummaryGraphBanking from "../summary-graph/summary-graph.component";
+import Summary from "../summary/summary.component.jsx";
+import Transactions from "../transactions/transactions.component.jsx";
+import ActionList from "../action-list/action-list.component.js";
+import SummaryGraphBanking from "../summary-graph/summary-graph.component.jsx";
 
 import "./bank-account-form.styles.jsx";
 import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.jsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.jsx";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.js";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
 
 const accordionStyles = {
   backgroundColor: COLOR_CODES.general["6"]
 }
 
-const BankAccountForm = ({ financeItemInfo }) => {
+const BankAccountForm = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
-  const bankingAccountTransactions = bankingAccounts.find(account => account.name === financeItemInfo.name).transactions;
+  const bankingAccountTransactions = bankingAccounts.find(account => account.name === financeItemInfo.name)?.transactions;
 
   return (
     <AccordionTransition header={ financeItemInfo.name } styles={ accordionStyles }>
@@ -27,7 +29,7 @@ const BankAccountForm = ({ financeItemInfo }) => {
         <Summary financeItemInfo={ financeItemInfo }></Summary>
 
         {
-          bankingAccountTransactions.length !== 0 &&
+          bankingAccountTransactions?.length !== 0 &&
           <Fragment>
             <SummaryGraphBanking financeItemInfo={ financeItemInfo }></SummaryGraphBanking>
           </Fragment>

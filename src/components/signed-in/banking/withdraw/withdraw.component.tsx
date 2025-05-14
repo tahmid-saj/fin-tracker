@@ -1,18 +1,25 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
-import "./withdraw.styles.jsx";
-import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.jsx";
+import "./withdraw.styles.js";
+import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.js";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import Button from "../../../shared/button/button.component.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js";
 
-import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
 import { Typography, Checkbox } from "@mui/material";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+
+type FormFields = {
+  amount: string,
+  reason: string,
+  addToExpenses: boolean
+}
 
 const defaultFormFields = {
   amount: "",
@@ -25,8 +32,9 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const Withdraw = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const Withdraw = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
+
   const [addedToExpensesChecked, setAddedToExpensesChecked] = useState(defaultFormFields.addToExpenses)
 
   const { withdrawFromBankingAccount } = useContext(BankingContext);
@@ -37,14 +45,15 @@ const Withdraw = ({ financeItemInfo }) => {
     setAddedToExpensesChecked(defaultFormFields.addToExpenses)
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
      
-    withdrawFromBankingAccount(financeItemInfo.name, formFields.amount, formFields.reason, formFields.addToExpenses);
+    withdrawFromBankingAccount(financeItemInfo.name, Number(formFields.amount), formFields.reason, formFields.addToExpenses);
      
     addExpense({
+      expenseId: 999,
       expenseFor: formFields.reason ? formFields.reason : BANKING_EXPENSE_CATEGORIES.withdrawal,
-      expenseCost: formFields.amount,
+      expenseCost: Number(formFields.amount),
       expenseDate: new Date().toISOString().split('T')[0],
       expenseCategory: BANKING_EXPENSE_CATEGORIES.withdrawal
     })
@@ -52,13 +61,13 @@ const Withdraw = ({ financeItemInfo }) => {
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value })
   };
 
-  const addTransactionToExpenses = (event) => {
+  const addTransactionToExpenses = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields({ ...formFields, addToExpenses: event.target.checked })
 
     setAddedToExpensesChecked(event.target.checked)

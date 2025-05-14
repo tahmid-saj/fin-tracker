@@ -1,17 +1,24 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./transfer-money.styles.scss";
 
-import "./transfer-money.styles.jsx";
-import { TransferMoneyContainer } from "./transfer-money.styles.jsx";
+import "./transfer-money.styles.js";
+import { TransferMoneyContainer } from "./transfer-money.styles.js";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import Button from "../../../shared/button/button.component.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { Typography } from "@mui/material";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+
+type FormFields = {
+  transferTo: string,
+  amount: string,
+  reason: string
+}
 
 const defaultFormFields = {
   transferTo: "",
@@ -24,8 +31,8 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const TransferMoney = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const TransferMoney = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
 
   const { transferToBankingAccount } = useContext(BankingContext);
 
@@ -33,15 +40,15 @@ const TransferMoney = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    transferToBankingAccount(financeItemInfo.name, formFields.transferTo, formFields.amount, formFields.reason);
+    transferToBankingAccount(financeItemInfo.name, formFields.transferTo, Number(formFields.amount), formFields.reason);
 
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value })

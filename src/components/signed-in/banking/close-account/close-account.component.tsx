@@ -3,15 +3,20 @@ import { useState, useContext } from "react";
 import "./close-account.styles.jsx";
 import { CloseAccountContainer } from "./close-account.styles.jsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import Button from "../../../shared/button/button.component.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
 
-import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
+import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants.js";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+
+type FormFields = {
+  confirmDelete: string
+}
 
 const defaultFormFields = {
   confirmDelete: ""
@@ -22,8 +27,8 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const CloseAccount = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const CloseAccount = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
 
   const { closeBankingAccount } = useContext(BankingContext);
 
@@ -31,7 +36,7 @@ const CloseAccount = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
 
@@ -44,10 +49,10 @@ const CloseAccount = ({ financeItemInfo }) => {
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value })
+    setFormFields({ ...formFields, [name]: value })
   };
 
   return (

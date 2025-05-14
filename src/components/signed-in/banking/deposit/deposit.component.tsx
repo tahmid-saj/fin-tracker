@@ -1,15 +1,21 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./deposit.styles.jsx";
 import { DepositContainer } from "./deposit.styles.jsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import Button from "../../../shared/button/button.component.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { Typography } from "@mui/material";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+
+type FormFields = {
+  amount: string,
+  reason: string
+}
 
 const defaultFormFields = {
   amount: "",
@@ -21,8 +27,8 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const Deposit = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const Deposit = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
 
   const { depositToBankingAccount } = useContext(BankingContext);
 
@@ -30,15 +36,15 @@ const Deposit = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    depositToBankingAccount(financeItemInfo.name, formFields.amount, formFields.reason);
+    depositToBankingAccount(financeItemInfo.name, Number(formFields.amount), formFields.reason);
 
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value })
