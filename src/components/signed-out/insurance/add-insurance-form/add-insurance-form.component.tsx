@@ -1,17 +1,25 @@
-import { useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import "./add-insurance-form.styles.tsx"
 import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.tsx"
-import FormInput from "../../../shared/form-input/form-input.component"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles"
+import FormInput from "../../../shared/form-input/form-input.component.tsx"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx"
 import { Typography } from "@mui/material"
-import { ButtonsContainer } from "../../../shared/button/button.styles"
-import Button from "../../../shared/button/button.component"
+import { ButtonsContainer } from "../../../shared/button/button.styles.tsx"
+import Button from "../../../shared/button/button.component.tsx"
 
 import { useDispatch, useSelector } from "react-redux"
-import { selectInsurances } from "../../../../store/signed-out/insurance/insurance.selector"
-import { addInsurance } from "../../../../store/signed-out/insurance/insurance.action"
+import { selectInsurances } from "../../../../store/signed-out/insurance/insurance.selector.ts"
+import { addInsurance } from "../../../../store/signed-out/insurance/insurance.action.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
+
+type FormFields = {
+  insuranceFor: string,
+  insurancePayment: string,
+  insuranceInterval: string,
+  insuranceFirstPaymentDate: string,
+  insuranceEndDate: string
+}
 
 const defaultInsuranceEndDate = new Date();
 defaultInsuranceEndDate.setFullYear(defaultInsuranceEndDate.getFullYear() + 50);
@@ -31,7 +39,7 @@ const paperStyles = {
 }
 
 const AddInsuranceForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const dispatch = useDispatch()
   const insurances = useSelector(selectInsurances)
 
@@ -39,7 +47,7 @@ const AddInsuranceForm = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (!formFields.insuranceFor || formFields.insuranceFor === "" ||
@@ -52,14 +60,15 @@ const AddInsuranceForm = () => {
 
     const adjustedFormFields = {
       ...formFields,
+      insurancePayment: Number(formFields.insurancePayment),
       insuranceEndDate: formFields.insuranceEndDate === "" ? defaultInsuranceEndDate.toISOString().split('T')[0] : formFields.insuranceEndDate
     }
 
-    dispatch(addInsurance(insurances, adjustedFormFields))
+    dispatch(addInsurance(insurances!, adjustedFormFields))
     resetFormFields()
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })

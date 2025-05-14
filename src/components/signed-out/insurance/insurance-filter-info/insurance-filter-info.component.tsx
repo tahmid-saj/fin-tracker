@@ -24,7 +24,7 @@ export const InsuranceFilterInfo = () => {
 
   let insuranceCategoryPayments = new Map()
   let filteredInsurancePlanned = 0.0
-  const categoryCosts = insurancePaymentsView.map((insurance) => {
+  const categoryCosts = insurancePaymentsView?.map((insurance) => {
     filteredInsurancePlanned += insurance.insurancePayment
 
     if (insuranceCategoryPayments.has(String(insurance.insuranceFor))) {
@@ -38,8 +38,8 @@ export const InsuranceFilterInfo = () => {
     <SimplePaper styles={ paperStyles }>
       <InsuranceFilterInfoContainer>
         <Typography variant="h6">{`Filtered total insurance planned: $${filteredInsurancePlanned ? filteredInsurancePlanned.toFixed(2) : '0'}`}</Typography>
-        <Typography variant="body1">{ `Filterd dates: ${filterConditions !== null && filterConditions.insuranceStartDate !== '' ? filterConditions.insuranceStartDate : ''} 
-          - ${filterConditions !== null && filterConditions.insuranceEndDate !== '' ? filterConditions.insuranceEndDate : 'Today'}` }</Typography>
+        <Typography variant="body1">{ `Filterd dates: ${filterConditions !== null && filterConditions?.insuranceStartDate !== '' ? filterConditions?.insuranceStartDate : ''} 
+          - ${filterConditions !== null && filterConditions?.insuranceEndDate !== '' ? filterConditions?.insuranceEndDate : 'Today'}` }</Typography>
 
         <Typography variant="body1">{`Filtered categories: ${insuranceCategoryPayments ? [ ...insuranceCategoryPayments.keys() ] : '-'}`}</Typography>
       </InsuranceFilterInfoContainer>

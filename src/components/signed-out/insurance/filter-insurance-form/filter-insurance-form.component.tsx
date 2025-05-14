@@ -1,16 +1,23 @@
 import "./filter-insurance-form.styles.tsx"
 import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.tsx"
-import FormInput from "../../../shared/form-input/form-input.component"
+import FormInput from "../../../shared/form-input/form-input.component.tsx"
 import { Typography } from "@mui/material"
-import Button from "../../../shared/button/button.component"
-import { ButtonsContainer } from "../../../shared/button/button.styles"
-import { useState } from "react"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles"
+import Button from "../../../shared/button/button.component.tsx"
+import { ButtonsContainer } from "../../../shared/button/button.styles.tsx"
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx"
 
 import { useDispatch, useSelector } from "react-redux"
-import { clearInsuranceFilter, filterInsurances } from "../../../../store/signed-out/insurance/insurance.action"
+import { clearInsuranceFilter, filterInsurances } from "../../../../store/signed-out/insurance/insurance.action.ts"
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+
+type FormFields = {
+  insuranceFor: string,
+  insuranceInterval: string,
+  insuranceStartDate: string,
+  insuranceEndDate: string
+}
 
 const defaultFormFields = {
   insuranceFor: "",
@@ -33,7 +40,7 @@ export const FilterInsuranceForm = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault()
 
     if ((!formFields.insuranceFor || formFields.insuranceFor === "") &&
@@ -47,13 +54,13 @@ export const FilterInsuranceForm = () => {
     dispatch(filterInsurances(formFields))
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     resetFormFields()
