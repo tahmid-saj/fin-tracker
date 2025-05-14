@@ -4,7 +4,7 @@ import { ExpensesFilterInfoContainer } from "./expenses-filter-info.styles.jsx"
 
 import { Typography } from "@mui/material"
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
 import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
 
@@ -21,7 +21,7 @@ export const ExpensesFilterInfo = () => {
   const { expensesView, filterConditions } = useContext(ExpensesContext)
 
   const allExpensesCategories = new Set()
-  const filteredSpend = expensesView.reduce((spend, expense) => {
+  const filteredSpend = expensesView?.reduce((spend, expense) => {
     return spend + expense.expenseCost
   }, 0)
 

@@ -1,13 +1,23 @@
 import { useState, useContext } from "react"
-import FormInput from "../../../shared/form-input/form-input.component"
+import FormInput from "../../../shared/form-input/form-input.component.js"
 import "./expense-filter.styles.jsx"
 import { ExpenseFilterContainer, ExpenseFilterFormContainer } from "./expense-filter.styles.jsx"
 
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
-import Button from "../../../shared/button/button.component"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
+import Button from "../../../shared/button/button.component.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
 import { Typography } from "@mui/material"
+import { ChangeEvent } from "react"
+import { FormEvent } from "react"
+import { MouseEvent } from "react"
+
+type FormFields = {
+  expenseFor: string,
+  expenseCategory: string,
+  expenseStartDate: string,
+  expenseEndDate: string
+}
 
 const defaultFormFields = {
   expenseFor: "",
@@ -23,21 +33,21 @@ const paperStyles = {
 }
 
 const ExpensesFilter = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { filterExpenses, clearExpensesFilter } = useContext(ExpensesContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
   
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const { name, value } = event.target
     
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (formFields.expenseFor === "" && formFields.expenseCategory === "" && formFields.expensesStartDate === "" && formFields.expensesEndDate === "" &&
@@ -49,7 +59,7 @@ const ExpensesFilter = () => {
     filterExpenses(formFields)
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     resetFormFields()

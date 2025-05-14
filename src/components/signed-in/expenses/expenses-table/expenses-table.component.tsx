@@ -1,16 +1,17 @@
-import "./expenses-table.styles.jsx"
-import { ExpensesTableContainer } from "./expenses-table.styles.jsx";
+import "./expenses-table.styles.js"
+import { ExpensesTableContainer } from "./expenses-table.styles.js";
 import { useState, useContext, useCallback, useRef } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import DeleteExpense from "../delete-expense/delete-expense.component";
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context";
-import Button from "../../../shared/button/button.component";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import DeleteExpense from "../delete-expense/delete-expense.component.js";
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js";
+import Button from "../../../shared/button/button.component.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"],

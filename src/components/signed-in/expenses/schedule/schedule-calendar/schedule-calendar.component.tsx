@@ -1,14 +1,14 @@
-import "./schedule-calendar.styles.jsx"
+import "./schedule-calendar.styles.js"
 import { CalendarTodoList,
   ExpensesCalendarContainer
-} from "./schedule-calendar.styles.jsx";
+} from "./schedule-calendar.styles.js";
 
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../../utils/constants/shared.constants";
-import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context";
+import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.js";
+import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context.js";
 
 function getScheduledData(date, expenses) {
   date = date.toISOString().split('T')[0]
@@ -64,7 +64,8 @@ const ScheduleCalendar = () => {
     <ExpensesCalendarContainer>
       <Typography sx={{ display: "flex", marginLeft: "1%" }} 
         variant="h6">{`Expenses calendar`}</Typography>
-      <Calendar bordered renderCell={ renderCell } onSelect={ onSelectDate } style={{ backgroundColor: COLOR_CODES.general["5"] }}/>
+      <Calendar bordered renderCell={ renderCell } onSelect={ onSelectDate } 
+        style={{ backgroundColor: COLOR_CODES.general["5"] }}/>
     </ExpensesCalendarContainer>
   )
 }

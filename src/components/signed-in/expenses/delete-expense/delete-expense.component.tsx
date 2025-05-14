@@ -1,14 +1,14 @@
 import "./delete-expense.styles.scss"
 import { ReactComponent as RemoveExpense } from "../../../../assets/close-button.svg"
 import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
-import { useContext } from "react"
+import { MouseEvent, useContext } from "react"
 
 const DeleteExpense = () => {
   const { removeExpense } = useContext(ExpensesContext)
 
-  const handleRemove = (event) => {
+  const handleRemove = (event: MouseEvent<SVGSVGElement>) => {
     event.preventDefault()
-    removeExpense()
+    // removeExpense()
   }
 
   return (
