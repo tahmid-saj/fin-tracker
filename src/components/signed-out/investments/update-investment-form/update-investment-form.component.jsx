@@ -34,7 +34,7 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const UpdateInvestmentForm = ({ label, financeItemInfo }) => {
+const UpdateInvestmentForm = ({ financeItemInfo }) => {
   
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
