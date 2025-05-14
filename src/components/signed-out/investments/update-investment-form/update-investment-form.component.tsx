@@ -4,18 +4,34 @@ import "./update-investment-form.styles.tsx";
 import { UpdateInvestmentContainer, UpdateInvestmentFormContainer,
   ContributionInputContainer } from "./update-investment-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
-import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants";
+import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants.ts";
 import Button from "../../../shared/button/button.component.tsx";
 import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
-import { updateInvestment, closeInvestment } from "../../../../store/signed-out/investments/investments.action";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector.ts";
+import { updateInvestment, closeInvestment } from "../../../../store/signed-out/investments/investments.action.ts";
 import { Typography } from "@mui/material";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import { Investment } from "../../../../store/signed-out/investments/investments.types.ts";
+import { ChangeEvent } from "react";
+import { FormEvent } from "react";
+
+type FormFields = {
+  investmentName: string,
+  investmentType: string,
+  startingAmount: string,
+  startDate: string,
+  afterYears: string,
+  returnRate: string,
+  compounded: string,
+  additionalContribution: string,
+  contributionAt: string,
+  contributionInterval: string
+}
 
 const defaultFormFields = {
   investmentName: "",
@@ -34,9 +50,9 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const UpdateInvestmentForm = ({ financeItemInfo }) => {
+const UpdateInvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
   
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   // const { updateInvestment, closeInvestment } = useContext(InvestmentsContext);
@@ -47,19 +63,17 @@ const UpdateInvestmentForm = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  // };
 
-    
-  };
-
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (formFields.investmentName === "" || !formFields.investmentName || formFields.investmentType === "" || 
@@ -78,12 +92,12 @@ const UpdateInvestmentForm = ({ financeItemInfo }) => {
     resetFormFields();
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setShowConfirmClose(true);
   };
   
-  const handleConfirmClose = (event, confirmClose) => {
+  const handleConfirmClose = (event: MouseEvent<HTMLButtonElement>, confirmClose: string) => {
     event.preventDefault();
     setShowConfirmClose(false);
 
