@@ -1,12 +1,13 @@
 import { useContext } from "react";
 
-import "./summary.styles.jsx";
-import { BankAccountSummary } from "./summary.styles.jsx";
+import "./summary.styles.js";
+import { BankAccountSummary } from "./summary.styles.js";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
 import { Typography } from "@mui/material";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');
@@ -18,7 +19,7 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"]
 }
 
-const Summary = ({ financeItemInfo }) => {
+const Summary = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
   const bankingAccount = bankingAccounts.find(account => account.name === financeItemInfo.name);
@@ -26,10 +27,10 @@ const Summary = ({ financeItemInfo }) => {
   return (
     <BankAccountSummary>
       <SimplePaper styles={ paperStyles }>
-        <Typography variant="h6">{`Current balance   `}{`$${bankingAccount.currentBalance.toFixed(2)}`}</Typography>
+        <Typography variant="h6">{`Current balance   `}{`$${bankingAccount?.currentBalance.toFixed(2)}`}</Typography>
         <Typography variant="body1">{`As of ${currentDate}`}</Typography>
-        <Typography variant="body1">{`IN : $${bankingAccount.totalIn.toFixed(2)}`}</Typography>
-        <Typography variant="body1">{`OUT : $${bankingAccount.totalOut.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`IN : $${bankingAccount?.totalIn.toFixed(2)}`}</Typography>
+        <Typography variant="body1">{`OUT : $${bankingAccount?.totalOut.toFixed(2)}`}</Typography>
       </SimplePaper>
     </BankAccountSummary>
   );

@@ -1,29 +1,30 @@
 import { Component, useContext, Fragment } from "react";
 
 import ReactApexChart from 'react-apexcharts';
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { ApexOptions } from 'apexcharts';
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
 
-import "./summary-graph.styles.jsx";
-import { SummaryGraphBankingContainer } from "./summary-graph.styles.jsx";
+import "./summary-graph.styles.js";
+import { SummaryGraphBankingContainer } from "./summary-graph.styles.js";
 
-import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
+import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants.js";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
   margin: "2% 0% 2% 0%"
 }
 
-const SummaryGraphBanking = ({ financeItemInfo }) => {
+const SummaryGraphBanking = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
   const transactionAmounts = bankingAccounts.find(account => {
     return account.name === financeItemInfo.name
-  })
-  .transactions
-  .map((transaction) => {
+  })?.transactions
+  ?.map((transaction) => {
     if (transaction.type === TRANSACTION_TYPES.withdrawal || transaction.type === TRANSACTION_TYPES.withdrawalTransfer) {
       return -transaction.amount
     }
@@ -32,14 +33,14 @@ const SummaryGraphBanking = ({ financeItemInfo }) => {
   });
 
   // TODO: track dates in transactions
-  const transactionIndexes = transactionAmounts.map((_, index) => String(index));
+  const transactionIndexes = transactionAmounts?.map((_, index) => String(index));
 
-  const series = [{
+  const series: ApexAxisChartSeries = [{
     name: 'Amount ( $ )',
-    data: transactionAmounts
+    data: transactionAmounts ?? []
   }];
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'bar',
     },
@@ -67,13 +68,12 @@ const SummaryGraphBanking = ({ financeItemInfo }) => {
         text: 'Transaction Amount'
       },
       labels: {
-        formatter: function (y) {
+        formatter: function (y: number) {
           return y.toFixed(0);
         }
       }
     },
     xaxis: {
-      type: 'string',
       categories: transactionIndexes,
       labels: {
         rotate: -90

@@ -3,12 +3,20 @@ import { TransactionContainer, DepositTransaction, DepositTransferTransaction,
   WithdrawTransaction, WithdrawTransferTransaction, TransactionAddedToExpensesContainer
 } from "./transaction.styles.jsx";
 
-import { TRANSACTION_TYPE_CLASSES, TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
+import { TRANSACTION_TYPE_CLASSES, TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants.js";
 
 import { Typography } from "@mui/material";
 import { Fragment, useState } from "react";
 
-const TransactionInfo = ({ date, amount, type, reason, addToExpenses = false }) => {
+type TransactionType = {
+  date: string,
+  amount: string,
+  type: string,
+  reason: string,
+  addToExpenses?: boolean
+}
+
+const TransactionInfo = ({ date, amount, type, reason, addToExpenses = false }: TransactionType) => {
   return (
     <Fragment>
       {
@@ -25,7 +33,7 @@ const TransactionInfo = ({ date, amount, type, reason, addToExpenses = false }) 
         (type === TRANSACTION_TYPES.withdrawalTransfer) && 
         <Typography variant="body1">{`TRANSFER - WITHDRAWAL on ${date}`}</Typography>
       }
-      <Typography variant="body2">{`$${amount.toFixed(2)}`}</Typography>
+      <Typography variant="body2">{`$${Number(amount).toFixed(2)}`}</Typography>
 
       {
         (reason !== undefined && reason !== null && reason !== "") &&
@@ -42,7 +50,7 @@ const TransactionInfo = ({ date, amount, type, reason, addToExpenses = false }) 
   )
 }
 
-const Transaction = ({ date, amount, type, reason, addToExpenses = false }) => {
+const Transaction = ({ date, amount, type, reason, addToExpenses = false }: TransactionType) => {
 
   if (type === TRANSACTION_TYPES.deposit) {
     return (

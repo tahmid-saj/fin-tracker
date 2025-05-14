@@ -1,20 +1,24 @@
-import React, { Component, useState, useContext } from "react";
+import React, { Component, useState, useContext, FormEvent, ChangeEvent } from "react";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
-import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component";
+import FormInput from "../../../shared/form-input/form-input.component.js";
+import Button from "../../../shared/button/button.component.js";
+import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component.jsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
 
-import "./create-account.styles.jsx";
-import { CreateAccountContainer } from "./create-account.styles.jsx";
+import "./create-account.styles.js";
+import { CreateAccountContainer } from "./create-account.styles.js";
+
+type FormFields = {
+  bankAccountName: string
+}
 
 const defaultFormFields = {
   bankAccountName: ""
 };
 
 const CreateAccount = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
 
   const { bankingAccounts, createBankingAccount } = useContext(BankingContext);
 
@@ -22,21 +26,19 @@ const CreateAccount = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
      
     createBankingAccount(formFields.bankAccountName);
     resetFormFields();
-
-    
   };
     
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value });
+    setFormFields({ ...formFields, [name]: value });
   };
 
   return (
