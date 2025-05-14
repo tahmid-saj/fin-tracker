@@ -1,18 +1,13 @@
 import React, { useContext } from "react";
 
-import "./savings-summary.styles.tsx";
-import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.tsx";
+import "./savings-summary.styles.jsx";
+import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.jsx";
 
-import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
-
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
-
-import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
-import SummaryGraphSavingsAccount from "../../savings/summary-graph/summary-graph.component";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
 
 import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const SavingsSummary = () => {
   const { savingsAccounts } = useContext(SavingsContext);

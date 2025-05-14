@@ -2,9 +2,9 @@ import "./schedule-day-info.styles.tsx"
 import { InsurancesScheduleDayInfo } from "./schedule-day-info.styles.tsx"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../../shared/mui/paper/paper.component"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants"
-import { InsuranceContext } from "../../../../../../contexts/signed-in/insurance/insurance.context"
+import SimplePaper from "../../../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants.ts"
+import { InsuranceContext } from "../../../../../../contexts/signed-in/insurance/insurance.context.tsx"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -14,7 +14,7 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const { scheduledInsurancePaymentsView } = useContext(InsuranceContext)
   
-  if (!scheduledInsurancePaymentsView.length) return <Fragment/>
+  if (!scheduledInsurancePaymentsView?.length) return <Fragment/>
   
   return (
     <InsurancesScheduleDayInfo>

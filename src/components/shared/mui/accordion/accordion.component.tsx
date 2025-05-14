@@ -9,7 +9,7 @@ import { COLOR_CODES } from '../../../../utils/constants/shared.constants';
 
 interface AccordionTransitionProps {
   styles?: object;
-  header?: string;
+  header?: ReactNode;
   children: ReactNode;
 }
 

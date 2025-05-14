@@ -3,15 +3,15 @@ import { InsuranceSummaryDashboardContainer,
   InsuranceSummaryInfoGraphContainer
 } from "./insurance-summary.styles.tsx"
 
-import InsurancesSummaryInfo from "./insurance-summary-info/insurance-summary-info.component"
-import InsurancesSummaryGraph from "./insurance-summary-graph/insurance-summary-graph.component"
+import InsurancesSummaryInfo from "./insurance-summary-info/insurance-summary-info.component.tsx"
+import InsurancesSummaryGraph from "./insurance-summary-graph/insurance-summary-graph.component.tsx"
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.tsx"
 
-import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component"
+import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component.tsx"
 import { Divider } from "@mui/material"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 
 const paperStyles = {

@@ -11,14 +11,13 @@ import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
   margin: "2% 0% 2% 0%"
 }
 
-const SummaryGraphBanking = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+const SummaryGraphBanking = ({ financeItemInfo }: { financeItemInfo: string }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
   const transactionAmounts = bankingAccounts.find(account => {

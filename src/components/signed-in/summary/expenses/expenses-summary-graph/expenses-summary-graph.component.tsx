@@ -2,15 +2,16 @@ import "./expenses-summary-graph.styles.tsx"
 import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.tsx"
 import { Fragment, useContext } from "react"
 import ReactApexChart from "react-apexcharts"
-import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
+import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context.tsx"
 import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
+import { ApexOptions } from "apexcharts"
 
 const ExpensesSummaryGraph = () => {
   const { expensesSummary } = useContext(ExpensesContext)
-  const { pastMonthExpenses } = expensesSummary
+  const { pastMonthExpenses } = expensesSummary!
 
   let expensesCategoryCosts = new Map()
-  const categoryCosts = pastMonthExpenses.map((expense) => {
+  const categoryCosts = pastMonthExpenses?.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
@@ -22,10 +23,10 @@ const ExpensesSummaryGraph = () => {
     return <Fragment></Fragment>
   }
   
-  const series = [ ...expensesCategoryCosts.values() ]
+  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ]
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
       height: COMMON_SPACING.pieChart.height,
