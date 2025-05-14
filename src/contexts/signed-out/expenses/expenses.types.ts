@@ -13,6 +13,9 @@ export interface ExpensesContextType {
   addExpense: (expense: Expense) => void;
   filterExpenses: (filterConditions: FilterConditions) => void;
   removeExpense: (expenseId: number) => void;
+
+  clearExpensesFilter: () => void;
+
   selectScheduledExpenses: (expenseDate: string) => void;
   
   expensesSummary: ExpensesSummary;

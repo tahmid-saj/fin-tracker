@@ -51,7 +51,13 @@ const ExpensesForm = () => {
         return
     }
     
-    addExpense(formFields)
+    addExpense({
+      expenseFor: formFields.expenseFor,
+      expenseCost: Number(formFields.expenseCost),
+      expenseDate: formFields.expenseDate,
+      expenseCategory: formFields.expenseCategory,
+      expenseId: 999
+    })
     resetFormFields()
   }
 

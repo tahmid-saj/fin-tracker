@@ -7,7 +7,7 @@ import "./expenses.styles.tsx"
 import { ExpensesContainer, ExpensesFilterContainer } from "./expenses.styles.tsx"
 
 import { useContext, Fragment } from "react"
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.ts"
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.tsx"
 import ScheduleCalendar from "../../../components/signed-in/expenses/schedule/schedule-calendar/schedule-calendar.component.tsx"
 import ScheduleDayInfo from "../../../components/signed-in/expenses/schedule/schedule-day-info/schedule-day-info.component.tsx"
 import { Divider } from "@mui/material"

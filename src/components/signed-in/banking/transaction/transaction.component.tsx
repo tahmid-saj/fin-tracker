@@ -10,7 +10,7 @@ import { Fragment, useState } from "react";
 
 type TransactionType = {
   date: string,
-  amount: string,
+  amount: number,
   type: string,
   reason: string,
   addToExpenses?: boolean
