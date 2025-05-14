@@ -10,7 +10,7 @@ import { BankingContext } from "../../../contexts/signed-in/banking/banking.cont
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
-const FinanceTrackerItems = ({ label }) => {
+const FinanceTrackerItems = ({ label }: { label: string }) => {
   const { bankingAccounts } = useContext(BankingContext);
 
   return (
