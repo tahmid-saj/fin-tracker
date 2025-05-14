@@ -16,7 +16,7 @@ const paperStyles = {
 const ExpensesGraph = () => {
   const { expensesView } = useContext(ExpensesContext)
   let expensesCategoryCosts = new Map()
-  const categoryCosts = expensesView.map((expense) => {
+  const categoryCosts = expensesView?.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
@@ -24,7 +24,7 @@ const ExpensesGraph = () => {
     }
   })
 
-  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ] ?? []
+  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ]
   
 
   const options: ApexOptions = {

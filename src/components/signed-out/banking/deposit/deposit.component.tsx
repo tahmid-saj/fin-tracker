@@ -1,18 +1,24 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./deposit.styles.tsx";
 import { DepositContainer } from "./deposit.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
-import { depositToBankingAccount } from "../../../../store/signed-out/banking/banking.action";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector.ts";
+import { depositToBankingAccount } from "../../../../store/signed-out/banking/banking.action.ts";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import { BankingAccount } from "../../../../store/signed-out/banking/banking.types.ts";
+
+type FormFields = {
+  amount: string,
+  reason: string
+}
 
 const defaultFormFields = {
   amount: "",
@@ -24,8 +30,8 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const Deposit = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const Deposit = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   // const { depositToBankingAccount } = useContext(BankingContext);
   const bankingAccounts = useSelector(selectBankingAccounts)
 
@@ -35,15 +41,15 @@ const Deposit = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch(depositToBankingAccount(bankingAccounts, financeItemInfo.name, formFields.amount, formFields.reason))
+    dispatch(depositToBankingAccount(bankingAccounts!, financeItemInfo.name, Number(formFields.amount), formFields.reason))
 
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value })
