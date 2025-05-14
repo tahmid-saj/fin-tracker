@@ -1,11 +1,12 @@
 import { Fragment, useContext } from "react"
-import "./expenses-graph.styles.jsx"
-import { ExpensesGraphContainer } from "./expenses-graph.styles.jsx"
+import "./expenses-graph.styles.js"
+import { ExpensesGraphContainer } from "./expenses-graph.styles.js"
 import ReactApexChart from "react-apexcharts"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { Typography } from "@mui/material"
+import { ApexOptions } from "apexcharts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -23,10 +24,10 @@ const ExpensesGraph = () => {
     }
   })
 
-  const series = [ ...expensesCategoryCosts.values() ]
+  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ] ?? []
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
     },

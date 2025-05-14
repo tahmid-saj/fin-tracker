@@ -1,9 +1,9 @@
-import "./expenses-summary.styles.jsx"
-import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.jsx"
+import "./expenses-summary.styles.js"
+import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.js"
 import { useContext } from "react"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
 import { Typography } from "@mui/material"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
 
 const paperStyles = {

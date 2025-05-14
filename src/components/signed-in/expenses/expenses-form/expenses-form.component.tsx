@@ -1,12 +1,21 @@
 import { useContext, useState } from "react"
-import "./expenses-form.styles.jsx"
-import { AddExpenseContainer, AddExpenseFormContainer } from "./expenses-form.styles.jsx"
-import FormInput from "../../../shared/form-input/form-input.component"
-import Button from "../../../shared/button/button.component"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
+import "./expenses-form.styles.js"
+import { AddExpenseContainer, AddExpenseFormContainer } from "./expenses-form.styles.js"
+import FormInput from "../../../shared/form-input/form-input.component.js"
+import Button from "../../../shared/button/button.component.js"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
 import { Typography } from "@mui/material"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import { ChangeEvent } from "react"
+import { FormEvent } from "react"
+
+type FormFields = {
+  expenseFor: string,
+  expenseCost: string,
+  expenseDate: string,
+  expenseCategory: string
+}
 
 const defaultFormFields = {
   expenseFor: "",
@@ -20,20 +29,20 @@ const paperStyles = {
 }
 
 const ExpensesForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { expenses, addExpense } = useContext(ExpensesContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (formFields.expenseFor === "" || formFields.expenseCost === "" || formFields.expenseDate === "" || formFields.expenseCategory === "" ||
