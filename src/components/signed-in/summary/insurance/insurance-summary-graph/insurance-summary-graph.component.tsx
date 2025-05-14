@@ -3,16 +3,17 @@ import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles
 import ReactApexChart from "react-apexcharts"
 
 import { useContext, Fragment } from "react"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context"
-import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants"
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.tsx"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
+import { ApexOptions } from "apexcharts"
 
 const InsurancesSummaryGraph = () => {
   const { insurancesSummary } = useContext(InsuranceContext)
-  const { pastMonthInsurances } = insurancesSummary
+  const { pastMonthInsurances } = insurancesSummary!
   
 
   let insuranceCategoryPayments = new Map()
-  const categoryCosts = pastMonthInsurances.map((insurance) => {
+  const categoryCosts = pastMonthInsurances?.map((insurance) => {
     if (insuranceCategoryPayments.has(String(insurance.insuranceFor))) {
       insuranceCategoryPayments.set(String(insurance.insuranceFor), Number(insuranceCategoryPayments.get(insurance.insuranceFor)) + Number(insurance.insurancePayment))
     } else {
@@ -24,10 +25,10 @@ const InsurancesSummaryGraph = () => {
     return <Fragment></Fragment>
   }
 
-  const series = [ ...insuranceCategoryPayments.values() ]
+  const series: ApexAxisChartSeries = [ ...insuranceCategoryPayments.values() ]
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
       height: COMMON_SPACING.pieChart.height,

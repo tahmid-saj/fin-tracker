@@ -6,14 +6,16 @@ import ReactApexChart from 'react-apexcharts';
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
 import { InvestmentsContext } from "../../../../../contexts/signed-in/investments/investments.context";
+import { Investment } from "../../../../../contexts/signed-in/investments/investments.types";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const SummaryGraph = ({ financeItemInfo }) => {
+const SummaryGraph = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
   const { investments, getInvestmentInfo } = useContext(InvestmentsContext)
-  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName);
+  const investmentInfo = getInvestmentInfo(financeItemInfo.investmentName)!;
 
 
   // TODO: manage dates on graph better
@@ -30,26 +32,26 @@ const SummaryGraph = ({ financeItemInfo }) => {
 
   
 
-  let investmentTimes = []
-  let monthlyInvestmentTotalInterestEarned = []
-  let monthlyInvestmentEndBalance = []
+  let investmentTimes: string[] = []
+  let monthlyInvestmentTotalInterestEarned: number[] = []
+  let monthlyInvestmentEndBalance: number[] = []
 
   const monthlyInvestmentBalance = investmentsSchedule.map((investmentMonth) => {
     investmentTimes.push(investmentMonth.currentDate)
 
-    monthlyInvestmentTotalInterestEarned.push(Number(investmentMonth.interestAccumulated).toFixed(2))
-    monthlyInvestmentEndBalance.push(Number(investmentMonth.endingBalance).toFixed(2))
+    monthlyInvestmentTotalInterestEarned.push(Number(Number(investmentMonth.interestAccumulated).toFixed(2)))
+    monthlyInvestmentEndBalance.push(Number(Number(investmentMonth.endingBalance).toFixed(2)))
 
     return investmentMonth.endingBalance.toFixed(2)
   })
 
     // TODO: need to keep track of investments timeline by amount in calculations
-    const series = [{
+    const series: ApexAxisChartSeries = [{
       name: financeItemInfo.investmentName,
       data: monthlyInvestmentEndBalance
     }];
   
-    const options = {
+    const options: ApexOptions = {
       chart: {
         type: 'area',
         zoom: {
@@ -69,7 +71,6 @@ const SummaryGraph = ({ financeItemInfo }) => {
       },
       labels: investmentTimes,
       xaxis: {
-        type: 'string',
         labels: {
           show: false
         }

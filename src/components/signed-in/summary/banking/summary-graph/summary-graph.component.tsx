@@ -7,35 +7,39 @@ import { TRANSACTION_TYPES } from "../../../../../utils/constants/banking.consta
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
 import { BankingContext } from "../../../../../contexts/signed-in/banking/banking.context";
+import { BankingAccount } from "../../../../../contexts/signed-in/banking/banking.types";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const SummaryGraph = ({ financeItemInfo }) => {
+const SummaryGraph = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const { bankingAccounts } = useContext(BankingContext)
 
-  const transactionAmounts = bankingAccounts.find(account => {
-    return account.name === financeItemInfo.name
-  })
-  .transactions
-  .map((transaction) => {
-    if (transaction.type === TRANSACTION_TYPES.withdrawal || transaction.type === TRANSACTION_TYPES.withdrawalTransfer) {
-      return -transaction.amount
-    }
+  const transactionAmounts = (
+    bankingAccounts?.find(account => account?.name === financeItemInfo?.name)?.transactions
+      ?.map((transaction) => {
+        if (
+          transaction.type === TRANSACTION_TYPES.withdrawal ||
+          transaction.type === TRANSACTION_TYPES.withdrawalTransfer
+        ) {
+          return -transaction.amount;
+        }
+        return transaction.amount;
+      }) || []
+  );
 
-    return transaction.amount
-  });
 
   // TODO: track dates in transactions
-  const transactionIndexes = transactionAmounts.map((_, index) => String(index));
+  const transactionIndexes = transactionAmounts?.map((_, index) => String(index));
 
-  const series = [{
+  const series: ApexAxisChartSeries = [{
     name: 'Amount ( $ )',
     data: transactionAmounts
   }];
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'bar'
     },
@@ -63,13 +67,12 @@ const SummaryGraph = ({ financeItemInfo }) => {
         text: 'Transaction Amount'
       },
       labels: {
-        formatter: function (y) {
+        formatter: function (y: number) {
           return y.toFixed(0);
         }
       }
     },
     xaxis: {
-      type: 'string',
       categories: transactionIndexes,
       labels: {
         rotate: -90

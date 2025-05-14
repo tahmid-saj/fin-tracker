@@ -2,10 +2,9 @@ import "./schedule-day-info.styles.tsx"
 import { ExpensesScheduleDayInfo } from "./schedule-day-info.styles.tsx"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../../shared/mui/paper/paper.component"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants"
-import { useSelector } from "react-redux"
-import { ExpensesContext } from "../../../../../../contexts/signed-in/expenses/expenses.context"
+import SimplePaper from "../../../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants.ts"
+import { ExpensesContext } from "../../../../../../contexts/signed-in/expenses/expenses.context.tsx"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -15,9 +14,7 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const { scheduledExpensesView } = useContext(ExpensesContext)
 
-  
-
-  if (!scheduledExpensesView.length) return <Fragment/>
+  if (!scheduledExpensesView?.length) return <Fragment/>
 
   return (
     <ExpensesScheduleDayInfo>

@@ -4,11 +4,11 @@ import { ExpensesSummaryDashboardContainer,
 } from "./expenses.styles.tsx"
 
 import { Fragment, useContext } from "react"
-import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component"
-import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context"
-import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component"
+import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component.tsx"
+import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component.tsx"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.tsx"
+import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component.tsx"
 import { Divider } from "@mui/material"
 
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"

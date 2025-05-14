@@ -1,4 +1,4 @@
-import { Fragment } from "react"
+import { Fragment, MouseEvent } from "react"
 import SummaryInfo from "../summary-info/summary-info.component"
 import "./finance-summary.styles"
 import SummaryGraph from "./summary-graph.component"
@@ -6,21 +6,22 @@ import { AccordionTransition } from "../../../../shared/mui/accordion/accordion.
 import { COLOR_CODES, NAV_LINKS } from "../../../../../utils/constants/shared.constants"
 import Button from "../../../../shared/button/button.component"
 import { useNavigate } from "react-router-dom"
+import { BankingAccount } from "../../../../../contexts/signed-in/banking/banking.types"
 
 const accordionStyles = {
   backgroundColor: COLOR_CODES.general["6"]
 }
 
-const FinanceSummary = ({ financeItemInfo }) => {
+const FinanceSummary = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const navigate = useNavigate()
 
-  const handleAccountClick = (event) => {
+  const handleAccountClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     navigate(NAV_LINKS.paths.signedIn.banking)
   }
 
   return (
-    <AccordionTransition header={ 
+    <AccordionTransition header ={ 
       <Button type="button" onClick={ handleAccountClick }>{`${financeItemInfo.name}`}</Button>
      } styles={ accordionStyles }>
       <SummaryInfo financeItemInfo={ financeItemInfo }></SummaryInfo>
