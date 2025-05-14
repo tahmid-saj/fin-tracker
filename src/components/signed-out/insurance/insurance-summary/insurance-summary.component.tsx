@@ -3,7 +3,7 @@ import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.tsx"
 import { Typography } from "@mui/material"
 
 import { useSelector } from "react-redux"
-import { selectInsurancePaymentsView, selectFilterConditions, selectInsurancesSummary } from "../../../../store/signed-out/insurance/insurance.selector"
+import { selectInsurancePaymentsView, selectFilterConditions, selectInsurancesSummary } from "../../../../store/signed-out/insurance/insurance.selector.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
@@ -18,7 +18,7 @@ const InsuranceSummary = () => {
 
   let insuranceCategoryPayments = new Map()
   let filteredInsurancePlanned = 0.0
-  const categoryCosts = insurancePaymentsView.map((insurance) => {
+  const categoryCosts = insurancePaymentsView?.map((insurance) => {
     filteredInsurancePlanned += insurance.insurancePayment
 
     if (insuranceCategoryPayments.has(String(insurance.insuranceFor))) {
@@ -32,8 +32,8 @@ const InsuranceSummary = () => {
     <InsuranceSummaryInfoContainer>
       <SimplePaper styles={ paperStyles }>
         <Typography sx={{ marginBottom: "2%" }} variant="h6">{`Insurance Summary`}</Typography>
-        <Typography paragraph>{`Total insurance planned: $${insurancesSummary.currentTotalInsurancePlanned ? insurancesSummary.currentTotalInsurancePlanned.toFixed(2) : '0'}`}</Typography>
-        <Typography paragraph>{ `All categories: ${insurancesSummary.currentAllInsurancesCategories ? [ ...insurancesSummary.currentAllInsurancesCategories.keys() ] : '-'}` }</Typography>
+        <Typography paragraph>{`Total insurance planned: $${insurancesSummary?.currentTotalInsurancePlanned ? insurancesSummary.currentTotalInsurancePlanned.toFixed(2) : '0'}`}</Typography>
+        <Typography paragraph>{ `All categories: ${insurancesSummary?.currentAllInsurancesCategories ? [ ...insurancesSummary.currentAllInsurancesCategories.keys() ] : '-'}` }</Typography>
 
         {/* <Typography>{ `Filterd dates: ${filterConditions !== null && filterConditions.insuranceStartDate !== '' ? filterConditions.insuranceStartDate : ''} 
           - ${filterConditions !== null && filterConditions.insuranceEndDate !== '' ? filterConditions.insuranceEndDate : ''}` }</Typography>

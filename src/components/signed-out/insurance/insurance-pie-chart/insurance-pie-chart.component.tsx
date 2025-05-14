@@ -3,10 +3,11 @@ import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.tsx"
 import ReactApexChart from "react-apexcharts"
 
 import { useSelector } from "react-redux"
-import { selectInsurancePaymentsView } from "../../../../store/signed-out/insurance/insurance.selector"
+import { selectInsurancePaymentsView } from "../../../../store/signed-out/insurance/insurance.selector.ts"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { Typography } from "@mui/material"
+import { ApexOptions } from "apexcharts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -17,7 +18,7 @@ const InsurancePieChart = () => {
   const insurancePaymentsView = useSelector(selectInsurancePaymentsView)
 
   let insuranceCategoryPayments = new Map()
-  const categoryCosts = insurancePaymentsView.map((insurance) => {
+  const categoryCosts = insurancePaymentsView?.map((insurance) => {
     if (insuranceCategoryPayments.has(String(insurance.insuranceFor))) {
       insuranceCategoryPayments.set(String(insurance.insuranceFor), Number(insuranceCategoryPayments.get(insurance.insuranceFor)) + Number(insurance.insurancePayment))
     } else {
@@ -25,9 +26,9 @@ const InsurancePieChart = () => {
     }
   })
 
-  const series = [ ...insuranceCategoryPayments.values() ]
+  const series: ApexAxisChartSeries = [ ...insuranceCategoryPayments.values() ]
   
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
     },
