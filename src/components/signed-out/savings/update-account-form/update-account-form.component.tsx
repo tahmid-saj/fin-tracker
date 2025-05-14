@@ -63,7 +63,7 @@ const UpdateAccountForm = ({ financeItemInfo }: { financeItemInfo: SavingsAccoun
     
   // };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
@@ -83,7 +83,20 @@ const UpdateAccountForm = ({ financeItemInfo }: { financeItemInfo: SavingsAccoun
       return;
     }
 
-    dispatch(updateSavingsAccount(savingsAccounts, financeItemInfo.savingsAccountName, formFields))
+    dispatch(updateSavingsAccount(savingsAccounts!, financeItemInfo.savingsAccountName, {
+      ...formFields,
+
+      initialDeposit: Number(formFields.initialDeposit),
+      monthlyContribution: Number(formFields.monthlyContribution),
+      contributionPeriod: Number(formFields.contributionPeriod),
+      apy: Number(formFields.apy),
+
+      totalSavings: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+    
+      savings: []
+    }))
     resetFormFields();
   };
 
@@ -97,7 +110,7 @@ const UpdateAccountForm = ({ financeItemInfo }: { financeItemInfo: SavingsAccoun
     setShowConfirmClose(false);
     
     if (confirmClose === SAVINGS_CONFIRM_CLOSE.yes) {
-      dispatch(closeSavingsAccount(savingsAccounts, financeItemInfo.savingsAccountName))
+      dispatch(closeSavingsAccount(savingsAccounts!, financeItemInfo.savingsAccountName))
     }
   };
 

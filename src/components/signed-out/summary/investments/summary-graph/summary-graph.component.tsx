@@ -9,49 +9,51 @@ import { getInvestmentInfo } from "../../../../../store/signed-out/investments/i
 
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
+import { Investment } from "../../../../../store/signed-out/investments/investments.types";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const SummaryGraph = ({ financeItemInfo }) => {
+const SummaryGraph = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
   const investments = useSelector(selectInvestments)
-  const investmentInfo = getInvestmentInfo(investments, financeItemInfo.investmentName);
+  const investmentInfo = getInvestmentInfo(investments!, financeItemInfo.investmentName);
 
   // TODO: manage dates on graph better
-  const startDate = new Date(investmentInfo.startDate);
+  const startDate = new Date(investmentInfo?.startDate!);
   const year = startDate.getFullYear();
   const month = startDate.getMonth() + 1;
   const day = startDate.getDate();
   const startDateStr = year + '-' + month + '-' + day;
   const previousDay = day === 1 ? 28 : startDate.getDate();
-  const endDate = `${Number(year) + Number(investmentInfo.afterYears)}-${month}-${day}`;
+  const endDate = `${Number(year) + Number(investmentInfo?.afterYears)}-${month}-${day}`;
   const previousDate = `${Number(year)}-${month - 1}-${previousDay}`
 
-  const { investments: investmentsSchedule } = investmentInfo
+  const { investments: investmentsSchedule } = investmentInfo!
 
   
 
-  let investmentTimes = []
-  let monthlyInvestmentTotalInterestEarned = []
-  let monthlyInvestmentEndBalance = []
+  let investmentTimes: string[] = []
+  let monthlyInvestmentTotalInterestEarned: number[] = []
+  let monthlyInvestmentEndBalance: number[] = []
 
   const monthlyInvestmentBalance = investmentsSchedule.map((investmentMonth) => {
     investmentTimes.push(investmentMonth.currentDate)
 
-    monthlyInvestmentTotalInterestEarned.push(Number(investmentMonth.interestAccumulated).toFixed(2))
-    monthlyInvestmentEndBalance.push(Number(investmentMonth.endingBalance).toFixed(2))
+    monthlyInvestmentTotalInterestEarned.push(Number(Number(investmentMonth.interestAccumulated).toFixed(2)))
+    monthlyInvestmentEndBalance.push(Number(Number(investmentMonth.endingBalance).toFixed(2)))
 
     return investmentMonth.endingBalance.toFixed(2)
   })
 
     // TODO: need to keep track of investments timeline by amount in calculations
-    const series = [{
+    const series: ApexAxisChartSeries = [{
       name: financeItemInfo.investmentName,
       data: monthlyInvestmentEndBalance
     }];
   
-    const options = {
+    const options: ApexOptions = {
       chart: {
         type: 'area',
         zoom: {
@@ -71,7 +73,6 @@ const SummaryGraph = ({ financeItemInfo }) => {
       },
       labels: investmentTimes,
       xaxis: {
-        type: 'string',
         labels: {
           show: false
         }

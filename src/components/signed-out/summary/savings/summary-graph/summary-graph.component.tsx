@@ -9,26 +9,28 @@ import { getSavingsAccountInfo } from "../../../../../store/signed-out/savings/s
 
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
+import { SavingsAccount } from "../../../../../store/signed-out/savings/savings.types";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const SummaryGraph = ({ financeItemInfo }) => {
+const SummaryGraph = ({ financeItemInfo }: { financeItemInfo: SavingsAccount }) => {
   const savingsAccounts = useSelector(selectSavingsAccounts)
 
-  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts, financeItemInfo.savingsAccountName)
-  const { savings } = savingsAccountInfo
+  const savingsAccountInfo = getSavingsAccountInfo(savingsAccounts!, financeItemInfo.savingsAccountName)
+  const { savings } = savingsAccountInfo!
 
-  let savingsTimes = []
-  let monthlySavingsTotalInterestEarned = []
+  let savingsTimes: string[] = []
+  let monthlySavingsTotalInterestEarned: number[] = []
   const monthlySavingsBalance = savings.map((savingMonth) => {
     savingsTimes.push(savingMonth.currentDate)
-    monthlySavingsTotalInterestEarned.push(Number(savingMonth.totalInterestEarned).toFixed(2))
+    monthlySavingsTotalInterestEarned.push(Number(Number(savingMonth.totalInterestEarned).toFixed(2)))
     return savingMonth.balance.toFixed(2)
   })
 
-  const series = [
+  const series: ApexAxisChartSeries = [
     // {
     //   name: "Balance",
     //   data: monthlySavingsGoalsBalance
@@ -39,7 +41,7 @@ const SummaryGraph = ({ financeItemInfo }) => {
     }
   ]
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'area',
       zoom: {
@@ -59,7 +61,6 @@ const SummaryGraph = ({ financeItemInfo }) => {
     },
     labels: savingsTimes,
     xaxis: {
-      type: 'string',
       labels: {
         show: false
       }

@@ -11,7 +11,7 @@ const ExpensesSummaryInfo = () => {
 
   return (
     <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} 
-      variant="h6">{ `Total spending past month - $${expensesSummary.pastMonthAllExpensesCost}` }</Typography>
+      variant="h6">{ `Total spending past month - $${expensesSummary?.pastMonthAllExpensesCost}` }</Typography>
   )
 }
 

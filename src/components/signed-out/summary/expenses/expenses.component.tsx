@@ -1,16 +1,16 @@
-import "./expenses.styles.tsx"
+import "./expenses.styles.jsx"
 import { ExpensesSummaryDashboardContainer,
   ExpensesSummaryInfoGraphContainer
-} from "./expenses.styles.tsx"
+} from "./expenses.styles.jsx"
 
-import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component"
-import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component"
+import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component.tsx"
+import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component.tsx"
 import { Divider } from "@mui/material"
-import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component"
-import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component"
+import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component.tsx"
 
 import { useSelector } from "react-redux"
-import { selectSelectedExpensesDate, selectScheduledExpensesView } from "../../../../store/signed-out/expenses/expenses.selector"
+import { selectSelectedExpensesDate, selectScheduledExpensesView } from "../../../../store/signed-out/expenses/expenses.selector.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 

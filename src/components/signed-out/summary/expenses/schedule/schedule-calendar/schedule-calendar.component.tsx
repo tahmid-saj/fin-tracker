@@ -1,24 +1,28 @@
 // signed out
-import "./schedule-calendar.styles.tsx"
-import { CalendarTodoList, ExpensesCalendarContainer } from "./schedule-calendar.styles.tsx";
+import "./schedule-calendar.styles.jsx"
+import { CalendarTodoList, ExpensesCalendarContainer } from "./schedule-calendar.styles.jsx";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants.ts";
 import { useDispatch, useSelector } from "react-redux"
-import { selectExpenses } from "../../../../../../store/signed-out/expenses/expenses.selector";
-import { selectScheduledExpenses } from "../../../../../../store/signed-out/expenses/expenses.action";
+import { selectExpenses } from "../../../../../../store/signed-out/expenses/expenses.selector.ts";
+import { selectScheduledExpenses } from "../../../../../../store/signed-out/expenses/expenses.action.ts";
+import { Expense } from "../../../../../../store/signed-out/expenses/expenses.types.ts";
 
-function getScheduledData(date, expenses) {
-  date = date.toISOString().split('T')[0]
+function getScheduledData(date: Date, expenses: Expense[]) {
+  const dateStr = date.toISOString().split('T')[0]
 
-  let scheduledExpensesForDate = []
+  let scheduledExpensesForDate: Expense[] = []
   expenses.map((expense) => {
-    if (expense.expenseDate === date) {
+    if (expense.expenseDate === dateStr) {
       scheduledExpensesForDate.push({
         expenseFor: expense.expenseFor,
         expenseCost: expense.expenseCost,
+        expenseDate: expense.expenseDate,
+        expenseCategory: expense.expenseCategory,
+        expenseId: expense.expenseId
       })
     }
   })
@@ -30,8 +34,8 @@ const ScheduleCalendar = () => {
   const expenses = useSelector(selectExpenses)
   const dispatch = useDispatch()
 
-  function renderCell(date) {
-    const list = getScheduledData(date, expenses);
+  function renderCell(date: Date) {
+    const list = getScheduledData(date, expenses!);
     const displayList = list.filter((item, index) => index < 1);
 
     if (list.length) {
@@ -55,7 +59,7 @@ const ScheduleCalendar = () => {
     return null;
   }
 
-  const onSelectDate = (date) => {
+  const onSelectDate = (date: Date) => {
     const selectedDate = date.toISOString().split('T')[0]
     
     dispatch(selectScheduledExpenses(selectedDate))

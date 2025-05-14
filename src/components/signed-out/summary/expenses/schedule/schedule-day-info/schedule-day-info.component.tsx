@@ -1,11 +1,11 @@
-import "./schedule-day-info.styles.tsx"
-import { ExpensesScheduleDayInfo } from "./schedule-day-info.styles.tsx"
+import "./schedule-day-info.styles.jsx"
+import { ExpensesScheduleDayInfo } from "./schedule-day-info.styles.jsx"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../../shared/mui/paper/paper.component"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants"
+import SimplePaper from "../../../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../../../utils/constants/shared.constants.ts"
 import { useSelector } from "react-redux"
-import { selectScheduledExpensesView } from "../../../../../../store/signed-out/expenses/expenses.selector"
+import { selectScheduledExpensesView } from "../../../../../../store/signed-out/expenses/expenses.selector.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -17,7 +17,7 @@ const ScheduleDayInfo = () => {
 
   
 
-  if (!scheduledExpensesView.length) return <Fragment/>
+  if (!scheduledExpensesView?.length) return <Fragment/>
 
   return (
     <ExpensesScheduleDayInfo>

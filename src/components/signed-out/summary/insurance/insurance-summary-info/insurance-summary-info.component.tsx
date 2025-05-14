@@ -9,7 +9,7 @@ const InsurancesSummaryInfo = () => {
 
   return (
     <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} 
-      variant="h6">{ `Total insurance paid past month - $${insurancesSummary.pastMonthAllInsurancesPayment}` }</Typography>
+      variant="h6">{ `Total insurance paid past month - $${insurancesSummary?.pastMonthAllInsurancesPayment}` }</Typography>
   )
 }
 
