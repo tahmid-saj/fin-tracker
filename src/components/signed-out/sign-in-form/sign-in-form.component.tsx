@@ -1,22 +1,27 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signInWithGooglePopup,
-        signInAuthUserWithEmailAndPassword } from "../../../utils/firebase/firebase.utils";
+        signInAuthUserWithEmailAndPassword } from "../../../utils/firebase/firebase.utils.ts";
 
-import FormInput from "../../shared/form-input/form-input.component";
-import Button from "../../shared/button/button.component";
+import FormInput from "../../shared/form-input/form-input.component.tsx";
+import Button from "../../shared/button/button.component.tsx";
 
 import "./sign-in-form.styles.tsx";
 import { SignInContainer, ButtonContainer } from "./sign-in-form.styles.tsx";
 
-import { errorOnUserSignIn } from "../../../utils/errors/user.errors";
+import { errorOnUserSignIn } from "../../../utils/errors/user.errors.ts";
 
 import { useDispatch } from "react-redux";
-import { googleSignInStart, emailSignInStart } from "../../../store/shared/user/user.action";
+import { googleSignInStart, emailSignInStart } from "../../../store/shared/user/user.action.ts";
 import GoogleIcon from '@mui/icons-material/Google';
 import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts";
 import { Typography } from "@mui/material";
+
+type FormFields = {
+  email: string,
+  password: string
+}
 
 const defaultFormFields = {
   email: "",
@@ -24,7 +29,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
 
   const dispatch = useDispatch()
@@ -43,7 +48,7 @@ const SignInForm = () => {
     navigate("/dashboard-signed-in");
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -54,11 +59,11 @@ const SignInForm = () => {
       navigate("/dashboard-signed-in");
       // return signInResponse;
     } catch (error) {
-      errorOnUserSignIn(error);
+      errorOnUserSignIn(error as Error);
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

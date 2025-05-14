@@ -11,7 +11,12 @@ import "./form-view.styles.scss";
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import ExpensesForm from "../expenses/expenses-form/expenses-form.component";
 
-const FormView = ({ financeItemLabel, financeItemInfo }) => {
+type FormViewProps = {
+  financeItemLabel: string,
+  financeItemInfo: any
+}
+
+const FormView = ({ financeItemLabel, financeItemInfo }: FormViewProps) => {
   return (
     <div>
       { financeItemLabel === FINANCE_ITEM_TYPES.expenses &&
