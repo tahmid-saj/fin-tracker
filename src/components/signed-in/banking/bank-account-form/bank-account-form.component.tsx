@@ -1,18 +1,18 @@
 import React, { useState, Fragment, useContext } from "react";
 
-import Summary from "../summary/summary.component.jsx";
-import Transactions from "../transactions/transactions.component.jsx";
-import ActionList from "../action-list/action-list.component.js";
-import SummaryGraphBanking from "../summary-graph/summary-graph.component.jsx";
+import Summary from "../summary/summary.component.tsx";
+import Transactions from "../transactions/transactions.component.tsx";
+import ActionList from "../action-list/action-list.component.ts";
+import SummaryGraphBanking from "../summary-graph/summary-graph.component.tsx";
 
-import "./bank-account-form.styles.jsx";
-import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.jsx";
+import "./bank-account-form.styles.tsx";
+import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.js";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.ts";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const accordionStyles = {
   backgroundColor: COLOR_CODES.general["6"]

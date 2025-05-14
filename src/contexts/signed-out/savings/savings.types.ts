@@ -32,7 +32,7 @@ export interface SavingsContextType {
   createSavingsAccount: (savingsAccount: SavingsAccount) => void;
   updateSavingsAccount: (originalSavingsAccountName: string, updatedSavingsAccount: SavingsAccount) => void;
   closeSavingsAccount: (closingSavingsAccountName: string) => void;
-  getSavingsAccountInfo: (savingsAccountName: string) => void;
+  getSavingsAccountInfo: (savingsAccountName: string) => SavingsAccount | undefined;
 
   savingsAccountsSummary: SavingsAccountsSummary;
 }

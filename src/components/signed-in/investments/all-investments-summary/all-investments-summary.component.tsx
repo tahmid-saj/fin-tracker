@@ -1,12 +1,12 @@
-import "./all-investments-summary.styles.js";
-import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.js";
+import "./all-investments-summary.styles.ts";
+import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.ts";
 
 import { useContext } from "react";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"]

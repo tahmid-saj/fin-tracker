@@ -1,5 +1,5 @@
-import "./insurance-table.styles.js"
-import { InsuranceTableContainer } from "./insurance-table.styles.js";
+import "./insurance-table.styles.ts"
+import { InsuranceTableContainer } from "./insurance-table.styles.ts";
 
 import { useState, useContext, useCallback, useRef, MouseEvent } from "react";
 
@@ -7,12 +7,12 @@ import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import Button from "../../../shared/button/button.component.js";
+import Button from "../../../shared/button/button.component.ts";
 
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js";
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
 
 import { ColDef } from "ag-grid-community";
 import { AgGridReact as AgGridReactType } from "ag-grid-react"; // Needed for typing

@@ -3,15 +3,15 @@ import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 
-import "./summary-graph.styles.jsx";
-import { SummaryGraphInvestmentContainer } from "./summary-graph.styles.jsx";
+import "./summary-graph.styles.tsx";
+import { SummaryGraphInvestmentContainer } from "./summary-graph.styles.tsx";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]

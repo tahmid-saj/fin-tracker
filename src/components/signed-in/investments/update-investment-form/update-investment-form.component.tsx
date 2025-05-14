@@ -1,18 +1,18 @@
 import React, { useState, Component, useContext } from "react";
 
-import "./update-investment-form.styles.jsx";
+import "./update-investment-form.styles.tsx";
 import { UpdateInvestmentContainer, UpdateInvestmentFormContainer,
-  ContributionInputContainer } from "./update-investment-form.styles.jsx";
+  ContributionInputContainer } from "./update-investment-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.js";
+import FormInput from "../../../shared/form-input/form-input.component.ts";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.js";
-import Button from "../../../shared/button/button.component.js";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.js";
-import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants.js";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import Button from "../../../shared/button/button.component.ts";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.ts";
+import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants.ts";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 import { FormEvent } from "react";
 import { ChangeEvent } from "react";
 import { MouseEvent } from "react";

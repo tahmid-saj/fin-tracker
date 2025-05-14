@@ -1,7 +1,7 @@
 import { useState, Component, useContext } from "react";
 
-import "./create-account-form.styles.jsx";
-import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.jsx";
+import "./create-account-form.styles.tsx";
+import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
@@ -12,10 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
 import { createSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
 import { Typography } from "@mui/material";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
-import Button from "../../../shared/button/button.component.jsx";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
+import Button from "../../../shared/button/button.component.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   savingsAccountName: "",

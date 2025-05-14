@@ -1,7 +1,7 @@
-import "./insurance-summary.styles.jsx"
+import "./insurance-summary.styles.tsx"
 import { InsuranceSummaryDashboardContainer,
   InsuranceSummaryInfoGraphContainer
-} from "./insurance-summary.styles.jsx"
+} from "./insurance-summary.styles.tsx"
 
 import InsurancesSummaryInfo from "./insurance-summary-info/insurance-summary-info.component"
 import InsurancesSummaryGraph from "./insurance-summary-graph/insurance-summary-graph.component"
@@ -12,7 +12,7 @@ import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.com
 import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component"
 import { Divider } from "@mui/material"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

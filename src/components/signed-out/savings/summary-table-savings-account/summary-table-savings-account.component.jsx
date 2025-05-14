@@ -1,5 +1,5 @@
-import "./summary-table-savings-account.styles.jsx"
-import { SummaryTableSavingsContainer } from "./summary-table-savings-account.styles.jsx";
+import "./summary-table-savings-account.styles.tsx"
+import { SummaryTableSavingsContainer } from "./summary-table-savings-account.styles.tsx";
 import { useState, useContext, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
 import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

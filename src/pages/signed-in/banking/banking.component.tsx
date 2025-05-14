@@ -1,20 +1,20 @@
 import React, { Component, useContext, useEffect } from "react";
 
-import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component.jsx";
+import BankAccounts from "../../../components/signed-in/banking/bank-accounts/bank-accounts.component.tsx";
 
-import "./banking.styles.jsx";
-import { BankingContainer } from "./banking.styles.jsx";
+import "./banking.styles.tsx";
+import { BankingContainer } from "./banking.styles.tsx";
 
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.js";
-import AllBankingSummary from "../../../components/signed-in/banking/all-banking-summary/all-banking-summary.component.jsx";
+import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.ts";
+import AllBankingSummary from "../../../components/signed-in/banking/all-banking-summary/all-banking-summary.component.tsx";
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import AddIcon from '@mui/icons-material/Add';
-import CreateAccount from "../../../components/signed-in/banking/create-account/create-account.component.jsx";
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx";
+import CreateAccount from "../../../components/signed-in/banking/create-account/create-account.component.tsx";
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.ts";
 
 const Banking = () => {
   const { bankingAccounts } = useContext(BankingContext);

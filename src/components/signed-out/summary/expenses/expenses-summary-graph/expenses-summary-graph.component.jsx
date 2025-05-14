@@ -1,11 +1,11 @@
-import "./expenses-summary-graph.styles.jsx"
-import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.jsx"
+import "./expenses-summary-graph.styles.tsx"
+import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.tsx"
 import { useContext, Fragment } from "react"
 import ReactApexChart from "react-apexcharts"
 // import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
 import { selectExpensesSummary } from "../../../../../store/signed-out/expenses/expenses.selector"
-import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.js"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
 
 const ExpensesSummaryGraph = () => {
   // const { expensesSummary } = useContext(ExpensesContext)

@@ -1,12 +1,12 @@
-import "./schedule-calendar.styles.js"
-import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.js";
+import "./schedule-calendar.styles.ts"
+import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.ts";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.js";
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.js";
-import { InsurancePayment } from "../../../../../contexts/signed-in/insurance/insurance.types.js";
+import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.ts";
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.ts";
+import { InsurancePayment } from "../../../../../contexts/signed-in/insurance/insurance.types.ts";
 
 function getScheduledData(date: Date, insurancePayments: InsurancePayment[]) {
   const dateStr = date.toISOString().split('T')[0]

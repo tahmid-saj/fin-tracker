@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from "react";
 
-import "./banking-summary.styles.jsx";
-import { BankingSummaryContainer, BankingAccountSummaryContainer } from "./banking-summary.styles.jsx";
+import "./banking-summary.styles.tsx";
+import { BankingSummaryContainer, BankingAccountSummaryContainer } from "./banking-summary.styles.tsx";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
@@ -12,7 +12,7 @@ import { selectBankingAccounts } from "../../../../store/signed-out/banking/bank
 import { COLOR_CODES, FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphBanking from "../../banking/summary-graph/summary-graph.component";
 import { Typography } from "@mui/material";
-import FinanceSummary from "./summary-graph/finance-summary.component.jsx";
+import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 
 const BankingSummary = () => {
   // const { bankingAccounts } = useContext(BankingContext);

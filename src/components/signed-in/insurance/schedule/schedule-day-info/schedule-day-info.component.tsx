@@ -1,10 +1,10 @@
-import "./schedule-day-info.styles.js"
-import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.js"
+import "./schedule-day-info.styles.ts"
+import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.ts"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../shared/mui/paper/paper.component.js"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants.js"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.js"
+import SimplePaper from "../../../../shared/mui/paper/paper.component.ts"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

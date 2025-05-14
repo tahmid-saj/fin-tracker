@@ -1,19 +1,19 @@
 import React, { useState, Component, useContext, FormEvent, ChangeEvent } from "react";
 
-import "./create-investment-form.styles.js";
+import "./create-investment-form.styles.ts";
 import { CreateInvestmentContainer, CreateInvestmentFormContainer,
   ContributionInputContainer
-} from "./create-investment-form.styles.js";
+} from "./create-investment-form.styles.ts";
 
-import FormInput from "../../../shared/form-input/form-input.component.js";
-import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component.js";
+import FormInput from "../../../shared/form-input/form-input.component.ts";
+import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component.ts";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
 import { Typography } from "@mui/material";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.js";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
-import Button from "../../../shared/button/button.component.js";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.ts";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import Button from "../../../shared/button/button.component.ts";
 
 type FormFields = {
   investmentName: string,

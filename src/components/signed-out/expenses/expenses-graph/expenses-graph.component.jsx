@@ -1,12 +1,12 @@
 import { Fragment, useContext } from "react"
-import "./expenses-graph.styles.jsx"
-import { ExpensesGraphContainer } from "./expenses-graph.styles.jsx"
+import "./expenses-graph.styles.tsx"
+import { ExpensesGraphContainer } from "./expenses-graph.styles.tsx"
 import ReactApexChart from "react-apexcharts"
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
 import { selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { Typography } from "@mui/material"
 
 const paperStyles = {

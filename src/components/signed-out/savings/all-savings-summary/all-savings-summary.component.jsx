@@ -1,14 +1,14 @@
-import "./all-savings-summary.styles.jsx";
-import { AllSavingsSummaryContainer } from "./all-savings-summary.styles.jsx";
+import "./all-savings-summary.styles.tsx";
+import { AllSavingsSummaryContainer } from "./all-savings-summary.styles.tsx";
 
 import { useContext } from "react";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { useSelector } from "react-redux";
 import { selectSavingsAccountsSummary } from "../../../../store/signed-out/savings/savings.selector";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"]

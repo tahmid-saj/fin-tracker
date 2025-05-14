@@ -1,5 +1,5 @@
-import "./insurance-summary-graph.styles.jsx"
-import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles.jsx"
+import "./insurance-summary-graph.styles.tsx"
+import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles.tsx"
 import ReactApexChart from "react-apexcharts"
 
 import { useContext, Fragment } from "react"

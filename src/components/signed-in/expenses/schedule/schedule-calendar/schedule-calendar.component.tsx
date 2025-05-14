@@ -1,14 +1,14 @@
-import "./schedule-calendar.styles.js"
+import "./schedule-calendar.styles.ts"
 import { CalendarTodoList,
   ExpensesCalendarContainer
-} from "./schedule-calendar.styles.js";
+} from "./schedule-calendar.styles.ts";
 
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.js";
-import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context.js";
+import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.ts";
+import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context.ts";
 
 function getScheduledData(date, expenses) {
   date = date.toISOString().split('T')[0]

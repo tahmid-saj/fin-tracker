@@ -1,21 +1,21 @@
 import React, { useState, Component, useContext } from "react";
 
-import "./update-investment-form.styles.jsx";
+import "./update-investment-form.styles.tsx";
 import { UpdateInvestmentContainer, UpdateInvestmentFormContainer,
-  ContributionInputContainer } from "./update-investment-form.styles.jsx";
+  ContributionInputContainer } from "./update-investment-form.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { INVESTMENT_CONFIRM_CLOSE } from "../../../../utils/constants/investments.constants";
-import Button from "../../../shared/button/button.component.jsx";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
+import Button from "../../../shared/button/button.component.tsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { updateInvestment, closeInvestment } from "../../../../store/signed-out/investments/investments.action";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   investmentName: "",

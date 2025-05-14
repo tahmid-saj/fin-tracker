@@ -1,7 +1,7 @@
-import "./transaction.styles.jsx";
+import "./transaction.styles.tsx";
 import { TransactionContainer, DepositTransaction, DepositTransferTransaction,
   WithdrawTransaction, WithdrawTransferTransaction, TransactionAddedToExpensesContainer
-} from "./transaction.styles.jsx";
+} from "./transaction.styles.tsx";
 
 import { TRANSACTION_TYPE_CLASSES, TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
 

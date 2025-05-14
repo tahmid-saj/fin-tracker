@@ -1,34 +1,34 @@
-import { DropButton } from "../drop-button/drop-button.styles.js";
-import { ButtonsContainer } from "../button/button.styles.js";
+import { DropButton } from "../drop-button/drop-button.styles.tsx";
+import { ButtonsContainer } from "../button/button.styles.tsx";
 import {
   SavingsGoalCalculatorContainer,
   SavingsGoalCalculatorForm,
   SavingsGoalResultContainer,
   SavingsGoalGraphContainer,
   SavingsGoalTableContainer,
-} from "./savings-goal-calculator.styles.jsx";
+} from "./savings-goal-calculator.styles.tsx";
 
 import { Fragment, useState, useEffect } from "react";
-import FormInput from "../form-input/form-input.component.js";
-import Button from "../button/button.component.js";
-import SavingsGoalResult from "./savings-goal-calculator-result/savings-goal-result.component.js";
+import FormInput from "../form-input/form-input.component.tsx";
+import Button from "../button/button.component.tsx";
+import SavingsGoalResult from "./savings-goal-calculator-result/savings-goal-result.component.tsx";
 // import { SavingsGoalCalculatorContext } from "../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context"
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectSavingsGoalResult,
   selectSavingsGoalScheduleResult,
-} from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
+} from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.ts";
 import {
   calculateSavingsGoal,
   calculateSavingsGoalSchedule,
-} from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.action.js";
+} from "../../../store/shared/savings-goal-calculator/savings-goal-calculator.action.ts";
 
-import SavingsGoalGraph from "./savings-goal-calculator-result/savings-goal-graph.component.js";
-import SavingsGoalTable from "./savings-goal-calculator-result/savings-goal-table.component.js";
-import { SAVINGS_GOAL_COMPOUNDED } from "../../../utils/constants/savings.constants.js";
+import SavingsGoalGraph from "./savings-goal-calculator-result/savings-goal-graph.component.tsx";
+import SavingsGoalTable from "./savings-goal-calculator-result/savings-goal-table.component.tsx";
+import { SAVINGS_GOAL_COMPOUNDED } from "../../../utils/constants/savings.constants.ts";
 import { Divider, Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../utils/constants/shared.constants.js";
-import SimplePaper from "../mui/paper/paper.component.js";
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../mui/paper/paper.component.tsx";
 
 interface FormFieldsType {
   savingsGoal: string;

@@ -1,11 +1,11 @@
-import "./insurance-summary.styles.jsx"
-import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.jsx"
+import "./insurance-summary.styles.tsx"
+import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.tsx"
 import { Typography } from "@mui/material"
 
 import { useSelector } from "react-redux"
 import { selectInsurancePaymentsView, selectFilterConditions, selectInsurancesSummary } from "../../../../store/signed-out/insurance/insurance.selector"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

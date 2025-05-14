@@ -1,5 +1,5 @@
-import "./all-investments-summary.styles.jsx";
-import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.jsx";
+import "./all-investments-summary.styles.tsx";
+import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.tsx";
 
 import { useContext } from "react";
 

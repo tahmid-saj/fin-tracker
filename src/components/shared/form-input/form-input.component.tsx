@@ -1,5 +1,5 @@
-import "./form-input.styles.jsx";
-import { FormInputLabel, Input, Group } from "./form-input.styles.jsx";
+import "./form-input.styles.tsx";
+import { FormInputLabel, Input, Group } from "./form-input.styles.tsx";
 import React, { FC } from 'react';
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

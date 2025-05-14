@@ -1,8 +1,8 @@
-import "./mortgage-calculator-result.styles.jsx"
-import { MortgageCalculatorResultContainer, MortgageResult } from "./mortgage-calculator-result.styles.jsx"
+import "./mortgage-calculator-result.styles.tsx"
+import { MortgageCalculatorResultContainer, MortgageResult } from "./mortgage-calculator-result.styles.tsx"
 
 import { Fragment, useContext } from "react"
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.js"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.ts"
 import { Typography } from "@mui/material"
 
 const MortgageCalculatorResult = () => {

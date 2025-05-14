@@ -275,7 +275,7 @@ export const SavingsProvider: FC<SavingsProviderProps> = ({ children }) => {
     }
   };
 
-  const getSavingsAccountInfo = (savingsAccountName: string) => {
+  const getSavingsAccountInfo = (savingsAccountName: string): SavingsAccount | undefined => {
     return getSavingsAccountInfoHelper(savingsAccounts, savingsAccountName);
   };
 

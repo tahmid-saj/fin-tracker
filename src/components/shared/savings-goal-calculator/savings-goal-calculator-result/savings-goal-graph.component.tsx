@@ -1,14 +1,14 @@
-import "./savings-goal-graph.styles.jsx"
-import { SavingsGoalGraphChart } from "./savings-goal-graph.styles.jsx";
+import "./savings-goal-graph.styles.tsx"
+import { SavingsGoalGraphChart } from "./savings-goal-graph.styles.tsx";
 
 import { useState, useContext } from "react";
 import ReactApexChart from "react-apexcharts"
 
 // import { SavingsGoalCalculatorContext } from "../../../../contexts/shared/savings-goal-calculator/savings-goal-calculator.context";
 import { useSelector } from "react-redux";
-import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.js";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../mui/paper/paper.component.js";
+import { selectSavingsGoalScheduleResult } from "../../../../store/shared/savings-goal-calculator/savings-goal-calculator.selector.ts";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../mui/paper/paper.component.tsx";
 import { ApexOptions } from "apexcharts";
 
 const paperStyles = {

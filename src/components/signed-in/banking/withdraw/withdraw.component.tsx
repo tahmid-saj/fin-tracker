@@ -1,19 +1,19 @@
 import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
-import "./withdraw.styles.js";
-import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.js";
+import "./withdraw.styles.ts";
+import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.ts";
 
-import FormInput from "../../../shared/form-input/form-input.component.js";
-import Button from "../../../shared/button/button.component.js";
+import FormInput from "../../../shared/form-input/form-input.component.ts";
+import Button from "../../../shared/button/button.component.ts";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.ts";
 
-import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 import { Typography, Checkbox } from "@mui/material";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 type FormFields = {
   amount: string,

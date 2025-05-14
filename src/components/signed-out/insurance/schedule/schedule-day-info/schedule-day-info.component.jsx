@@ -1,5 +1,5 @@
-import "./schedule-day-info.styles.jsx"
-import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.jsx"
+import "./schedule-day-info.styles.tsx"
+import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.tsx"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
 import SimplePaper from "../../../../shared/mui/paper/paper.component"

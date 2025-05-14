@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react"
-import FormInput from "../../../components/shared/form-input/form-input.component.jsx"
-import Button from "../../../components/shared/button/button.component.jsx"
-import "./chatbot.styles.jsx"
-import { ChatBotContainer, ChatBotInputMessage } from "./chatbot.styles.jsx"
-import ChatBotResponse from "../../../components/shared/chatbot/chatbot-response/chatbot-response.component.jsx"
-import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context.js"
+import FormInput from "../../../components/shared/form-input/form-input.component.tsx"
+import Button from "../../../components/shared/button/button.component.tsx"
+import "./chatbot.styles.tsx"
+import { ChatBotContainer, ChatBotInputMessage } from "./chatbot.styles.tsx"
+import ChatBotResponse from "../../../components/shared/chatbot/chatbot-response/chatbot-response.component.tsx"
+import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context.ts"
 import { Divider, Typography } from "@mui/material"
-import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts"
 
 type FormFields = {
   messageInput: string;

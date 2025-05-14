@@ -1,5 +1,5 @@
-import "./schedule-calendar.styles.jsx"
-import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.jsx";
+import "./schedule-calendar.styles.tsx"
+import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.tsx";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';

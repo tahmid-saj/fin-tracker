@@ -1,5 +1,5 @@
-import "./exchange-rate.styles.jsx";
-import { ExchangeRateContainer } from "./exchange-rate.styles.jsx";
+import "./exchange-rate.styles.tsx";
+import { ExchangeRateContainer } from "./exchange-rate.styles.tsx";
 
 import { useState, useContext, FormEvent, ChangeEvent } from "react";
 import FormInput from "../../form-input/form-input.component";
@@ -7,8 +7,8 @@ import Button from "../../button/button.component";
 import ExchangeRateResult from "./exchange-rate-result.component";
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../mui/paper/paper.component.jsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../mui/paper/paper.component.tsx";
 
 interface FormFields {
   fromCurrency: string;

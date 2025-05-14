@@ -1,12 +1,12 @@
 import { Fragment, useContext } from "react"
-import "./expenses-filter-info.styles.jsx"
-import { ExpensesFilterInfoContainer } from "./expenses-filter-info.styles.jsx"
+import "./expenses-filter-info.styles.tsx"
+import { ExpensesFilterInfoContainer } from "./expenses-filter-info.styles.tsx"
 
 import { Typography } from "@mui/material"
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.js"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

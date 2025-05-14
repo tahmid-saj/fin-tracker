@@ -1,15 +1,15 @@
 import { useContext } from "react";
 
-import "./investment-info.styles.jsx";
-import { InvestmentInfoContainer } from "./investment-info.styles.jsx";
+import "./investment-info.styles.tsx";
+import { InvestmentInfoContainer } from "./investment-info.styles.tsx";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
 import { Divider, Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

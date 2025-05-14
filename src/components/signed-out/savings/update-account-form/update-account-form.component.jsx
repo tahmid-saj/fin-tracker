@@ -1,7 +1,7 @@
 import { useState, Component, useContext } from "react";
 
-import "./update-account-form.styles.jsx";
-import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.jsx";
+import "./update-account-form.styles.tsx";
+import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 
@@ -12,10 +12,10 @@ import { updateSavingsAccount, closeSavingsAccount } from "../../../../store/sig
 
 import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
 import { Typography } from "@mui/material";
-import Button from "../../../shared/button/button.component.jsx";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import Button from "../../../shared/button/button.component.tsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   savingsAccountName: "",

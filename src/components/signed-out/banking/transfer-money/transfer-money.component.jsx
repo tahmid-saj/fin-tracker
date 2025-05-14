@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { transferToBankingAccount } from "../../../../store/signed-out/banking/banking.action"
 
-import "./transfer-money.styles.jsx";
-import { TransferMoneyContainer } from "./transfer-money.styles.jsx";
+import "./transfer-money.styles.tsx";
+import { TransferMoneyContainer } from "./transfer-money.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
 import { Typography } from "@mui/material";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const defaultFormFields = {
   transferTo: "",

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
-import "./expenses-form.styles.jsx"
-import { AddExpenseContainer, AddExpenseFormContainer } from "./expenses-form.styles.jsx"
+import "./expenses-form.styles.tsx"
+import { AddExpenseContainer, AddExpenseFormContainer } from "./expenses-form.styles.tsx"
 import FormInput from "../../../shared/form-input/form-input.component"
 import Button from "../../../shared/button/button.component"
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses, selectExpensesTagLimit } from "../../../../store/signed-out/expenses/expenses.selector"
 import { addExpense } from "../../../../store/signed-out/expenses/expenses.action"
 import { Typography } from "@mui/material"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const defaultFormFields = {
   expenseFor: "",

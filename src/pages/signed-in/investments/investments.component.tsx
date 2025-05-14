@@ -1,21 +1,21 @@
 import React, { Component, useContext } from "react";
 
-import "./investments.styles.jsx";
-import { InvestmentsContainer } from "./investments.styles.jsx";
-import MarketView from "../../shared/market-view/market-view.component.js";
-import CreateInvestmentForm from "../../../components/signed-in/investments/create-investment-form/create-investment-form.component.jsx";
-import AllInvestmentsSummary from "../../../components/signed-in/investments/all-investments-summary/all-investments-summary.component.jsx";
+import "./investments.styles.tsx";
+import { InvestmentsContainer } from "./investments.styles.tsx";
+import MarketView from "../../shared/market-view/market-view.component.ts";
+import CreateInvestmentForm from "../../../components/signed-in/investments/create-investment-form/create-investment-form.component.tsx";
+import AllInvestmentsSummary from "../../../components/signed-in/investments/all-investments-summary/all-investments-summary.component.tsx";
 
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.js";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.ts";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.ts";
 
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import PaymentIcon from '@mui/icons-material/Payment';
 import AddIcon from '@mui/icons-material/Add';
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx";
-import InvestmentsList from "../../../components/signed-in/investments/investments/investments.component.jsx";
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx";
+import InvestmentsList from "../../../components/signed-in/investments/investments/investments.component.tsx";
 
 const Investments = () => {
   const { investments } = useContext(InvestmentsContext);

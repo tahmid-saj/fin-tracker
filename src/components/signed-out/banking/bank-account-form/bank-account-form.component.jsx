@@ -5,14 +5,14 @@ import Transactions from "../transactions/transactions.component";
 import ActionList from "../action-list/action-list.component";
 import SummaryGraphBanking from "../summary-graph/summary-graph.component";
 
-import "./bank-account-form.styles.jsx";
-import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.jsx";
+import "./bank-account-form.styles.tsx";
+import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
-import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const accordionStyles = {
   backgroundColor: COLOR_CODES.general["6"]

@@ -1,15 +1,15 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-import "./navigation.styles.jsx";
-import { DrawerContainer } from "./navigation.styles.jsx";
-import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component.jsx";
-import { NAV_LINKS } from "../../../utils/constants/shared.constants.js";
+import "./navigation.styles.tsx";
+import { DrawerContainer } from "./navigation.styles.tsx";
+import MiniDrawer from "../../../components/shared/mui/drawer/drawer.component.tsx";
+import { NAV_LINKS } from "../../../utils/constants/shared.constants.ts";
 
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
-import ResponsiveDrawer from "../../../components/shared/mui/responsive-drawer/responsive-drawer.component.jsx";
-import HiddenDrawer from "../../../components/shared/mui/hidden-drawer/hidden-drawer.component.jsx";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector.ts";
+import ResponsiveDrawer from "../../../components/shared/mui/responsive-drawer/responsive-drawer.component.tsx";
+import HiddenDrawer from "../../../components/shared/mui/hidden-drawer/hidden-drawer.component.tsx";
 
 // TODO: put navigation paths in constants
 

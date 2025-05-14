@@ -7,15 +7,15 @@ import { signInWithGooglePopup,
 import FormInput from "../../shared/form-input/form-input.component";
 import Button from "../../shared/button/button.component";
 
-import "./sign-in-form.styles.jsx";
-import { SignInContainer, ButtonContainer } from "./sign-in-form.styles.jsx";
+import "./sign-in-form.styles.tsx";
+import { SignInContainer, ButtonContainer } from "./sign-in-form.styles.tsx";
 
 import { errorOnUserSignIn } from "../../../utils/errors/user.errors";
 
 import { useDispatch } from "react-redux";
 import { googleSignInStart, emailSignInStart } from "../../../store/shared/user/user.action";
 import GoogleIcon from '@mui/icons-material/Google';
-import { COLOR_CODES } from "../../../utils/constants/shared.constants.js";
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts";
 import { Typography } from "@mui/material";
 
 const defaultFormFields = {

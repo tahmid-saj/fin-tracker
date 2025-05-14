@@ -1,12 +1,12 @@
-import "./all-banking-summary.styles.js";
-import { AllBankingSummaryContainer } from "./all-banking-summary.styles.js";
+import "./all-banking-summary.styles.ts";
+import { AllBankingSummaryContainer } from "./all-banking-summary.styles.ts";
 
 import { useContext } from "react";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"]

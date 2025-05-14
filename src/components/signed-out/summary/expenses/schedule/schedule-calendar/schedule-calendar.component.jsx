@@ -1,11 +1,11 @@
 // signed out
-import "./schedule-calendar.styles.jsx"
-import { CalendarTodoList, ExpensesCalendarContainer } from "./schedule-calendar.styles.jsx";
+import "./schedule-calendar.styles.tsx"
+import { CalendarTodoList, ExpensesCalendarContainer } from "./schedule-calendar.styles.tsx";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES } from "../../../../../../utils/constants/shared.constants.ts";
 import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses } from "../../../../../../store/signed-out/expenses/expenses.selector";
 import { selectScheduledExpenses } from "../../../../../../store/signed-out/expenses/expenses.action";
