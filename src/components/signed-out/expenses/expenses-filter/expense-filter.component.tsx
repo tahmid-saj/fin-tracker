@@ -1,17 +1,24 @@
-import { useState, useContext } from "react"
-import FormInput from "../../../shared/form-input/form-input.component"
+import { useState, useContext, ChangeEvent, FormEvent, MouseEvent } from "react"
+import FormInput from "../../../shared/form-input/form-input.component.tsx"
 import "./expense-filter.styles.tsx"
 import { ExpenseFilterContainer, ExpenseFilterFormContainer } from "./expense-filter.styles.tsx"
 
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
-import Button from "../../../shared/button/button.component"
+import Button from "../../../shared/button/button.component.tsx"
 
 import { useDispatch } from "react-redux"
-import { filterExpenses, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action"
-import { ExpensesFilterInfo } from "../expenses-filter-info/expenses-filter-info.component"
+import { filterExpenses, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action.ts"
+import { ExpensesFilterInfo } from "../expenses-filter-info/expenses-filter-info.component.jsx"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import { Typography } from "@mui/material"
+
+type FormFields = {
+  expenseFor: string,
+  expenseCategory: string,
+  expensesStartDate: string,
+  expensesEndDate: string
+}
 
 const defaultFormFields = {
   expenseFor: "",
@@ -27,7 +34,7 @@ const paperStyles = {
 }
 
 const ExpensesFilter = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   // const { filterExpenses, clearExpensesFilter } = useContext(ExpensesContext)
   const dispatch = useDispatch()
 
@@ -35,14 +42,14 @@ const ExpensesFilter = () => {
     setFormFields(defaultFormFields)
   }
   
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault()
     const { name, value } = event.target
     
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault()
 
     if (formFields.expenseFor === "" && formFields.expenseCategory === "" && formFields.expensesStartDate === "" && formFields.expensesEndDate === "" &&
@@ -54,7 +61,7 @@ const ExpensesFilter = () => {
     dispatch(filterExpenses(formFields))
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     resetFormFields()

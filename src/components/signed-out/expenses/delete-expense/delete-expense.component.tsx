@@ -1,7 +1,7 @@
 import "./delete-expense.styles.scss"
 import { ReactComponent as RemoveExpense } from "../../../../assets/close-button.svg"
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
-import { useContext } from "react"
+import { MouseEvent, useContext } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses } from "../../../../store/signed-out/expenses/expenses.selector"
@@ -12,9 +12,9 @@ const DeleteExpense = () => {
   const dispatch = useDispatch()
   const expenses = useSelector(selectExpenses)
 
-  const handleRemove = (event) => {
+  const handleRemove = (event: MouseEvent<SVGSVGElement>) => {
     event.preventDefault()
-    dispatch(removeExpense(expenses))
+    // dispatch(removeExpense(expenses))
   }
 
   return (
