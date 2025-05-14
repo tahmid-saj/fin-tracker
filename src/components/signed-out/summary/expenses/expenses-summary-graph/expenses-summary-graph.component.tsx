@@ -1,21 +1,22 @@
-import "./expenses-summary-graph.styles.tsx"
-import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.tsx"
+import "./expenses-summary-graph.styles.jsx"
+import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.jsx"
 import { useContext, Fragment } from "react"
 import ReactApexChart from "react-apexcharts"
 // import { ExpensesContext } from "../../../../../contexts/signed-out/expenses/expenses.context"
 import { useSelector } from "react-redux"
-import { selectExpensesSummary } from "../../../../../store/signed-out/expenses/expenses.selector"
+import { selectExpensesSummary } from "../../../../../store/signed-out/expenses/expenses.selector.ts"
 import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
+import { ApexOptions } from "apexcharts"
 
 const ExpensesSummaryGraph = () => {
   // const { expensesSummary } = useContext(ExpensesContext)
   const expensesSummary = useSelector(selectExpensesSummary)
-  const { pastMonthExpenses } = expensesSummary
+  const { pastMonthExpenses } = expensesSummary!
 
   
 
   let expensesCategoryCosts = new Map()
-  const categoryCosts = pastMonthExpenses.map((expense) => {
+  const categoryCosts = pastMonthExpenses?.map((expense) => {
     if (expensesCategoryCosts.has(String(expense.expenseCategory))) {
       expensesCategoryCosts.set(String(expense.expenseCategory), Number(expensesCategoryCosts.get(expense.expenseCategory)) + Number(expense.expenseCost))
     } else {
@@ -27,10 +28,10 @@ const ExpensesSummaryGraph = () => {
     return <Fragment></Fragment>
   }
   
-  const series = [ ...expensesCategoryCosts.values() ]
+  const series: ApexAxisChartSeries = [ ...expensesCategoryCosts.values() ]
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
       height: COMMON_SPACING.pieChart.height,

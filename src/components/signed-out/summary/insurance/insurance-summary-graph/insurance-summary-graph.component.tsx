@@ -1,19 +1,20 @@
-import "./insurance-summary-graph.styles.tsx"
-import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles.tsx"
+import "./insurance-summary-graph.styles.jsx"
+import { InsuranceSummaryGraphContainer } from "./insurance-summary-graph.styles.jsx"
 import ReactApexChart from "react-apexcharts"
 
 import { Fragment } from "react"
 import { useSelector } from "react-redux"
-import { selectInsurancesSummary } from "../../../../../store/signed-out/insurance/insurance.selector"
-import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants"
+import { selectInsurancesSummary } from "../../../../../store/signed-out/insurance/insurance.selector.ts"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
+import { ApexOptions } from "apexcharts"
 
 const InsurancesSummaryGraph = () => {
   const insurancesSummary = useSelector(selectInsurancesSummary)
-  const { pastMonthInsurances } = insurancesSummary
+  const { pastMonthInsurances } = insurancesSummary!
   
 
   let insuranceCategoryPayments = new Map()
-  const categoryCosts = pastMonthInsurances.map((insurance) => {
+  const categoryCosts = pastMonthInsurances?.map((insurance) => {
     if (insuranceCategoryPayments.has(String(insurance.insuranceFor))) {
       insuranceCategoryPayments.set(String(insurance.insuranceFor), Number(insuranceCategoryPayments.get(insurance.insuranceFor)) + Number(insurance.insurancePayment))
     } else {
@@ -25,10 +26,10 @@ const InsurancesSummaryGraph = () => {
     return <Fragment></Fragment>
   }
 
-  const series = [ ...insuranceCategoryPayments.values() ]
+  const series: ApexAxisChartSeries = [ ...insuranceCategoryPayments.values() ]
   
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
       height: COMMON_SPACING.pieChart.height,

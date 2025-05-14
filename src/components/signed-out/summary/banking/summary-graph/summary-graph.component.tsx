@@ -9,19 +9,21 @@ import { selectBankingAccounts } from "../../../../../store/signed-out/banking/b
 import { TRANSACTION_TYPES } from "../../../../../utils/constants/banking.constants";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants";
 import SimplePaper from "../../../../shared/mui/paper/paper.component";
+import { BankingAccount } from "../../../../../store/signed-out/banking/banking.types";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const SummaryGraph = ({ financeItemInfo }) => {
+const SummaryGraph = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const transactionAmounts = bankingAccounts.find(account => {
+  const transactionAmounts = bankingAccounts?.find(account => {
     return account.name === financeItemInfo.name
   })
-  .transactions
-  .map((transaction) => {
+  ?.transactions
+  ?.map((transaction) => {
     if (transaction.type === TRANSACTION_TYPES.withdrawal || transaction.type === TRANSACTION_TYPES.withdrawalTransfer) {
       return -transaction.amount
     }
@@ -30,14 +32,14 @@ const SummaryGraph = ({ financeItemInfo }) => {
   });
 
   // TODO: track dates in transactions
-  const transactionIndexes = transactionAmounts.map((_, index) => String(index));
+  const transactionIndexes = transactionAmounts?.map((_, index) => String(index));
 
-  const series = [{
+  const series: ApexAxisChartSeries = [{
     name: 'Amount ( $ )',
-    data: transactionAmounts
+    data: transactionAmounts!
   }];
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'bar'
     },
@@ -65,13 +67,12 @@ const SummaryGraph = ({ financeItemInfo }) => {
         text: 'Transaction Amount'
       },
       labels: {
-        formatter: function (y) {
+        formatter: function (y: number) {
           return y.toFixed(0);
         }
       }
     },
     xaxis: {
-      type: 'string',
       categories: transactionIndexes,
       labels: {
         rotate: -90

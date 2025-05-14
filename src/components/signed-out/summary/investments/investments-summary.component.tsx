@@ -1,18 +1,18 @@
 import React, { useContext, Fragment } from "react";
 
-import "./investments-summary.styles.tsx";
-import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.tsx"
-import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
+import "./investments-summary.styles.jsx";
+import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.jsx"
+import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component.tsx";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
 import { useSelector } from "react-redux";
-import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
+import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector.ts";
 
-import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
-import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component";
+import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants.ts";
+import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component.tsx";
 import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const InvestmentsSummary = () => {
   // const { investments } = useContext(InvestmentsContext);
@@ -22,7 +22,7 @@ const InvestmentsSummary = () => {
     <InvestmentsSummaryContainer>
       <Typography sx={{ display: "flex", justifyContent: "center", color: COLOR_CODES.general["0"] }} variant="h6">Investments</Typography>
         {
-          investments.map((investment, index) => {
+          investments?.map((investment, index) => {
             return (
               <InvestmentSummaryContainer key={ index }>
                 {/* <FinanceTrackerItemSummary financeTrackerItemInfo={ investment }
