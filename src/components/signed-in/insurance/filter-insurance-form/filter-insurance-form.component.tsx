@@ -1,17 +1,23 @@
-import "./filter-insurance-form.styles.jsx"
-import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.jsx"
-import FormInput from "../../../shared/form-input/form-input.component"
+import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.js"
+import FormInput from "../../../shared/form-input/form-input.component.js"
 import { Typography } from "@mui/material"
-import Button from "../../../shared/button/button.component"
-import { ButtonsContainer } from "../../../shared/button/button.styles"
-import { useState } from "react"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles"
+import Button from "../../../shared/button/button.component.js"
+import { ButtonsContainer } from "../../../shared/button/button.styles.js"
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.js"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
 
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
+
+type FormFields = {
+  insuranceFor: string,
+  insuranceInterval: string,
+  insuranceStartDate: string,
+  insuranceEndDate: string
+}
 
 const defaultFormFields = {
   insuranceFor: "",
@@ -27,14 +33,14 @@ const paperStyles = {
 }
 
 export const FilterInsuranceForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { filterInsurances, clearInsuranceFilter } = useContext(InsuranceContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault()
 
     if ((!formFields.insuranceFor || formFields.insuranceFor === "") &&
@@ -48,13 +54,13 @@ export const FilterInsuranceForm = () => {
     filterInsurances(formFields)
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     resetFormFields()

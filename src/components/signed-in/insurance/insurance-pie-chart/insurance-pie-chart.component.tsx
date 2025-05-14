@@ -1,12 +1,13 @@
-import "./insurance-pie-chart.styles.jsx"
-import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.jsx"
+import "./insurance-pie-chart.styles.js"
+import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.js"
 import ReactApexChart from "react-apexcharts"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { Typography } from "@mui/material"
+import { ApexOptions } from "apexcharts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -25,9 +26,9 @@ const InsurancePieChart = () => {
     }
   })
 
-  const series = [ ...insuranceCategoryPayments.values() ]
+  const series: ApexAxisChartSeries = [ ...insuranceCategoryPayments.values() ]
   
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'donut',
     },
@@ -45,7 +46,8 @@ const InsurancePieChart = () => {
   return (
     <InsuranceGraphContainer>
       <SimplePaper styles={ paperStyles }>
-        <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} variant="h6">Filtered categories</Typography>
+        <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: "6%" }} 
+          variant="h6">Filtered categories</Typography>
         <ReactApexChart options={ options } series={ series } type="donut" 
           height={ COMMON_SPACING.pieChart.height } width={ COMMON_SPACING.pieChart.width }/>
       </SimplePaper>

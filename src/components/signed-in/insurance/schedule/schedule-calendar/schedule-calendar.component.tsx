@@ -1,21 +1,24 @@
-import "./schedule-calendar.styles.jsx"
-import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.jsx";
+import "./schedule-calendar.styles.js"
+import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.js";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../../../utils/constants/shared.constants";
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context";
+import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.js";
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.js";
+import { InsurancePayment } from "../../../../../contexts/signed-in/insurance/insurance.types.js";
 
-function getScheduledData(date, insurancePayments) {
-  date = date.toISOString().split('T')[0]
+function getScheduledData(date: Date, insurancePayments: InsurancePayment[]) {
+  const dateStr = date.toISOString().split('T')[0]
 
-  let scheduledInsurancePaymentsForDate = []
+  let scheduledInsurancePaymentsForDate: InsurancePayment[] = []
   insurancePayments.map((insurancePayment) => {
-    if (insurancePayment.insuranceDate === date) {
+    if (insurancePayment.insuranceDate === dateStr) {
       scheduledInsurancePaymentsForDate.push({
         insuranceFor: insurancePayment.insuranceFor,
         insurancePayment: insurancePayment.insurancePayment,
+        insuranceInterval: insurancePayment.insuranceInterval,
+        insuranceDate: insurancePayment.insuranceDate
       })
     }
   })
@@ -26,7 +29,7 @@ function getScheduledData(date, insurancePayments) {
 const ScheduleCalendar = () => {
   const { insurancePayments, selectScheduledInsurancePayments } = useContext(InsuranceContext)
 
-  function renderCell(date) {
+  function renderCell(date: Date) {
     const list = getScheduledData(date, insurancePayments);
     const displayList = list.filter((item, index) => index < 1);
 
@@ -51,7 +54,7 @@ const ScheduleCalendar = () => {
     return null;
   }
 
-  const onSelectDate = (date) => {
+  const onSelectDate = (date: Date) => {
     const selectedDate = date.toISOString().split('T')[0]
     
     selectScheduledInsurancePayments(selectedDate)

@@ -1,15 +1,23 @@
-import { useState, useContext } from "react"
-import "./add-insurance-form.styles.jsx"
-import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.jsx"
-import FormInput from "../../../shared/form-input/form-input.component"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles"
+import { useState, useContext, FormEvent, ChangeEvent } from "react"
+import "./add-insurance-form.styles.js"
+import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.js"
+import FormInput from "../../../shared/form-input/form-input.component.js"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.js"
 import { Typography } from "@mui/material"
-import { ButtonsContainer } from "../../../shared/button/button.styles"
-import Button from "../../../shared/button/button.component"
+import { ButtonsContainer } from "../../../shared/button/button.styles.js"
+import Button from "../../../shared/button/button.component.js"
 
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+
+type FormFields = {
+  insuranceFor: string,
+  insurancePayment: string,
+  insuranceInterval: string,
+  insuranceFirstPaymentDate: string,
+  insuranceEndDate: string
+}
 
 const defaultInsuranceEndDate = new Date();
 defaultInsuranceEndDate.setFullYear(defaultInsuranceEndDate.getFullYear() + 50);
@@ -29,14 +37,14 @@ const paperStyles = {
 }
 
 const AddInsuranceForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields)
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields)
   const { addInsurance } = useContext(InsuranceContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (!formFields.insuranceFor || formFields.insuranceFor === "" ||
@@ -49,6 +57,7 @@ const AddInsuranceForm = () => {
 
     const adjustedFormFields = {
       ...formFields,
+      insurancePayment: Number(formFields.insurancePayment),
       insuranceEndDate: formFields.insuranceEndDate === "" ? defaultInsuranceEndDate.toISOString().split('T')[0] : formFields.insuranceEndDate
     }
 
@@ -56,7 +65,7 @@ const AddInsuranceForm = () => {
     resetFormFields()
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target
 
     setFormFields({ ...formFields, [name]: value })
@@ -74,7 +83,8 @@ const AddInsuranceForm = () => {
             <FormInput label="Insurance payment per period" type="text" required onChange={ handleChange }
               name="insurancePayment" value={ formFields.insurancePayment }></FormInput>
             
-            <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} paragraph>Interval</Typography>
+            <Typography sx={{ display: "inline-block", position: "relative", marginRight: "2%" }} 
+              paragraph>Interval</Typography>
             <DropButton required name="insuranceInterval" id="insuranceInterval" 
                     onChange={ handleChange } value={ formFields.insuranceInterval }>
               <option value="Daily">Daily</option>

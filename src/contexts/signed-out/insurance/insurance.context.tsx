@@ -134,6 +134,8 @@ export const InsuranceContext = createContext<InsuranceContextType>({
   filterInsurances: () => {},
   removeInsurance: () => {},
 
+  clearInsuranceFilter: () => {},
+
   selectScheduledInsurancePayments: () => {},
 
   insurancesSummary: {}

@@ -14,6 +14,9 @@ export interface InsuranceContextType {
   addInsurance: (insurance: Insurance) => void;
   filterInsurances: (filterConditions: FilterConditions) => void;
   removeInsurance: (insuranceFor: string) => void;
+
+  clearInsuranceFilter: () => void;
+
   selectScheduledInsurancePayments: (insuranceData: string) => void
 
   insurancesSummary: InsurancesSummary;
