@@ -1,5 +1,5 @@
-import "./insurance-table.styles.jsx"
-import { InsuranceTableContainer } from "./insurance-table.styles.jsx";
+import "./insurance-table.styles.tsx"
+import { InsuranceTableContainer } from "./insurance-table.styles.tsx";
 import { useState, useContext, useCallback, useRef } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
@@ -13,8 +13,8 @@ import { selectInsurances, selectInsurancesView } from "../../../../store/signed
 import { removeInsurance, clearInsuranceFilter } from "../../../../store/signed-out/insurance/insurance.action";
 import { alertAddedToExpenses, alertRemovedFromExpenses } from "../../../../utils/alerts/insurance.alerts";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"],

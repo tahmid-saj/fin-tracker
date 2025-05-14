@@ -1,13 +1,13 @@
-import "./expenses-summary.styles.jsx"
-import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.jsx"
+import "./expenses-summary.styles.tsx"
+import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.tsx"
 import { useContext } from "react"
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 
 import { useSelector } from "react-redux"
 import { selectExpensesView, selectFilterConditions, selectExpensesSummary } from "../../../../store/signed-out/expenses/expenses.selector"
 import { Typography } from "@mui/material"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

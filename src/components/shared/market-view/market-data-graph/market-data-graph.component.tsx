@@ -1,5 +1,5 @@
-import "./market-data-graph.styles.jsx";
-import { MarketDataGraphContainer } from "./market-data-graph.styles.jsx";
+import "./market-data-graph.styles.tsx";
+import { MarketDataGraphContainer } from "./market-data-graph.styles.tsx";
 
 import ReactApexChart from "react-apexcharts";
 import { useContext, Fragment } from "react";

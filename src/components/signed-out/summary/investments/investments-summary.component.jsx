@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from "react";
 
-import "./investments-summary.styles.jsx";
-import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.jsx"
+import "./investments-summary.styles.tsx";
+import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.tsx"
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";
@@ -10,7 +10,7 @@ import { selectInvestments } from "../../../../store/signed-out/investments/inve
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component";
-import FinanceSummary from "./summary-graph/finance-summary.component.jsx";
+import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
 

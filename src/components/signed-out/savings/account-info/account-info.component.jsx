@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import "./account-info.styles.jsx";
-import { AccountInfoContainer } from "./account-info.styles.jsx";
+import "./account-info.styles.tsx";
+import { AccountInfoContainer } from "./account-info.styles.tsx";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { useSelector } from "react-redux";
@@ -9,8 +9,8 @@ import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savi
 import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
 import { Typography, Divider } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

@@ -1,18 +1,30 @@
 import { useState, Component, useContext } from "react";
 
-import "./update-account-form.styles.jsx";
-import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.jsx";
+import "./update-account-form.styles.tsx";
+import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
 
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
 
-import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
+import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants.ts";
 import { Typography } from "@mui/material";
-import Button from "../../../shared/button/button.component.jsx";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.jsx";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import Button from "../../../shared/button/button.component.tsx";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import { FormEvent } from "react";
+import { ChangeEvent } from "react";
+
+type FormFields = {
+  savingsAccountName: string,
+  initialDeposit: string,
+  startDate: string,
+  monthlyContribution: string,
+  contributionPeriod: string,
+  contributionInterval: string,
+  apy: string
+}
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -28,9 +40,9 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
 }
 
-const UpdateAccountForm = ({ label, financeItemInfo }) => {
+const UpdateAccountForm = ({ financeItemInfo }) => {
 
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   const { updateSavingsAccount, closeSavingsAccount } = useContext(SavingsContext);
@@ -39,37 +51,37 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleUpdate = (event) => {
-    event.preventDefault();
+  // const handleUpdate = (event) => {
+  //   event.preventDefault();
 
-    if (formFields.savingsAccountName === "" || !formFields.savingsAccountName ||
-      formFields.initialDeposit === "" || !formFields.initialDeposit ||
-      formFields.startDate === "" || !formFields.startDate ||
-      formFields.monthlyContribution === "" || !formFields.monthlyContribution || 
-      formFields.contributionPeriod === "" || !formFields.contributionPeriod ||
-      formFields.contributionInterval === "" || !formFields.contributionInterval ||
-      formFields.apy === "" || !formFields.apy) {
+  //   if (formFields.savingsAccountName === "" || !formFields.savingsAccountName ||
+  //     formFields.initialDeposit === "" || !formFields.initialDeposit ||
+  //     formFields.startDate === "" || !formFields.startDate ||
+  //     formFields.monthlyContribution === "" || !formFields.monthlyContribution || 
+  //     formFields.contributionPeriod === "" || !formFields.contributionPeriod ||
+  //     formFields.contributionInterval === "" || !formFields.contributionInterval ||
+  //     formFields.apy === "" || !formFields.apy) {
 
       
 
-      return;
-    }
+  //     return;
+  //   }
 
-    updateSavingsAccount(financeItemInfo.savingsAccountName, formFields);
-    resetFormFields();
-  };
+  //   updateSavingsAccount(financeItemInfo.savingsAccountName, formFields);
+  //   resetFormFields();
+  // };
 
   const handleClose = (event) => {
     event.preventDefault();

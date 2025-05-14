@@ -1,5 +1,5 @@
-import "./summary-table-investments.styles.jsx"
-import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.jsx";
+import "./summary-table-investments.styles.tsx"
+import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.tsx";
 import { useState, useContext, useRef } from "react"
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
@@ -9,8 +9,8 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 import { useSelector } from "react-redux";
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector";
 import { getInvestmentInfo } from "../../../../store/signed-out/investments/investments.action";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

@@ -1,8 +1,8 @@
-import "./exchange-rate-result.styles.jsx"
-import { ExchangeRateResultContainer } from "./exchange-rate-result.styles.jsx"
+import "./exchange-rate-result.styles.tsx"
+import { ExchangeRateResultContainer } from "./exchange-rate-result.styles.tsx"
 
 import { useContext } from "react"
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.js"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.ts"
 import { Typography } from "@mui/material"
 
 const ExchangeRateResult = () => {

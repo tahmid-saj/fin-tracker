@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import "./summary.styles.jsx";
-import { BankAccountSummary } from "./summary.styles.jsx";
+import "./summary.styles.tsx";
+import { BankAccountSummary } from "./summary.styles.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 import { Typography } from "@mui/material";
 
 const date = new Date();

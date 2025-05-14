@@ -1,6 +1,6 @@
 import { useState } from "react"
-import "./add-insurance-form.styles.jsx"
-import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.jsx"
+import "./add-insurance-form.styles.tsx"
+import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.tsx"
 import FormInput from "../../../shared/form-input/form-input.component"
 import { DropButton } from "../../../shared/drop-button/drop-button.styles"
 import { Typography } from "@mui/material"
@@ -10,8 +10,8 @@ import Button from "../../../shared/button/button.component"
 import { useDispatch, useSelector } from "react-redux"
 import { selectInsurances } from "../../../../store/signed-out/insurance/insurance.selector"
 import { addInsurance } from "../../../../store/signed-out/insurance/insurance.action"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const defaultInsuranceEndDate = new Date();
 defaultInsuranceEndDate.setFullYear(defaultInsuranceEndDate.getFullYear() + 50);

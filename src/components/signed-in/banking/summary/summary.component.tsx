@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import "./summary.styles.js";
-import { BankAccountSummary } from "./summary.styles.js";
+import "./summary.styles.ts";
+import { BankAccountSummary } from "./summary.styles.ts";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 import { Typography } from "@mui/material";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');

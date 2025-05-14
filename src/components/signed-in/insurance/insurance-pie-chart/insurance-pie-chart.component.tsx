@@ -1,11 +1,11 @@
-import "./insurance-pie-chart.styles.js"
-import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.js"
+import "./insurance-pie-chart.styles.ts"
+import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.ts"
 import ReactApexChart from "react-apexcharts"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.js"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
 import { Typography } from "@mui/material"
 import { ApexOptions } from "apexcharts"
 

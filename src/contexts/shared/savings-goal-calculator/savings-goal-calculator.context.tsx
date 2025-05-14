@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect, ReactNode, FC } from "react";
-import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation.js"
-import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations.js";
+import { validateSavingsGoalInput } from "../../../utils/validations/savings.validation.ts"
+import { calculateSavingsGoal, calculateSavingsGoalSchedule } from "../../../utils/calculations/savings.calculations.ts";
 
-import { SavingsGoalResult, SavingsGoalScheduleResult, SavingsGoalInput, SavingsGoalCalculatorProviderProps, SavingsGoalCalculatorContextType } from "./savings-goal-calculator.types.js"
+import { SavingsGoalResult, SavingsGoalScheduleResult, SavingsGoalInput, SavingsGoalCalculatorProviderProps, SavingsGoalCalculatorContextType } from "./savings-goal-calculator.types.ts"
 
 // helper functions
 const calculateSavingsGoalHelper = (savingsGoalResult: SavingsGoalResult | undefined, savingsGoalInput: SavingsGoalInput): SavingsGoalResult | undefined => {

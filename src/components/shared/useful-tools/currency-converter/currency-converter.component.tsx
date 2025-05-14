@@ -1,5 +1,5 @@
-import "./currency-converter.styles.jsx";
-import { CurrencyConverterContainer } from "./currency-converter.styles.jsx";
+import "./currency-converter.styles.tsx";
+import { CurrencyConverterContainer } from "./currency-converter.styles.tsx";
 
 import { useState, useContext, Fragment, ChangeEvent, FormEvent } from "react";
 import FormInput from "../../form-input/form-input.component";
@@ -7,9 +7,9 @@ import Button from "../../button/button.component";
 import CurrencyConverterResult from "./currency-converter-result.component";
 import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context";
 import { Typography } from "@mui/material";
-import { ButtonsContainer } from "../../button/button.styles.jsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../mui/paper/paper.component.jsx";
+import { ButtonsContainer } from "../../button/button.styles.tsx";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../mui/paper/paper.component.tsx";
 
 interface FormFields {
   fromCurrency: string;

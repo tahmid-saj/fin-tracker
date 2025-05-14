@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 
-import "./close-account.styles.jsx";
-import { CloseAccountContainer } from "./close-account.styles.jsx";
+import "./close-account.styles.tsx";
+import { CloseAccountContainer } from "./close-account.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -13,8 +13,8 @@ import { closeBankingAccount } from "../../../../store/signed-out/banking/bankin
 
 import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   confirmDelete: ""

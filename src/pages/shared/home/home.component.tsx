@@ -1,14 +1,14 @@
-import "./home.styles.jsx";
-import { HomeContainer } from "./home.styles.jsx";
-import MediaCard from "../../../components/shared/mui/media-card/media-card.component.jsx"
+import "./home.styles.tsx";
+import { HomeContainer } from "./home.styles.tsx";
+import MediaCard from "../../../components/shared/mui/media-card/media-card.component.tsx"
 import { Fragment } from "react";
 
 import { useContext } from "react";
 // import { UserContext } from "../../../contexts/shared/user/user.context";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../../store/shared/user/user.selector.js";
+import { selectCurrentUser } from "../../../store/shared/user/user.selector.ts";
 
-import { COLOR_CODES, NAV_LINKS } from "../../../utils/constants/shared.constants.js";
+import { COLOR_CODES, NAV_LINKS } from "../../../utils/constants/shared.constants.ts";
 
 const cardStyles = {
   width: 360,

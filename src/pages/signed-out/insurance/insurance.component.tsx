@@ -1,37 +1,37 @@
 import { Divider } from "@mui/material"
-import AddInsuranceForm from "../../../components/signed-out/insurance/add-insurance-form/add-insurance-form.component.jsx"
-import FilterInsuranceForm from "../../../components/signed-out/insurance/filter-insurance-form/filter-insurance-form.component.jsx"
-import InsurancePieChart from "../../../components/signed-out/insurance/insurance-pie-chart/insurance-pie-chart.component.jsx"
-import InsuranceSummary from "../../../components/signed-out/insurance/insurance-summary/insurance-summary.component.jsx"
-import InsuranceTable from "../../../components/signed-out/insurance/insurance-table/insurance-table.component.jsx"
-import "./insurance.styles.jsx"
-import { InsuranceContainer, InsuranceFilterContainer } from "./insurance.styles.jsx"
+import AddInsuranceForm from "../../../components/signed-out/insurance/add-insurance-form/add-insurance-form.component.tsx"
+import FilterInsuranceForm from "../../../components/signed-out/insurance/filter-insurance-form/filter-insurance-form.component.tsx"
+import InsurancePieChart from "../../../components/signed-out/insurance/insurance-pie-chart/insurance-pie-chart.component.tsx"
+import InsuranceSummary from "../../../components/signed-out/insurance/insurance-summary/insurance-summary.component.tsx"
+import InsuranceTable from "../../../components/signed-out/insurance/insurance-table/insurance-table.component.tsx"
+import "./insurance.styles.tsx"
+import { InsuranceContainer, InsuranceFilterContainer } from "./insurance.styles.tsx"
 
 import { useEffect, Fragment } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectInsurances, selectInsurancePayments, selectFilterConditions,
   selectInsurancesView, selectInsurancePaymentsView,
-} from "../../../store/signed-out/insurance/insurance.selector.js"
+} from "../../../store/signed-out/insurance/insurance.selector.ts"
 import { setInsurancesSummary, setInsurancesView, setInsurancePaymentsView, 
   setInsurancePayments, filterInsurancesHelper, filterInsurancePaymentsHelper
-} from "../../../store/signed-out/insurance/insurance.action.js"
+} from "../../../store/signed-out/insurance/insurance.action.ts"
 
-import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants.js"
+import { INSURANCE_INTERVALS, INSURANCE_INTERVALS_DAYS_MULTIPLIER } from "../../../utils/constants/insurance.constants.ts"
 
-import { selectSelectedInsurancePaymentsDate, selectScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.selector.js"
-import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action.js"
-import ScheduleCalendar from "../../../components/signed-out/insurance/schedule/schedule-calendar/schedule-calendar.component.jsx"
-import ScheduleDayInfo from "../../../components/signed-out/insurance/schedule/schedule-day-info/schedule-day-info.component.jsx"
+import { selectSelectedInsurancePaymentsDate, selectScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.selector.ts"
+import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action.ts"
+import ScheduleCalendar from "../../../components/signed-out/insurance/schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "../../../components/signed-out/insurance/schedule/schedule-day-info/schedule-day-info.component.tsx"
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
 
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx"
 import { Typography } from "@mui/material";
-import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
-import { InsuranceFilterInfo } from "../../../components/signed-out/insurance/insurance-filter-info/insurance-filter-info.component.jsx"
-import { InsurancePayment } from "../../../contexts/signed-out/insurance/insurance.types.js"
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts"
+import { InsuranceFilterInfo } from "../../../components/signed-out/insurance/insurance-filter-info/insurance-filter-info.component.tsx"
+import { InsurancePayment } from "../../../contexts/signed-out/insurance/insurance.types.ts"
 
 const Insurance = () => {
   const insurances = useSelector(selectInsurances)

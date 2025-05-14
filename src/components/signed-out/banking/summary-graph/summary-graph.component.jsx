@@ -5,13 +5,13 @@ import ReactApexChart from 'react-apexcharts';
 import { useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 
-import "./summary-graph.styles.jsx";
-import { SummaryGraphBankingContainer } from "./summary-graph.styles.jsx";
+import "./summary-graph.styles.tsx";
+import { SummaryGraphBankingContainer } from "./summary-graph.styles.tsx";
 
 import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

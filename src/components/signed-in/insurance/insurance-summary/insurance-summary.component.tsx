@@ -1,11 +1,11 @@
-import "./insurance-summary.styles.js"
-import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.js"
+import "./insurance-summary.styles.ts"
+import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.ts"
 import { Typography } from "@mui/material"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.js"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

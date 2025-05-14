@@ -1,18 +1,18 @@
 import { useState, useContext } from "react";
 
-import "./close-account.styles.jsx";
-import { CloseAccountContainer } from "./close-account.styles.jsx";
+import "./close-account.styles.tsx";
+import { CloseAccountContainer } from "./close-account.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.js";
-import Button from "../../../shared/button/button.component.js";
+import FormInput from "../../../shared/form-input/form-input.component.ts";
+import Button from "../../../shared/button/button.component.ts";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
 
-import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants.js";
+import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants.ts";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 type FormFields = {
   confirmDelete: string

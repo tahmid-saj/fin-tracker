@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import FormInput from "../../../shared/form-input/form-input.component"
-import "./expense-filter.styles.jsx"
-import { ExpenseFilterContainer, ExpenseFilterFormContainer } from "./expense-filter.styles.jsx"
+import "./expense-filter.styles.tsx"
+import { ExpenseFilterContainer, ExpenseFilterFormContainer } from "./expense-filter.styles.tsx"
 
 // import { ExpensesContext } from "../../../../contexts/signed-out/expenses/expenses.context"
 import Button from "../../../shared/button/button.component"
@@ -9,8 +9,8 @@ import Button from "../../../shared/button/button.component"
 import { useDispatch } from "react-redux"
 import { filterExpenses, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action"
 import { ExpensesFilterInfo } from "../expenses-filter-info/expenses-filter-info.component"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import { Typography } from "@mui/material"
 
 const defaultFormFields = {

@@ -4,8 +4,8 @@ import { withdrawFromBankingAccount } from "../../../../store/signed-out/banking
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { Checkbox, Typography } from "@mui/material";
 
-import "./withdraw.styles.jsx";
-import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.jsx";
+import "./withdraw.styles.tsx";
+import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -15,8 +15,8 @@ import Button from "../../../shared/button/button.component";
 import { selectExpenses, selectExpensesTagLimit } from "../../../../store/signed-out/expenses/expenses.selector";
 import { addExpense } from "../../../../store/signed-out/expenses/expenses.action";
 import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   amount: "",

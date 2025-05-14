@@ -1,14 +1,23 @@
-import "./summary-table-savings-account.styles.jsx"
-import { SummaryTableSavingsContainer } from "./summary-table-savings-account.styles.jsx";
+import "./summary-table-savings-account.styles.tsx"
+import { SummaryTableSavingsContainer } from "./summary-table-savings-account.styles.tsx";
 import { useState, useContext, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { SavingsAccount } from "../../../../contexts/signed-in/savings/savings.types.ts";
+import { ColDef } from "ag-grid-community";
+
+type SavingsData = {
+  Date: string,
+  InterestEarned: string,
+  TotalInterestEarned: string,
+  Balance: string
+}
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
@@ -16,10 +25,10 @@ const paperStyles = {
   justifyContent: "center"
 }
 
-const SummaryTableSavingsAccount = ({ financeItemInfo }) => {
+const SummaryTableSavingsAccount = ({ financeItemInfo }: { financeItemInfo: SavingsAccount }) => {
   const { savingsAccounts, getSavingsAccountInfo } = useContext(SavingsContext)
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName)
-  const { savings } = savingsAccountInfo
+  const { savings } = savingsAccountInfo!
 
   const rowData = savings.map((savingMonth) => {
     return {
@@ -31,12 +40,12 @@ const SummaryTableSavingsAccount = ({ financeItemInfo }) => {
   })
 
   // Column Definitions: Defines the columns to be displayed.
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs: ColDef<SavingsData>[] = [
     { field: "Date"},
     { field: "InterestEarned" },
     { field: "TotalInterestEarned" },
     { field: "Balance" }
-  ])
+  ]
 
   return (
     <SimplePaper styles={ paperStyles }>

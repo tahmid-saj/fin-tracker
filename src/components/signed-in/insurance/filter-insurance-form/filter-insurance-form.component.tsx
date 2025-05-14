@@ -1,16 +1,16 @@
-import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.js"
-import FormInput from "../../../shared/form-input/form-input.component.js"
+import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.ts"
+import FormInput from "../../../shared/form-input/form-input.component.ts"
 import { Typography } from "@mui/material"
-import Button from "../../../shared/button/button.component.js"
-import { ButtonsContainer } from "../../../shared/button/button.styles.js"
+import Button from "../../../shared/button/button.component.ts"
+import { ButtonsContainer } from "../../../shared/button/button.styles.ts"
 import { ChangeEvent, FormEvent, MouseEvent, useState } from "react"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.js"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.ts"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts"
 
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.js"
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
 
 type FormFields = {
   insuranceFor: string,

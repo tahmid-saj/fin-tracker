@@ -1,5 +1,5 @@
-import "./savings-goal-table.styles.jsx";
-import { SavingsGoalTableGrid } from "./savings-goal-table.styles.jsx";
+import "./savings-goal-table.styles.tsx";
+import { SavingsGoalTableGrid } from "./savings-goal-table.styles.tsx";
 
 import { useState, useContext, useRef } from "react";
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component

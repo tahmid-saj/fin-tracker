@@ -1,13 +1,13 @@
 import { Fragment } from "react"
-import "./insurance-filter-info.styles.jsx"
-import { InsuranceFilterInfoContainer } from "./insurance-filter-info.styles.jsx"
+import "./insurance-filter-info.styles.tsx"
+import { InsuranceFilterInfoContainer } from "./insurance-filter-info.styles.tsx"
 
 import { Typography } from "@mui/material"
 
 import { useSelector } from "react-redux"
-import { selectInsurancePaymentsView, selectFilterConditions } from "../../../../store/signed-out/insurance/insurance.selector.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import { selectInsurancePaymentsView, selectFilterConditions } from "../../../../store/signed-out/insurance/insurance.selector.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

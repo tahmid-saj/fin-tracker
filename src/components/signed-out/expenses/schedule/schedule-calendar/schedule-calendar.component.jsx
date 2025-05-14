@@ -1,8 +1,8 @@
 // signed out
-import "./schedule-calendar.styles.jsx"
+import "./schedule-calendar.styles.tsx"
 import { CalendarTodoList,
   ExpensesCalendarContainer
-} from "./schedule-calendar.styles.jsx";
+} from "./schedule-calendar.styles.tsx";
 
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";

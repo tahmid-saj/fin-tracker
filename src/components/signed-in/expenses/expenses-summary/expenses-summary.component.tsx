@@ -1,10 +1,10 @@
-import "./expenses-summary.styles.js"
-import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.js"
+import "./expenses-summary.styles.ts"
+import { ExpensesSummaryInfoContainer } from "./expenses-summary.styles.ts"
 import { useContext } from "react"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.js"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.ts"
 import { Typography } from "@mui/material"
-import SimplePaper from "../../../shared/mui/paper/paper.component.js"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

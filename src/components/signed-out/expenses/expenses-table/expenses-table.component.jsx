@@ -1,5 +1,5 @@
-import "./expenses-table.styles.jsx"
-import { ExpensesTableContainer } from "./expenses-table.styles.jsx";
+import "./expenses-table.styles.tsx"
+import { ExpensesTableContainer } from "./expenses-table.styles.tsx";
 import { useState, useContext, useCallback, useRef } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
@@ -13,8 +13,8 @@ import Button from "../../../shared/button/button.component";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExpenses, selectExpensesView } from "../../../../store/signed-out/expenses/expenses.selector";
 import { removeExpense, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"],

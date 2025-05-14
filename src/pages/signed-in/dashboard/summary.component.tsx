@@ -1,22 +1,22 @@
-import "./summary.styles.jsx";
+import "./summary.styles.tsx";
 import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
-} from "./summary.styles.jsx";
+} from "./summary.styles.tsx";
 
 import React, { useContext, Fragment } from "react";
-import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component.jsx";
-import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component.jsx";
-import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component.jsx";
-import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component.jsx";
-import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component.jsx"
+import ExpensesSummary from "../../../components/signed-in/summary/expenses/expenses.component.tsx";
+import BankingSummary from "../../../components/signed-in/summary/banking/banking-summary.component.tsx";
+import InvestmentsSummary from "../../../components/signed-in/summary/investments/investments-summary.component.tsx";
+import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component.tsx";
+import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component.tsx"
 
-import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context.js";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.js";
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.js";
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.js";
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.js";
-import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.js";
+import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context.ts";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.ts";
+import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.ts";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.ts";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.ts";
+import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.ts";
 
-import ChatBot from "../../shared/chatbot/chatbot.component.js";
+import ChatBot from "../../shared/chatbot/chatbot.component.ts";
 
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PaidIcon from '@mui/icons-material/Paid'
@@ -25,10 +25,10 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import SavingsIcon from '@mui/icons-material/Savings';
 import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx"
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../components/shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../components/shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

@@ -1,26 +1,26 @@
 import React, { Component, useEffect } from "react";
 
-import "./savings.styles.jsx";
-import { SavingsContainer } from "./savings.styles.jsx";
+import "./savings.styles.tsx";
+import { SavingsContainer } from "./savings.styles.tsx";
 
-import CreateAccountForm from "../../../components/signed-out/savings/create-account-form/create-account-form.component.jsx";
+import CreateAccountForm from "../../../components/signed-out/savings/create-account-form/create-account-form.component.tsx";
 
 // import { SavingsContext } from "../../../contexts/signed-out/savings/savings.context";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings.selector.js";
-import { setSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.action.js";
+import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings.selector.ts";
+import { setSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.action.ts";
 
-import AllSavingsSummary from "../../../components/signed-out/savings/all-savings-summary/all-savings-summary.component.jsx";
+import AllSavingsSummary from "../../../components/signed-out/savings/all-savings-summary/all-savings-summary.component.tsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.js";
-import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component.jsx";
+import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.ts";
+import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component.tsx";
 
 import CalculateIcon from '@mui/icons-material/Calculate';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import SavingsIcon from '@mui/icons-material/Savings';
 import AddIcon from '@mui/icons-material/Add';
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx";
-import SavingsList from "../../../components/signed-out/savings/savings/savings.component.jsx";
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx";
+import SavingsList from "../../../components/signed-out/savings/savings/savings.component.tsx";
 
 const Savings = () => {
   // const { savingsAccounts } = useContext(SavingsContext);

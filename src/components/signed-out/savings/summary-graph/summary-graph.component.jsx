@@ -1,8 +1,8 @@
 import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
-import "./summary-graph.styles.jsx";
-import { SummaryGraphSavingsContainer } from "./summary-graph.styles.jsx";
+import "./summary-graph.styles.tsx";
+import { SummaryGraphSavingsContainer } from "./summary-graph.styles.tsx";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
@@ -11,8 +11,8 @@ import { useSelector } from "react-redux";
 import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
 import { getSavingsAccountInfo } from "../../../../store/signed-out/savings/savings.action";
 
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]

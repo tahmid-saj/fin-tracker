@@ -1,9 +1,9 @@
-import "./expenses-summary-graph.styles.jsx"
-import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.jsx"
+import "./expenses-summary-graph.styles.tsx"
+import { ExpensesSummaryGraphContainer } from "./expenses-summary-graph.styles.tsx"
 import { Fragment, useContext } from "react"
 import ReactApexChart from "react-apexcharts"
 import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context"
-import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.js"
+import { COMMON_SPACING } from "../../../../../utils/constants/shared.constants.ts"
 
 const ExpensesSummaryGraph = () => {
   const { expensesSummary } = useContext(ExpensesContext)

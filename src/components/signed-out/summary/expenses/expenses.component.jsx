@@ -1,7 +1,7 @@
-import "./expenses.styles.jsx"
+import "./expenses.styles.tsx"
 import { ExpensesSummaryDashboardContainer,
   ExpensesSummaryInfoGraphContainer
-} from "./expenses.styles.jsx"
+} from "./expenses.styles.tsx"
 
 import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component"
 import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component"
@@ -11,8 +11,8 @@ import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.comp
 
 import { useSelector } from "react-redux"
 import { selectSelectedExpensesDate, selectScheduledExpensesView } from "../../../../store/signed-out/expenses/expenses.selector"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

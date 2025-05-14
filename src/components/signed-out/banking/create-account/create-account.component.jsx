@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { createBankingAccount } from "../../../../store/signed-out/banking/banking.action";
 
-import "./create-account.styles.jsx";
-import { CreateAccountContainer } from "./create-account.styles.jsx";
+import "./create-account.styles.tsx";
+import { CreateAccountContainer } from "./create-account.styles.tsx";
 
 const defaultFormFields = {
   bankAccountName: ""

@@ -3,8 +3,8 @@ import Withdraw from "../withdraw/withdraw.component";
 import TransferMoney from "../transfer-money/transfer-money.component";
 import CloseAccount from "../close-account/close-account.component";
 
-import "./action-list.styles.jsx";
-import { ActionListContainer } from "./action-list.styles.jsx";
+import "./action-list.styles.tsx";
+import { ActionListContainer } from "./action-list.styles.tsx";
 
 const ActionList = ({ financeItemInfo }) => {
   return (

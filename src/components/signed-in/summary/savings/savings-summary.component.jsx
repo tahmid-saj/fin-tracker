@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import "./savings-summary.styles.jsx";
-import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.jsx";
+import "./savings-summary.styles.tsx";
+import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.tsx";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component";
 
@@ -10,7 +10,7 @@ import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.c
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryGraphSavingsAccount from "../../savings/summary-graph/summary-graph.component";
 
-import FinanceSummary from "./summary-graph/finance-summary.component.jsx";
+import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
 

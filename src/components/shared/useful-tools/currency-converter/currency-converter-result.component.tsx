@@ -1,8 +1,8 @@
-import "./currency-converter-result.styles.jsx"
-import { CurrencyConverterResultContainer } from "./currency-converter-result.styles.jsx"
+import "./currency-converter-result.styles.tsx"
+import { CurrencyConverterResultContainer } from "./currency-converter-result.styles.tsx"
 
 import { useContext } from "react"
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.js"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.ts"
 import { Typography } from "@mui/material"
 
 const CurrencyConverterResult = () => {

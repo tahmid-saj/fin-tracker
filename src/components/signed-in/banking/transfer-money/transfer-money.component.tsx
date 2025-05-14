@@ -2,17 +2,17 @@ import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./transfer-money.styles.scss";
 
-import "./transfer-money.styles.js";
-import { TransferMoneyContainer } from "./transfer-money.styles.js";
+import "./transfer-money.styles.ts";
+import { TransferMoneyContainer } from "./transfer-money.styles.ts";
 
-import FormInput from "../../../shared/form-input/form-input.component.js";
-import Button from "../../../shared/button/button.component.js";
+import FormInput from "../../../shared/form-input/form-input.component.ts";
+import Button from "../../../shared/button/button.component.ts";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
-import SimplePaper from "../../../shared/mui/paper/paper.component.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
 import { Typography } from "@mui/material";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 type FormFields = {
   transferTo: string,

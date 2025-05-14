@@ -1,11 +1,11 @@
-import "./insurance-pie-chart.styles.jsx"
-import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.jsx"
+import "./insurance-pie-chart.styles.tsx"
+import { InsuranceGraphContainer } from "./insurance-pie-chart.styles.tsx"
 import ReactApexChart from "react-apexcharts"
 
 import { useSelector } from "react-redux"
 import { selectInsurancePaymentsView } from "../../../../store/signed-out/insurance/insurance.selector"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { Typography } from "@mui/material"
 
 const paperStyles = {

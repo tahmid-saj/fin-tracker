@@ -1,21 +1,21 @@
 import { useContext } from "react";
 
-import "./account-info.styles.jsx";
-import { AccountInfoContainer } from "./account-info.styles.jsx";
+import "./account-info.styles.ts";
+import { AccountInfoContainer } from "./account-info.styles.ts";
 
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.ts";
 
-import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants";
+import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants.ts";
 import { Typography, Divider } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
   width: COMMON_SPACING.financeItemInfo.width
 }
 
-const AccountInfo = ({ financeItemInfo }) => {
+const AccountInfo = ({ financeItemInfo }: { financeItemInfo: SavingsAccount }) => {
   const { getSavingsAccountInfo } = useContext(SavingsContext);
   const savingsAccountInfo = getSavingsAccountInfo(financeItemInfo.savingsAccountName);
 

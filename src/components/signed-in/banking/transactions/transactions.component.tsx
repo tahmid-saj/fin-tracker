@@ -1,11 +1,11 @@
 import { useContext } from "react";
 
-import Transaction from "../transaction/transaction.component.js";
-import "./transactions.styles.jsx";
-import { TransactionsContainer } from "./transactions.styles.js";
+import Transaction from "../transaction/transaction.component.ts";
+import "./transactions.styles.tsx";
+import { TransactionsContainer } from "./transactions.styles.ts";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.js";
-import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.js";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const date = new Date();
 let currentDay= String(date.getDate()).padStart(2, '0');

@@ -1,14 +1,14 @@
-import "./summary.styles.jsx";
+import "./summary.styles.tsx";
 import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
-} from "./summary.styles.jsx";
+} from "./summary.styles.tsx";
 
 import React, { useEffect, Fragment } from "react";
-import ChatBot from "../../shared/chatbot/chatbot.component.js";
-import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component.jsx";
-import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component.jsx";
-import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component.jsx";
-import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component.jsx";
-import InsurancesSummary from "../../../components/signed-out/summary/insurance/insurance-summary.component.jsx";
+import ChatBot from "../../shared/chatbot/chatbot.component.ts";
+import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component.tsx";
+import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component.tsx";
+import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component.tsx";
+import SavingsSummary from "../../../components/signed-out/summary/savings/savings-summary.component.tsx";
+import InsurancesSummary from "../../../components/signed-out/summary/insurance/insurance-summary.component.tsx";
 
 // import { BankingContext } from "../../../contexts/signed-out/banking/banking.context";
 // import { InvestmentsContext } from "../../../contexts/signed-out/investments/investments.context";
@@ -17,17 +17,17 @@ import InsurancesSummary from "../../../components/signed-out/summary/insurance/
 // import { ExpensesContext } from "../../../contexts/signed-out/expenses/expenses.context";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector.js";
-import { selectExpenses, selectExpensesSummary, selectSelectedExpensesDate } from "../../../store/signed-out/expenses/expenses.selector.js";
-import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector.js";
-import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector.js";
-import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector.js";
-import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector.js";  
-import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action.js";
-import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../../store/signed-out/expenses/expenses.action.js";
+import { selectSummaries } from "../../../store/signed-out/dashboard/dashboard.selector.ts";
+import { selectExpenses, selectExpensesSummary, selectSelectedExpensesDate } from "../../../store/signed-out/expenses/expenses.selector.ts";
+import { selectBankingAccounts, selectBankingSummary } from "../../../store/signed-out/banking/banking.selector.ts";
+import { selectInvestments, selectInvestmentsSummary } from "../../../store/signed-out/investments/investments.selector.ts";
+import { selectSavingsAccounts, selectSavingsAccountsSummary } from "../../../store/signed-out/savings/savings.selector.ts";
+import { selectInsurances, selectInsurancesSummary } from "../../../store/signed-out/insurance/insurance.selector.ts";  
+import { setSummaries, setUserSummary } from "../../../store/signed-out/dashboard/dashboard.action.ts";
+import { selectScheduledExpensesHelper, setScheduledExpensesView } from "../../../store/signed-out/expenses/expenses.action.ts";
 
-import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector.js";
-import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action.js";
+import { selectInsurancePayments, selectSelectedInsurancePaymentsDate } from "../../../store/signed-out/insurance/insurance.selector.ts";
+import { selectScheduledInsurancePaymentsHelper, setScheduledInsurancePaymentsView } from "../../../store/signed-out/insurance/insurance.action.ts";
 
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PaidIcon from '@mui/icons-material/Paid'
@@ -36,10 +36,10 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import SavingsIcon from '@mui/icons-material/Savings';
 import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx"
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../components/shared/mui/paper/paper.component.jsx";
-import { COLOR_CODES, COMMON_SPACING } from "../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../../components/shared/mui/paper/paper.component.tsx";
+import { COLOR_CODES, COMMON_SPACING } from "../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],

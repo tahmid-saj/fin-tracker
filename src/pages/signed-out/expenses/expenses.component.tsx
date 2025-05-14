@@ -1,10 +1,10 @@
-import AddExpense from "../../../components/signed-out/expenses/add-expense/add-expense.component.jsx"
-import ExpensesFilter from "../../../components/signed-out/expenses/expenses-filter/expense-filter.component.jsx"
-import ExpensesGraph from "../../../components/signed-out/expenses/expenses-graph/expenses-graph.component.jsx"
-import ExpensesTable from "../../../components/signed-out/expenses/expenses-table/expenses-table.component.jsx"
-import ExpensesSummary from "../../../components/signed-out/expenses/expenses-summary/expenses-summary.component.jsx"
-import "./expenses.styles.jsx"
-import { ExpensesContainer, ExpensesFilterContainer } from "./expenses.styles.jsx"
+import AddExpense from "../../../components/signed-out/expenses/add-expense/add-expense.component.tsx"
+import ExpensesFilter from "../../../components/signed-out/expenses/expenses-filter/expense-filter.component.tsx"
+import ExpensesGraph from "../../../components/signed-out/expenses/expenses-graph/expenses-graph.component.tsx"
+import ExpensesTable from "../../../components/signed-out/expenses/expenses-table/expenses-table.component.tsx"
+import ExpensesSummary from "../../../components/signed-out/expenses/expenses-summary/expenses-summary.component.tsx"
+import "./expenses.styles.tsx"
+import { ExpensesContainer, ExpensesFilterContainer } from "./expenses.styles.tsx"
 
 import { useEffect, Fragment } from "react"
 import { Divider } from "@mui/material"
@@ -13,23 +13,23 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectExpenses, selectExpensesView, 
   selectExpensesTagLimit, selectFilterConditions, selectSelectedExpensesDate,
   selectScheduledExpensesView
-} from "../../../store/signed-out/expenses/expenses.selector.js"
+} from "../../../store/signed-out/expenses/expenses.selector.ts"
 import { setExpensesSummary, setExpensesTagLimit, setExpensesView, 
   filterExpensesHelper, selectScheduledExpensesHelper, setScheduledExpensesView
-} from "../../../store/signed-out/expenses/expenses.action.js"
+} from "../../../store/signed-out/expenses/expenses.action.ts"
 
-import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component.jsx"
-import ScheduleDayInfo from "../../../components/signed-out/expenses/schedule/schedule-day-info/schedule-day-info.component.jsx"
+import ScheduleCalendar from "../../../components/signed-out/expenses/schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "../../../components/signed-out/expenses/schedule/schedule-day-info/schedule-day-info.component.tsx"
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
 
-import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.jsx"
+import ItemTabs from "../../../components/shared/mui/tabs/tabs.component.tsx"
 import { Typography } from "@mui/material";
-import { ExpensesFilterInfo } from "../../../components/signed-out/expenses/expenses-filter-info/expenses-filter-info.component.jsx"
-import { COLOR_CODES } from "../../../utils/constants/shared.constants.js"
-import { Expense } from "../../../contexts/signed-out/expenses/expenses.types.js"
+import { ExpensesFilterInfo } from "../../../components/signed-out/expenses/expenses-filter-info/expenses-filter-info.component.tsx"
+import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts"
+import { Expense } from "../../../contexts/signed-out/expenses/expenses.types.ts"
 
 const Expenses = () => {
   // const { expenses, expensesView } = useContext(ExpensesContext)

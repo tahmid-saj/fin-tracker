@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 
-import "./deposit.styles.jsx";
-import { DepositContainer } from "./deposit.styles.jsx";
+import "./deposit.styles.tsx";
+import { DepositContainer } from "./deposit.styles.tsx";
 
 import FormInput from "../../../shared/form-input/form-input.component";
 import Button from "../../../shared/button/button.component";
@@ -10,9 +10,9 @@ import Button from "../../../shared/button/button.component";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
 import { depositToBankingAccount } from "../../../../store/signed-out/banking/banking.action";
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
-import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js";
+import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const defaultFormFields = {
   amount: "",

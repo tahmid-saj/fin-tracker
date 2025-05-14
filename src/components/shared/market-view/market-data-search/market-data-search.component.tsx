@@ -1,15 +1,15 @@
-import "./market-data-search.styles.jsx";
-import { DropButton } from "../../drop-button/drop-button.styles.js";
-import { ButtonsContainer } from "../../button/button.styles.js";
-import { MarketDataSearchContainer } from "./market-data-search.styles.jsx";
+import "./market-data-search.styles.tsx";
+import { DropButton } from "../../drop-button/drop-button.styles.ts";
+import { ButtonsContainer } from "../../button/button.styles.ts";
+import { MarketDataSearchContainer } from "./market-data-search.styles.tsx";
 
 import { useState, useContext } from "react";
-import FormInput from "../../form-input/form-input.component.js";
-import Button from "../../button/button.component.js";
-import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context.js";
+import FormInput from "../../form-input/form-input.component.ts";
+import Button from "../../button/button.component.ts";
+import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context.ts";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../mui/paper/paper.component.js";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js";
+import SimplePaper from "../../mui/paper/paper.component.ts";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const initialFormFields = {
   marketDataType: "Crypto",

@@ -1,5 +1,5 @@
-import "./filter-insurance-form.styles.jsx"
-import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.jsx"
+import "./filter-insurance-form.styles.tsx"
+import { InsuranceFilterContainer, InsuranceFilterFormContainer } from "./filter-insurance-form.styles.tsx"
 import FormInput from "../../../shared/form-input/form-input.component"
 import { Typography } from "@mui/material"
 import Button from "../../../shared/button/button.component"
@@ -9,8 +9,8 @@ import { DropButton } from "../../../shared/drop-button/drop-button.styles"
 
 import { useDispatch, useSelector } from "react-redux"
 import { clearInsuranceFilter, filterInsurances } from "../../../../store/signed-out/insurance/insurance.action"
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.js"
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 
 const defaultFormFields = {
   insuranceFor: "",
