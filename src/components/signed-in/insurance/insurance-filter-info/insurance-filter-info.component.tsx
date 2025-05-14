@@ -1,12 +1,12 @@
 import { Fragment, useContext } from "react"
-import "./insurance-filter-info.styles.jsx"
-import { InsuranceFilterInfoContainer } from "./insurance-filter-info.styles.jsx"
+import "./insurance-filter-info.styles.js"
+import { InsuranceFilterInfoContainer } from "./insurance-filter-info.styles.js"
 
 import { Typography } from "@mui/material"
 
 import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.js"
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.jsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.js"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.js"
 
 const paperStyles = {

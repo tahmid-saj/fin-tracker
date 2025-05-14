@@ -1,10 +1,10 @@
-import "./schedule-day-info.styles.jsx"
-import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.jsx"
+import "./schedule-day-info.styles.js"
+import { InsuranceScheduleDayInfo } from "./schedule-day-info.styles.js"
 import { Typography, Divider } from "@mui/material"
 import { Fragment, useContext } from "react"
-import SimplePaper from "../../../../shared/mui/paper/paper.component"
-import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants"
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context"
+import SimplePaper from "../../../../shared/mui/paper/paper.component.js"
+import { COLOR_CODES, COMMON_SPACING } from "../../../../../utils/constants/shared.constants.js"
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.js"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["1"],
@@ -14,12 +14,12 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const { scheduledInsurancePaymentsView } = useContext(InsuranceContext)
   
-  if (!scheduledInsurancePaymentsView.length) return <Fragment/>
+  if (!scheduledInsurancePaymentsView?.length) return <Fragment/>
   
   return (
     <InsuranceScheduleDayInfo>
     {
-      scheduledInsurancePaymentsView.map((insurancePayment) => {
+      scheduledInsurancePaymentsView?.map((insurancePayment) => {
         return (
           <SimplePaper styles={ paperStyles }>
             <Typography sx={{ display: "flex", justifyContent: "center" }} variant="h6">{`${insurancePayment.insuranceFor}`}</Typography>
