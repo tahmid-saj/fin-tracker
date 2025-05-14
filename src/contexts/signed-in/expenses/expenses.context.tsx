@@ -112,6 +112,8 @@ export const ExpensesContext = createContext<ExpensesContextType>({
   filterExpenses: () => {},
   removeExpense: () => {},
 
+  clearExpensesFilter: () => {},
+
   selectScheduledExpenses: () => {},
 
   expensesSummary: null,

@@ -1,14 +1,10 @@
 import React, { useContext, Fragment } from "react";
 
-import "./investments-summary.styles.jsx";
-import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.jsx"
-
-import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component.tsx";
+import "./investments-summary.styles.tsx";
+import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.tsx"
 
 import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants.ts";
-import SummaryGraphInvestment from "../../investments/summary-graph/summary-graph.component.tsx";
 import FinanceSummary from "./summary-graph/finance-summary.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";

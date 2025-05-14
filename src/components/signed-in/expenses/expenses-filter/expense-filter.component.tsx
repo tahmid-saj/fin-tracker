@@ -15,8 +15,8 @@ import { MouseEvent } from "react"
 type FormFields = {
   expenseFor: string,
   expenseCategory: string,
-  expenseStartDate: string,
-  expenseEndDate: string
+  expensesStartDate: string,
+  expensesEndDate: string
 }
 
 const defaultFormFields = {
@@ -47,7 +47,7 @@ const ExpensesFilter = () => {
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLDivElement>) => {
     event.preventDefault()
 
     if (formFields.expenseFor === "" && formFields.expenseCategory === "" && formFields.expensesStartDate === "" && formFields.expensesEndDate === "" &&

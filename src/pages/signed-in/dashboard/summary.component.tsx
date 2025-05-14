@@ -9,14 +9,14 @@ import InvestmentsSummary from "../../../components/signed-in/summary/investment
 import SavingsSummary from "../../../components/signed-in/summary/savings/savings-summary.component.tsx";
 import InsurancesSummary from "../../../components/signed-in/summary/insurance/insurance-summary.component.tsx"
 
-import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context.ts";
-import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.ts";
-import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.ts";
-import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.ts";
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.ts";
-import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.ts";
+import { DashboardContext } from "../../../contexts/signed-in/dashboard/dashboard.context.tsx";
+import { ExpensesContext } from "../../../contexts/signed-in/expenses/expenses.context.tsx";
+import { BankingContext } from "../../../contexts/signed-in/banking/banking.context.tsx";
+import { InvestmentsContext } from "../../../contexts/signed-in/investments/investments.context.tsx";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.tsx";
+import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.tsx";
 
-import ChatBot from "../../shared/chatbot/chatbot.component.ts";
+import ChatBot from "../../shared/chatbot/chatbot.component.tsx";
 
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PaidIcon from '@mui/icons-material/Paid'

@@ -5,8 +5,9 @@ import CloseAccount from "../close-account/close-account.component.tsx";
 
 import "./action-list.styles.tsx";
 import { ActionListContainer } from "./action-list.styles.tsx";
+import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
-const ActionList = ({ financeItemInfo }) => {
+const ActionList = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   return (
     <ActionListContainer>
       <Deposit financeItemInfo={ financeItemInfo }></Deposit>

@@ -5,10 +5,9 @@ import { SavingsContainer } from "./savings.styles.tsx";
 
 import CreateAccountForm from "../../../components/signed-in/savings/create-account-form/create-account-form.component.tsx";
 
-import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.ts";
+import { SavingsContext } from "../../../contexts/signed-in/savings/savings.context.tsx";
 import AllSavingsSummary from "../../../components/signed-in/savings/all-savings-summary/all-savings-summary.component.tsx";
 
-import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants.ts";
 import SavingsGoalCalculator from "../../../components/shared/savings-goal-calculator/savings-goal-calculator.component.tsx";
 
 import CalculateIcon from '@mui/icons-material/Calculate';

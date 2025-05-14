@@ -1,10 +1,10 @@
 import "./chatbot-response.styles.tsx"
 import { ChatBotResponseContainer } from "./chatbot-response.styles.tsx"
 import { useContext } from "react"
-import { ChatBotContext } from "../../../../contexts/shared/chatbot/chatbot.context.ts"
+import { ChatBotContext } from "../../../../contexts/shared/chatbot/chatbot.context.tsx"
 import { Typography } from "@mui/material"
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
-import OutlinedCard from "../../mui/card/card.component.ts"
+import OutlinedCard from "../../mui/card/card.component.tsx"
 
 const cardStyles = {
   backgroundColor: COLOR_CODES.general["5"],

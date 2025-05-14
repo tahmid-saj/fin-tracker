@@ -10,7 +10,7 @@ import ScheduleCalendar from "../../../components/signed-in/insurance/schedule/s
 import ScheduleDayInfo from "../../../components/signed-in/insurance/schedule/schedule-day-info/schedule-day-info.component.tsx"
 
 import { useEffect, Fragment, useContext } from "react"
-import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.ts"
+import { InsuranceContext } from "../../../contexts/signed-in/insurance/insurance.context.tsx"
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
