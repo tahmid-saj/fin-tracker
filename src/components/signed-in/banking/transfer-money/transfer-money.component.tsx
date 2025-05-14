@@ -2,15 +2,15 @@ import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./transfer-money.styles.scss";
 
-import "./transfer-money.styles.ts";
-import { TransferMoneyContainer } from "./transfer-money.styles.ts";
+import "./transfer-money.styles.tsx";
+import { TransferMoneyContainer } from "./transfer-money.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.ts";
-import Button from "../../../shared/button/button.component.ts";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 

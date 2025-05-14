@@ -1,14 +1,14 @@
-import "./summary-table-investments.styles.ts"
-import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.ts";
+import "./summary-table-investments.styles.tsx"
+import { SummaryTableInvestmentsContainer } from "./summary-table-investments.styles.tsx";
 import { useState, useContext, useRef } from "react"
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Investment } from "../../../../contexts/signed-in/investments/investments.types.ts";
 import { ColDef } from "ag-grid-community";
 

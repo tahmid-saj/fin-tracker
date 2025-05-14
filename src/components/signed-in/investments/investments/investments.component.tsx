@@ -1,13 +1,13 @@
-import "./investments.styles.ts"
-import { InvestmentsContainer, InvestmentSummaryContainer } from "./investments.styles.ts"
-import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.ts"
+import "./investments.styles.tsx"
+import { InvestmentsContainer, InvestmentSummaryContainer } from "./investments.styles.tsx"
+import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.tsx"
 import Summary from "../summary/summary.component.tsx"
-import InvestmentInfo from "../investment-info/investment-info.component.ts"
+import InvestmentInfo from "../investment-info/investment-info.component.tsx"
 import SummaryGraphInvestment from "../summary-graph/summary-graph.component.tsx"
 import SummaryTableInvestments from "../summary-table-investments/summary-table-investments.component.tsx"
 import UpdateInvestmentForm from "../update-investment-form/update-investment-form.component.tsx"
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts"
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx"
 import { useContext } from "react"
 
 const accordionStyles = {

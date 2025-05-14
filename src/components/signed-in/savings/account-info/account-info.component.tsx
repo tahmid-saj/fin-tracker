@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import "./account-info.styles.ts";
-import { AccountInfoContainer } from "./account-info.styles.ts";
+import "./account-info.styles.tsx";
+import { AccountInfoContainer } from "./account-info.styles.tsx";
 
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.ts";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
 
 import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants.ts";
 import { Typography, Divider } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 const paperStyles = {

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import Transaction from "../transaction/transaction.component.ts";
+import Transaction from "../transaction/transaction.component.tsx";
 import "./transactions.styles.tsx";
-import { TransactionsContainer } from "./transactions.styles.ts";
+import { TransactionsContainer } from "./transactions.styles.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const date = new Date();

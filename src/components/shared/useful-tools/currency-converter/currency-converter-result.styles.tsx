@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 export const CurrencyConverterResultContainer = styled.div`
   display: flex;

@@ -3,14 +3,14 @@ import { useState, useContext } from "react";
 import "./close-account.styles.tsx";
 import { CloseAccountContainer } from "./close-account.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.ts";
-import Button from "../../../shared/button/button.component.ts";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
 
 import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants.ts";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 

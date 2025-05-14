@@ -2,7 +2,7 @@ import "./exchange-rate-result.styles.tsx"
 import { ExchangeRateResultContainer } from "./exchange-rate-result.styles.tsx"
 
 import { useContext } from "react"
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.ts"
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.tsx"
 import { Typography } from "@mui/material"
 
 const ExchangeRateResult = () => {

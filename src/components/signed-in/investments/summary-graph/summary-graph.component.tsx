@@ -3,12 +3,12 @@ import { useState, Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 import ApexCharts, { ApexOptions } from 'apexcharts';
 
-import "./summary-graph.styles.ts";
-import { SummaryGraphInvestmentContainer } from "./summary-graph.styles.ts";
+import "./summary-graph.styles.tsx";
+import { SummaryGraphInvestmentContainer } from "./summary-graph.styles.tsx";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Investment } from "../../../../contexts/signed-in/investments/investments.types.ts";
 
 const paperStyles = {

@@ -1,11 +1,11 @@
-import "./schedule-calendar.styles.ts"
-import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.ts";
+import "./schedule-calendar.styles.tsx"
+import { CalendarTodoList, InsuranceCalendarContainer } from "./schedule-calendar.styles.tsx";
 import 'rsuite/Calendar/styles/index.css';
 import { Fragment, useContext, useState } from "react";
 import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.ts";
-import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.ts";
+import { InsuranceContext } from "../../../../../contexts/signed-in/insurance/insurance.context.tsx";
 import { InsurancePayment } from "../../../../../contexts/signed-in/insurance/insurance.types.ts";
 
 function getScheduledData(date: Date, insurancePayments: InsurancePayment[]) {

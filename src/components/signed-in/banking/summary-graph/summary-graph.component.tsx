@@ -2,15 +2,15 @@ import { Component, useContext, Fragment } from "react";
 
 import ReactApexChart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
 
-import "./summary-graph.styles.ts";
-import { SummaryGraphBankingContainer } from "./summary-graph.styles.ts";
+import "./summary-graph.styles.tsx";
+import { SummaryGraphBankingContainer } from "./summary-graph.styles.tsx";
 
 import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants.ts";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";
 
 const paperStyles = {

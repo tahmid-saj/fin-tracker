@@ -1,17 +1,15 @@
 import { useState, Component, useContext, FormEvent, ChangeEvent } from "react";
 
-import "./create-account-form.styles.ts";
-import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.ts";
+import "./create-account-form.styles.tsx";
+import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.ts";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
 
-import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component.ts";
-
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.ts";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
 import { Typography } from "@mui/material";
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.ts";
-import Button from "../../../shared/button/button.component.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
+import Button from "../../../shared/button/button.component.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 type FormFields = {

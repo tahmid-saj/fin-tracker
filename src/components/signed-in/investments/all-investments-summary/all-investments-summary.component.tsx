@@ -1,10 +1,10 @@
-import "./all-investments-summary.styles.ts";
-import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.ts";
+import "./all-investments-summary.styles.tsx";
+import { AllInvestmentsSummaryContainer } from "./all-investments-summary.styles.tsx";
 
 import { useContext } from "react";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
