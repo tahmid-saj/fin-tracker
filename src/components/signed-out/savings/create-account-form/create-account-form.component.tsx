@@ -1,21 +1,31 @@
-import { useState, Component, useContext } from "react";
+import { useState, Component, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./create-account-form.styles.tsx";
 import { CreateSavingsAccountContainer, ContributionInputContainer } from "./create-account-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
 
-import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component";
+import InvestmentSavingsTrackerItems from "../../investment-savings-tracker-items/investment-savings-tracker-items.component.tsx";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
-import { createSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector.ts";
+import { createSavingsAccount } from "../../../../store/signed-out/savings/savings.action.ts";
 import { Typography } from "@mui/material";
 import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
 import Button from "../../../shared/button/button.component.tsx";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+
+type FormFields = {
+  savingsAccountName: string,
+  initialDeposit: string,
+  startDate: string,
+  monthlyContribution: string,
+  contributionPeriod: string,
+  contributionInterval: string,
+  apy: string
+}
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -32,7 +42,7 @@ const paperStyles = {
 }
 
 const CreateAccountForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
 
   // const { createSavingsAccount } = useContext(SavingsContext);
   const dispatch = useDispatch()
@@ -42,7 +52,7 @@ const CreateAccountForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (formFields.savingsAccountName === "" || !formFields.savingsAccountName ||
@@ -53,18 +63,29 @@ const CreateAccountForm = () => {
       formFields.contributionInterval === "" || !formFields.contributionInterval ||
       formFields.apy === "" || !formFields.apy) {
 
-      
-
       return;
     }
 
-    dispatch(createSavingsAccount(savingsAccounts, formFields))
+    dispatch(createSavingsAccount(savingsAccounts!, { 
+      ...formFields,
+
+      initialDeposit: Number(formFields.initialDeposit),
+      monthlyContribution: Number(formFields.monthlyContribution),
+      contributionPeriod: Number(formFields.contributionPeriod),
+      apy: Number(formFields.apy),
+
+      totalSavings: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+    
+      savings: []
+    }))
     resetFormFields();
 
     
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

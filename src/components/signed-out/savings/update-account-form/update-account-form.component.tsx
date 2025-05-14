@@ -3,19 +3,33 @@ import { useState, Component, useContext } from "react";
 import "./update-account-form.styles.tsx";
 import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector";
-import { updateSavingsAccount, closeSavingsAccount } from "../../../../store/signed-out/savings/savings.action";
+import { selectSavingsAccounts } from "../../../../store/signed-out/savings/savings.selector.ts";
+import { updateSavingsAccount, closeSavingsAccount } from "../../../../store/signed-out/savings/savings.action.ts";
 
-import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants";
+import { SAVINGS_CONFIRM_CLOSE } from "../../../../utils/constants/savings.constants.ts";
 import { Typography } from "@mui/material";
 import Button from "../../../shared/button/button.component.tsx";
 import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import { SavingsAccount } from "../../../../store/signed-out/savings/savings.types.ts";
+import { ChangeEvent } from "react";
+import { FormEvent } from "react";
+import { MouseEvent } from "react";
+
+type FormFields = {
+  savingsAccountName: string,
+  initialDeposit: string,
+  startDate: string,
+  monthlyContribution: string,
+  contributionPeriod: string,
+  contributionInterval: string,
+  apy: string
+}
 
 const defaultFormFields = {
   savingsAccountName: "",
@@ -31,10 +45,10 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
 }
 
-const UpdateAccountForm = ({ label, financeItemInfo }) => {
+const UpdateAccountForm = ({ financeItemInfo }: { financeItemInfo: SavingsAccount }) => {
   // const { updateSavingsAccount, closeSavingsAccount } = useContext(SavingsContext);
 
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   const dispatch = useDispatch()
@@ -44,19 +58,18 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
     
-  };
+  // };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleUpdate = (event) => {
+  const handleUpdate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (formFields.savingsAccountName === "" || !formFields.savingsAccountName ||
@@ -67,8 +80,6 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
       formFields.contributionInterval === "" || !formFields.contributionInterval ||
       formFields.apy === "" || !formFields.apy) {
 
-      
-
       return;
     }
 
@@ -76,12 +87,12 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
     resetFormFields();
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setShowConfirmClose(true);
   };
   
-  const handleConfirmClose = (event, confirmClose) => {
+  const handleConfirmClose = (event: MouseEvent<HTMLButtonElement>, confirmClose: string) => {
     event.preventDefault();
     setShowConfirmClose(false);
     
@@ -95,7 +106,7 @@ const UpdateAccountForm = ({ label, financeItemInfo }) => {
     <SimplePaper styles={ paperStyles }>
       <Typography variant="h6">Track savings</Typography>
 
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={ handleUpdate }>
         <div className="container">
           <FormInput label="Savings account name" type="text" required onChange={ handleChange }
                             name="savingsAccountName" value={ formFields.savingsAccountName }></FormInput>
