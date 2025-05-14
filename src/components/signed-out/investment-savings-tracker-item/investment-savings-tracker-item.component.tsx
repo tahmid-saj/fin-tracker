@@ -1,4 +1,4 @@
-import React, { Fragment, useState, Component, useContext } from "react";
+import React, { Fragment, useState, Component, useContext, MouseEvent } from "react";
 
 import "./investment-savings-tracker-item.styles.scss";
 
@@ -13,13 +13,20 @@ import { selectInvestments } from "../../../store/signed-out/investments/investm
 import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings.selector";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
+import { Investment } from "../../../store/signed-out/investments/investments.types";
+
+type InvestmentSavingsTrackerItemProps = {
+  label: string,
+  financeItemInfo: any,
+  otherProps?: any
+}
 
 export let activeFormView = {
   label: "",
   financeItemInfo: {}
 }
 
-export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }) => {
+export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherProps }: InvestmentSavingsTrackerItemProps) => {
   // const { investments } = useContext(InvestmentsContext);
   const investments = useSelector(selectInvestments)
     
@@ -29,12 +36,12 @@ export const InvestmentSavingsTrackerItem = ({ label, financeItemInfo, ...otherP
   let financeItemExists = undefined;
 
   if (label === FINANCE_ITEM_TYPES.investments) {
-    financeItemExists = investments.find(investment => investment.investmentName === financeItemInfo.investmentName)
+    financeItemExists = investments?.find(investment => investment.investmentName === financeItemInfo.investmentName)
   } else if (label === FINANCE_ITEM_TYPES.savings) {
-    financeItemExists = savingsAccounts.find(account => account.savingsAccountName === financeItemInfo.savingsAccountName)
+    financeItemExists = savingsAccounts?.find(account => account.savingsAccountName === financeItemInfo.savingsAccountName)
   }
 
-  const handleDisplayFinanceTrackerItemForm = (event) => {
+  const handleDisplayFinanceTrackerItemForm = (event: MouseEvent<HTMLButtonElement>) => {
     activeFormView = {
       label: label,
       financeItemInfo: financeItemInfo,

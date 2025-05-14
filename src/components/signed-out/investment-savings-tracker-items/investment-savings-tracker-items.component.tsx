@@ -15,7 +15,7 @@ import { selectSavingsAccounts } from "../../../store/signed-out/savings/savings
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
-const InvestmentSavingsTrackerItems = ({ label }) => {
+const InvestmentSavingsTrackerItems = ({ label }: { label: string }) => {
   const investments = useSelector(selectInvestments)
 
   // const { investments } = useContext(InvestmentsContext);
@@ -27,7 +27,7 @@ const InvestmentSavingsTrackerItems = ({ label }) => {
 
       {
         label === FINANCE_ITEM_TYPES.investments && 
-        investments.map((investmentInfo, index) => {
+        investments?.map((investmentInfo, index) => {
           return (
             <AccordionTransition header={ investmentInfo.investmentName }>
               <InvestmentSavingsTrackerItem key={ index } label={ label } 
@@ -39,7 +39,7 @@ const InvestmentSavingsTrackerItems = ({ label }) => {
 
       {
         label === FINANCE_ITEM_TYPES.savings && 
-        savingsAccounts.map((savingsAccountInfo, index) => {
+        savingsAccounts?.map((savingsAccountInfo, index) => {
           return (
             <AccordionTransition header={ savingsAccountInfo.savingsAccountName }>
               <InvestmentSavingsTrackerItem key={ index } label={ label } 

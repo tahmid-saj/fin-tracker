@@ -3,11 +3,11 @@ import { useSelector } from "react-redux"
 import { selectInvestments } from "../../../../store/signed-out/investments/investments.selector.ts"
 import { InvestmentsContainer, InvestmentSummaryContainer } from "./investments.styles.tsx"
 import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.tsx"
-import Summary from "../summary/summary.component.tsx"
+import Summary from "../summary/summary.component.jsx"
 import InvestmentInfo from "../investment-info/investment-info.component.tsx"
-import SummaryGraphInvestment from "../summary-graph/summary-graph.component.tsx"
-import SummaryTableInvestments from "../summary-table-investments/summary-table-investments.component.tsx"
-import UpdateInvestmentForm from "../update-investment-form/update-investment-form.component.tsx"
+import SummaryGraphInvestment from "../summary-graph/summary-graph.component.jsx"
+import SummaryTableInvestments from "../summary-table-investments/summary-table-investments.component.jsx"
+import UpdateInvestmentForm from "../update-investment-form/update-investment-form.component.jsx"
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
 
 const accordionStyles = {
@@ -20,7 +20,7 @@ const Investments = () => {
   return (
     <InvestmentsContainer>
       {
-        investments.map((investment, index) => {
+        investments?.map((investment, index) => {
           return (
             <AccordionTransition key={ index } header={ investment.investmentName }
               styles={ accordionStyles }>

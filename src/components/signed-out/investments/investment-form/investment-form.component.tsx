@@ -9,16 +9,16 @@ import SummaryGraphInvestment from "../summary-graph/summary-graph.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../../utils/constants/shared.constants";
 import SummaryTableInvestments from "../summary-table-investments/summary-table-investments.component";
+import { Investment } from "../../../../store/signed-out/investments/investments.types";
 
-const InvestmentForm = ({ financeItemInfo }) => {
+const InvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
   return (
     <Fragment>
       <SummaryGraphInvestment financeItemInfo={ financeItemInfo }></SummaryGraphInvestment>
       <SummaryTableInvestments financeItemInfo={ financeItemInfo }></SummaryTableInvestments>
       
       <div className="investments-form-summary-container">
-        <UpdateInvestmentForm label={ FINANCE_ITEM_TYPES.investments } 
-                                financeItemInfo={ financeItemInfo }></UpdateInvestmentForm>
+        <UpdateInvestmentForm financeItemInfo={ financeItemInfo }></UpdateInvestmentForm>
 
         <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPES.investments } 
                                   financeItemInfo={ financeItemInfo }></FinanceTrackerItemInfo>
