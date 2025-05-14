@@ -3,11 +3,11 @@ import { useState, useContext, FormEvent, ChangeEvent } from "react";
 import "./deposit.styles.tsx";
 import { DepositContainer } from "./deposit.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component.ts";
-import Button from "../../../shared/button/button.component.ts";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";

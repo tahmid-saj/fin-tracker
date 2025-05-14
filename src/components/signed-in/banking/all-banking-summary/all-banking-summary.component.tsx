@@ -1,10 +1,10 @@
-import "./all-banking-summary.styles.ts";
-import { AllBankingSummaryContainer } from "./all-banking-summary.styles.ts";
+import "./all-banking-summary.styles.tsx";
+import { AllBankingSummaryContainer } from "./all-banking-summary.styles.tsx";
 
 import { useContext } from "react";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 

@@ -3,9 +3,9 @@ import { useContext } from "react";
 import "./investment-info.styles.tsx";
 import { InvestmentInfoContainer } from "./investment-info.styles.tsx";
 
-import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.ts";
+import { InvestmentsContext } from "../../../../contexts/signed-in/investments/investments.context.tsx";
 import { Divider, Typography } from "@mui/material";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 import { Investment } from "../../../../contexts/signed-in/investments/investments.types.ts";
 

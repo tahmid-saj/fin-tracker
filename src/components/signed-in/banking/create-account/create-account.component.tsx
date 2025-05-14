@@ -1,13 +1,12 @@
 import React, { Component, useState, useContext, FormEvent, ChangeEvent } from "react";
 
-import FormInput from "../../../shared/form-input/form-input.component.ts";
-import Button from "../../../shared/button/button.component.ts";
-import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component.tsx";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
 
-import "./create-account.styles.ts";
-import { CreateAccountContainer } from "./create-account.styles.ts";
+import "./create-account.styles.tsx";
+import { CreateAccountContainer } from "./create-account.styles.tsx";
 
 type FormFields = {
   bankAccountName: string

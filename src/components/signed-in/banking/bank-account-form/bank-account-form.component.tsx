@@ -2,14 +2,14 @@ import React, { useState, Fragment, useContext } from "react";
 
 import Summary from "../summary/summary.component.tsx";
 import Transactions from "../transactions/transactions.component.tsx";
-import ActionList from "../action-list/action-list.component.ts";
+import ActionList from "../action-list/action-list.component.tsx";
 import SummaryGraphBanking from "../summary-graph/summary-graph.component.tsx";
 
 import "./bank-account-form.styles.tsx";
 import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.tsx";
 
-import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.ts";
-import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.ts";
+import { BankingContext } from "../../../../contexts/signed-in/banking/banking.context.tsx";
+import { AccordionTransition } from "../../../shared/mui/accordion/accordion.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 import { BankingAccount } from "../../../../contexts/signed-in/banking/banking.types.ts";

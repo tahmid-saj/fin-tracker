@@ -2,14 +2,14 @@ import "./mortgage-calculator.styles.tsx";
 import { MortgageCalculatorContainer, MortgageCalculatorForm } from "./mortgage-calculator.styles.tsx";
 
 import { useState, useContext, Fragment, FormEvent, ChangeEvent } from "react";
-import FormInput from "../../form-input/form-input.component.ts";
-import Button from "../../button/button.component.ts";
+import FormInput from "../../form-input/form-input.component.tsx";
+import Button from "../../button/button.component.tsx";
 import { DOWNPAYMENT_FLAG_OPTIONS } from "../../../../utils/constants/useful-tools.constants.ts";
-import MortgageCalculatorResult from "./mortgage-calculator-result.component.ts";
-import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.ts";
+import MortgageCalculatorResult from "./mortgage-calculator-result.component.tsx";
+import { UsefulToolsContext } from "../../../../contexts/shared/useful-tools/useful-tools.context.tsx";
 import { Typography } from "@mui/material";
-import { DropButton } from "../../drop-button/drop-button.styles.ts";
-import SimplePaper from "../../mui/paper/paper.component.ts";
+import { DropButton } from "../../drop-button/drop-button.styles.tsx";
+import SimplePaper from "../../mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 interface FormFields {

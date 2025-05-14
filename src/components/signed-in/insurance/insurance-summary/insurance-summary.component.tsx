@@ -1,10 +1,10 @@
-import "./insurance-summary.styles.ts"
-import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.ts"
+import "./insurance-summary.styles.tsx"
+import { InsuranceSummaryInfoContainer } from "./insurance-summary.styles.tsx"
 import { Typography } from "@mui/material"
 
 import { useContext } from "react"
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts"
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.tsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 const paperStyles = {

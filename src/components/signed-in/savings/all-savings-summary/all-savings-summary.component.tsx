@@ -1,10 +1,10 @@
-import "./all-savings-summary.styles.ts";
-import { AllSavingsSummaryContainer } from "./all-savings-summary.styles.ts";
+import "./all-savings-summary.styles.tsx";
+import { AllSavingsSummaryContainer } from "./all-savings-summary.styles.tsx";
 
 import { useContext } from "react";
 
-import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.ts";
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts";
+import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 

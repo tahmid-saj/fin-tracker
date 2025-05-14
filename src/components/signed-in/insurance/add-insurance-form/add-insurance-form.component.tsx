@@ -1,14 +1,13 @@
 import { useState, useContext, FormEvent, ChangeEvent } from "react"
-import "./add-insurance-form.styles.ts"
-import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.ts"
-import FormInput from "../../../shared/form-input/form-input.component.ts"
-import { DropButton } from "../../../shared/drop-button/drop-button.styles.ts"
+import "./add-insurance-form.styles.tsx"
+import { AddInsuranceContainer, AddInsuranceFormContainer } from "./add-insurance-form.styles.tsx"
+import FormInput from "../../../shared/form-input/form-input.component.tsx"
+import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx"
 import { Typography } from "@mui/material"
-import { ButtonsContainer } from "../../../shared/button/button.styles.ts"
-import Button from "../../../shared/button/button.component.ts"
+import Button from "../../../shared/button/button.component.tsx"
 
-import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.ts"
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import { InsuranceContext } from "../../../../contexts/signed-in/insurance/insurance.context.tsx"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 
 type FormFields = {

@@ -4,7 +4,6 @@ import ApexCharts, { ApexOptions } from 'apexcharts';
 import "./summary-graph.styles.tsx";
 import { SummaryGraphSavingsContainer } from "./summary-graph.styles.tsx";
 import { SavingsContext } from "../../../../contexts/signed-in/savings/savings.context.tsx";
-import { SAVINGS_CONTRIBUTION_INTERVALS } from "../../../../utils/constants/savings.constants.ts";
 
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
