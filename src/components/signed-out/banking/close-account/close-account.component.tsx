@@ -1,20 +1,25 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 
 import "./close-account.styles.tsx";
 import { CloseAccountContainer } from "./close-account.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
-import { closeBankingAccount } from "../../../../store/signed-out/banking/banking.action";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector.ts";
+import { closeBankingAccount } from "../../../../store/signed-out/banking/banking.action.ts";
 
-import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants";
+import { PERMANENTLY_DELETE } from "../../../../utils/constants/banking.constants.ts";
 import { Typography } from "@mui/material";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import { BankingAccount } from "../../../../store/signed-out/banking/banking.types.ts";
+
+type FormFields = {
+  confirmDelete: string
+}
 
 const defaultFormFields = {
   confirmDelete: ""
@@ -25,8 +30,8 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const CloseAccount = ({ financeItemInfo }) => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+const CloseAccount = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   // const { closeBankingAccount } = useContext(BankingContext);
   const bankingAccounts = useSelector(selectBankingAccounts)
 
@@ -36,12 +41,12 @@ const CloseAccount = ({ financeItemInfo }) => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
 
     if (formFields.confirmDelete === PERMANENTLY_DELETE) {
-      dispatch(closeBankingAccount(bankingAccounts, financeItemInfo.name))
+      dispatch(closeBankingAccount(bankingAccounts!, financeItemInfo.name))
     } else {
       return;
     }
@@ -49,10 +54,10 @@ const CloseAccount = ({ financeItemInfo }) => {
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    setFormFields({ [name]: value })
+    setFormFields({ ...formFields, [name]: value })
   };
 
   return (

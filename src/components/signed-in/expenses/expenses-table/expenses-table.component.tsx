@@ -1,6 +1,6 @@
 import "./expenses-table.styles.tsx"
 import { ExpensesTableContainer } from "./expenses-table.styles.tsx";
-import { useState, useContext, useCallback, useRef } from "react";
+import { useState, useContext, useCallback, useRef, MouseEvent } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
@@ -19,7 +19,7 @@ const paperStyles = {
 const ExpensesTable = () => {
   const gridRef = useRef();
   const { expensesView, removeExpense, clearExpensesFilter } = useContext(ExpensesContext)
-  const rowData = expensesView.map((expense) => {
+  const rowData = expensesView?.map((expense) => {
     return {
       Date: expense.expenseDate,
       Category: expense.expenseCategory,
@@ -38,7 +38,7 @@ const ExpensesTable = () => {
     { field: "Tag" }
   ])
 
-  const onRemoveSelected = (event) => {
+  const onRemoveSelected = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     const selectedData = gridRef.current.api.getSelectedRows();
     // TODO: better manage selectedData[0] without the 0 in index
@@ -51,7 +51,7 @@ const ExpensesTable = () => {
     removeExpense(selectedData[0].Tag)
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     clearExpensesFilter()

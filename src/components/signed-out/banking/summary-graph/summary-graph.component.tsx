@@ -3,45 +3,48 @@ import { Component, useContext, Fragment } from "react";
 import ReactApexChart from 'react-apexcharts';
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useSelector } from "react-redux";
-import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector.ts";
 
 import "./summary-graph.styles.tsx";
 import { SummaryGraphBankingContainer } from "./summary-graph.styles.tsx";
 
-import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants";
+import { TRANSACTION_TYPES } from "../../../../utils/constants/banking.constants.ts";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
+import { BankingAccount } from "../../../../store/signed-out/banking/banking.types.ts";
+import { ApexOptions } from "apexcharts";
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
   margin: "2% 0% 2% 0%"
 }
 
-const SummaryGraphBanking = ({ financeItemInfo }) => {
+const SummaryGraphBanking = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const transactionAmounts = bankingAccounts.find(account => {
-    return account.name === financeItemInfo.name
-  })
-  .transactions
-  .map((transaction) => {
-    if (transaction.type === TRANSACTION_TYPES.withdrawal || transaction.type === TRANSACTION_TYPES.withdrawalTransfer) {
-      return -transaction.amount
+  const transactionAmounts = (bankingAccounts ?? []).find(account => {
+    return account.name === financeItemInfo.name;
+  })?.transactions?.map((transaction) => {
+    if (
+      transaction.type === TRANSACTION_TYPES.withdrawal ||
+      transaction.type === TRANSACTION_TYPES.withdrawalTransfer
+    ) {
+      return -transaction.amount;
     }
+    return transaction.amount;
+  })!;
 
-    return transaction.amount
-  });
 
   // TODO: track dates in transactions
   const transactionIndexes = transactionAmounts.map((_, index) => String(index));
 
-  const series = [{
+  const series: ApexAxisChartSeries = [{
     name: 'Amount ( $ )',
     data: transactionAmounts
   }];
 
-  const options = {
+  const options: ApexOptions = {
     chart: {
       type: 'bar',
     },
@@ -69,13 +72,12 @@ const SummaryGraphBanking = ({ financeItemInfo }) => {
         text: 'Transaction Amount'
       },
       labels: {
-        formatter: function (y) {
+        formatter: function (y: number) {
           return y.toFixed(0);
         }
       }
     },
     xaxis: {
-      type: 'string',
       categories: transactionIndexes,
       labels: {
         rotate: -90

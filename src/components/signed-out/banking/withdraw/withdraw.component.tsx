@@ -1,22 +1,29 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withdrawFromBankingAccount } from "../../../../store/signed-out/banking/banking.action"
-import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector";
+import { withdrawFromBankingAccount } from "../../../../store/signed-out/banking/banking.action.ts"
+import { selectBankingAccounts } from "../../../../store/signed-out/banking/banking.selector.ts";
 import { Checkbox, Typography } from "@mui/material";
 
 import "./withdraw.styles.tsx";
 import { WithdrawContainer, TransactionAddToExpensesContainer } from "./withdraw.styles.tsx";
 
-import FormInput from "../../../shared/form-input/form-input.component";
-import Button from "../../../shared/button/button.component";
+import FormInput from "../../../shared/form-input/form-input.component.tsx";
+import Button from "../../../shared/button/button.component.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 
-import { selectExpenses, selectExpensesTagLimit } from "../../../../store/signed-out/expenses/expenses.selector";
-import { addExpense } from "../../../../store/signed-out/expenses/expenses.action";
-import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants";
+import { selectExpenses, selectExpensesTagLimit } from "../../../../store/signed-out/expenses/expenses.selector.ts";
+import { addExpense } from "../../../../store/signed-out/expenses/expenses.action.ts";
+import { BANKING_EXPENSE_CATEGORIES } from "../../../../utils/constants/expenses.constants.ts";
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
+import { BankingAccount } from "../../../../store/signed-out/banking/banking.types.ts";
+
+type FormFields = {
+  amount: string,
+  reason: string,
+  addToExpenses: boolean
+}
 
 const defaultFormFields = {
   amount: "",
@@ -29,7 +36,7 @@ const paperStyles = {
   width: COMMON_SPACING.bankingActions.width
 }
 
-const Withdraw = ({ financeItemInfo }) => {
+const Withdraw = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   // const { withdrawFromBankingAccount } = useContext(BankingContext);
   const dispatch = useDispatch()
@@ -44,28 +51,30 @@ const Withdraw = ({ financeItemInfo }) => {
     setAddedToExpensesChecked(defaultFormFields.addToExpenses)
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch(withdrawFromBankingAccount(bankingAccounts, financeItemInfo.name, formFields.amount, formFields.reason, formFields.addToExpenses))
+    dispatch(withdrawFromBankingAccount(bankingAccounts!, financeItemInfo.name, Number(formFields.amount), 
+      formFields.reason, formFields.addToExpenses))
     
-    dispatch(addExpense(expenses, {
+    dispatch(addExpense(expenses!, {
       expenseFor: formFields.reason ? formFields.reason : BANKING_EXPENSE_CATEGORIES.withdrawal,
-      expenseCost: formFields.amount,
+      expenseCost: Number(formFields.amount),
       expenseDate: new Date().toISOString().split('T')[0],
-      expenseCategory: BANKING_EXPENSE_CATEGORIES.withdrawal
-    }, expensesTagLimit))
+      expenseCategory: BANKING_EXPENSE_CATEGORIES.withdrawal,
+      expenseId: 999
+    }, expensesTagLimit!))
 
     resetFormFields();
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value })
   };
 
-  const addTransactionToExpenses = (event) => {
+  const addTransactionToExpenses = (event: ChangeEvent<HTMLInputElement>) => {
     setFormFields({ ...formFields, addToExpenses: event.target.checked })
 
     setAddedToExpensesChecked(event.target.checked)
