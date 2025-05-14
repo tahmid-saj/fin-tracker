@@ -12,7 +12,7 @@ import { selectBankingAccounts } from "../../../store/signed-out/banking/banking
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 import { AccordionTransition } from "../../shared/mui/accordion/accordion.component";
 
-const FinanceTrackerItems = ({ label }) => {
+const FinanceTrackerItems = ({ label }: { label: string }) => {
   const bankingAccounts = useSelector(selectBankingAccounts);
 
   return (
@@ -23,8 +23,8 @@ const FinanceTrackerItems = ({ label }) => {
       }
       
       {
-        label === FINANCE_ITEM_TYPES.banking && bankingAccounts !== undefined && bankingAccounts.length !== 0 && 
-        bankingAccounts.map((account) => account.name)
+        label === FINANCE_ITEM_TYPES.banking && bankingAccounts !== undefined && bankingAccounts?.length !== 0 && 
+        bankingAccounts?.map((account) => account.name)
           .map((name, index) => {
             return (
               <AccordionTransition header={ name }>

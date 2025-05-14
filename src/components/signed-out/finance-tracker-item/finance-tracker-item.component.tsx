@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useContext, MouseEvent } from "react";
 
 import "./finance-tracker-item.styles.scss";
 
@@ -11,26 +11,30 @@ import { selectBankingAccounts } from "../../../store/signed-out/banking/banking
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
+type FinanceTrackerItemProps = {
+  name: string,
+  label: string,
+  otherProps?: any
+}
+
 export let activeFormView = {
   label: "",
   name: ""
 }
 
-export const FinanceTrackerItem = ({ name, label, ...otherProps }) => {
+export const FinanceTrackerItem = ({ name, label, ...otherProps }: FinanceTrackerItemProps) => {
   // const { bankingAccounts } = useContext(BankingContext);
   const bankingAccounts = useSelector(selectBankingAccounts)
 
-  const bankingAccountExists = bankingAccounts.find(account => account.name === name)
+  const bankingAccountExists = bankingAccounts?.find(account => account.name === name)
 
-  const handleDisplayFinanceTrackerItemForm = (event) => {
+  const handleDisplayFinanceTrackerItemForm = (event: MouseEvent<HTMLButtonElement>) => {
     
 
     activeFormView = {
       label: label,
       name: name
     };
-
-    
   }
 
   return (

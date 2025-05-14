@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./finance-tracker-item-summary.styles.scss";
@@ -11,11 +11,16 @@ let currentMonth = String(date.getMonth()+1).padStart(2,"0");
 let currentYear = date.getFullYear();
 let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
+type FinanceTrackerItemSummaryInfoProps = {
+  financeTrackerItemInfo: any,
+  financeItemType: string
+}
+
 // TODO: need to move FinanceTrackerItemSummary from shared to signed-in folder only
-const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }) => {
+const FinanceTrackerItemSummary = ({ financeTrackerItemInfo, financeItemType }: FinanceTrackerItemSummaryInfoProps) => {
   const navigate = useNavigate();
 
-  const handleAccountClick = (event) => {
+  const handleAccountClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     if (financeItemType === FINANCE_ITEM_TYPES.banking) {

@@ -1,20 +1,24 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { createAuthUserWithEmailAndPassword,
-        createUserDocumentFromAuth } from "../../../utils/firebase/firebase.utils";
+import FormInput from "../../shared/form-input/form-input.component.tsx";
+import Button from "../../shared/button/button.component.tsx";
 
-import FormInput from "../../shared/form-input/form-input.component";
-import Button from "../../shared/button/button.component";
-
-import "./sign-up-form.styles.tsx";
-import { SignUpContainer } from "./sign-up-form.styles.tsx";
+import "./sign-up-form.styles.jsx";
+import { SignUpContainer } from "./sign-up-form.styles.jsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts";
-import { errorOnEmailAlreadyInUse, errorOnUserCreation } from "../../../utils/errors/user.errors";
+import { errorOnEmailAlreadyInUse, errorOnUserCreation } from "../../../utils/errors/user.errors.ts";
 
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../../store/shared/user/user.action";
+import { signUpStart } from "../../../store/shared/user/user.action.ts";
+
+type FormFields = {
+  displayName: string,
+  email: string,
+  password: string,
+  confirmPassword: string
+}
 
 const defaultFormFields = {
   displayName: "",
@@ -24,7 +28,7 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
   const dispatch = useDispatch()
 
@@ -34,7 +38,7 @@ const SignUpForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -49,7 +53,7 @@ const SignUpForm = () => {
 
       resetFormFields();
       navigate("/dashboard-signed-in")
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
         errorOnEmailAlreadyInUse();
       } else {
@@ -58,7 +62,7 @@ const SignUpForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

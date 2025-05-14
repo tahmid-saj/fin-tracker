@@ -11,7 +11,12 @@ import SavingsSummary from "../savings/summary/summary.component";
 
 import { FINANCE_ITEM_TYPES } from "../../../utils/constants/shared.constants";
 
-const FinanceTrackerItemInfo = ({ label, financeItemInfo }) => {
+type FinanceTrackerItemInfoProps = {
+  label: string,
+  financeItemInfo: any
+}
+
+const FinanceTrackerItemInfo = ({ label, financeItemInfo }: FinanceTrackerItemInfoProps) => {
   return (
     <Fragment>
       {
