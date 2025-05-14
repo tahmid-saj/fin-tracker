@@ -9,7 +9,7 @@ import InvestmentSummary from "../investments/summary/summary.component";
 import AccountInfo from "../savings/account-info/account-info.component";
 import SavingsSummary from "../savings/summary/summary.component";
 
-const FinanceTrackerItemInfo = ({ label, financeItemInfo }) => {
+const FinanceTrackerItemInfo = ({ label, financeItemInfo }: { label: string, financeItemInfo: any }) => {
   return (
     <Fragment>
       {
