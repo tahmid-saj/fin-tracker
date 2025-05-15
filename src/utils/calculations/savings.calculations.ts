@@ -156,23 +156,23 @@ export const calculateSavingsGoal = (savingsGoalInput: SavingsGoalInput): Saving
 export const calculateSavingsGoalSchedule = (savingsGoalResult: SavingsGoalResult): SavingsGoalScheduleResult[] => {
   let res = []
   let totalInterest = 0
-  const startDate = new Date(savingsGoalResult.dateFirstDeposit)
+  const startDate = new Date(savingsGoalResult?.dateFirstDeposit)
 
   let compoundedInterestInput: CompoundedInterestInput = {
     A: 0,
-    P: savingsGoalResult.amountFirstDeposit,
-    r: savingsGoalResult.interestRatePerYear / 100,
+    P: savingsGoalResult?.amountFirstDeposit,
+    r: savingsGoalResult?.interestRatePerYear / 100,
     t: (1 / 12),
     n: 0
   }
 
-  if (savingsGoalResult.compounded === SAVINGS_GOAL_COMPOUNDED.daily) {
+  if (savingsGoalResult?.compounded === SAVINGS_GOAL_COMPOUNDED.daily) {
     compoundedInterestInput.n = 365
-  } else if (savingsGoalResult.compounded === SAVINGS_GOAL_COMPOUNDED.monthly) {
+  } else if (savingsGoalResult?.compounded === SAVINGS_GOAL_COMPOUNDED.monthly) {
     compoundedInterestInput.n = 12
   }
 
-  for (let monthIndex = 1; monthIndex <= (savingsGoalResult.yearsToReachGoal) * 12; monthIndex++) {
+  for (let monthIndex = 1; monthIndex <= (savingsGoalResult?.yearsToReachGoal) * 12; monthIndex++) {
     const currentDate = date.addMonths(startDate, monthIndex)
 
     const compoundedInterestResult = calculateCompoundedInterestA(compoundedInterestInput, savingsGoalResult.monthlyDepositRequired)

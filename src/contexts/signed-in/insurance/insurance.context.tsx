@@ -29,10 +29,10 @@ const addInsuranceHelper = (insurances: Insurance[], insurance: Insurance, userI
 }
 
 const checkDateRangeFilterOverlap = (filterConditions: FilterConditions, insurance: Insurance): boolean => {
-  if (filterConditions.insuranceStartDate === "" || ((filterConditions.insuranceStartDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceStartDate <= insurance.insuranceEndDate) 
-      || (filterConditions.insuranceEndDate === "" && filterConditions.insuranceStartDate <= insurance.insuranceFirstPaymentDate))) {
-    if (filterConditions.insuranceEndDate === "" || ((filterConditions.insuranceEndDate >= insurance.insuranceFirstPaymentDate && filterConditions.insuranceEndDate <= insurance.insuranceEndDate)
-      || (filterConditions.insuranceStartDate === "" && filterConditions.insuranceEndDate >= insurance.insuranceEndDate))) {
+  if (filterConditions.insuranceStartDate === "" || ((filterConditions?.insuranceStartDate! >= insurance.insuranceFirstPaymentDate && filterConditions?.insuranceStartDate! <= insurance.insuranceEndDate) 
+      || (filterConditions.insuranceEndDate === "" && filterConditions?.insuranceStartDate! <= insurance.insuranceFirstPaymentDate))) {
+    if (filterConditions.insuranceEndDate === "" || ((filterConditions?.insuranceEndDate! >= insurance.insuranceFirstPaymentDate && filterConditions?.insuranceEndDate! <= insurance.insuranceEndDate)
+      || (filterConditions.insuranceStartDate === "" && filterConditions?.insuranceEndDate! >= insurance.insuranceEndDate))) {
       return true
     }
   }
@@ -44,8 +44,8 @@ const filterInsurancesHelper = (insurances: Insurance[], filterConditions: Filte
   let filteredInsurances: Insurance[] = []
 
   insurances.map((insurance) => {
-    if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
-      if (filterConditions.insuranceInterval === "" || (insurance.insuranceInterval.toLowerCase() === filterConditions.insuranceInterval.toLowerCase())) {
+    if (filterConditions.insuranceFor === "" || (insurance.insuranceFor.toLowerCase().includes(filterConditions?.insuranceFor?.toLowerCase()!))) {
+      if (filterConditions.insuranceInterval === "" || (insurance.insuranceInterval.toLowerCase() === filterConditions?.insuranceInterval?.toLowerCase()!)) {
         if (checkDateRangeFilterOverlap(filterConditions, insurance)) {
           filteredInsurances.push(insurance)
         }
@@ -60,10 +60,10 @@ const filterInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], fi
   let filteredInsurancePayments: InsurancePayment[] = []
 
   insurancePayments.map((insurancePayment) => {
-    if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions.insuranceFor.toLowerCase()))) {
-      if (filterConditions.insuranceInterval === "" || (insurancePayment.insuranceInterval.toLowerCase() === filterConditions.insuranceInterval.toLowerCase())) {
-        if (filterConditions.insuranceStartDate === "" || (filterConditions.insuranceStartDate <= insurancePayment.insuranceDate)) {
-          if (filterConditions.insuranceEndDate === "" || (filterConditions.insuranceEndDate >= insurancePayment.insuranceDate)) {
+    if (filterConditions.insuranceFor === "" || (insurancePayment.insuranceFor.toLowerCase().includes(filterConditions?.insuranceFor?.toLowerCase()!))) {
+      if (filterConditions.insuranceInterval === "" || (insurancePayment.insuranceInterval.toLowerCase() === filterConditions?.insuranceInterval?.toLowerCase())) {
+        if (filterConditions.insuranceStartDate === "" || (filterConditions?.insuranceStartDate! <= insurancePayment.insuranceDate)) {
+          if (filterConditions.insuranceEndDate === "" || (filterConditions?.insuranceEndDate! >= insurancePayment.insuranceDate)) {
             filteredInsurancePayments.push(insurancePayment)
           }
         }

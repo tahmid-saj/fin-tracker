@@ -20,6 +20,8 @@ export type SetBankingSummary = ActionWithPayload<BANKING_ACTION_TYPES.SET_BANKI
 const createBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
 
+  if (!bankingAccounts) return [] as BankingAccount[]
+
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 
   { 
@@ -61,7 +63,7 @@ const withdrawFromBankingAccountHelper = (bankingAccounts: BankingAccount[], ban
   if (validateWithdrawalAmount(bankingAccounts, bankingAccountName, withdrawAmount)) return bankingAccounts;
 
   // update currentBalance, totalOut and transactions in bankingAccounts for bankingAccountName
-  const updatedBankingAccounts = bankingAccounts.map((account) => {
+  const updatedBankingAccounts = bankingAccounts?.map((account) => {
     return account.name === bankingAccountName ?
       {
         ...account,
@@ -128,7 +130,7 @@ const transferToBankingAccountHelper = (bankingAccounts: BankingAccount[], banki
 
 const closeBankingAccountHelper = (bankingAccounts: BankingAccount[], bankingAccountName: string): BankingAccount[] => {
   // return bankingAccounts without the bankingAccountName
-  return bankingAccounts.filter(account => account.name !== bankingAccountName);
+  return bankingAccounts?.filter(account => account.name !== bankingAccountName);
 };
 
 // actions

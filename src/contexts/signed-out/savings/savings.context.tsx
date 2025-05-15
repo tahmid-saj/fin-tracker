@@ -120,7 +120,7 @@ export const SavingsContext = createContext<SavingsContextType>({
   createSavingsAccount: () => {},
   updateSavingsAccount: () => {},
   closeSavingsAccount: () => {},
-  getSavingsAccountInfo: () => {},
+  getSavingsAccountInfo: (savingsAccountName: string): SavingsAccount | undefined => undefined,
 
   savingsAccountsSummary: {},
   // savingsAccountsSummary structure
