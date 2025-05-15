@@ -9,16 +9,20 @@ import { Calendar, Whisper, Popover, Badge } from 'rsuite';
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../../../utils/constants/shared.constants.ts";
 import { ExpensesContext } from "../../../../../contexts/signed-in/expenses/expenses.context.tsx";
+import { Expense } from "../../../../../contexts/signed-in/expenses/expenses.types.ts";
 
-function getScheduledData(date, expenses) {
-  date = date.toISOString().split('T')[0]
+function getScheduledData(date: Date, expenses: Expense[]) {
+  const dateStr = date.toISOString().split('T')[0]
 
-  let scheduledExpensesForDate = []
+  let scheduledExpensesForDate: Expense[] = []
   expenses.map((expense) => {
-    if (expense.expenseDate === date) {
+    if (expense.expenseDate === dateStr) {
       scheduledExpensesForDate.push({
         expenseFor: expense.expenseFor,
         expenseCost: expense.expenseCost,
+        expenseDate: expense.expenseDate,
+        expenseCategory: expense.expenseCategory,
+        expenseId: expense.expenseId
       })
     }
   })
@@ -29,7 +33,7 @@ function getScheduledData(date, expenses) {
 const ScheduleCalendar = () => {
     const { expenses, selectScheduledExpenses } = useContext(ExpensesContext)
 
-  function renderCell(date) {
+  function renderCell(date: Date) {
     const list = getScheduledData(date, expenses);
     const displayList = list.filter((item, index) => index < 1);
 
@@ -54,7 +58,7 @@ const ScheduleCalendar = () => {
     return null;
   }
 
-  const onSelectDate = (date) => {
+  const onSelectDate = (date: Date) => {
     const selectedDate = date.toISOString().split('T')[0]
     
     selectScheduledExpenses(selectedDate)

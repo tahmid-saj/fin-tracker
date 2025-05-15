@@ -1,10 +1,10 @@
-import Deposit from "../deposit/deposit.component.jsx";
-import Withdraw from "../withdraw/withdraw.component.jsx";
-import TransferMoney from "../transfer-money/transfer-money.component.jsx";
-import CloseAccount from "../close-account/close-account.component.jsx";
+import Deposit from "../deposit/deposit.component.tsx";
+import Withdraw from "../withdraw/withdraw.component.tsx";
+import TransferMoney from "../transfer-money/transfer-money.component.tsx";
+import CloseAccount from "../close-account/close-account.component.tsx";
 
-import "./action-list.styles.jsx";
-import { ActionListContainer } from "./action-list.styles.jsx";
+import "./action-list.styles.tsx";
+import { ActionListContainer } from "./action-list.styles.tsx";
 import { BankingAccount } from "../../../../store/signed-out/banking/banking.types.js";
 
 const ActionList = ({ financeItemInfo }: { financeItemInfo: BankingAccount }) => {

@@ -1,4 +1,4 @@
-import { useState, Component, useContext } from "react";
+import { useState, Component, useContext, MouseEvent } from "react";
 
 import "./update-account-form.styles.tsx";
 import { UpdateSavingsAccountContainer, ContributionInputContainer } from "./update-account-form.styles.tsx";
@@ -15,6 +15,7 @@ import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 import { FormEvent } from "react";
 import { ChangeEvent } from "react";
+import { SavingsAccount } from "../../../../contexts/signed-in/savings/savings.types.ts";
 
 type FormFields = {
   savingsAccountName: string,
@@ -40,7 +41,7 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],
 }
 
-const UpdateAccountForm = ({ financeItemInfo }) => {
+const UpdateAccountForm = ({ financeItemInfo }: { financeItemInfo: SavingsAccount }) => {
 
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
@@ -83,12 +84,12 @@ const UpdateAccountForm = ({ financeItemInfo }) => {
   //   resetFormFields();
   // };
 
-  const handleClose = (event) => {
+  const handleClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setShowConfirmClose(true);
   };
 
-  const handleConfirmClose = (event, confirmClose) => {
+  const handleConfirmClose = (event: MouseEvent<HTMLButtonElement>, confirmClose: string) => {
     event.preventDefault();
     setShowConfirmClose(false);
     

@@ -1,9 +1,9 @@
 import React, { useState, Fragment, useContext } from "react";
 
-import Summary from "../summary/summary.component.jsx";
-import Transactions from "../transactions/transactions.component.jsx";
+import Summary from "../summary/summary.component.tsx";
+import Transactions from "../transactions/transactions.component.tsx";
 import ActionList from "../action-list/action-list.component.tsx";
-import SummaryGraphBanking from "../summary-graph/summary-graph.component.jsx";
+import SummaryGraphBanking from "../summary-graph/summary-graph.component.tsx";
 
 import "./bank-account-form.styles.tsx";
 import { BankAccountFormContainer, TransactionsActionContainer } from "./bank-account-form.styles.tsx";

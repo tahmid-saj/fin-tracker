@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from "react";
 
-import "./investments-summary.styles.jsx";
-import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.jsx"
+import "./investments-summary.styles.tsx";
+import { InvestmentSummaryContainer, InvestmentsSummaryContainer } from "./investments-summary.styles.tsx"
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component.tsx";
 
 // import { InvestmentsContext } from "../../../../contexts/signed-out/investments/investments.context";

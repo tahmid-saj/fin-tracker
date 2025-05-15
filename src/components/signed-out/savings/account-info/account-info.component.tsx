@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import "./account-info.styles.jsx";
-import { AccountInfoContainer } from "./account-info.styles.jsx";
+import "./account-info.styles.tsx";
+import { AccountInfoContainer } from "./account-info.styles.tsx";
 
 // import { SavingsContext } from "../../../../contexts/signed-out/savings/savings.context";
 import { useSelector } from "react-redux";

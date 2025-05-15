@@ -1,14 +1,13 @@
 import "./market-data-search.styles.tsx";
-import { DropButton } from "../../drop-button/drop-button.styles.ts";
-import { ButtonsContainer } from "../../button/button.styles.ts";
+import { DropButton } from "../../drop-button/drop-button.styles.tsx";
 import { MarketDataSearchContainer } from "./market-data-search.styles.tsx";
 
 import { useState, useContext } from "react";
-import FormInput from "../../form-input/form-input.component.ts";
-import Button from "../../button/button.component.ts";
-import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context.ts";
+import FormInput from "../../form-input/form-input.component.tsx";
+import Button from "../../button/button.component.tsx";
+import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context.tsx";
 import { Typography } from "@mui/material";
-import SimplePaper from "../../mui/paper/paper.component.ts";
+import SimplePaper from "../../mui/paper/paper.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 
 const initialFormFields = {

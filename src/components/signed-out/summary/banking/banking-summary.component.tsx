@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from "react";
 
-import "./banking-summary.styles.jsx";
-import { BankingSummaryContainer, BankingAccountSummaryContainer } from "./banking-summary.styles.jsx";
+import "./banking-summary.styles.tsx";
+import { BankingSummaryContainer, BankingAccountSummaryContainer } from "./banking-summary.styles.tsx";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component.tsx";
 

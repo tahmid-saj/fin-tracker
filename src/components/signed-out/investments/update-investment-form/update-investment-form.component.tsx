@@ -1,4 +1,4 @@
-import React, { useState, Component, useContext } from "react";
+import React, { useState, Component, useContext, MouseEvent } from "react";
 
 import "./update-investment-form.styles.tsx";
 import { UpdateInvestmentContainer, UpdateInvestmentFormContainer,
@@ -67,7 +67,7 @@ const UpdateInvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment
   //   event.preventDefault();
   // };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
@@ -88,7 +88,20 @@ const UpdateInvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment
       return;
     }
 
-    dispatch(updateInvestment(investments, financeItemInfo.investmentName, formFields))
+    dispatch(updateInvestment(investments!, financeItemInfo.investmentName, {
+      ...formFields,
+
+      startingAmount: Number(formFields.startingAmount),
+      afterYears: Number(formFields.afterYears),
+      returnRate: Number(formFields.returnRate),
+      additionalContribution: Number(formFields.additionalContribution),
+
+      endBalance: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+    
+      investments: []
+    }))
     resetFormFields();
   };
 
@@ -102,7 +115,7 @@ const UpdateInvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment
     setShowConfirmClose(false);
 
     if (confirmClose === INVESTMENT_CONFIRM_CLOSE.yes) {
-      dispatch(closeInvestment(investments, financeItemInfo.investmentName))
+      dispatch(closeInvestment(investments!, financeItemInfo.investmentName))
     }
   };
 

@@ -37,8 +37,8 @@ export const InsuranceFilterInfo = () => {
     <SimplePaper styles={ paperStyles }>
       <InsuranceFilterInfoContainer>
         <Typography variant="h6">{`Filtered total insurance planned: $${filteredInsurancePlanned ? filteredInsurancePlanned.toFixed(2) : '0'}`}</Typography>
-        <Typography variant="body1">{ `Filterd dates: ${filterConditions !== null && filterConditions.insuranceStartDate !== '' ? filterConditions.insuranceStartDate : ''} 
-          - ${filterConditions !== null && filterConditions.insuranceEndDate !== '' ? filterConditions.insuranceEndDate : 'Today'}` }</Typography>
+        <Typography variant="body1">{ `Filterd dates: ${filterConditions !== null && (filterConditions as any)?.insuranceEndDate !== '' ? (filterConditions as any)?.insuranceEndDate : ''} 
+          - ${filterConditions !== null && (filterConditions as any)?.insuranceEndDate !== '' ? (filterConditions as any)?.insuranceEndDate : 'Today'}` }</Typography>
 
         <Typography variant="body1">{`Filtered categories: ${insuranceCategoryPayments ? [ ...insuranceCategoryPayments.keys() ] : '-'}`}</Typography>
       </InsuranceFilterInfoContainer>

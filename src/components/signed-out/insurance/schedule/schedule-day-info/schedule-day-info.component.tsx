@@ -15,7 +15,7 @@ const paperStyles = {
 const ScheduleDayInfo = () => {
   const scheduledInsurancePaymentsView = useSelector(selectScheduledInsurancePaymentsView)
 
-  if (!scheduledInsurancePaymentsView.length) return <Fragment/>
+  if (!scheduledInsurancePaymentsView?.length) return <Fragment/>
 
   return (
     <InsuranceScheduleDayInfo>

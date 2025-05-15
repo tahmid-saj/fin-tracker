@@ -17,6 +17,18 @@ import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { MouseEvent } from "react";
 
+import { ColDef } from "ag-grid-community";
+import { AgGridReact as AgGridReactType } from "ag-grid-react"; // Needed for typing
+
+
+type InsuranceData = {
+  For: string,
+  PaymentPerPeriod: number,
+  Interval: string,
+  Start: string,
+  End: string
+}
+
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"],
 }
@@ -26,9 +38,9 @@ const InsuranceTable = () => {
   const insurances = useSelector(selectInsurances)
   const insurancesView = useSelector(selectInsurancesView)
 
-  const gridRef = useRef();
+  const gridRef = useRef<AgGridReactType<InsuranceData>>(null);
 
-  const rowData = insurancesView.map((insurance) => {
+  const rowData = insurancesView?.map((insurance) => {
     return {
       // AddToExpenses: "",
       For: insurance.insuranceFor,
@@ -40,7 +52,7 @@ const InsuranceTable = () => {
   })
 
   // Column Definitions: Defines the columns to be displayed.
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs: ColDef<InsuranceData>[] = [
     // { field: "AddToExpenses",
     //   showDisabledCheckboxes: true,
     //   checkboxSelection: true
@@ -50,18 +62,18 @@ const InsuranceTable = () => {
     { field: "Interval"},
     { field: "Start"},
     { field: "End"},
-  ])
+  ]
 
   const onRemoveSelected = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    const selectedData = gridRef.current.api.getSelectedRows();
+    const selectedData = gridRef?.current?.api?.getSelectedRows();
     // TODO: better manage selectedData[0] without the 0 in index
-    if (!selectedData[0] || selectedData[0] === null || !selectedData[0].For || selectedData[0] === undefined) {
+    if (!selectedData || !selectedData[0] || selectedData[0].For === undefined) {
       return
     }
 
     
-    dispatch(removeInsurance(insurances, selectedData[0].For))
+    dispatch(removeInsurance(insurances!, selectedData[0].For))
   }
 
   const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
