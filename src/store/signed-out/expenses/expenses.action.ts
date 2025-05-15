@@ -47,7 +47,7 @@ export const filterExpensesHelper = (expenses: Expense[], filterConditions: Filt
 const removeExpenseHelper = (expenses: Expense[], expenseId: number): Expense[] => {
   if (validateRemoveExpense(expenseId)) return expenses
 
-  return expenses.filter(exp => exp.expenseId !== expenseId)
+  return expenses?.filter(exp => exp.expenseId !== expenseId)
 }
 
 export const selectScheduledExpensesHelper = (expenses: Expense[], expenseDate: string): Expense[] | null => {

@@ -81,12 +81,12 @@ const updateSavingsAccountHelper = (savingsAccounts: SavingsAccount[], originalS
 
 const closeSavingsAccountHelper = (savingsAccounts: SavingsAccount[], closingSavingsAccountName: string): SavingsAccount[] => {
   // return savingsAccounts without the closingSavingsAccountName
-  return savingsAccounts.filter(account => account.savingsAccountName !== closingSavingsAccountName);
+  return savingsAccounts?.filter(account => account.savingsAccountName !== closingSavingsAccountName);
 };
 
 const getSavingsAccountInfoHelper = (savingsAccounts: SavingsAccount[], savingsAccountName: string): SavingsAccount | null | undefined => {
   // return the account with the given savingsAccountName
-  return savingsAccounts.find(account => String(account.savingsAccountName) === String(savingsAccountName));
+  return savingsAccounts?.find(account => String(account.savingsAccountName) === String(savingsAccountName));
 };
 
 // actions

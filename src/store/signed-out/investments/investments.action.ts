@@ -70,12 +70,12 @@ const updateInvestmentHelper = (investments: Investment[], originalInvestmentNam
 
 const closeInvestmentHelper = (investments: Investment[], closingInvestmentName: string): Investment[] => {
   // return investments without the closingInvestmentName
-  return investments.filter(investment => investment.investmentName !== closingInvestmentName);
+  return investments?.filter(investment => investment.investmentName !== closingInvestmentName);
 };
 
 const getInvestmentInfoHelper = (investments: Investment[], investmentName: string): Investment | null | undefined => {
   // return the investment with the given investmentName
-  return investments.find(investment => String(investment.investmentName) === String(investmentName));
+  return investments?.find(investment => String(investment.investmentName) === String(investmentName));
 };
 
 // actions

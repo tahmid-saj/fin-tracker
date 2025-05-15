@@ -25,7 +25,7 @@ const middlewares = [
   process.env.NODE_ENV !== "production" && logger,
   // thunk,
   sagaMiddleware
-].filter((middleware): middleware is Middleware => Boolean(middlewares))
+].filter((middleware): middleware is Middleware => Boolean(middleware))
 
 const composeEnhancer = (
   process.env.NODE_ENV !== "production" && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

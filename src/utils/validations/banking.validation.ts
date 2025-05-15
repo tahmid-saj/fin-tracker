@@ -8,7 +8,7 @@ import { BankingAccount, BankingSummary } from "../../contexts/signed-out/bankin
 
 export const validateBankingAccountCreation = (bankingAccounts: BankingAccount[], bankingAccountName: string): boolean => {
   // validating if bankingAccountName exists in bankingAccounts
-  const bankingAccountExists = bankingAccounts.find((account) => account.name === bankingAccountName);
+  const bankingAccountExists = bankingAccounts?.find((account) => account.name === bankingAccountName);
 
   if (bankingAccountExists) {
     errorOnBankingAccountExists();
@@ -69,7 +69,7 @@ export const validateBankingAccountTransfer = (
   transferAmount: number
 ): boolean => {
   // validating bankingAccountTransferToName exists in bankingAccounts
-  const transferToAccount = bankingAccounts.find(account => account.name === String(bankingAccountTransferToName));
+  const transferToAccount = bankingAccounts?.find(account => account.name === String(bankingAccountTransferToName));
 
   if (!transferToAccount) {
     errorOnBankingAccountDoesNotExist();

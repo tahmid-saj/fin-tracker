@@ -166,7 +166,7 @@ export const InvestmentsContext = createContext<InvestmentContextType>({
   createInvestment: () => {},
   updateInvestment: () => {},
   closeInvestment: () => {},
-  getInvestmentInfo: () => {},
+  getInvestmentInfo: (investmentName: string): Investment | undefined => undefined,
 
   investmentsSummary: {},
   // investmentSummary structure:

@@ -49,7 +49,7 @@ const Home = () => {
     banking: {
       header: "Banking",
       description: "Track your banking deposits, withdrawals, transfers and get insights on how to better manage accounts",
-      imageUrl: "https://finflux.co/blog/wp-content/uploads/2023/06/282ed4b32c73225e1bded4921c035021.png",
+      imageUrl: "https://static.vecteezy.com/system/resources/previews/046/884/812/non_2x/an-illustration-depicting-a-modern-bank-building-with-surrounding-digital-financial-services-such-as-online-banking-mobile-payments-and-financial-management-tools-free-vector.jpg",
       path: currentUser ? NAV_LINKS.paths.signedIn.banking : NAV_LINKS.paths.signedOut.banking
     },
     investment: {

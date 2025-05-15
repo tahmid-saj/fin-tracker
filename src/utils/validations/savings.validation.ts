@@ -8,7 +8,7 @@ import { errorOnSavingsAccountExists, errorOnInvalidSavingsAccountName,
 // savings validation functions
 
 export const validateSavingsAccountCreation = (savingsAccounts: SavingsAccount[], savingsAccount: SavingsAccount): boolean => {
-  const savingsAccountExists = savingsAccounts.find((account) => account.savingsAccountName === savingsAccount.savingsAccountName);
+  const savingsAccountExists = savingsAccounts?.find((account) => account.savingsAccountName === savingsAccount.savingsAccountName);
 
   if (savingsAccountExists) {
     errorOnSavingsAccountExists();
@@ -18,16 +18,16 @@ export const validateSavingsAccountCreation = (savingsAccounts: SavingsAccount[]
   // validating if savingsAccount fields are correct
 
   // strings
-  if (!(REGEX_PATTERNS.names.test(String(savingsAccount.savingsAccountName)))) {
+  if (!(REGEX_PATTERNS.names.test(String(savingsAccount?.savingsAccountName)))) {
     errorOnInvalidSavingsAccountName();
     return true;
   }
 
   // number
-  if (!(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount.initialDeposit))) || Number(savingsAccount.initialDeposit) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount.monthlyContribution))) || Number(savingsAccount.monthlyContribution) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount.contributionPeriod))) || Number(savingsAccount.contributionPeriod) <= 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount.apy))) || Number(savingsAccount.apy) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount?.initialDeposit))) || Number(savingsAccount?.initialDeposit) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount?.monthlyContribution))) || Number(savingsAccount?.monthlyContribution) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount?.contributionPeriod))) || Number(savingsAccount?.contributionPeriod) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsAccount?.apy))) || Number(savingsAccount?.apy) < 0) {
       errorOnInvalidSavingsAccountInputs();
       return true;
   }
@@ -39,16 +39,16 @@ export const validateSavingsAccountUpdate = (savingsAccounts: SavingsAccount[], 
   // validate fields of updatedInvestment
   
   // strings
-  if (!(REGEX_PATTERNS.names.test(String(updatedSavingsAccount.savingsAccountName)))) {
+  if (!(REGEX_PATTERNS.names.test(String(updatedSavingsAccount?.savingsAccountName)))) {
     errorOnInvalidSavingsAccountName();
     return true;
   }
 
   // number
-  if (!(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount.initialDeposit))) || Number(updatedSavingsAccount.initialDeposit) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount.monthlyContribution))) || Number(updatedSavingsAccount.monthlyContribution) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount.contributionPeriod))) || Number(updatedSavingsAccount.contributionPeriod) <= 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount.apy))) || Number(updatedSavingsAccount.apy) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount?.initialDeposit))) || Number(updatedSavingsAccount?.initialDeposit) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount?.monthlyContribution))) || Number(updatedSavingsAccount?.monthlyContribution) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount?.contributionPeriod))) || Number(updatedSavingsAccount?.contributionPeriod) <= 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(updatedSavingsAccount?.apy))) || Number(updatedSavingsAccount?.apy) < 0) {
       errorOnInvalidSavingsAccountInputs();
       return true;
   }
@@ -69,10 +69,10 @@ export const validateSavingsGoalInput = (savingsGoalInput: SavingsGoalInput): bo
   
 
   // number
-  if (!(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput.savingsGoal))) || Number(savingsGoalInput.savingsGoal) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput.yearsToReachGoal))) || Number(savingsGoalInput.yearsToReachGoal) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput.interestRatePerYear))) || Number(savingsGoalInput.interestRatePerYear) < 0 ||
-    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput.amountFirstDeposit))) || Number(savingsGoalInput.amountFirstDeposit) < 0) {
+  if (!(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput?.savingsGoal))) || Number(savingsGoalInput?.savingsGoal) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput?.yearsToReachGoal))) || Number(savingsGoalInput?.yearsToReachGoal) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput?.interestRatePerYear))) || Number(savingsGoalInput?.interestRatePerYear) < 0 ||
+    !(REGEX_PATTERNS.floatNumbers.test(String(savingsGoalInput?.amountFirstDeposit))) || Number(savingsGoalInput?.amountFirstDeposit) < 0) {
     errorOnInvalidSavingsGoalInput()
     return true
   }

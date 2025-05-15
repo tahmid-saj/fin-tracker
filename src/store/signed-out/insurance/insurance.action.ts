@@ -15,7 +15,7 @@ export type SetInsurancePayments = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_
 export type SetInsurancePaymentsView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCE_PAYMENTS_VIEW, InsurancePayment[]>
 export type SetInsurancesSummary = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_INSURANCES_SUMMARY, InsurancesSummary>
 export type SelectScheduledInsurancePayments = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, string>
-export type SetScheduledInsurancePaymentsView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, InsurancePayment[]>
+export type SetScheduledInsurancePaymentsView = ActionWithPayload<INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, InsurancePayment[] | null>
 
 // helper functions
 
@@ -80,11 +80,11 @@ export const filterInsurancePaymentsHelper = (insurancePayments: InsurancePaymen
 const removeInsuranceHelper = (insurances: Insurance[], insuranceFor: string): Insurance[] => {
   if (validateRemoveInsurance(insuranceFor)) return insurances
 
-  return insurances.filter(insurance => insurance.insuranceFor !== insuranceFor)
+  return insurances?.filter(insurance => insurance.insuranceFor !== insuranceFor)
 }
 
 export const selectScheduledInsurancePaymentsHelper = (insurancePayments: InsurancePayment[], insuranceDate: string): InsurancePayment[] | null => {
-  const filteredInsurancePayments = insurancePayments.filter((insurancePayment) => {
+  const filteredInsurancePayments = insurancePayments?.filter((insurancePayment) => {
     return insurancePayment.insuranceDate === insuranceDate
   })
 
@@ -141,6 +141,6 @@ export const selectScheduledInsurancePayments = withMatcher((insuranceDate: stri
   return createAction(INSURANCE_ACTION_TYPES.SET_SELECTED_INSURANCE_PAYMENTS_DATE, insuranceDate)
 })
 
-export const setScheduledInsurancePaymentsView = withMatcher((scheduledInsurancePaymentsView: InsurancePayment[] | null):SetScheduledInsurancePaymentsView => {
+export const setScheduledInsurancePaymentsView = withMatcher((scheduledInsurancePaymentsView: InsurancePayment[] | null): SetScheduledInsurancePaymentsView => {
   return createAction(INSURANCE_ACTION_TYPES.SET_SCHEDULED_INSURANCE_PAYMENTS_VIEW, scheduledInsurancePaymentsView)
 })
