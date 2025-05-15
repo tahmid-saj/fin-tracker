@@ -1,6 +1,6 @@
-import "./expenses-table.styles.jsx"
-import { ExpensesTableContainer } from "./expenses-table.styles.jsx";
-import { useState, useContext, useCallback, useRef } from "react";
+import "./expenses-table.styles.tsx"
+import { ExpensesTableContainer } from "./expenses-table.styles.tsx";
+import { useState, useContext, useCallback, useRef, MouseEvent } from "react";
 
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
@@ -15,6 +15,17 @@ import { removeExpense, clearExpensesFilter } from "../../../../store/signed-out
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts";
 
+import { AgGridReact as AgGridReactType } from "ag-grid-react"; // Needed for typing
+import { ColDef } from "ag-grid-community";
+
+type ExpenseData = {
+  Date: string,
+  Category: string,
+  For: string,
+  Cost: number,
+  Tag: number
+}
+
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"],
 }
@@ -24,9 +35,9 @@ const ExpensesTable = () => {
   const expenses = useSelector(selectExpenses)
   const expensesView = useSelector(selectExpensesView)
 
-  const gridRef = useRef();
+  const gridRef = useRef<AgGridReactType<ExpenseData>>(null);
   // const { expensesView, removeExpense, clearExpensesFilter } = useContext(ExpensesContext)
-  const rowData = expensesView.map((expense) => {
+  const rowData = expensesView?.map((expense) => {
     return {
       Date: expense.expenseDate,
       Category: expense.expenseCategory,
@@ -37,28 +48,28 @@ const ExpensesTable = () => {
   })
 
   // Column Definitions: Defines the columns to be displayed.
-  const [columnDefs, setColumnDefs] = useState([
+  const columnDefs: ColDef<ExpenseData>[] = [
     { field: "Date"},
     { field: "Category" },
     { field: "For" },
     { field: "Cost" },
     { field: "Tag" }
-  ])
+  ]
 
-  const onRemoveSelected = (event) => {
+  const onRemoveSelected = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    const selectedData = gridRef.current.api.getSelectedRows();
+    const selectedData = gridRef?.current?.api?.getSelectedRows();
     // TODO: better manage selectedData[0] without the 0 in index
-    if (!selectedData[0] || selectedData[0] === null || !selectedData[0].Tag || selectedData[0] === undefined) {
+    if (!selectedData || !selectedData[0] || selectedData[0].Tag === undefined) {
       return
     }
     // const res = gridRef.current.api.applyTransaction({ remove: selectedData });
     // removeExpense(selectedData)
     
-    dispatch(removeExpense(expenses, selectedData[0].Tag))
+    dispatch(removeExpense(expenses!, selectedData[0].Tag))
   }
 
-  const handleClearFilter = (event) => {
+  const handleClearFilter = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
     dispatch(clearExpensesFilter())

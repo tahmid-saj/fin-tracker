@@ -3,7 +3,7 @@ import { DashboardContainer, FinanceItemsSummary, FinanceItemsSummaryInfo
 } from "./summary.styles.tsx";
 
 import React, { useEffect, Fragment } from "react";
-import ChatBot from "../../shared/chatbot/chatbot.component.ts";
+import ChatBot from "../../shared/chatbot/chatbot.component.tsx";
 import ExpensesSummary from "../../../components/signed-out/summary/expenses/expenses.component.tsx";
 import BankingSummary from "../../../components/signed-out/summary/banking/banking-summary.component.tsx";
 import InvestmentsSummary from "../../../components/signed-out/summary/investments/investments-summary.component.tsx";

@@ -4,7 +4,7 @@ import Button from "../../../components/shared/button/button.component.tsx"
 import "./chatbot.styles.tsx"
 import { ChatBotContainer, ChatBotInputMessage } from "./chatbot.styles.tsx"
 import ChatBotResponse from "../../../components/shared/chatbot/chatbot-response/chatbot-response.component.tsx"
-import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context.ts"
+import { ChatBotContext } from "../../../contexts/shared/chatbot/chatbot.context.tsx"
 import { Divider, Typography } from "@mui/material"
 import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts"
 

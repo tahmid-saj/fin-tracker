@@ -2,7 +2,7 @@ import React, { Component, useContext, useEffect } from "react";
 
 import "./investments.styles.tsx";
 import { InvestmentsContainer } from "./investments.styles.tsx";
-import MarketView from "../../shared/market-view/market-view.component.ts";
+import MarketView from "../../shared/market-view/market-view.component.tsx";
 import CreateInvestmentForm from "../../../components/signed-out/investments/create-investment-form/create-investment-form.component.tsx";
 import AllInvestmentsSummary from "../../../components/signed-out/investments/all-investments-summary/all-investments-summary.component.tsx";
 

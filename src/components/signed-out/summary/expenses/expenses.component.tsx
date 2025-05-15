@@ -1,7 +1,7 @@
-import "./expenses.styles.jsx"
+import "./expenses.styles.tsx"
 import { ExpensesSummaryDashboardContainer,
   ExpensesSummaryInfoGraphContainer
-} from "./expenses.styles.jsx"
+} from "./expenses.styles.tsx"
 
 import ExpensesSummaryInfo from "./expenses-summary-info/expenses-summary-info.component.tsx"
 import ExpensesSummaryGraph from "./expenses-summary-graph/expenses-summary-graph.component.tsx"

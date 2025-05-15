@@ -8,8 +8,8 @@ import InsurancesSummaryGraph from "./insurance-summary-graph/insurance-summary-
 import { useSelector } from "react-redux"
 import { selectSelectedInsurancePaymentsDate, selectScheduledInsurancePaymentsView } from "../../../../store/signed-out/insurance/insurance.selector.ts"
 
-import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component.jsx"
-import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component.jsx"
+import ScheduleCalendar from "./schedule/schedule-calendar/schedule-calendar.component.tsx"
+import ScheduleDayInfo from "./schedule/schedule-day-info/schedule-day-info.component.tsx"
 import { Divider } from "@mui/material"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"

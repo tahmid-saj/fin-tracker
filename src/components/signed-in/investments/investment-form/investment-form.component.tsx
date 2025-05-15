@@ -19,8 +19,7 @@ const InvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment }) =>
 
       <div className="investments-form-summary-container">
 
-        <UpdateInvestmentForm label={ FINANCE_ITEM_TYPES.investments } 
-                              financeItemInfo={ financeItemInfo }></UpdateInvestmentForm>
+        <UpdateInvestmentForm financeItemInfo={ financeItemInfo }></UpdateInvestmentForm>
 
           <FinanceTrackerItemInfo label={ FINANCE_ITEM_TYPES.investments } 
                                   financeItemInfo={ financeItemInfo }></FinanceTrackerItemInfo>

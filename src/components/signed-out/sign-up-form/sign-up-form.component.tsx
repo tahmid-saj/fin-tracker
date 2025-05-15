@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../../shared/form-input/form-input.component.tsx";
 import Button from "../../shared/button/button.component.tsx";
 
-import "./sign-up-form.styles.jsx";
-import { SignUpContainer } from "./sign-up-form.styles.jsx";
+import "./sign-up-form.styles.tsx";
+import { SignUpContainer } from "./sign-up-form.styles.tsx";
 import { Typography } from "@mui/material";
 import { COLOR_CODES } from "../../../utils/constants/shared.constants.ts";
 import { errorOnEmailAlreadyInUse, errorOnUserCreation } from "../../../utils/errors/user.errors.ts";

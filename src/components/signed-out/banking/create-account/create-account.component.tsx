@@ -2,7 +2,7 @@ import React, { Component, useState, useContext, FormEvent, ChangeEvent } from "
 
 import FormInput from "../../../shared/form-input/form-input.component.tsx";
 import Button from "../../../shared/button/button.component.tsx";
-import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component.jsx";
+import FinanceTrackerItems from "../../finance-tracker-items/finance-tracker-items.component.tsx";
 
 // import { BankingContext } from "../../../../contexts/signed-out/banking/banking.context";
 import { useDispatch, useSelector } from "react-redux";

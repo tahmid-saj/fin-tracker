@@ -4,7 +4,7 @@ import MarketDataSearch from "../../../components/shared/market-view/market-data
 import MarketDataGraph from "../../../components/shared/market-view/market-data-graph/market-data-graph.component.tsx"
 
 import { Fragment, useContext, useEffect } from "react"
-import { MarketDataContext } from "../../../contexts/shared/market-data/market-data.context.ts"
+import { MarketDataContext } from "../../../contexts/shared/market-data/market-data.context.tsx"
 import { DEFAULT_MARKET_DATA } from "../../../utils/constants/market-data.constants.ts"
 import { Divider } from "@mui/material"
 

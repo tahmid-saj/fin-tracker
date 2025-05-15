@@ -16,6 +16,7 @@ import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
 import { FormEvent } from "react";
 import { ChangeEvent } from "react";
 import { MouseEvent } from "react";
+import { Investment } from "../../../../contexts/signed-in/investments/investments.types.ts";
 
 type FormFields = {
   investmentName: string,
@@ -47,10 +48,10 @@ const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"]
 }
 
-const UpdateInvestmentForm = ({ financeItemInfo }) => {
+const UpdateInvestmentForm = ({ financeItemInfo }: { financeItemInfo: Investment }) => {
 
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const [showConfirmClose, setShowConfirmClose] = useState<FormFields>(false);
+  const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
+  const [showConfirmClose, setShowConfirmClose] = useState(false);
 
   const { updateInvestment, closeInvestment } = useContext(InvestmentsContext);
 
@@ -81,7 +82,20 @@ const UpdateInvestmentForm = ({ financeItemInfo }) => {
       return;
     }
 
-    updateInvestment(financeItemInfo.investmentName, formFields)
+    updateInvestment(financeItemInfo.investmentName, {
+      ...formFields,
+
+      startingAmount: Number(formFields.startingAmount),
+      afterYears: Number(formFields.afterYears),
+      returnRate: Number(formFields.returnRate),
+      additionalContribution: Number(formFields.additionalContribution),
+
+      endBalance: 0,
+      totalContribution: 0,
+      totalInterest: 0,
+    
+      investments: []
+    })
     resetFormFields();
   };
 

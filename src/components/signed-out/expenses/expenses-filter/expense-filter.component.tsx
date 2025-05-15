@@ -8,7 +8,7 @@ import Button from "../../../shared/button/button.component.tsx"
 
 import { useDispatch } from "react-redux"
 import { filterExpenses, clearExpensesFilter } from "../../../../store/signed-out/expenses/expenses.action.ts"
-import { ExpensesFilterInfo } from "../expenses-filter-info/expenses-filter-info.component.jsx"
+import { ExpensesFilterInfo } from "../expenses-filter-info/expenses-filter-info.component.tsx"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
 import { Typography } from "@mui/material"

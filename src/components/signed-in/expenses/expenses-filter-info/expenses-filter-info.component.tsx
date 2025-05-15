@@ -4,9 +4,9 @@ import { ExpensesFilterInfoContainer } from "./expenses-filter-info.styles.tsx"
 
 import { Typography } from "@mui/material"
 
-import SimplePaper from "../../../shared/mui/paper/paper.component.ts"
+import SimplePaper from "../../../shared/mui/paper/paper.component.tsx"
 import { COLOR_CODES, COMMON_SPACING } from "../../../../utils/constants/shared.constants.ts"
-import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.ts"
+import { ExpensesContext } from "../../../../contexts/signed-in/expenses/expenses.context.tsx"
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["5"],

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import "./savings-summary.styles.jsx";
-import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.jsx";
+import "./savings-summary.styles.tsx";
+import { SavingsSummaryContainer, SavingsAccountSummaryContainer } from "./savings-summary.styles.tsx";
 
 import FinanceTrackerItemSummary from "../../finance-tracker-item-summary/finance-tracker-item-summary.component.tsx";
 
