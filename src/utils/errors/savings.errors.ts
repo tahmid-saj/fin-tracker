@@ -9,7 +9,7 @@ export const errorOnInvalidSavingsAccountName = () => {
 };
 
 export const errorOnInvalidSavingsAccountInputs = () => {
-  alert("Invalid savings account inputs");
+  // alert("Invalid savings account inputs");
 };
 
 // api requests
@@ -43,5 +43,5 @@ export const errorOnPutSavingsAccountsSummaryData = () => {
 
 // savings errors
 export const errorOnInvalidSavingsGoalInput = () => {
-  alert("Invalid savings goal input")
+  // alert("Invalid savings goal input")
 }
