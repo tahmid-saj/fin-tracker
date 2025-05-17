@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import HomeRoute from "./routes/shared/home/home.component";
 import Navigation from "./routes/shared/navigation/navigation.component";
 import DashboardRoute from "./routes/signed-out/dashboard/dashboard.component";
+import PredictionsRoute from "./routes/shared/predictor/predictions.component"
+
 import ExpensesRoute from "./routes/signed-out/expenses/expenses.component";
 import BankingRoute from "./routes/signed-out/banking/banking.component";
 import InvestmentsRoute from "./routes/signed-out/investments/investments.components";
@@ -22,11 +24,7 @@ import ExportsRouteSignedIn from "./routes/signed-in/exports/exports.component";
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "./store/shared/user/user.selector";
-import { checkUserSession, setCurrentUser } from "./store/shared/user/user.action";
-
-import { onAuthStateChangedListener,
-  createUserDocumentFromAuth
-} from "./utils/firebase/firebase.utils";
+import { checkUserSession } from "./store/shared/user/user.action";
 
 const App = () => {
   const dispatch = useDispatch()
@@ -48,6 +46,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={ <Navigation/> }>
         <Route index element={ <HomeRoute/> }/>
+        <Route path="/predictions" element={ <PredictionsRoute/> }/>
         <Route path="useful-tools" element={ <UsefulToolsRoute/> }></Route>
 
         {
