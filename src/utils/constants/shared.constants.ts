@@ -17,6 +17,7 @@ export const FINANCE_ITEM_TYPES = {
 export const NAV_LINKS = {
   headers: {
     home: "Home",
+    predictions: "Predictions",
     chatbot: "Chatbot",
     dashboard: "Dashboard",
     expenses: "Expenses",
@@ -37,6 +38,7 @@ export const NAV_LINKS = {
   paths: {
     signedOut: {
       home: "/",
+      predictions: "/predictions",
       chatbot: "/dashboard",
       dashboard: "/dashboard",
       expenses: "/expenses",
@@ -51,6 +53,7 @@ export const NAV_LINKS = {
     },
     signedIn: {
       home: "/",
+      predictions: "/predictions",
       chatbot: "/dashboard-signed-in",
       dashboard: "/dashboard-signed-in",
       expenses: "/expenses-signed-in",
@@ -69,6 +72,10 @@ export const NAV_LINKS = {
       {
         header: "Home",
         path: "/",
+      },
+      {
+        header: "Predictions",
+        path: "/predictions",
       },
       {
         header: "Chatbot",
@@ -137,6 +144,10 @@ export const NAV_LINKS = {
       {
         header: "Home",
         path: "/"
+      },
+      {
+        header: "Predictions",
+        path: "/predictions",
       },
       {
         header: "Chatbot",
