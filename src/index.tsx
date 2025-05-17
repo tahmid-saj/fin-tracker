@@ -17,6 +17,7 @@ import { InvestmentsProvider } from './contexts/signed-out/investments/investmen
 import { MarketDataProvider } from './contexts/shared/market-data/market-data.context';
 import { SavingsProvider } from './contexts/signed-out/savings/savings.context';
 import { DashboardProvider } from './contexts/signed-out/dashboard/dashboard.context';
+import { PredictionsProvider } from "./contexts/shared/predictor/predictions.context"
 
 import { ExpensesProvider as ExpensesProviderSignedIn } from './contexts/signed-in/expenses/expenses.context';
 import { BankingProvider as BankingProviderSignedIn } from './contexts/signed-in/banking/banking.context';
@@ -44,41 +45,43 @@ root.render(
       {/* <ApolloProvider client={ client }> */}
         {/* <PersistGate loading={ null } persistor={ persistor }> */}
           <BrowserRouter>
-            {/* <UserProvider> */}
-              <UsefulToolsProvider>
-                {/* <SavingsGoalCalculatorProvider> */}
-                    {/* <ExpensesProvider> */}
-                      {/* <BankingProvider> */}
-                        {/* <InvestmentsProvider> */}
-                          <MarketDataProvider>
-                            {/* <SavingsProvider> */}
-                              {/* <DashboardProvider> */}
-                                <ExpensesProviderSignedIn>
-                                  <BankingProviderSignedIn>
-                                    <InvestmentsProviderSignedIn>
-                                      <SavingsProviderSignedIn>
-                                        <InsuranceProviderSignedIn>
-                                          <DashboardProviderSignedIn>
-                                            <ExportsProvider>
-                                              <ChatBotProvider>
-                                                <App />
-                                              </ChatBotProvider>
-                                            </ExportsProvider>
-                                          </DashboardProviderSignedIn>
-                                        </InsuranceProviderSignedIn>
-                                      </SavingsProviderSignedIn>
-                                    </InvestmentsProviderSignedIn>
-                                  </BankingProviderSignedIn>
-                                </ExpensesProviderSignedIn>
-                              {/* </DashboardProvider> */}
-                            {/* </SavingsProvider> */}
-                          </MarketDataProvider>
-                        {/* </InvestmentsProvider> */}
-                      {/* </BankingProvider> */}
-                    {/* </ExpensesProvider> */}
-                {/* </SavingsGoalCalculatorProvider> */}
-              </UsefulToolsProvider>
-            {/* </UserProvider> */}
+            <PredictionsProvider>
+              {/* <UserProvider> */}
+                <UsefulToolsProvider>
+                  {/* <SavingsGoalCalculatorProvider> */}
+                      {/* <ExpensesProvider> */}
+                        {/* <BankingProvider> */}
+                          {/* <InvestmentsProvider> */}
+                            <MarketDataProvider>
+                              {/* <SavingsProvider> */}
+                                {/* <DashboardProvider> */}
+                                  <ExpensesProviderSignedIn>
+                                    <BankingProviderSignedIn>
+                                      <InvestmentsProviderSignedIn>
+                                        <SavingsProviderSignedIn>
+                                          <InsuranceProviderSignedIn>
+                                            <DashboardProviderSignedIn>
+                                              <ExportsProvider>
+                                                <ChatBotProvider>
+                                                  <App />
+                                                </ChatBotProvider>
+                                              </ExportsProvider>
+                                            </DashboardProviderSignedIn>
+                                          </InsuranceProviderSignedIn>
+                                        </SavingsProviderSignedIn>
+                                      </InvestmentsProviderSignedIn>
+                                    </BankingProviderSignedIn>
+                                  </ExpensesProviderSignedIn>
+                                {/* </DashboardProvider> */}
+                              {/* </SavingsProvider> */}
+                            </MarketDataProvider>
+                          {/* </InvestmentsProvider> */}
+                        {/* </BankingProvider> */}
+                      {/* </ExpensesProvider> */}
+                  {/* </SavingsGoalCalculatorProvider> */}
+                </UsefulToolsProvider>
+              {/* </UserProvider> */}
+            </PredictionsProvider>
           </BrowserRouter>
         {/* </PersistGate> */}
       {/* </ApolloProvider> */}

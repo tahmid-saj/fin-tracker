@@ -1,0 +1,22 @@
+.nav-tabs {
+  font-weight: 600;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: beige;
+}
+
+@media (max-width: 768px) {
+  .nav-item {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+  
+  .nav-tabs {
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    max-height: 225px;
+  }
+}
