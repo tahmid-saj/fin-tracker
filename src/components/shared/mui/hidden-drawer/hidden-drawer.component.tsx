@@ -28,6 +28,7 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
 
 import LanguageIcon from '@mui/icons-material/Language';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -93,6 +94,7 @@ export default function HiddenDrawer() {
               <ListItemButton>
                 <ListItemIcon>
                   { header === NAV_LINKS.headers.home ? <HomeIcon/> : null }
+                  { header === NAV_LINKS.headers.predictions ? <SwapVertIcon/> : null }
                   { header === NAV_LINKS.headers.chatbot ? <SmartToyIcon/> : null }
                   { header === NAV_LINKS.headers.dashboard ? <DashboardIcon/> : null }
                   { header === NAV_LINKS.headers.expenses ? <PaidIcon/> : null }
