@@ -9,7 +9,7 @@ export const errorOnInvalidInvestmentNameAndType = () => {
 };
 
 export const errorOnInvalidInvestmentInputs = () => {
-  alert("Invalid investment inputs");
+  // alert("Invalid investment inputs");
 };
 
 // api requests

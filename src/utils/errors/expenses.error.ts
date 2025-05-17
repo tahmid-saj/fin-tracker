@@ -6,7 +6,7 @@ export const errorOnInvalidExpenseForAndCategory = () => {
 }
 
 export const errorOnInvalidExpenseCost = () => {
-  alert("Invalid expense cost")
+  // alert("Invalid expense cost")
 }
 
 export const errorOnStartDateBeforeEndDate = () => {

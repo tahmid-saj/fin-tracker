@@ -10,11 +10,11 @@ export const errorOnInvalidBankAccountName = () => {
 }
 
 export const errorOnInvalidTransactionAmount = () => {
-  alert("Invalid transaction amount");
+  // alert("Invalid transaction amount");
 };
 
 export const errorOnBankingAccountDoesNotExist = () => {
-  alert("Banking account does not exist");
+  // alert("Banking account does not exist");
 };
 
 export const errorOnBankingAccountCannotBeSame = () => {

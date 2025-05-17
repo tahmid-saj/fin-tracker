@@ -10,7 +10,7 @@ export const errorOnInvalidInsuranceFor = () => {
 }
 
 export const errorOnInvalidInsurancePayment = () => {
-  alert("Invalid insurance payment")
+  // alert("Invalid insurance payment")
 }
 
 export const errorOnStartDateBeforeEndDate = () => {
