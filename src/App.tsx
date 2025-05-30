@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeRoute from "./routes/shared/home/home.component";
 import Navigation from "./routes/shared/navigation/navigation.component";
 import DashboardRoute from "./routes/signed-out/dashboard/dashboard.component";
+import LivePricesRoute from "./routes/shared/live-prices/live-prices.component"
 import PredictionsRoute from "./routes/shared/predictor/predictions.component"
 
 import ExpensesRoute from "./routes/signed-out/expenses/expenses.component";
@@ -46,7 +47,8 @@ const App = () => {
     <Routes>
       <Route path="/" element={ <Navigation/> }>
         <Route index element={ <HomeRoute/> }/>
-        <Route path="/predictions" element={ <PredictionsRoute/> }/>
+        <Route path="live-prices" element={ <LivePricesRoute/> }/>
+        <Route path="predictions" element={ <PredictionsRoute/> }/>
         <Route path="useful-tools" element={ <UsefulToolsRoute/> }></Route>
 
         {
