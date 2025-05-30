@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Typography } from '@mui/material';
 
 import HomeIcon from '@mui/icons-material/Home'
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PaidIcon from '@mui/icons-material/Paid'
@@ -94,6 +95,7 @@ export default function HiddenDrawer() {
               <ListItemButton>
                 <ListItemIcon>
                   { header === NAV_LINKS.headers.home ? <HomeIcon/> : null }
+                  { header === NAV_LINKS.headers.livePrices ? <LiveTvIcon/> : null }
                   { header === NAV_LINKS.headers.predictions ? <SwapVertIcon/> : null }
                   { header === NAV_LINKS.headers.chatbot ? <SmartToyIcon/> : null }
                   { header === NAV_LINKS.headers.dashboard ? <DashboardIcon/> : null }
