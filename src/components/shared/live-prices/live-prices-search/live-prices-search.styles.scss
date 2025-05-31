@@ -1,0 +1,53 @@
+.market-data-search-container {
+  padding: 35px 5% 35px 5%;
+  // box-shadow: 4px 4px lightgreen;
+  border-radius: 1.5rem;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  width: 60%;
+
+  background-color: rgba(0, 230, 103, 0.15);
+  box-shadow: 4px 4px rgba(0, 230, 103, 0.5);
+}
+
+.dropButton {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.marketDataIntervalDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content label {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content label:hover {
+  background-color: #ddd;
+}
+
+.marketDataIntervalDropdown:hover .dropdown-content {
+  display: block;
+}
+
+.marketDataIntervalDropdown:hover .dropButton {
+  background-color: #3e8e41;
+}

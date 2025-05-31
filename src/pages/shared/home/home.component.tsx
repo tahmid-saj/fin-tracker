@@ -37,7 +37,7 @@ const Home = () => {
     market: {
       header: "Market",
       description: "Get current and historical market data on stocks, indices, crypto and foreign exchange",
-      imageUrl: "https://researchinandout.com/wp-content/uploads/2022/07/q1nta_3000_6242261-2-1024x683.jpg",
+      imageUrl: "https://us.123rf.com/450wm/yupiramos/yupiramos1904/yupiramos190400938/124146160-bull-papers-money-financial-stock-market-vector-illustration.jpg?ver=6",
       path: currentUser ? NAV_LINKS.paths.signedIn.marketData : NAV_LINKS.paths.signedOut.marketData
     },
     expenses: {
