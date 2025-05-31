@@ -49,8 +49,6 @@ const CreateAlert = () => {
       return
     }
 
-    console.log("creating alert")
-
     // create alert
     createAlert({
       ...formFields,
@@ -59,7 +57,6 @@ const CreateAlert = () => {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    console.log("creating alert")
     event.preventDefault()
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })

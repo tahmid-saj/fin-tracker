@@ -1,12 +1,13 @@
 import { Typography } from "@mui/material"
 import { CreateAlertContainer } from "./create-alert.styles"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import FormInput from "../../../shared/form-input/form-input.component.tsx";
 import Button from "../../../shared/button/button.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants"
+import { AlertsContext } from "../../../../contexts/signed-in/alerts/alerts.context.tsx";
 
 const initialFormFields = {
   ticker: "AAPL",
@@ -26,10 +27,16 @@ const paperStyles = {
 
 const CreateAlert = () => {
   const [formFields, setFormFields] = useState(initialFormFields)
+  const { createAlert, deleteAllAlerts } = useContext(AlertsContext)
   
   const resetFormFields = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setFormFields(defaultFormFields)
+  }
+
+  const deleteAlerts = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    deleteAllAlerts()
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +46,11 @@ const CreateAlert = () => {
       return
     }
 
-
+    // create alert
+    createAlert({
+      ...formFields,
+      threshold: Number(formFields.threshold)
+    })
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -96,6 +107,9 @@ const CreateAlert = () => {
                   <Button type="submit">Create</Button>
                   <Button type="button" onClick={resetFormFields}>
                     Clear
+                  </Button>
+                  <Button type="button" onClick={deleteAlerts}>
+                    Delete Alerts
                   </Button>
                 </div>
               </div>
