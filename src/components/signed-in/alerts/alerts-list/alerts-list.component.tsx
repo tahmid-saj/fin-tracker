@@ -1,23 +1,15 @@
-import React from 'react';
-import Alert from './alert.component';
+import React, { useContext } from 'react';
+import AlertItem from './alert.component';
 import { StyledListContainer } from './alerts-list.styles';
-
-const items = [
-  'Intro',
-  'Load Balancing',
-  'Api Gateway',
-];
+import { AlertsContext } from '../../../../contexts/signed-in/alerts/alerts.context';
 
 const AlertsList: React.FC = () => {
-  const handleDelete = (ticker: string) => {
-    console.log(`Delete ${ticker}`);
-  };
+  const { alerts } = useContext(AlertsContext)
 
   return (
     <StyledListContainer>
-      {items.map((item, index) => (
-        <Alert key={index} ticker={`${item}`} direction={`${item}`}
-          threshold={`${item}`} onDelete={() => handleDelete(item)} />
+      {alerts?.map((alert, index) => (
+        <AlertItem key={index} alert={ alert } />
       ))}
     </StyledListContainer>
   );

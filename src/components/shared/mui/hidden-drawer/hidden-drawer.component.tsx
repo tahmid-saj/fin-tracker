@@ -18,6 +18,7 @@ import { Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home'
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PaidIcon from '@mui/icons-material/Paid'
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
@@ -98,6 +99,7 @@ export default function HiddenDrawer() {
                   { header === NAV_LINKS.headers.livePrices ? <LiveTvIcon/> : null }
                   { header === NAV_LINKS.headers.predictions ? <SwapVertIcon/> : null }
                   { header === NAV_LINKS.headers.chatbot ? <SmartToyIcon/> : null }
+                  { header === NAV_LINKS.headers.alerts ? <NotificationsNoneIcon/> : null }
                   { header === NAV_LINKS.headers.dashboard ? <DashboardIcon/> : null }
                   { header === NAV_LINKS.headers.expenses ? <PaidIcon/> : null }
                   { header === NAV_LINKS.headers.banking ? <AccountBalanceIcon/> : null }
@@ -183,7 +185,7 @@ export default function HiddenDrawer() {
           {
             currentUser ?
             <Typography sx={{ marginLeft: "15px", color: COLOR_CODES.general["5"] }} variant="caption">
-              { `Hello ${currentUser.displayName.split(" ")[0]}` }
+              { `Hello ${currentUser?.displayName?.split(" ")[0]}` }
             </Typography> : null
           }
         </div>

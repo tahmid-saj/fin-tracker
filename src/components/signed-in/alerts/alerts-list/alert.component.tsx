@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyledItemContainer, StyledItemTitle, StyledDeleteIcon } from './alerts-list.styles';
+import { Alert } from '../../../../contexts/signed-in/alerts/alerts.types';
+import { AlertsContext } from '../../../../contexts/signed-in/alerts/alerts.context';
 
 export interface AlertProps {
-  ticker: string,
-  direction: string,
-  threshold: string,
-  onDelete: () => void
+  alert: Alert
 }
 
-const Alert: React.FC<AlertProps> = ({ ticker, direction, threshold, onDelete }) => {
+const AlertItem: React.FC<AlertProps> = ({ alert }) => {
+  const { deleteAlert } = useContext(AlertsContext)
+
+  const onDelete = () => {
+    deleteAlert(alert)
+  }
+
   return (
     <StyledItemContainer>
-      <StyledItemTitle>{ticker} | {direction} | ${threshold}</StyledItemTitle>
+      <StyledItemTitle>{alert.ticker} | {alert.direction} | ${alert.threshold}</StyledItemTitle>
       <StyledDeleteIcon onClick={onDelete} />
     </StyledItemContainer>
   );
 };
 
-export default Alert;
+export default AlertItem;
