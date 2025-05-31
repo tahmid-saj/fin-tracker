@@ -5,8 +5,9 @@ import { ReactNode } from "react";
 export interface AlertsContextType {
   alerts: Alert[] | undefined,
   
-  createAlert: (alert: Alert, email: string) => void,
-  deleteAlert: (alert: Alert, email: string) => void
+  createAlert: (alert: Alert) => void,
+  deleteAlert: (alert: Alert) => void,
+  deleteAllAlerts: () => void
 }
 
 export interface AlertsProviderProps {
@@ -16,5 +17,6 @@ export interface AlertsProviderProps {
 export type Alert = {
   ticker: string,
   direction: string,
-  threshold: number
+  threshold: number,
+  email: string
 }

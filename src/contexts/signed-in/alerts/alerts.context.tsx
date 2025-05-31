@@ -3,7 +3,7 @@ import { FC, useState, createContext } from "react";
 
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/shared/user/user.selector";
-import { saveAlertSetting, sendSESVerification,
+import { deleteAlertSetting, saveAlertSetting, sendSESVerification,
   sendSNSSubscriptionVerification, sendSNSUnsubscription } from "../../../utils/api-requests/alerts.requests";
 
 // helper functions
@@ -34,8 +34,8 @@ const deleteAlertHelper = async (alerts: Alert[] | undefined, alert: Alert,
     return alerts
   }
   
-  // unsubscribe from SNS topic
-  sendSNSUnsubscription(userId, email)
+  // delete single alert setting
+  deleteAlertSetting(alert, userId, email)
 
   const res = alerts?.filter(alertSetting => {
     return alertSetting.ticker !== alert.ticker && alertSetting.direction !== alert.direction 
@@ -47,12 +47,26 @@ const deleteAlertHelper = async (alerts: Alert[] | undefined, alert: Alert,
   return res
 }
 
+const deleteAllAlertsHelper = async (alerts: Alert[] | undefined,
+  userId: string | null | undefined, email: string | null | undefined): Promise<undefined> => {
+  
+  if (!alerts) {
+    return alerts
+  }
+
+  // unsubscribe from SNS topic
+  sendSNSUnsubscription(userId, email)
+
+  return undefined
+}
+
 // initial state
 export const AlertsContext = createContext<AlertsContextType>({
   alerts: undefined,
   
   createAlert: (alert: Alert) => {},
-  deleteAlert: (alert: Alert) => {}
+  deleteAlert: (alert: Alert) => {},
+  deleteAllAlerts: () => {}
 })
 
 // context component
@@ -75,8 +89,15 @@ export const AlertsProvider: FC<AlertsProviderProps> = ({ children }) => {
     }
   }
 
+  const deleteAllAlerts = async () => {
+    if (currentUser) {
+      const res = await deleteAllAlertsHelper(alerts, currentUser?.uid, currentUser?.email)
+      setAlerts(res)
+    }
+  }
+
   return (
-    <AlertsContext.Provider value={{ alerts, createAlert, deleteAlert }}>
+    <AlertsContext.Provider value={{ alerts, createAlert, deleteAlert, deleteAllAlerts }}>
       { children }
     </AlertsContext.Provider>
   )

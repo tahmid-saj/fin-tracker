@@ -25,6 +25,7 @@ import { BankingProvider as BankingProviderSignedIn } from './contexts/signed-in
 import { InvestmentsProvider as InvestmentsProviderSignedIn } from './contexts/signed-in/investments/investments.context';
 import { SavingsProvider as SavingsProviderSignedIn } from './contexts/signed-in/savings/savings.context';
 import { InsuranceProvider as InsuranceProviderSignedIn } from './contexts/signed-in/insurance/insurance.context';
+import { AlertsProvider as AlertsProviderSignedIn } from "./contexts/signed-in/alerts/alerts.context"
 import { DashboardProvider as DashboardProviderSignedIn } from './contexts/signed-in/dashboard/dashboard.context';
 import { ExportsProvider } from './contexts/signed-in/exports/exports.context';
 
@@ -62,13 +63,15 @@ root.render(
                                         <InvestmentsProviderSignedIn>
                                           <SavingsProviderSignedIn>
                                             <InsuranceProviderSignedIn>
-                                              <DashboardProviderSignedIn>
-                                                <ExportsProvider>
-                                                  <ChatBotProvider>
-                                                    <App />
-                                                  </ChatBotProvider>
-                                                </ExportsProvider>
-                                              </DashboardProviderSignedIn>
+                                              <AlertsProviderSignedIn>
+                                                <DashboardProviderSignedIn>
+                                                  <ExportsProvider>
+                                                    <ChatBotProvider>
+                                                      <App />
+                                                    </ChatBotProvider>
+                                                  </ExportsProvider>
+                                                </DashboardProviderSignedIn>
+                                              </AlertsProviderSignedIn>
                                             </InsuranceProviderSignedIn>
                                           </SavingsProviderSignedIn>
                                         </InvestmentsProviderSignedIn>
