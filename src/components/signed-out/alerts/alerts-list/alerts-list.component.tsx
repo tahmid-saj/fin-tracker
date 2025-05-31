@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Alert from './alert.component';
 import { StyledListContainer } from './alerts-list.styles';
+import { AlertsContext } from '../../../../contexts/signed-in/alerts/alerts.context';
+import { Alert as AlertType } from '../../../../contexts/signed-out/alerts/alerts.types';
 
 const items = [
   'Intro',
@@ -9,13 +11,15 @@ const items = [
 ];
 
 const AlertsList: React.FC = () => {
-  const handleDelete = (ticker: string) => {
-    console.log(`Delete ${ticker}`);
-  };
+  const { alerts, deleteAlert } = useContext(AlertsContext)
+
+  const handleDelete = (item: AlertType) => {
+
+  }
 
   return (
     <StyledListContainer>
-      {items.map((item, index) => (
+      {alerts?.map((item, index) => (
         <Alert key={index} ticker={`${item}`} direction={`${item}`}
           threshold={`${item}`} onDelete={() => handleDelete(item)} />
       ))}

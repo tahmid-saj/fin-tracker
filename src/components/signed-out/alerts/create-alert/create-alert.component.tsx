@@ -1,23 +1,26 @@
 import { Typography } from "@mui/material"
 import { CreateAlertContainer } from "./create-alert.styles.tsx"
-import { useState } from "react"
+import React, { useContext, useState } from "react"
 
 import { DropButton } from "../../../shared/drop-button/drop-button.styles.tsx"
 import SimplePaper from "../../../shared/mui/paper/paper.component.tsx";
 import FormInput from "../../../shared/form-input/form-input.component.tsx";
 import Button from "../../../shared/button/button.component.tsx";
 import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts"
+import { AlertsContext } from "../../../../contexts/signed-out/alerts/alerts.context.tsx";
 
 const initialFormFields = {
   ticker: "AAPL",
   direction: "DROP",
-  threshold: "2000" 
+  threshold: "2000",
+  email: ""
 }
 
 const defaultFormFields = {
   ticker: "",
   direction: "",
-  threshold: "" 
+  threshold: "",
+  email: ""
 }
 
 const paperStyles = {
@@ -26,20 +29,32 @@ const paperStyles = {
 
 const CreateAlert = () => {
   const [formFields, setFormFields] = useState(initialFormFields)
+  const { createAlert } = useContext(AlertsContext)
   
   const resetFormFields = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setFormFields(defaultFormFields)
   }
 
+  const deleteAllAlerts = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    // deleteAllAlerts(email)
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (formFields.ticker === "" || formFields.direction === "" || formFields.threshold) {
+    if (formFields.ticker === "" || formFields.direction === "" 
+      || formFields.threshold || formFields.email === "") {
       return
     }
 
-
+    // create alert
+    createAlert({
+      ticker: formFields.ticker,
+      direction: formFields.direction,
+      threshold: Number(formFields.threshold)
+    }, formFields.email)
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -89,6 +104,15 @@ const CreateAlert = () => {
             value={formFields.threshold}
           />
 
+          <FormInput
+            label="Email"
+            type="text"
+            required
+            onChange={handleChange}
+            name="email"
+            value={formFields.email}
+          />
+
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -96,6 +120,9 @@ const CreateAlert = () => {
                   <Button type="submit">Create</Button>
                   <Button type="button" onClick={resetFormFields}>
                     Clear
+                  </Button>
+                  <Button type="button" onClick={deleteAllAlerts}>
+                    Delete All Alerts
                   </Button>
                 </div>
               </div>

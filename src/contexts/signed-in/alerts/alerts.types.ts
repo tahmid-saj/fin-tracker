@@ -6,7 +6,8 @@ export interface AlertsContextType {
   alerts: Alert[] | undefined,
   
   createAlert: (alert: Alert) => void,
-  deleteAlert: (alert: Alert) => void
+  deleteAlert: (alert: Alert) => void,
+  deleteAllAlerts: () => void
 }
 
 export interface AlertsProviderProps {
