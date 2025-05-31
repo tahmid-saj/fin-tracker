@@ -38,9 +38,12 @@ const deleteAlertHelper = async (alerts: Alert[] | undefined, alert: Alert,
   deleteAlertSetting(alert, userId, email)
 
   const res = alerts?.filter(alertSetting => {
-    return alertSetting.ticker !== alert.ticker && alertSetting.direction !== alert.direction 
-      && alertSetting.threshold !== alert.threshold
-  })
+    return !(
+      alertSetting.ticker === alert.ticker &&
+      alertSetting.direction === alert.direction &&
+      alertSetting.threshold === alert.threshold
+    );
+  });
 
   if (res.length === 0) return undefined
 

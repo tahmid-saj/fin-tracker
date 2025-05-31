@@ -11,7 +11,7 @@ export interface AlertProps {
 const Alert: React.FC<AlertProps> = ({ ticker, direction, threshold, onDelete }) => {
   return (
     <StyledItemContainer>
-      <StyledItemTitle>{ticker} / {direction} / {threshold}</StyledItemTitle>
+      <StyledItemTitle>{ticker} | {direction} | ${threshold}</StyledItemTitle>
       <StyledDeleteIcon onClick={onDelete} />
     </StyledItemContainer>
   );

@@ -66,7 +66,7 @@ export const sendSESVerification = async (email: string | null | undefined): Pro
 export const sendSNSUnsubscription = async (userId: string | null | undefined, email: string | null | undefined): Promise<void> => {
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL_ALERTS}${process.env.REACT_APP_API_URL_ALERTS_SNS_UNSUBSCRIBE}`, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
@@ -85,7 +85,7 @@ export const sendSNSUnsubscription = async (userId: string | null | undefined, e
 export const sendSNSUnsubscriptionUnauth = async (email: string | null | undefined): Promise<void> => {
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL_ALERTS}${process.env.REACT_APP_API_URL_ALERTS_SNS_UNSUBSCRIBE_UNAUTH}`, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },

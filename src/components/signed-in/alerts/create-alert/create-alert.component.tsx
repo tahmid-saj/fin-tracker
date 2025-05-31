@@ -35,7 +35,7 @@ const CreateAlert = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (formFields.ticker === "" || formFields.direction === "" || formFields.threshold) {
+    if (formFields.ticker === "" || formFields.direction === "" || formFields.threshold === "") {
       return
     }
 

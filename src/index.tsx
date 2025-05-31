@@ -11,6 +11,7 @@ import { UserProvider } from './contexts/shared/user/user.context';
 import { UsefulToolsProvider } from './contexts/shared/useful-tools/useful-tools.context';
 import { SavingsGoalCalculatorProvider } from './contexts/shared/savings-goal-calculator/savings-goal-calculator.context';
 import { ChatBotProvider } from './contexts/shared/chatbot/chatbot.context';
+import { AlertsProvider } from './contexts/signed-out/alerts/alerts.context';
 import { ExpensesProvider } from './contexts/signed-out/expenses/expenses.context';
 import { BankingProvider } from './contexts/signed-out/banking/banking.context';
 import { InvestmentsProvider } from './contexts/signed-out/investments/investments.context';
@@ -58,25 +59,27 @@ root.render(
                               <MarketDataProvider>
                                 {/* <SavingsProvider> */}
                                   {/* <DashboardProvider> */}
-                                    <ExpensesProviderSignedIn>
-                                      <BankingProviderSignedIn>
-                                        <InvestmentsProviderSignedIn>
-                                          <SavingsProviderSignedIn>
-                                            <InsuranceProviderSignedIn>
-                                              <AlertsProviderSignedIn>
-                                                <DashboardProviderSignedIn>
-                                                  <ExportsProvider>
-                                                    <ChatBotProvider>
-                                                      <App />
-                                                    </ChatBotProvider>
-                                                  </ExportsProvider>
-                                                </DashboardProviderSignedIn>
-                                              </AlertsProviderSignedIn>
-                                            </InsuranceProviderSignedIn>
-                                          </SavingsProviderSignedIn>
-                                        </InvestmentsProviderSignedIn>
-                                      </BankingProviderSignedIn>
-                                    </ExpensesProviderSignedIn>
+                                    <AlertsProvider>
+                                      <ExpensesProviderSignedIn>
+                                        <BankingProviderSignedIn>
+                                          <InvestmentsProviderSignedIn>
+                                            <SavingsProviderSignedIn>
+                                              <InsuranceProviderSignedIn>
+                                                <AlertsProviderSignedIn>
+                                                  <DashboardProviderSignedIn>
+                                                    <ExportsProvider>
+                                                      <ChatBotProvider>
+                                                        <App />
+                                                      </ChatBotProvider>
+                                                    </ExportsProvider>
+                                                  </DashboardProviderSignedIn>
+                                                </AlertsProviderSignedIn>
+                                              </InsuranceProviderSignedIn>
+                                            </SavingsProviderSignedIn>
+                                          </InvestmentsProviderSignedIn>
+                                        </BankingProviderSignedIn>
+                                      </ExpensesProviderSignedIn>
+                                    </AlertsProvider>
                                   {/* </DashboardProvider> */}
                                 {/* </SavingsProvider> */}
                               </MarketDataProvider>
