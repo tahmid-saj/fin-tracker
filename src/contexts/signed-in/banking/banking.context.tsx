@@ -23,8 +23,6 @@ const createBankingAccountHelper = async (bankingAccounts: BankingAccount[], ban
   if (validateBankingAccountCreation(bankingAccounts, bankingAccountName)) return bankingAccounts;
    
   postBankingAccountCreate(userId, email, bankingAccountName);
-  
-  
 
   // add bankingAccount to bankingAccounts
   return [ ...bankingAccounts, 

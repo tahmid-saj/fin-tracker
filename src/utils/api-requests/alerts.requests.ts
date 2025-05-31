@@ -1,5 +1,6 @@
 // alerts api requests
 
+import { Alert } from "../../contexts/signed-in/alerts/alerts.types"
 import { errorOnSaveAlertSetting, errorOnSendSESEmailVerification, 
   errorOnSendSNSSubscriptionVerification, errorOnSNSUnsubscription } from "../errors/alerts.errors"
 
@@ -99,7 +100,7 @@ export const sendSNSUnsubscriptionUnauth = async (email: string | null | undefin
 }
 
 // saving alert setting
-export const saveAlertSetting = async (userId: string | null | undefined, email: string | null | undefined): Promise<void> => {
+export const saveAlertSetting = async (alert: Alert, userId: string | null | undefined, email: string | null | undefined): Promise<void> => {
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL_ALERTS}${process.env.REACT_APP_API_URL_ALERTS_SAVE_ALERT_SETTING}`, {
       method: "POST",
@@ -107,6 +108,7 @@ export const saveAlertSetting = async (userId: string | null | undefined, email:
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        ...alert,
         userID: userId,
         email: email
       })
@@ -118,7 +120,7 @@ export const saveAlertSetting = async (userId: string | null | undefined, email:
   }
 }
 
-export const saveAlertSettingUnauth = async (email: string | null | undefined): Promise<void> => {
+export const saveAlertSettingUnauth = async (alert: Alert, email: string | null | undefined): Promise<void> => {
   try {
     const response = await fetch(`${process.env.REACT_APP_API_URL_ALERTS}${process.env.REACT_APP_API_URL_ALERTS_SAVE_ALERT_SETTING_UNAUTH}`, {
       method: "POST",
@@ -126,6 +128,7 @@ export const saveAlertSettingUnauth = async (email: string | null | undefined): 
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        ...alert,
         email: email
       })
     })
