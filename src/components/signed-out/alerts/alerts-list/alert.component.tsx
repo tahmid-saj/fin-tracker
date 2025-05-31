@@ -1,20 +1,19 @@
 import React from 'react';
 import { StyledItemContainer, StyledItemTitle, StyledDeleteIcon } from './alerts-list.styles';
+import { Alert } from '../../../../contexts/signed-out/alerts/alerts.types';
 
 export interface AlertProps {
-  ticker: string,
-  direction: string,
-  threshold: string,
+  alert: Alert
   onDelete: () => void
 }
 
-const Alert: React.FC<AlertProps> = ({ ticker, direction, threshold, onDelete }) => {
+const AlertItem: React.FC<AlertProps> = ({ alert, onDelete }) => {
   return (
     <StyledItemContainer>
-      <StyledItemTitle>{ticker} / {direction} / {threshold}</StyledItemTitle>
+      <StyledItemTitle>{alert.ticker} | {alert.direction} | {alert.threshold} | {alert.email}</StyledItemTitle>
       <StyledDeleteIcon onClick={onDelete} />
     </StyledItemContainer>
   );
 };
 
-export default Alert;
+export default AlertItem;
