@@ -45,9 +45,11 @@ const CreateAlert = () => {
     event.preventDefault()
 
     if (formFields.ticker === "" || formFields.direction === "" 
-      || formFields.threshold || formFields.email === "") {
+      || formFields.threshold === "" || formFields.email === "") {
       return
     }
+
+    console.log("creating alert")
 
     // create alert
     createAlert({
@@ -57,6 +59,7 @@ const CreateAlert = () => {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    console.log("creating alert")
     event.preventDefault()
     const { name, value } = event.target
     setFormFields({ ...formFields, [name]: value })

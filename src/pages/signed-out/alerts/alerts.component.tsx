@@ -1,9 +1,12 @@
 import { Divider } from "@mui/material"
-import CreateAlert from "../../../components/signed-in/alerts/create-alert/create-alert.component"
+import CreateAlert from "../../../components/signed-out/alerts/create-alert/create-alert.component"
 import { AlertsContainer } from "./alerts.styles"
-import AlertsList from "../../../components/signed-in/alerts/alerts-list/alerts-list.component"
+import AlertsList from "../../../components/signed-out/alerts/alerts-list/alerts-list.component"
+import { useContext } from "react"
+import { AlertsContext } from "../../../contexts/signed-out/alerts/alerts.context"
 
 const Alerts = () => {
+  const { alerts } = useContext(AlertsContext)
 
   return (
     <AlertsContainer>
@@ -12,7 +15,7 @@ const Alerts = () => {
       <Divider/>
 
       {
-        <AlertsList/>
+        alerts !== undefined && alerts.length !== 0 && <AlertsList/>
       }
     </AlertsContainer>
   )

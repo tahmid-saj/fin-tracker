@@ -5,16 +5,12 @@ import { AlertsContext } from '../../../../contexts/signed-out/alerts/alerts.con
 import { Alert as AlertType } from '../../../../contexts/signed-out/alerts/alerts.types';
 
 const AlertsList: React.FC = () => {
-  const { alerts, deleteAlert } = useContext(AlertsContext)
-
-  const handleDelete = (alert: AlertType) => {
-    deleteAlert(alert)
-  }
+  const { alerts } = useContext(AlertsContext)
 
   return (
     <StyledListContainer>
       {alerts?.map((alert, index) => (
-        <AlertItem key={index} alert={ alert } onDelete={() => handleDelete(alert)} />
+        <AlertItem key={index} alert={ alert } />
       ))}
     </StyledListContainer>
   );

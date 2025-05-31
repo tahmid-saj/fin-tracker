@@ -30,13 +30,20 @@ const deleteAlertHelper = async (alerts: Alert[] | undefined, alert: Alert): Pro
     return alerts
   }
   
+  // unsubscribe from SNS topic
+  sendSNSUnsubscriptionUnauth(alert.email)
+
   // delete single alert setting
   deleteAlertSettingUnauth(alert)
 
   const res = alerts?.filter(alertSetting => {
-    return alertSetting.ticker !== alert.ticker && alertSetting.direction !== alert.direction 
-      && alertSetting.threshold !== alert.threshold && alertSetting.email !== alert.email
-  })
+    return !(
+      alertSetting.ticker === alert.ticker &&
+      alertSetting.direction === alert.direction &&
+      alertSetting.threshold === alert.threshold &&
+      alertSetting.email === alert.email
+    );
+  });
 
   if (res.length === 0) return undefined
 
