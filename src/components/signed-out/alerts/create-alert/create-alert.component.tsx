@@ -29,16 +29,16 @@ const paperStyles = {
 
 const CreateAlert = () => {
   const [formFields, setFormFields] = useState(initialFormFields)
-  const { createAlert } = useContext(AlertsContext)
+  const { createAlert, deleteAllAlerts } = useContext(AlertsContext)
   
   const resetFormFields = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     setFormFields(defaultFormFields)
   }
 
-  const deleteAllAlerts = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const deleteAlerts = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    // deleteAllAlerts(email)
+    deleteAllAlerts()
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -51,10 +51,9 @@ const CreateAlert = () => {
 
     // create alert
     createAlert({
-      ticker: formFields.ticker,
-      direction: formFields.direction,
+      ...formFields,
       threshold: Number(formFields.threshold)
-    }, formFields.email)
+    })
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -121,8 +120,8 @@ const CreateAlert = () => {
                   <Button type="button" onClick={resetFormFields}>
                     Clear
                   </Button>
-                  <Button type="button" onClick={deleteAllAlerts}>
-                    Delete All Alerts
+                  <Button type="button" onClick={deleteAlerts}>
+                    Delete Alerts
                   </Button>
                 </div>
               </div>
