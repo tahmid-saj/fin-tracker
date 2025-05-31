@@ -1,14 +1,15 @@
-import "./market-data-search.styles.tsx";
+import "./live-prices-search.styles.tsx"
 import { DropButton } from "../../drop-button/drop-button.styles.tsx";
-import { MarketDataSearchContainer } from "./market-data-search.styles.tsx";
+import { MarketDataSearchContainer } from "./live-prices-search.styles.tsx";
 
-import { useState, useContext } from "react";
-import FormInput from "../../form-input/form-input.component.tsx";
-import Button from "../../button/button.component.tsx";
-import { MarketDataContext } from "../../../../contexts/shared/market-data/market-data.context.tsx";
 import { Typography } from "@mui/material";
 import SimplePaper from "../../mui/paper/paper.component.tsx";
-import { COLOR_CODES } from "../../../../utils/constants/shared.constants.ts";
+import FormInput from "../../form-input/form-input.component.tsx";
+import Button from "../../button/button.component.tsx";
+
+import { useContext, useState } from "react";
+import { COLOR_CODES } from "../../../../utils/constants/shared.constants"
+import { useWebSocket } from "../../../../contexts/shared/live-prices/live-prices.context"
 
 const initialFormFields = {
   marketDataType: "Crypto",
@@ -16,7 +17,7 @@ const initialFormFields = {
   marketDataInterval: "Hour",
   marketDataStartDate: "",
   marketDataEndDate: ""
-};
+}
 
 const defaultFormFields = {
   marketDataType: "",
@@ -24,23 +25,23 @@ const defaultFormFields = {
   marketDataInterval: "",
   marketDataStartDate: "",
   marketDataEndDate: ""
-};
+}
 
 const paperStyles = {
   backgroundColor: COLOR_CODES.general["6"]
 };
 
-const MarketDataSearch = () => {
-  const [formFields, setFormFields] = useState(initialFormFields);
-  const { searchMarketData } = useContext(MarketDataContext);
+const LivePricesSearch = () => {
+  const [formFields, setFormFields] = useState(initialFormFields)
+  const { getInitialPrices } = useWebSocket()
 
   const resetFormFields = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setFormFields(defaultFormFields);
-  };
+    event.preventDefault()
+    setFormFields(defaultFormFields)
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (
       formFields.marketDataType === "" ||
@@ -49,24 +50,26 @@ const MarketDataSearch = () => {
       formFields.marketDataStartDate === "" ||
       formFields.marketDataEndDate === ""
     ) {
-      return;
+      return
     }
 
-    await searchMarketData(formFields);
-    resetFormFields((event as unknown) as React.MouseEvent<HTMLButtonElement>);
-  };
+    // get initial prices
+    getInitialPrices(formFields)
+
+    resetFormFields((event as unknown) as React.MouseEvent<HTMLButtonElement>)
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
+    event.preventDefault()
+    const { name, value } = event.target
+    setFormFields({ ...formFields, [name]: value })
+  }
 
   return (
     <MarketDataSearchContainer>
       <SimplePaper styles={paperStyles}>
         <Typography variant="h6" sx={{ paddingBottom: "6%" }}>
-          Search Market Data
+          Search Live Prices
         </Typography>
 
         <form onSubmit={handleSubmit}>
@@ -106,10 +109,9 @@ const MarketDataSearch = () => {
             onChange={handleChange}
             value={formFields.marketDataInterval}
           >
+            <option value="Minute">Minute</option>
             <option value="Hour">Hour</option>
             <option value="Day">Day</option>
-            <option value="Week">Week</option>
-            <option value="Month">Month</option>
           </DropButton>
 
           <Typography sx={{ marginTop: "2%" }} variant="subtitle2">
@@ -148,6 +150,6 @@ const MarketDataSearch = () => {
       </SimplePaper>
     </MarketDataSearchContainer>
   );
-};
+}
 
-export default MarketDataSearch;
+export default LivePricesSearch
