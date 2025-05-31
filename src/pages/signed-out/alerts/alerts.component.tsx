@@ -1,7 +1,7 @@
 import { Divider } from "@mui/material"
-import CreateAlert from "../../../components/signed-out/alerts/create-alert/create-alert.component"
+import CreateAlert from "../../../components/signed-in/alerts/create-alert/create-alert.component"
 import { AlertsContainer } from "./alerts.styles"
-import AlertsList from "../../../components/signed-out/alerts/alerts-list/alerts-list.component"
+import AlertsList from "../../../components/signed-in/alerts/alerts-list/alerts-list.component"
 
 const Alerts = () => {
 

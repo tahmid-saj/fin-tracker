@@ -22,6 +22,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 import HomeIcon from '@mui/icons-material/Home';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PaidIcon from '@mui/icons-material/Paid';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -214,6 +215,7 @@ export default function MiniDrawer({ navLinksHeaders, children }: MiniDrawerProp
                   <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
                     {header === NAV_LINKS.headers.home && <HomeIcon />}
                     {header === NAV_LINKS.headers.chatbot && <SmartToyIcon />}
+                    {header === NAV_LINKS.headers.alerts && <NotificationsNoneIcon />}
                     {header === NAV_LINKS.headers.dashboard && <DashboardIcon />}
                     {header === NAV_LINKS.headers.expenses && <PaidIcon />}
                     {header === NAV_LINKS.headers.banking && <AccountBalanceIcon />}

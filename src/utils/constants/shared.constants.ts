@@ -20,6 +20,7 @@ export const NAV_LINKS = {
     livePrices: "Live Prices",
     predictions: "Predictions",
     chatbot: "Chatbot",
+    alerts: "Alerts",
     dashboard: "Dashboard",
     expenses: "Expenses",
     banking: "Banking",
@@ -41,6 +42,7 @@ export const NAV_LINKS = {
       home: "/",
       livePrices: "/live-prices",
       predictions: "/predictions",
+      alerts: "/alerts",
       chatbot: "/dashboard",
       dashboard: "/dashboard",
       expenses: "/expenses",
@@ -57,6 +59,7 @@ export const NAV_LINKS = {
       home: "/",
       livePrices: "/live-prices",
       predictions: "/predictions",
+      alerts: "/alerts-signed-in",
       chatbot: "/dashboard-signed-in",
       dashboard: "/dashboard-signed-in",
       expenses: "/expenses-signed-in",
@@ -87,6 +90,10 @@ export const NAV_LINKS = {
       {
         header: "Chatbot",
         path: "/dashboard",
+      },
+      {
+        header: "Alerts",
+        path: "/alerts",
       },
       {
         header: "Dashboard",
@@ -163,6 +170,10 @@ export const NAV_LINKS = {
       {
         header: "Chatbot",
         path: "/dashboard-signed-in"
+      },
+      {
+        header: "Alerts",
+        path: "/alerts-signed-in",
       },
       {
         header: "Dashboard",

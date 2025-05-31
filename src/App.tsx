@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeRoute from "./routes/shared/home/home.component";
 import Navigation from "./routes/shared/navigation/navigation.component";
 import DashboardRoute from "./routes/signed-out/dashboard/dashboard.component";
+import AlertsRoute from "./routes/signed-out/alerts/alerts.component";
 import LivePricesRoute from "./routes/shared/live-prices/live-prices.component"
 import PredictionsRoute from "./routes/shared/predictor/predictions.component"
 
@@ -15,6 +16,7 @@ import UsefulToolsRoute from "./routes/shared/useful-tools/useful-tools.componen
 import AuthenticationRoute from "./routes/signed-out/authentication/authentication.component";
 
 import DashboardRouteSignedIn from "./routes/signed-in/dashboard/dashboard.component";
+import AlertsRouteSignedIn from "./routes/signed-in/alerts/alerts.component"
 import ExpensesRouteSignedIn from "./routes/signed-in/expenses/expenses.component";
 import BankingRouteSignedIn from "./routes/signed-in/banking/banking.component";
 import InvestmentsRouteSignedIn from "./routes/signed-in/investments/investments.components";
@@ -56,6 +58,7 @@ const App = () => {
           (
             <Fragment>
               <Route path="dashboard-signed-in" element={ <DashboardRouteSignedIn/> }/>
+              <Route path="alerts-signed-in" element={ <AlertsRouteSignedIn/> }/>
               <Route path="expenses-signed-in" element={ <ExpensesRouteSignedIn/> }/>
               <Route path="banking-signed-in" element={ <BankingRouteSignedIn/> }/>
               <Route path="investments-signed-in" element={ <InvestmentsRouteSignedIn/> }/>
@@ -66,6 +69,7 @@ const App = () => {
           ) : (
             <Fragment>
               <Route path="dashboard" element={ <DashboardRoute/> }/>
+              <Route path="alerts" element={ <AlertsRoute/> }/>
               <Route path="expenses" element={ <ExpensesRoute/> }/>
               <Route path="banking" element={ <BankingRoute/> }/>
               <Route path="investments" element={ <InvestmentsRoute/> }/>
