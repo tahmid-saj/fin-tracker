@@ -2,7 +2,7 @@
 
 import { Alert } from "../../contexts/signed-in/alerts/alerts.types"
 import { Alert as AlertUnauthenticated } from "../../contexts/signed-out/alerts/alerts.types"
-import { errorOnSaveAlertSetting, errorOnSendSESEmailVerification, 
+import { errorOnDeleteAlertSetting, errorOnSaveAlertSetting, errorOnSendSESEmailVerification, 
   errorOnSendSNSSubscriptionVerification, errorOnSNSUnsubscription } from "../errors/alerts.errors"
 
 // sending SNS subscription email verification
@@ -158,7 +158,7 @@ export const deleteAlertSetting = async (alert: Alert, userId: string | null | u
 
     return response.json()
   } catch (err) {
-    errorOnSaveAlertSetting()
+    errorOnDeleteAlertSetting()
   }
 }
 
@@ -177,6 +177,6 @@ export const deleteAlertSettingUnauth = async (alert: AlertUnauthenticated): Pro
 
     return response.json()
   } catch (err) {
-    errorOnSaveAlertSetting()
+    errorOnDeleteAlertSetting()
   }
 }
