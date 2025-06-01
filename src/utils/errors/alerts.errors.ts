@@ -16,3 +16,7 @@ export const errorOnSNSUnsubscription = () => {
 export const errorOnSaveAlertSetting = () => {
   alert("Error saving alert setting")
 }
+
+export const errorOnDeleteAlertSetting = () => {
+  alert("Error deleting alert setting")
+}

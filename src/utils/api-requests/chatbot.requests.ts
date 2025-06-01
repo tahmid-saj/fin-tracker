@@ -1,8 +1,8 @@
 import { errorOnGetChatBotResponse } from "../errors/chatbot.errors";
 
-// chatbot api requests
+import { RANDOM_SEPARATOR } from "../constants/chatbot.constants"
 
-const RANDOM_SEPARATOR = "auo0os6"
+// chatbot api requests
 
 // response
 export const getChatBotResponse = async (messageInput: string): Promise<string | undefined> => {
