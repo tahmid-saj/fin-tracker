@@ -4,7 +4,8 @@ import { validateMarketDataQuery } from "../../../utils/validations/market-data.
 import { DEFAULT_MARKET_DATA, MARKET_DATA_TYPES } from "../../../utils/constants/market-data.constants";
 
 import { getStocksMarketData, getIndicesMarketData,
-  getCryptoMarketData, getForexMarketData
+  getCryptoMarketData, getForexMarketData,
+  getMarketDataAsync
  } from "../../../utils/api-requests/market-data.requests";
  
 import { MarketDataQuery, MarketDataQueryResult, MarketData, MarketDataProviderProps, MarketDataContextType } from "./market-data.types"
@@ -31,6 +32,14 @@ const searchMarketDataHelper = async (marketDataQuery: MarketDataQuery): Promise
     default:
       break
   }
+  return res
+}
+
+const searchMarketDataAsyncHelper = async (marketDataQuery: MarketDataQuery): Promise<MarketDataQueryResult[] | undefined> => {
+  if (validateMarketDataQuery(marketDataQuery)) return DEFAULT_MARKET_DATA
+
+  // api gateway request
+  const res = await getMarketDataAsync(marketDataQuery)
   return res
 }
 
@@ -65,7 +74,7 @@ export const MarketDataProvider: FC<MarketDataProviderProps> = ({ children }) =>
   }, [marketData])
 
   const searchMarketData = async (marketDataQuery: MarketDataQuery) => {
-    const resMarketData = await searchMarketDataHelper(marketDataQuery)
+    const resMarketData = await searchMarketDataAsyncHelper(marketDataQuery)
     setMarketData({
       ...marketDataQuery,
       queryResults: resMarketData as MarketDataQueryResult[]
