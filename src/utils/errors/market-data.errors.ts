@@ -25,3 +25,7 @@ export const errorOnGetCryptoMarketData = () => {
 export const errorOnGetForexMarketData = () => {
   alert("Error getting forex market data")
 }
+
+export const errorOnGetMarketData = () => {
+  alert("Error getting market data")
+}

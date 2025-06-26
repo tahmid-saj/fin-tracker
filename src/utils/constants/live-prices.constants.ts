@@ -10,4 +10,4 @@ export enum LIVE_PRICE_MESSAGE_TYPES {
   livePrices = "LIVE_PRICES"
 }
 
-export const LIVE_PRICES_POLL_INTERVAL = 600000
+export const LIVE_PRICES_POLL_INTERVAL = 1200000

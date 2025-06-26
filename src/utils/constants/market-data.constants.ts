@@ -20,3 +20,7 @@ export const MARKET_DATA_INTERVALS = {
   "Week": "Weekly",
   "Month": "Monthly" 
 }
+
+export const MARKET_DATA_REQUEST_POLL_INTERVAL = 750
+
+export const MARKET_DATA_REQUEST_TIMEOUT = 5000
