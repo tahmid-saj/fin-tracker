@@ -54,7 +54,7 @@ export const putInvestmentData = async (userId: string | null | undefined, email
   investmentInfo: InvestmentInfo): Promise<number | undefined> => {
   try {
     
-    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENTS}/${userId}/${email}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL_INVESTMENT}/${userId}/${email}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { Expense, EXPENSES_ACTION_TYPES, ExpensesSummary, FilterConditions } from "./expenses.types";
-import { addExpense, clearExpensesFilter, filterExpenses, 
+import { addExpense, clearExpensesFilter, filterExpenses, setExpensesView,
   selectScheduledExpenses, setExpensesSummary, setExpensesTagLimit, setScheduledExpensesView } from "./expenses.action";
 
 export type ExpensesState = {
@@ -35,6 +35,13 @@ export const expensesReducer = (state=EXPENSES_INITIAL_STATE, action: AnyAction)
     return {
       ...state,
       expensesTagLimit: action.payload
+    }
+  }
+
+  if (setExpensesView.match(action)) {
+    return {
+      ...state,
+      expensesView: action.payload
     }
   }
 
