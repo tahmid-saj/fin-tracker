@@ -27,7 +27,7 @@ const ExpensesSummary = () => {
         {/* <Typography variant="h6">{ `Filtered spend: ${filteredSpend}` }</Typography>
         <Typography variant="h6">{ `Filterd dates: ${filterConditions !== null && filterConditions.expensesStartDate !== '' ? filterConditions.expensesStartDate : ''} 
           - ${filterConditions !== null && filterConditions.expensesEndDate !== '' ? filterConditions.expensesEndDate : 'Today'}` }</Typography> */}
-        <Typography variant="body2">{ `All categories: ${expensesSummary?.currentAllExpensesCategories ? [ ...allExpensesCategories.keys() ] : ''}` }</Typography>
+        {/* <Typography variant="body2">{ `All categories: ${expensesSummary?.currentAllExpensesCategories ? [ ...allExpensesCategories.keys() ] : ''}` }</Typography> */}
       </SimplePaper>
     </ExpensesSummaryInfoContainer>
   )

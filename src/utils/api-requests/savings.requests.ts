@@ -54,7 +54,7 @@ export const putSavingsAccountData = async (userId: string | null | undefined, e
   savingsAccountInfo: SavingsAccountInfo): Promise<number | undefined> => {
   try {
     
-    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNTS}/${userId}/${email}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL_SAVINGS_ACCOUNT}/${userId}/${email}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
