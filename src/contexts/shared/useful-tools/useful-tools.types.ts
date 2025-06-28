@@ -17,25 +17,25 @@ export interface UsefulToolsProviderProps {
 }
 
 export type MortgageCalculatorResult = {
-  monthly_payment: MonthlyPayment,
-  annual_payment: AnnualPayment,
-  total_interest_paid: number
+  monthlyPayment: MonthlyPayment,
+  annualPayment: AnnualPayment,
+  totalInterestPaid: number
 }
 
 export type MonthlyPayment = {
   total: number,
   mortgage: number,
-  property_tax: number,
+  propertyTax: number,
   hoa: number,
-  annual_home_ins: number
+  annualHomeInsurance: number
 }
 
 export type AnnualPayment = {
   total: number,
   mortgage: number,
-  property_tax: number,
+  propertyTax: number,
   hoa: number,
-  home_insurance: number
+  homeInsurance: number
 }
 
 export type CurrencyConverterResult = {

@@ -12,25 +12,25 @@ const MortgageCalculatorResult = () => {
     <MortgageCalculatorResultContainer>
       <MortgageResult>
         <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Monthly payment`}</Typography>
-        <Typography paragraph>{`Total: $${mortgageCalculatorResult?.monthly_payment?.total}`}</Typography>
-        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult?.monthly_payment?.mortgage}`}</Typography>
-        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult?.monthly_payment?.property_tax}`}</Typography>
-        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult?.monthly_payment?.hoa}`}</Typography>
-        <Typography paragraph>{`Annual home insurance: $${mortgageCalculatorResult?.monthly_payment?.annual_home_ins}`}</Typography>
+        <Typography paragraph>{`Total: $${mortgageCalculatorResult?.monthlyPayment?.total}`}</Typography>
+        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult?.monthlyPayment?.mortgage}`}</Typography>
+        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult?.monthlyPayment?.propertyTax}`}</Typography>
+        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult?.monthlyPayment?.hoa}`}</Typography>
+        <Typography paragraph>{`Annual home insurance: $${mortgageCalculatorResult?.monthlyPayment?.annualHomeInsurance}`}</Typography>
       </MortgageResult>
 
       <MortgageResult>
         <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Annual payment`}</Typography>
-        <Typography paragraph>{`Total: $${mortgageCalculatorResult?.annual_payment?.total}`}</Typography>
-        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult?.annual_payment?.mortgage}`}</Typography>
-        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult?.annual_payment?.property_tax}`}</Typography>
-        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult?.annual_payment?.hoa}`}</Typography>
-        <Typography paragraph>{`Home insurance: $${mortgageCalculatorResult?.annual_payment?.home_insurance}`}</Typography>
+        <Typography paragraph>{`Total: $${mortgageCalculatorResult?.annualPayment?.total}`}</Typography>
+        <Typography paragraph>{`Mortgage: $${mortgageCalculatorResult?.annualPayment?.mortgage}`}</Typography>
+        <Typography paragraph>{`Property tax: $${mortgageCalculatorResult?.annualPayment?.propertyTax}`}</Typography>
+        <Typography paragraph>{`Homeowner association fees: $${mortgageCalculatorResult?.annualPayment?.hoa}`}</Typography>
+        <Typography paragraph>{`Home insurance: $${mortgageCalculatorResult?.annualPayment?.homeInsurance}`}</Typography>
       </MortgageResult>
 
       <MortgageResult>
         <Typography sx={{ marginBottom: "2%" }} variant="subtitle2">{`Total interest paid`}</Typography>
-        <Typography paragraph>{`$${mortgageCalculatorResult?.total_interest_paid}`}</Typography>
+        <Typography paragraph>{`$${mortgageCalculatorResult?.totalInterestPaid}`}</Typography>
       </MortgageResult>
     </MortgageCalculatorResultContainer>
   )

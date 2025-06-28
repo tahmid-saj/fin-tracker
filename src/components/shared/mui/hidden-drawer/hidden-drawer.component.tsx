@@ -91,7 +91,7 @@ export default function HiddenDrawer() {
     <Box sx={{ width: 250, marginTop: "40px" }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         { navLinksHeaders.section1.map(({ header, path }, index) => (
-          <Link to={ `${path}` }>
+          <Link to={ `${path}` } key={ index }>
             <ListItem key={ header } disablePadding>
               <ListItemButton>
                 <ListItemIcon>
