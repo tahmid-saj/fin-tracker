@@ -12,9 +12,9 @@ export async function getMortgageResult(mortgageInput: MortgageInput): Promise<a
       },
       body: JSON.stringify(mortgageInput)
     })
-    const resMortgageCalculation = await response.json()
+    const { mortgageCalculation } = await response.json()
 
-    return resMortgageCalculation.mortgageCalculation
+    return mortgageCalculation
   } catch (error) {
     
     errorOnMortgageResult()
