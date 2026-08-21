@@ -6,11 +6,11 @@ Finance planner app to track and calculate finance info from expenses, banking, 
 <br>
 
 <figure>
-  <img width="839" alt="image" src="https://github.com/user-attachments/assets/87449cc7-3247-4fdc-8e1e-e5b2340271a4">
+<img width="598" height="631" alt="image" src="https://github.com/user-attachments/assets/a7461084-ff13-449e-b093-9a0eb9acdf90" />
 </figure>
 <br>
 
-[Figure 1: High level view](https://whimsical.com/fin-tracker-S5XFuVeVfa6ktVFyqqNn7S)
+[[Figure 1: High level view]([https://whimsical.com/fin-tracker-S5XFuVeVfa6ktVFyqqNn7S](https://whimsical.com/roadmaps761/financeplanner-io-5w3tp6bXyS5hgpkGRbcvjJ))](https://whimsical.com/roadmaps761/financeplanner-io-5w3tp6bXyS5hgpkGRbcvjJ)
 <br>
 <br>
 
